@@ -1,0 +1,317 @@
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 102px;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-top: 90px;
+  }
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(10, 42, 56, 0.82) 0%, rgba(10, 42, 56, 0.5) 100%);
+  pointer-events: none;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--space-20) var(--space-5);
+  text-align: center;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
+  color: var(--white);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-5);
+}
+
+.heroTitle {
+  font-size: clamp(var(--text-3xl), 6vw, var(--text-5xl));
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: var(--space-5);
+}
+
+.highlight {
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroDesc {
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin: 0 auto var(--space-10);
+  line-height: 1.7;
+}
+
+.heroStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  .heroStats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.heroStat {
+  padding: var(--space-4);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+}
+
+.heroStatNumber {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--white);
+}
+
+.heroStatLabel {
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: var(--space-1);
+}
+
+.heroPattern {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heroPattern::before,
+.heroPattern::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-full);
+}
+
+.heroPattern::before {
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  right: -200px;
+  animation: heroFloat 20s var(--ease-in-out) infinite;
+}
+
+.heroPattern::after {
+  width: 400px;
+  height: 400px;
+  bottom: -100px;
+  left: -100px;
+  animation: heroFloat 15s var(--ease-in-out) infinite reverse;
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(20px, -20px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-10px, 10px) rotate(-5deg);
+  }
+  75% {
+    transform: translate(15px, 15px) rotate(3deg);
+  }
+}
+
+.heroParticles {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heroParticle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full);
+  animation: particleFloat 12s var(--ease-in-out) infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.heroParticle:nth-child(1) {
+  left: 10%;
+  top: 20%;
+  animation-delay: 0s;
+}
+.heroParticle:nth-child(2) {
+  left: 20%;
+  top: 60%;
+  animation-delay: 2s;
+}
+.heroParticle:nth-child(3) {
+  left: 35%;
+  top: 30%;
+  animation-delay: 4s;
+}
+.heroParticle:nth-child(4) {
+  left: 50%;
+  top: 70%;
+  animation-delay: 1s;
+}
+.heroParticle:nth-child(5) {
+  left: 65%;
+  top: 25%;
+  animation-delay: 3s;
+}
+.heroParticle:nth-child(6) {
+  left: 80%;
+  top: 55%;
+  animation-delay: 5s;
+}
+.heroParticle:nth-child(7) {
+  left: 90%;
+  top: 35%;
+  animation-delay: 2.5s;
+}
+.heroParticle:nth-child(8) {
+  left: 15%;
+  top: 80%;
+  animation-delay: 1.5s;
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-80px) translateX(40px) scale(1.2);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-160px) translateX(-20px) scale(0.9);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-120px) translateX(60px) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+.heroScroll {
+  position: absolute;
+  bottom: var(--space-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  color: rgba(255, 255, 255, 0.7);
+  z-index: 3;
+  animation: heroScrollBounce 2.5s var(--ease-in-out) infinite;
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+.heroScroll:hover {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.heroScroll span {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.heroScroll i {
+  font-size: 24px;
+}
+
+@keyframes heroScrollBounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroPattern::before,
+  .heroPattern::after,
+  .heroParticle,
+  .heroScroll {
+    animation: none;
+  }
+}
+
+.section {
+  padding: var(--space-16) var(--space-5);
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-10);
+}
+
+.sectionTitle {
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+.divider {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  margin: 0 auto var(--space-4);
+  border-radius: var(--radius-full);
+}
+
+.sectionDesc {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.bottomTags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-12);
+}

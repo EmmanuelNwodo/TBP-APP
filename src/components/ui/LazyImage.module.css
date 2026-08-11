@@ -1,0 +1,28 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.wrapper.fill {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.wrapper.fluid {
+  display: block;
+  width: 100%;
+}
+
+.image {
+  transition: opacity var(--duration-slow, 300ms) var(--ease-out, ease);
+}
+
+.imageLoading {
+  opacity: 0;
+}
+
+.imageLoaded {
+  opacity: 1;
+}

@@ -1,0 +1,1810 @@
+[
+  {
+    "id": 1,
+    "name": "Adebayo Okonkwo",
+    "role": "CEO, Okonkwo Holdings",
+    "category": "client",
+    "rating": 5,
+    "content": "The Building Practice transformed our corporate headquarters into a stunning architectural masterpiece. Their attention to detail and innovative approach exceeded all our expectations.",
+    "date": "2024-12-15",
+    "project": "Corporate HQ Redesign",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Chioma Eze",
+    "role": "Property Developer",
+    "category": "client",
+    "rating": 5,
+    "content": "Working with TBP was an absolute pleasure. They understood our vision for the residential complex and brought it to life beautifully.",
+    "date": "2024-12-10",
+    "project": "Green Valley Residences"
+  },
+  {
+    "id": 3,
+    "name": "Emeka Nwachukwu",
+    "role": "Hotel Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "Our boutique hotel has received countless compliments since the renovation. Highly recommended!",
+    "date": "2024-12-08",
+    "project": "Ocean View Hotel"
+  },
+  {
+    "id": 4,
+    "name": "Folake Adeleke",
+    "role": "Homeowner",
+    "category": "client",
+    "rating": 5,
+    "content": "From the initial consultation to the final walkthrough, the experience was seamless. They designed a home that truly feels like us.",
+    "date": "2024-12-05",
+    "project": "Adeleke Family Home"
+  },
+  {
+    "id": 5,
+    "name": "Gbenga Bakare",
+    "role": "Restaurant Owner",
+    "category": "client",
+    "rating": 4,
+    "content": "The restaurant design exceeded our expectations. The ambiance has become a talking point for our customers.",
+    "date": "2024-12-01",
+    "project": "Savannah Grill"
+  },
+  {
+    "id": 6,
+    "name": "Hadiza Mohammed",
+    "role": "School Administrator",
+    "category": "client",
+    "rating": 5,
+    "content": "TBP designed our new school campus with students' learning experience in mind. The spaces have transformed education.",
+    "date": "2024-11-28",
+    "project": "Sunrise Academy Campus",
+    "featured": true
+  },
+  {
+    "id": 7,
+    "name": "Ibrahim Sule",
+    "role": "Factory Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The industrial facility they designed optimizes workflow and maximizes efficiency. Impressive understanding of manufacturing.",
+    "date": "2024-11-25",
+    "project": "Sule Manufacturing Plant"
+  },
+  {
+    "id": 8,
+    "name": "Jennifer Okafor",
+    "role": "Clinic Director",
+    "category": "client",
+    "rating": 5,
+    "content": "Our medical facility is now a calming, patient-friendly environment. Thoughtful design at its best.",
+    "date": "2024-11-22",
+    "project": "Healing Hands Clinic"
+  },
+  {
+    "id": 9,
+    "name": "Kenneth Ajayi",
+    "role": "Church Pastor",
+    "category": "client",
+    "rating": 5,
+    "content": "The new church building blends spiritual significance with modern architecture beautifully.",
+    "date": "2024-11-18",
+    "project": "Grace Chapel"
+  },
+  {
+    "id": 10,
+    "name": "Lilian Uche",
+    "role": "Spa Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "Every corner of our spa radiates tranquility. TBP understood the importance of creating a sensory experience.",
+    "date": "2024-11-15",
+    "project": "Serenity Spa & Wellness"
+  },
+  {
+    "id": 11,
+    "name": "Michael Adeyemi",
+    "role": "Tech Startup Founder",
+    "category": "client",
+    "rating": 5,
+    "content": "Our office space reflects our innovative culture perfectly. The design has boosted our team's creativity.",
+    "date": "2024-11-12",
+    "project": "TechHub Lagos"
+  },
+  {
+    "id": 12,
+    "name": "Ngozi Obi",
+    "role": "Art Gallery Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "They designed a gallery that lets the art speak. The lighting and flow create an immersive experience.",
+    "date": "2024-11-08",
+    "project": "Contemporary Arts Space"
+  },
+  {
+    "id": 13,
+    "name": "Olumide Fashola",
+    "role": "Real Estate Developer",
+    "category": "client",
+    "rating": 5,
+    "content": "We've completed three projects with TBP and each one has been a success. Their designs attract buyers.",
+    "date": "2024-11-05",
+    "project": "Lekki Heights Estate"
+  },
+  {
+    "id": 14,
+    "name": "Patricia Egwu",
+    "role": "Daycare Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The childcare center is colorful, safe, and stimulating for young children. Parents and kids love it.",
+    "date": "2024-11-01",
+    "project": "Little Stars Daycare"
+  },
+  {
+    "id": 15,
+    "name": "Quadri Lawal",
+    "role": "Gym Owner",
+    "category": "client",
+    "rating": 4,
+    "content": "The fitness center design maximizes space usage while maintaining an energetic atmosphere.",
+    "date": "2024-10-28",
+    "project": "PowerFit Gym"
+  },
+  {
+    "id": 16,
+    "name": "Rashida Bello",
+    "role": "Boutique Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "My fashion boutique has become an Instagram-worthy destination. The design creates a luxurious shopping experience.",
+    "date": "2024-10-25",
+    "project": "Chic Mode Boutique"
+  },
+  {
+    "id": 17,
+    "name": "Samuel Onyeka",
+    "role": "Banking Executive",
+    "category": "client",
+    "rating": 5,
+    "content": "The new branch design balances professionalism with approachability. Customer feedback has been overwhelmingly positive.",
+    "date": "2024-10-22",
+    "project": "First National Bank Branch"
+  },
+  {
+    "id": 18,
+    "name": "Tolu Akinwande",
+    "role": "Event Center Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "Our event center can host everything from weddings to conferences thanks to their flexible design approach.",
+    "date": "2024-10-18",
+    "project": "Grand Occasions Hall"
+  },
+  {
+    "id": 19,
+    "name": "Uche Ibe",
+    "role": "Pharmaceutical CEO",
+    "category": "client",
+    "rating": 5,
+    "content": "The pharmaceutical facility meets all international standards while being aesthetically pleasing.",
+    "date": "2024-10-15",
+    "project": "MedCare Pharma Plant"
+  },
+  {
+    "id": 20,
+    "name": "Victoria Nwosu",
+    "role": "Homeowner",
+    "category": "client",
+    "rating": 5,
+    "content": "Our dream home became a reality. Every detail was thoughtfully designed. We couldn't be happier.",
+    "date": "2024-10-12",
+    "project": "Nwosu Residence"
+  },
+  {
+    "id": 21,
+    "name": "Wale Ogunleye",
+    "role": "Mall Developer",
+    "category": "client",
+    "rating": 5,
+    "content": "The mall design has attracted premium tenants and high foot traffic. A complete lifestyle destination.",
+    "date": "2024-10-08",
+    "project": "Victoria Island Mall"
+  },
+  {
+    "id": 22,
+    "name": "Xena Danjuma",
+    "role": "Law Firm Partner",
+    "category": "client",
+    "rating": 5,
+    "content": "Our law office exudes professionalism and sophistication. The design impresses clients.",
+    "date": "2024-10-05",
+    "project": "Danjuma & Associates Office"
+  },
+  {
+    "id": 23,
+    "name": "Yusuf Aliyu",
+    "role": "Warehouse Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The logistics facility design optimizes storage and movement of goods efficiently.",
+    "date": "2024-10-01",
+    "project": "Aliyu Logistics Hub"
+  },
+  {
+    "id": 24,
+    "name": "Zainab Abdullahi",
+    "role": "NGO Director",
+    "category": "client",
+    "rating": 5,
+    "content": "They designed our community center with empathy and understanding of our mission.",
+    "date": "2024-09-28",
+    "project": "Hope Community Center"
+  },
+  {
+    "id": 25,
+    "name": "Ahmed Musa",
+    "role": "Sports Complex Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The sports facility is world-class. Every aspect was designed for optimal performance.",
+    "date": "2024-09-25",
+    "project": "Champions Sports Arena"
+  },
+  {
+    "id": 26,
+    "name": "Blessing Okoro",
+    "role": "Retirement Home Director",
+    "category": "client",
+    "rating": 5,
+    "content": "The senior living facility balances accessibility with dignity. Residents love their new home.",
+    "date": "2024-09-22",
+    "project": "Golden Years Residence"
+  },
+  {
+    "id": 27,
+    "name": "Chidi Aneke",
+    "role": "Tech Campus Developer",
+    "category": "client",
+    "rating": 5,
+    "content": "The tech campus has become a hub for innovation. The design fosters collaboration.",
+    "date": "2024-09-18",
+    "project": "Innovation Park"
+  },
+  {
+    "id": 28,
+    "name": "Damilola Adewale",
+    "role": "Brewery Owner",
+    "category": "client",
+    "rating": 4,
+    "content": "The brewery combines functional production spaces with an inviting taproom. Visitors love it.",
+    "date": "2024-09-15",
+    "project": "Craftsman Brewery"
+  },
+  {
+    "id": 29,
+    "name": "Ezekiel Nnamdi",
+    "role": "Cinema Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The cinema complex offers a premium movie experience. Excellent acoustic design.",
+    "date": "2024-09-12",
+    "project": "Starlight Cinemas"
+  },
+  {
+    "id": 30,
+    "name": "Fatima Ibrahim",
+    "role": "Fashion Designer",
+    "category": "client",
+    "rating": 5,
+    "content": "My design studio is both a creative workspace and a showroom. Natural lighting inspires creativity.",
+    "date": "2024-09-08",
+    "project": "Fatima Couture Studio"
+  },
+  {
+    "id": 31,
+    "name": "George Akpan",
+    "role": "Car Dealership Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The showroom design showcases our vehicles beautifully. Clients are always impressed.",
+    "date": "2024-09-05",
+    "project": "Premium Auto Gallery"
+  },
+  {
+    "id": 32,
+    "name": "Hannah Oyelaran",
+    "role": "University Dean",
+    "category": "client",
+    "rating": 5,
+    "content": "The new faculty building promotes academic excellence. All spaces work harmoniously.",
+    "date": "2024-09-01",
+    "project": "University Science Complex"
+  },
+  {
+    "id": 33,
+    "name": "Isaac Okonkwo",
+    "role": "Data Center Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The data center meets all technical requirements while being energy efficient.",
+    "date": "2024-08-28",
+    "project": "SecureData Facility"
+  },
+  {
+    "id": 34,
+    "name": "Janet Adekunle",
+    "role": "Bakery Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "Our bakery is as delightful as our pastries! The design creates a warm atmosphere.",
+    "date": "2024-08-25",
+    "project": "Sweet Delights Bakery"
+  },
+  {
+    "id": 35,
+    "name": "Kelechi Obiora",
+    "role": "Recording Studio Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The acoustic design is flawless. Artists love recording here.",
+    "date": "2024-08-22",
+    "project": "SoundWave Studios"
+  },
+  {
+    "id": 36,
+    "name": "Lola Bamidele",
+    "role": "Florist Shop Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The flower shop design brings the outdoors in. A refreshing environment.",
+    "date": "2024-08-18",
+    "project": "Bloom & Petals"
+  },
+  {
+    "id": 37,
+    "name": "Moses Etim",
+    "role": "Printing Press Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The facility balances heavy machinery requirements with a clean workspace.",
+    "date": "2024-08-15",
+    "project": "PrintMaster Facility"
+  },
+  {
+    "id": 38,
+    "name": "Nkechi Oduah",
+    "role": "Dance Academy Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The dance studios have perfect flooring, mirrors, and lighting. Students love it.",
+    "date": "2024-08-12",
+    "project": "Rhythm Dance Academy"
+  },
+  {
+    "id": 39,
+    "name": "Ojo Adelani",
+    "role": "Supermarket Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The supermarket layout optimizes customer flow. Sales have increased significantly.",
+    "date": "2024-08-08",
+    "project": "FreshMart Superstore"
+  },
+  {
+    "id": 40,
+    "name": "Patience Umeh",
+    "role": "Veterinary Clinic Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The clinic design considers both animals and their owners. Calming and efficient.",
+    "date": "2024-08-05",
+    "project": "PetCare Veterinary Clinic"
+  },
+  {
+    "id": 41,
+    "name": "Ruth Agbaje",
+    "role": "Jewelry Store Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The boutique design elevates our jewelry presentation. Security is seamlessly integrated.",
+    "date": "2024-07-28",
+    "project": "Gemstone Gallery"
+  },
+  {
+    "id": 42,
+    "name": "Stephen Okafor",
+    "role": "Auto Workshop Owner",
+    "category": "client",
+    "rating": 4,
+    "content": "The workshop is functional and professional. Good use of space for service bays.",
+    "date": "2024-07-25",
+    "project": "AutoPro Service Center"
+  },
+  {
+    "id": 43,
+    "name": "Titilayo Afolabi",
+    "role": "Beauty Salon Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The salon is Instagram-perfect! Clients constantly compliment the chic atmosphere.",
+    "date": "2024-07-22",
+    "project": "Glow Beauty Lounge"
+  },
+  {
+    "id": 44,
+    "name": "Usman Danladi",
+    "role": "Mosque Chairman",
+    "category": "client",
+    "rating": 5,
+    "content": "The mosque beautifully incorporates Islamic architectural elements with modern standards.",
+    "date": "2024-07-18",
+    "project": "Al-Noor Mosque"
+  },
+  {
+    "id": 45,
+    "name": "Vivian Ekwueme",
+    "role": "Cooking School Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The culinary school has professional-grade kitchens. Students love the modern equipment.",
+    "date": "2024-07-15",
+    "project": "ChefMaster Academy"
+  },
+  {
+    "id": 46,
+    "name": "Williams Ogbeide",
+    "role": "Funeral Home Director",
+    "category": "client",
+    "rating": 5,
+    "content": "The design strikes the perfect balance between solemnity and comfort for families.",
+    "date": "2024-07-12",
+    "project": "Eternal Peace Chapel"
+  },
+  {
+    "id": 47,
+    "name": "Xander Obi",
+    "role": "Gaming Lounge Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The gaming center is a hit! The futuristic design creates an immersive experience.",
+    "date": "2024-07-08",
+    "project": "GameZone Arena"
+  },
+  {
+    "id": 48,
+    "name": "Yetunde Shokunbi",
+    "role": "Bookstore Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The bookstore invites visitors to linger and explore. A book lover's paradise.",
+    "date": "2024-07-05",
+    "project": "The Reading Room"
+  },
+  {
+    "id": 49,
+    "name": "Zara Mahmoud",
+    "role": "Photography Studio Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The studio's versatile spaces accommodate any type of shoot. Clients are impressed.",
+    "date": "2024-07-01",
+    "project": "Capture Studios"
+  },
+  {
+    "id": 50,
+    "name": "Abdul Rahman",
+    "role": "Import/Export Business Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The office and warehouse complex perfectly serves our business needs.",
+    "date": "2024-06-28",
+    "project": "Global Trade Center"
+  },
+  {
+    "id": 51,
+    "name": "Bukola Oyeleke",
+    "role": "Montessori School Founder",
+    "category": "client",
+    "rating": 5,
+    "content": "The school design follows Montessori principles beautifully. Students thrive here.",
+    "date": "2024-06-25",
+    "project": "Little Explorers Montessori"
+  },
+  {
+    "id": 52,
+    "name": "Charles Ikenna",
+    "role": "Car Wash Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The car wash facility is efficient and attractive. Great water management systems.",
+    "date": "2024-06-22",
+    "project": "Sparkle Auto Spa"
+  },
+  {
+    "id": 53,
+    "name": "Diana Okeke",
+    "role": "Dermatology Clinic Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The clinic's clean yet welcoming design puts patients at ease.",
+    "date": "2024-06-18",
+    "project": "SkinGlow Dermatology"
+  },
+  {
+    "id": 54,
+    "name": "Emmanuel Bassey",
+    "role": "Furniture Showroom Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The showroom displays furniture in realistic room settings. Sales have improved.",
+    "date": "2024-06-15",
+    "project": "Home Elegance Showroom"
+  },
+  {
+    "id": 55,
+    "name": "Florence Nwankwo",
+    "role": "Music School Director",
+    "category": "client",
+    "rating": 5,
+    "content": "Soundproofed practice rooms and a recital hall. The school supports musical education perfectly.",
+    "date": "2024-06-12",
+    "project": "Harmony Music Academy"
+  },
+  {
+    "id": 56,
+    "name": "Gabriel Oluwole",
+    "role": "Ice Cream Parlor Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The parlor is colorful, fun, and family-friendly. Kids love it!",
+    "date": "2024-06-08",
+    "project": "Scoops & Smiles"
+  },
+  {
+    "id": 57,
+    "name": "Helen Omotayo",
+    "role": "Yoga Studio Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The studio emanates peace and tranquility. Perfect for practice.",
+    "date": "2024-06-05",
+    "project": "Zen Yoga Studio"
+  },
+  {
+    "id": 58,
+    "name": "Ikechukwu Nwogu",
+    "role": "Electronics Store Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "The store layout encourages product discovery. Customer engagement has increased.",
+    "date": "2024-06-01",
+    "project": "TechWorld Electronics"
+  },
+  {
+    "id": 59,
+    "name": "Joy Adebisi",
+    "role": "Children's Hospital Director",
+    "category": "client",
+    "rating": 5,
+    "content": "The hospital design reduces anxiety for young patients. Colorful and child-friendly.",
+    "date": "2024-05-28",
+    "project": "Rainbow Children's Hospital",
+    "featured": true
+  },
+  {
+    "id": 60,
+    "name": "Kunle Ogundimu",
+    "role": "Conference Center Owner",
+    "category": "client",
+    "rating": 5,
+    "content": "State-of-the-art facilities for any type of event. Acoustics are perfect.",
+    "date": "2024-05-25",
+    "project": "Summit Conference Center"
+  },
+  {
+    "id": 61,
+    "name": "Arch. Olumide Akindele",
+    "role": "Partner Architect, AKD Design",
+    "category": "partner",
+    "rating": 5,
+    "content": "Collaborating with The Building Practice has been enriching. Their design philosophy aligns with ours.",
+    "date": "2024-12-12",
+    "project": "Multiple Collaborations",
+    "featured": true
+  },
+  {
+    "id": 62,
+    "name": "Eng. Chukwuma Obi",
+    "role": "Structural Engineer",
+    "category": "partner",
+    "rating": 5,
+    "content": "TBP's designs are always structurally sound and buildable. A pleasure to work with.",
+    "date": "2024-12-08",
+    "project": "Engineering Partnership"
+  },
+  {
+    "id": 63,
+    "name": "Surveyor Bola Adeyinka",
+    "role": "Principal, Adeyinka Surveys",
+    "category": "partner",
+    "rating": 5,
+    "content": "Their attention to site conditions and survey data is meticulous.",
+    "date": "2024-12-01",
+    "project": "Survey Services"
+  },
+  {
+    "id": 64,
+    "name": "Arch. Nneoma Eze",
+    "role": "Landscape Architect",
+    "category": "partner",
+    "rating": 5,
+    "content": "TBP values landscape integration from project inception. Excellent collaboration.",
+    "date": "2024-11-25",
+    "project": "Landscape Collaborations"
+  },
+  {
+    "id": 65,
+    "name": "Eng. Yusuf Abubakar",
+    "role": "MEP Engineer",
+    "category": "partner",
+    "rating": 5,
+    "content": "Their designs accommodate MEP systems elegantly. Smooth coordination process.",
+    "date": "2024-11-20",
+    "project": "MEP Engineering"
+  },
+  {
+    "id": 66,
+    "name": "Qty Surv. Adaeze Okwu",
+    "role": "Quantity Surveyor",
+    "category": "partner",
+    "rating": 5,
+    "content": "Cost-effective designs without compromising quality. Thorough documentation.",
+    "date": "2024-11-15",
+    "project": "Cost Consulting"
+  },
+  {
+    "id": 67,
+    "name": "Arch. Tunde Fashola",
+    "role": "Interior Designer",
+    "category": "partner",
+    "rating": 5,
+    "content": "Their architectural designs provide excellent canvases for interior work.",
+    "date": "2024-11-10",
+    "project": "Interior Design Partnership"
+  },
+  {
+    "id": 68,
+    "name": "Eng. Grace Okafor",
+    "role": "Environmental Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "TBP takes sustainability seriously. Rewarding environmental consulting.",
+    "date": "2024-11-05",
+    "project": "Green Building Certification"
+  },
+  {
+    "id": 69,
+    "name": "Arch. Segun Oyelaran",
+    "role": "Urban Planner",
+    "category": "partner",
+    "rating": 5,
+    "content": "Excellent understanding of urban context. Buildings contribute positively to neighborhoods.",
+    "date": "2024-10-30",
+    "project": "Urban Planning Integration"
+  },
+  {
+    "id": 70,
+    "name": "Eng. Halima Sani",
+    "role": "Fire Safety Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Fire safety is integrated from the start, not an afterthought. Professional approach.",
+    "date": "2024-10-25",
+    "project": "Fire Safety Consulting"
+  },
+  {
+    "id": 71,
+    "name": "Arch. David Ogundimu",
+    "role": "Lighting Designer",
+    "category": "partner",
+    "rating": 5,
+    "content": "Their architectural lighting provisions are well-planned. Enhanced final projects.",
+    "date": "2024-10-20",
+    "project": "Lighting Design"
+  },
+  {
+    "id": 72,
+    "name": "Eng. Fatimah Bello",
+    "role": "Geotechnical Engineer",
+    "category": "partner",
+    "rating": 5,
+    "content": "Foundation designs are always appropriate for site conditions.",
+    "date": "2024-10-15",
+    "project": "Geotechnical Services"
+  },
+  {
+    "id": 73,
+    "name": "Arch. Emeka Okonkwo",
+    "role": "Acoustic Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Working with TBP on acoustic-sensitive projects is excellent.",
+    "date": "2024-10-10",
+    "project": "Acoustic Consulting"
+  },
+  {
+    "id": 74,
+    "name": "Surveyor Mary Ajayi",
+    "role": "Building Control Surveyor",
+    "category": "partner",
+    "rating": 5,
+    "content": "Their submissions are always complete and code-compliant. Efficient approvals.",
+    "date": "2024-10-05",
+    "project": "Building Approvals"
+  },
+  {
+    "id": 75,
+    "name": "Eng. Ikenna Nwachukwu",
+    "role": "Traffic Engineer",
+    "category": "partner",
+    "rating": 5,
+    "content": "Thoughtful consideration of traffic impact. Parking and circulation are well-planned.",
+    "date": "2024-09-30",
+    "project": "Traffic Studies"
+  },
+  {
+    "id": 76,
+    "name": "Arch. Sade Ogunlesi",
+    "role": "Heritage Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Sensitive approach to heritage buildings. Restoration work respects historical significance.",
+    "date": "2024-09-25",
+    "project": "Heritage Conservation"
+  },
+  {
+    "id": 77,
+    "name": "Eng. Mohammed Aliyu",
+    "role": "Elevator Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Vertical transportation is well-integrated. Shaft sizes and specifications are always correct.",
+    "date": "2024-09-20",
+    "project": "Elevator Systems"
+  },
+  {
+    "id": 78,
+    "name": "Arch. Chidinma Agu",
+    "role": "Accessibility Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Universal design is a priority. Their buildings are genuinely accessible.",
+    "date": "2024-09-15",
+    "project": "Accessibility Audits"
+  },
+  {
+    "id": 79,
+    "name": "Eng. Olabisi Falade",
+    "role": "Pool Designer",
+    "category": "partner",
+    "rating": 5,
+    "content": "Beautiful water feature integration. Technical coordination is always smooth.",
+    "date": "2024-09-10",
+    "project": "Aquatic Design"
+  },
+  {
+    "id": 80,
+    "name": "Arch. Victor Essien",
+    "role": "Wayfinding Designer",
+    "category": "partner",
+    "rating": 5,
+    "content": "Their buildings are intuitive to navigate. Signage integration is considered early.",
+    "date": "2024-09-05",
+    "project": "Wayfinding Design"
+  },
+  {
+    "id": 81,
+    "name": "Eng. Aisha Garba",
+    "role": "Solar Energy Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Proactive about renewable energy. Roof designs accommodate solar panels effectively.",
+    "date": "2024-09-01",
+    "project": "Solar Integration"
+  },
+  {
+    "id": 82,
+    "name": "Arch. Kingsley Ofoegbu",
+    "role": "Security Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Security considerations are built into the architecture. Well-planned access control.",
+    "date": "2024-08-25",
+    "project": "Security Design"
+  },
+  {
+    "id": 83,
+    "name": "Eng. Folake Adeoye",
+    "role": "Kitchen Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Commercial kitchen designs are functional and efficient. They understand food service.",
+    "date": "2024-08-20",
+    "project": "Commercial Kitchen Design"
+  },
+  {
+    "id": 84,
+    "name": "Arch. Samuel Udoh",
+    "role": "BIM Manager",
+    "category": "partner",
+    "rating": 5,
+    "content": "Their BIM models are detailed and coordinated. Makes clash detection easier.",
+    "date": "2024-08-15",
+    "project": "BIM Services"
+  },
+  {
+    "id": 85,
+    "name": "Eng. Precious Okonkwo",
+    "role": "Façade Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Innovative façade designs that are buildable. Great collaboration on curtain walls.",
+    "date": "2024-08-10",
+    "project": "Façade Engineering"
+  },
+  {
+    "id": 86,
+    "name": "Arch. Babatunde Coker",
+    "role": "Project Manager",
+    "category": "partner",
+    "rating": 5,
+    "content": "Well-documented projects that are easy to manage. Responsive to design changes.",
+    "date": "2024-08-05",
+    "project": "Project Management"
+  },
+  {
+    "id": 87,
+    "name": "Eng. Catherine Obi",
+    "role": "Water Conservation Specialist",
+    "category": "partner",
+    "rating": 5,
+    "content": "Sustainable water management integrated into designs. Buildings minimize water waste.",
+    "date": "2024-07-30",
+    "project": "Water Conservation"
+  },
+  {
+    "id": 88,
+    "name": "Arch. Adebayo Oni",
+    "role": "Masterplanner",
+    "category": "partner",
+    "rating": 5,
+    "content": "Individual buildings fit beautifully into larger masterplans. Urban coherence.",
+    "date": "2024-07-25",
+    "project": "Masterplanning"
+  },
+  {
+    "id": 89,
+    "name": "Eng. Rita Nweke",
+    "role": "Waste Management Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Thoughtful waste management provisions. Recycling areas are well-designed.",
+    "date": "2024-07-20",
+    "project": "Waste Management"
+  },
+  {
+    "id": 90,
+    "name": "Arch. Godwin Ekechi",
+    "role": "3D Visualization Specialist",
+    "category": "partner",
+    "rating": 5,
+    "content": "Their design intent is always clear. Beautiful architecture that renders well.",
+    "date": "2024-07-15",
+    "project": "3D Visualization"
+  },
+  {
+    "id": 91,
+    "name": "Adaora Nnamdi",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "My internship at TBP was transformative. I worked on real projects and received excellent mentorship.",
+    "date": "2024-12-05",
+    "project": "Summer Internship 2024",
+    "featured": true
+  },
+  {
+    "id": 92,
+    "name": "Babajide Olumide",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "The hands-on experience was invaluable. From site visits to client presentations, I was exposed to all aspects.",
+    "date": "2024-11-28",
+    "project": "Summer Internship 2024"
+  },
+  {
+    "id": 93,
+    "name": "Chiamaka Obi",
+    "role": "Interior Design Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "TBP gave me opportunities to contribute design ideas that were actually implemented.",
+    "date": "2024-11-20",
+    "project": "Interior Design Internship"
+  },
+  {
+    "id": 94,
+    "name": "Daniel Effiong",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "The structured internship program covers all project phases. Comprehensive understanding gained.",
+    "date": "2024-11-15",
+    "project": "Year-long Internship"
+  },
+  {
+    "id": 95,
+    "name": "Esther Adeyemi",
+    "role": "Graphic Design Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Even as a graphic design intern, I learned so much about architectural communication.",
+    "date": "2024-11-10",
+    "project": "Design Internship"
+  },
+  {
+    "id": 96,
+    "name": "Femi Bakare",
+    "role": "Architecture Intern, 2023",
+    "category": "intern",
+    "rating": 5,
+    "content": "My TBP internship led to a full-time position. The firm invests in developing young talent.",
+    "date": "2024-11-05",
+    "project": "Internship to Employment"
+  },
+  {
+    "id": 97,
+    "name": "Gloria Okwuosa",
+    "role": "Urban Planning Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Exposure to urban-scale projects broadened my perspective. Multidisciplinary approach was educational.",
+    "date": "2024-10-30",
+    "project": "Planning Internship"
+  },
+  {
+    "id": 98,
+    "name": "Hassan Mohammed",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 4,
+    "content": "Great learning experience overall. The technical skills I gained were substantial.",
+    "date": "2024-10-25",
+    "project": "Summer Internship 2024"
+  },
+  {
+    "id": 99,
+    "name": "Ifeoma Chukwu",
+    "role": "Sustainability Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "I worked on green building certifications and learned practical applications of sustainable design.",
+    "date": "2024-10-20",
+    "project": "Green Building Internship"
+  },
+  {
+    "id": 100,
+    "name": "Joshua Akinola",
+    "role": "Architecture Intern, 2023",
+    "category": "intern",
+    "rating": 5,
+    "content": "The mentorship I received shaped my architectural thinking. Senior architects were generous with knowledge.",
+    "date": "2024-10-15",
+    "project": "NYSC Internship"
+  },
+  {
+    "id": 101,
+    "name": "Khadijah Bello",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "TBP's studio culture encourages questions and experimentation. I felt like a valued team member.",
+    "date": "2024-10-10",
+    "project": "Summer Internship 2024"
+  },
+  {
+    "id": 102,
+    "name": "Lanre Ogunbiyi",
+    "role": "BIM Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Intensive BIM training and real project experience. My Revit skills improved dramatically.",
+    "date": "2024-10-05",
+    "project": "BIM Internship"
+  },
+  {
+    "id": 103,
+    "name": "Mercy Ojo",
+    "role": "Architecture Intern, 2023",
+    "category": "intern",
+    "rating": 5,
+    "content": "The internship prepared me for professional practice. Learned time management and client communication.",
+    "date": "2024-09-30",
+    "project": "Year-long Internship"
+  },
+  {
+    "id": 104,
+    "name": "Nonso Okafor",
+    "role": "Construction Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Site experience during my internship was eye-opening. Understanding construction made me a better designer.",
+    "date": "2024-09-25",
+    "project": "Site Internship"
+  },
+  {
+    "id": 105,
+    "name": "Oluchi Eze",
+    "role": "Interior Design Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "From space planning to material selection, I experienced the full interior design process.",
+    "date": "2024-09-20",
+    "project": "Interior Internship"
+  },
+  {
+    "id": 106,
+    "name": "Peter Nwachukwu",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Working on diverse project types expanded my design vocabulary. Each project taught me something new.",
+    "date": "2024-09-15",
+    "project": "Summer Internship 2024"
+  },
+  {
+    "id": 107,
+    "name": "Queen Adebayo",
+    "role": "Marketing Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Interesting intersection of architecture and marketing. I learned to communicate design value.",
+    "date": "2024-09-10",
+    "project": "Marketing Internship"
+  },
+  {
+    "id": 108,
+    "name": "Raymond Udeh",
+    "role": "Architecture Intern, 2023",
+    "category": "intern",
+    "rating": 5,
+    "content": "The professional exposure during my NYSC year was exceptional. I'm now confident in my abilities.",
+    "date": "2024-09-05",
+    "project": "NYSC Program"
+  },
+  {
+    "id": 109,
+    "name": "Sandra Okorie",
+    "role": "Landscape Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Landscape design integrated with architecture from project start. Holistic design thinking.",
+    "date": "2024-09-01",
+    "project": "Landscape Internship"
+  },
+  {
+    "id": 110,
+    "name": "Tochukwu Ani",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "The design reviews were challenging but educational. Critique accelerated my learning.",
+    "date": "2024-08-25",
+    "project": "Summer Internship 2024"
+  },
+  {
+    "id": 111,
+    "name": "Uchenna Okonkwo",
+    "role": "IT Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Unique perspective on how technology supports architectural practice.",
+    "date": "2024-08-20",
+    "project": "IT Internship"
+  },
+  {
+    "id": 112,
+    "name": "Victoria Nwosu",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 4,
+    "content": "Solid internship experience with good project exposure. The workload prepared me for practice.",
+    "date": "2024-08-15",
+    "project": "Summer Internship 2024"
+  },
+  {
+    "id": 113,
+    "name": "Wale Adeleke",
+    "role": "QS Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "Learned cost estimation and value engineering. Practical skills that complement my education.",
+    "date": "2024-08-10",
+    "project": "QS Internship"
+  },
+  {
+    "id": 114,
+    "name": "Xena Oyelaran",
+    "role": "Architecture Intern, 2024",
+    "category": "intern",
+    "rating": 5,
+    "content": "The portfolio I built during my internship helped me secure my current job.",
+    "date": "2024-08-05",
+    "project": "Portfolio Development"
+  },
+  {
+    "id": 115,
+    "name": "Yemi Fashola",
+    "role": "Architecture Intern, 2023",
+    "category": "intern",
+    "rating": 5,
+    "content": "Every task was a learning opportunity. TBP truly develops young architects.",
+    "date": "2024-08-01",
+    "project": "Year-long Internship"
+  },
+  {
+    "id": 116,
+    "name": "Alhaji Musa Ibrahim",
+    "role": "CEO, Premium Marble Nigeria",
+    "category": "vendor",
+    "rating": 5,
+    "content": "TBP specifies quality materials and understands product capabilities. Long-term partnership.",
+    "date": "2024-12-01",
+    "project": "Material Supply",
+    "featured": true
+  },
+  {
+    "id": 117,
+    "name": "Mrs. Adaeze Nwankwo",
+    "role": "MD, Nwankwo Glass Works",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Detailed specifications and clear communication. They appreciate craftsmanship.",
+    "date": "2024-11-25",
+    "project": "Glass Supply"
+  },
+  {
+    "id": 118,
+    "name": "Chief Emeka Okafor",
+    "role": "Director, Okafor Timber Ltd",
+    "category": "vendor",
+    "rating": 5,
+    "content": "They specify sustainable timber and understand wood grades. Quality products find perfect application.",
+    "date": "2024-11-18",
+    "project": "Timber Supply"
+  },
+  {
+    "id": 119,
+    "name": "Mr. Yusuf Abdullahi",
+    "role": "Owner, Abdullahi Tiles",
+    "category": "vendor",
+    "rating": 5,
+    "content": "TBP's attention to tile patterns elevates our products. They bring out the best in materials.",
+    "date": "2024-11-12",
+    "project": "Tile Supply"
+  },
+  {
+    "id": 120,
+    "name": "Mrs. Funke Adeyemi",
+    "role": "CEO, LightSpace Nigeria",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Their lighting specifications are sophisticated yet practical. Our fixtures perform beautifully.",
+    "date": "2024-11-05",
+    "project": "Lighting Supply"
+  },
+  {
+    "id": 121,
+    "name": "Mr. Chidi Onyekwere",
+    "role": "MD, StrongSteel Industries",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Accurate steel specifications and reasonable delivery schedules. Professional client.",
+    "date": "2024-10-28",
+    "project": "Steel Supply"
+  },
+  {
+    "id": 122,
+    "name": "Mrs. Halima Suleiman",
+    "role": "Director, Sahara Paints",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Their color specifications inspire our product development. Beautiful paint applications.",
+    "date": "2024-10-22",
+    "project": "Paint Supply"
+  },
+  {
+    "id": 123,
+    "name": "Mr. Olu Bakare",
+    "role": "CEO, BakTech Hardware",
+    "category": "vendor",
+    "rating": 5,
+    "content": "They specify quality hardware that enhances architectural elements. Attention to detail.",
+    "date": "2024-10-15",
+    "project": "Hardware Supply"
+  },
+  {
+    "id": 124,
+    "name": "Mrs. Grace Okoh",
+    "role": "MD, GreenScape Nurseries",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Plant specifications that thrive in Nigerian conditions. Perfect landscape settings.",
+    "date": "2024-10-08",
+    "project": "Plant Supply"
+  },
+  {
+    "id": 125,
+    "name": "Mr. Ahmed Bello",
+    "role": "Owner, Bello Carpets",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Carpet specifications that balance aesthetics with durability. Excellent showcasing.",
+    "date": "2024-10-01",
+    "project": "Carpet Supply"
+  },
+  {
+    "id": 126,
+    "name": "Mrs. Ngozi Ibe",
+    "role": "Director, ComfortAir Nigeria",
+    "category": "vendor",
+    "rating": 5,
+    "content": "HVAC specifications that prioritize comfort and efficiency. Good coordination.",
+    "date": "2024-09-25",
+    "project": "HVAC Supply"
+  },
+  {
+    "id": 127,
+    "name": "Mr. Segun Adelaja",
+    "role": "CEO, Adelaja Sanitary",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Bathroom specifications that elevate sanitary ware. Premium products, ideal homes.",
+    "date": "2024-09-18",
+    "project": "Sanitary Supply"
+  },
+  {
+    "id": 128,
+    "name": "Mrs. Blessing Okoye",
+    "role": "MD, ClearView Windows",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Window specifications that balance security, ventilation, and aesthetics.",
+    "date": "2024-09-12",
+    "project": "Window Supply"
+  },
+  {
+    "id": 129,
+    "name": "Mr. Kabiru Garba",
+    "role": "Owner, Garba Curtains",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Window treatment specifications that complement interior designs perfectly.",
+    "date": "2024-09-05",
+    "project": "Curtain Supply"
+  },
+  {
+    "id": 130,
+    "name": "Mrs. Amara Eze",
+    "role": "Director, AquaPure Systems",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Water treatment specifications that ensure healthy buildings.",
+    "date": "2024-08-28",
+    "project": "Water Systems"
+  },
+  {
+    "id": 131,
+    "name": "Mr. Tunde Ogunbiyi",
+    "role": "CEO, SmartHome Nigeria",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Home automation specifications that are practical and user-friendly.",
+    "date": "2024-08-22",
+    "project": "Smart Home Supply"
+  },
+  {
+    "id": 132,
+    "name": "Mrs. Victoria Nwokolo",
+    "role": "MD, Victoria Fabrics",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Upholstery and fabric specifications that enhance interior comfort.",
+    "date": "2024-08-15",
+    "project": "Fabric Supply"
+  },
+  {
+    "id": 133,
+    "name": "Mr. Emeka Obi",
+    "role": "Owner, SunPower Solar",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Solar specifications that maximize energy generation. Roof designs accommodate panels.",
+    "date": "2024-08-08",
+    "project": "Solar Supply"
+  },
+  {
+    "id": 134,
+    "name": "Mrs. Fatima Mohammed",
+    "role": "Director, SecureTech Nigeria",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Security system specifications that integrate seamlessly. Invisible security that works.",
+    "date": "2024-08-01",
+    "project": "Security Supply"
+  },
+  {
+    "id": 135,
+    "name": "Mr. Paul Okwu",
+    "role": "CEO, Okwu Elevators",
+    "category": "vendor",
+    "rating": 5,
+    "content": "Elevator specifications that prioritize reliability and aesthetics.",
+    "date": "2024-07-25",
+    "project": "Elevator Supply"
+  },
+  {
+    "id": 136,
+    "name": "Chief Ade Williams",
+    "role": "MD, Williams Construction",
+    "category": "contractor",
+    "rating": 5,
+    "content": "TBP's drawings are buildable and well-coordinated. Site issues are minimal. A contractor's dream client.",
+    "date": "2024-12-08",
+    "project": "Multiple Projects",
+    "featured": true
+  },
+  {
+    "id": 137,
+    "name": "Engr. Obi Nwachukwu",
+    "role": "CEO, ObiBuilt Nigeria",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Clear specifications, reasonable designs, and responsive to queries. Projects proceed smoothly.",
+    "date": "2024-11-30",
+    "project": "Commercial Projects"
+  },
+  {
+    "id": 138,
+    "name": "Mr. Hassan Danjuma",
+    "role": "Director, Danjuma & Sons",
+    "category": "contractor",
+    "rating": 5,
+    "content": "The level of detail reduces guesswork on site. Well-thought-out designs.",
+    "date": "2024-11-22",
+    "project": "Residential Projects"
+  },
+  {
+    "id": 139,
+    "name": "Chief Mrs. Folake Adesanya",
+    "role": "MD, FemBuild Construction",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Working with TBP elevates our construction quality. Thorough but fair site inspections.",
+    "date": "2024-11-15",
+    "project": "Mixed-Use Development"
+  },
+  {
+    "id": 140,
+    "name": "Engr. Uche Okonkwo",
+    "role": "CEO, UcheBuild Ltd",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Their understanding of construction costs prevents budget surprises. Ambitious yet achievable designs.",
+    "date": "2024-11-08",
+    "project": "Institutional Projects"
+  },
+  {
+    "id": 141,
+    "name": "Mr. Musa Aliyu",
+    "role": "Director, Aliyu Construction",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Responsive to RFIs and design clarifications. Quick turnaround keeps projects on schedule.",
+    "date": "2024-10-30",
+    "project": "Healthcare Facility"
+  },
+  {
+    "id": 142,
+    "name": "Chief Emma Okeke",
+    "role": "MD, Okeke Brothers",
+    "category": "contractor",
+    "rating": 5,
+    "content": "We've built several TBP projects. Consistent quality in documentation and relationships.",
+    "date": "2024-10-22",
+    "project": "Long-term Partnership"
+  },
+  {
+    "id": 143,
+    "name": "Engr. Binta Sule",
+    "role": "CEO, Sule Construction",
+    "category": "contractor",
+    "rating": 4,
+    "content": "Good designs overall. The team is always supportive when details need resolution.",
+    "date": "2024-10-15",
+    "project": "Commercial Building"
+  },
+  {
+    "id": 144,
+    "name": "Mr. Chukwuemeka Ani",
+    "role": "Director, CAni Construction",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Site meetings are productive with issues resolved efficiently. Competent site representatives.",
+    "date": "2024-10-08",
+    "project": "Residential Complex"
+  },
+  {
+    "id": 145,
+    "name": "Chief Tayo Ogunleye",
+    "role": "MD, TayoBuild Nigeria",
+    "category": "contractor",
+    "rating": 5,
+    "content": "The coordination between disciplines is excellent. Fewer conflicts mean smoother construction.",
+    "date": "2024-09-30",
+    "project": "Office Development"
+  },
+  {
+    "id": 146,
+    "name": "Engr. Amaka Eze",
+    "role": "CEO, A-Z Construction",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Quality-focused approach results in buildings we're proud to have constructed.",
+    "date": "2024-09-22",
+    "project": "Luxury Residences"
+  },
+  {
+    "id": 147,
+    "name": "Mr. Ibrahim Garba",
+    "role": "Director, Garba Civil Works",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Civil and structural coordination is always tight. Foundation drawings are clear and accurate.",
+    "date": "2024-09-15",
+    "project": "Industrial Facility"
+  },
+  {
+    "id": 148,
+    "name": "Chief Ngozi Okonkwo",
+    "role": "MD, NgoziBuilders",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Interior finishes specifications are detailed and achievable. Finished products match design intent.",
+    "date": "2024-09-08",
+    "project": "Hospitality Project"
+  },
+  {
+    "id": 149,
+    "name": "Engr. Bola Fashola",
+    "role": "CEO, Fashola Construction",
+    "category": "contractor",
+    "rating": 5,
+    "content": "Working with TBP has improved our construction standards. Their expectations push us to deliver best work.",
+    "date": "2024-09-01",
+    "project": "Educational Facility"
+  },
+  {
+    "id": 150,
+    "name": "Mr. Sunday Adeleke",
+    "role": "Director, Adeleke & Associates",
+    "category": "contractor",
+    "rating": 5,
+    "content": "From tender documentation to final handover, the process is professional. Highly recommend TBP.",
+    "date": "2024-08-25",
+    "project": "Mixed-Use Complex"
+  },
+  {
+    "id": 151,
+    "name": "Adeola Ogunniyi",
+    "role": "CEO, Elite Properties",
+    "category": "client",
+    "rating": 5,
+    "content": "TBP delivered a luxury residential tower that became a landmark development. Attention to detail was impeccable throughout.",
+    "date": "2024-12-20",
+    "project": "Elite Towers Residential",
+    "featured": true
+  },
+  {
+    "id": 152,
+    "name": "Chisom Anyanwu",
+    "role": "Managing Director, Tech Innovations",
+    "category": "client",
+    "rating": 5,
+    "content": "Our corporate campus is now a symbol of our innovation. The open-plan offices foster collaboration beautifully.",
+    "date": "2024-12-18",
+    "project": "Tech Campus Lagos"
+  },
+  {
+    "id": 153,
+    "name": "Femi Okafor",
+    "role": "Principal, Prestige Schools",
+    "category": "client",
+    "rating": 5,
+    "content": "The educational facility has elevated student engagement. Architecture that supports learning outcomes.",
+    "date": "2024-12-15",
+    "project": "Prestige Academy Expansion"
+  },
+  {
+    "id": 154,
+    "name": "Grace Olumide",
+    "role": "Founder, GraceHaven Hospitality",
+    "category": "client",
+    "rating": 5,
+    "content": "Our 5-star hotel captures luxury and warmth. Guests consistently praise the elegant architectural design.",
+    "date": "2024-12-12",
+    "project": "GraceHaven Resort & Spa"
+  },
+  {
+    "id": 155,
+    "name": "Ibrahim Sani",
+    "role": "Board Chairman, Sani Healthcare",
+    "category": "client",
+    "rating": 5,
+    "content": "The hospital design improves patient outcomes through thoughtful spatial organization and natural lighting.",
+    "date": "2024-12-10",
+    "project": "Sani Medical Centre"
+  },
+  {
+    "id": 156,
+    "name": "Jemila Hassan",
+    "role": "Director, Artisan Co-op",
+    "category": "client",
+    "rating": 5,
+    "content": "Our artisan market showcases local crafts beautifully. The architecture celebrates culture and commerce.",
+    "date": "2024-12-08",
+    "project": "Lagos Artisan Collective"
+  },
+  {
+    "id": 157,
+    "name": "Kolade Adebayo",
+    "role": "CEO, Stellar Logistics",
+    "category": "client",
+    "rating": 5,
+    "content": "The warehouse and office complex optimizes operations. Workflow efficiency increased by 40%.",
+    "date": "2024-12-05",
+    "project": "Stellar Distribution Hub"
+  },
+  {
+    "id": 158,
+    "name": "Lara Obi",
+    "role": "Founder, LumaLight Studios",
+    "category": "client",
+    "rating": 5,
+    "content": "The creative studio is inspiring and functional. Our team's productivity has noticeably improved.",
+    "date": "2024-12-03",
+    "project": "LumaLight Design Studios"
+  },
+  {
+    "id": 159,
+    "name": "Marcus Adelusi",
+    "role": "Owner, Adelusi Real Estate",
+    "category": "client",
+    "rating": 5,
+    "content": "Working with TBP on our flagship development was transformative. Quality design attracts quality tenants.",
+    "date": "2024-11-30",
+    "project": "Adelusi Centre Complex"
+  },
+  {
+    "id": 160,
+    "name": "Nkechi Lawson",
+    "role": "President, Lawson Agriculture",
+    "category": "client",
+    "rating": 5,
+    "content": "The agricultural processing facility combines sustainability with functionality. Modern farming begins here.",
+    "date": "2024-11-28",
+    "project": "Lawson Agro Park"
+  },
+  {
+    "id": 161,
+    "name": "Okafor Ejiofor",
+    "role": "MD, Ejiofor Industries",
+    "category": "client",
+    "rating": 5,
+    "content": "The manufacturing complex improved productivity while maintaining aesthetic appeal. Impressive design engineering.",
+    "date": "2024-11-25",
+    "project": "Ejiofor Industrial Complex"
+  },
+  {
+    "id": 162,
+    "name": "Precious Omoruyi",
+    "role": "Founder, Heritage Museum",
+    "category": "client",
+    "rating": 5,
+    "content": "The museum design honors our cultural heritage while creating modern exhibition spaces. A national treasure.",
+    "date": "2024-11-22",
+    "project": "National Heritage Museum"
+  },
+  {
+    "id": 163,
+    "name": "Remi Oladele",
+    "role": "Owner, Oladele Vineyards",
+    "category": "client",
+    "rating": 5,
+    "content": "The winery and tasting room captures elegance and functionality. Wine enthusiasts love the ambiance.",
+    "date": "2024-11-20",
+    "project": "Oladele Wine Estate"
+  },
+  {
+    "id": 164,
+    "name": "Soluwaji Olugbemi",
+    "role": "Director, Olugbemi Foundation",
+    "category": "client",
+    "rating": 5,
+    "content": "The community center design empowers local initiatives. Architecture with social impact.",
+    "date": "2024-11-18",
+    "project": "Olugbemi Community Hub"
+  },
+  {
+    "id": 165,
+    "name": "Tunde Adeleye",
+    "role": "CEO, Adventour Nigeria",
+    "category": "client",
+    "rating": 5,
+    "content": "The eco-lodge resort integrates nature with luxury. Guests experience harmony with the environment.",
+    "date": "2024-11-15",
+    "project": "Adventour Eco Resort"
+  },
+  {
+    "id": 166,
+    "name": "Arch. Akunna Nwankwo",
+    "role": "Heritage Preservation Specialist",
+    "category": "partner",
+    "rating": 5,
+    "content": "TBP's respect for architectural heritage in modern contexts is admirable. Excellent collaboration.",
+    "date": "2024-12-10",
+    "project": "Heritage Projects"
+  },
+  {
+    "id": 167,
+    "name": "Eng. Bayo Faleti",
+    "role": "Infrastructure Specialist",
+    "category": "partner",
+    "rating": 5,
+    "content": "Large-scale infrastructure projects are handled with precision. Coordinating complex systems is their strength.",
+    "date": "2024-12-05",
+    "project": "Major Infrastructure"
+  },
+  {
+    "id": 168,
+    "name": "Arch. Chinyere Okonkwo",
+    "role": "Parametric Design Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "TBP embraces computational design. Innovative solutions come from data-driven approaches.",
+    "date": "2024-11-30",
+    "project": "Parametric Design Work"
+  },
+  {
+    "id": 169,
+    "name": "Eng. Dada Olufemi",
+    "role": "Smart Building Systems",
+    "category": "partner",
+    "rating": 5,
+    "content": "Integration of smart building technology is seamless. Future-ready designs.",
+    "date": "2024-11-25",
+    "project": "Smart Building Systems"
+  },
+  {
+    "id": 170,
+    "name": "Arch. Ekta Patel",
+    "role": "International Design Standards",
+    "category": "partner",
+    "rating": 5,
+    "content": "TBP maintains global standards while respecting local context. Cosmopolitan yet grounded.",
+    "date": "2024-11-20",
+    "project": "International Projects"
+  },
+  {
+    "id": 171,
+    "name": "Eng. Folarin Adesanya",
+    "role": "Resilience & Climate Adaptation",
+    "category": "partner",
+    "rating": 5,
+    "content": "Buildings designed for climate resilience. Long-term thinking about environmental change.",
+    "date": "2024-11-15",
+    "project": "Climate Resilience"
+  },
+  {
+    "id": 172,
+    "name": "Arch. Gbenga Okoduwa",
+    "role": "Adaptive Reuse Specialist",
+    "category": "partner",
+    "rating": 5,
+    "content": "Heritage building transformations are handled with sensitivity. New life for old spaces.",
+    "date": "2024-11-10",
+    "project": "Adaptive Reuse Projects"
+  },
+  {
+    "id": 173,
+    "name": "Eng. Halima Abdulrahman",
+    "role": "Traffic & Mobility Planning",
+    "category": "partner",
+    "rating": 5,
+    "content": "Transportation planning is integrated from concept. Reduced congestion, improved connectivity.",
+    "date": "2024-11-05",
+    "project": "Mobility Solutions"
+  },
+  {
+    "id": 174,
+    "name": "Arch. Ikechukwu Ifeanyi",
+    "role": "Community Engagement Designer",
+    "category": "partner",
+    "rating": 5,
+    "content": "Projects undergo thoughtful community consultation. Social cohesion through design.",
+    "date": "2024-10-30",
+    "project": "Community Projects"
+  },
+  {
+    "id": 175,
+    "name": "Eng. Jumoke Fadipe",
+    "role": "District Heating & Cooling",
+    "category": "partner",
+    "rating": 5,
+    "content": "Efficient thermal systems reduce operating costs. Engineering excellence meets design elegance.",
+    "date": "2024-10-25",
+    "project": "HVAC Systems"
+  },
+  {
+    "id": 176,
+    "name": "Arch. Kunle Adeniyi",
+    "role": "Universal Design Champion",
+    "category": "partner",
+    "rating": 5,
+    "content": "Inclusive design principles are embedded in all projects. Buildings serve everyone equally.",
+    "date": "2024-10-20",
+    "project": "Accessibility Design"
+  },
+  {
+    "id": 177,
+    "name": "Eng. Lydia Okonkwo",
+    "role": "Circular Economy Consultant",
+    "category": "partner",
+    "rating": 5,
+    "content": "Buildings designed for disassembly and material recovery. Sustainable end-of-life planning.",
+    "date": "2024-10-15",
+    "project": "Circular Design"
+  },
+  {
+    "id": 178,
+    "name": "Arch. Michael Adekoya",
+    "role": "Biophilic Design Expert",
+    "category": "partner",
+    "rating": 5,
+    "content": "Nature integration through design improves wellbeing. Biophilic principles enhance spaces.",
+    "date": "2024-10-10",
+    "project": "Biophilic Projects"
+  },
+  {
+    "id": 179,
+    "name": "Eng. Nneka Okafor",
+    "role": "Digital Fabrication Specialist",
+    "category": "partner",
+    "rating": 5,
+    "content": "3D printing and digital fabrication create unique architectural elements. Innovation in building.",
+    "date": "2024-10-05",
+    "project": "Digital Manufacturing"
+  },
+  {
+    "id": 180,
+    "name": "Arch. Okafor Uzor",
+    "role": "Cultural Sensitivity Advisor",
+    "category": "partner",
+    "rating": 5,
+    "content": "Architectural language respects cultural nuances. Design that celebrates identity.",
+    "date": "2024-10-01",
+    "project": "Cultural Projects"
+  }
+]

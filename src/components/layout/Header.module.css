@@ -1,0 +1,191 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border-primary);
+  z-index: 1000;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+:global([data-theme="dark"]) .header {
+  background: rgba(10, 10, 10, 0.85);
+}
+
+.header.scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+.header :global(.container) {
+  height: 100%;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.navBrand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.navBrand :global(img) {
+  height: 40px;
+  width: auto;
+  transition: transform var(--duration-normal) var(--ease-spring);
+}
+
+.navBrand:hover :global(img) {
+  transform: scale(1.05);
+}
+
+.navBrandText {
+  display: flex;
+  flex-direction: column;
+}
+
+.navBrandName {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.navBrandTagline {
+  font-size: 10px;
+  color: var(--text-tertiary);
+  font-style: italic;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.navLink {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-fast) var(--ease-out);
+  position: relative;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 16px;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 1px;
+  transition: transform var(--duration-normal) var(--ease-spring);
+}
+
+.navLink:hover {
+  color: var(--primary);
+}
+
+.navLink:hover::after,
+.navLink.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.navLink.active {
+  color: var(--primary);
+  background: rgba(26, 95, 122, 0.08);
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.navToggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.navToggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.navToggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navToggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.navToggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 968px) {
+  .navMenu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    /* height, not bottom: 0 — .header's backdrop-filter establishes a
+       containing block for fixed descendants, so `bottom` would resolve
+       against the 70px-tall header box instead of the viewport. */
+    height: calc(100vh - 70px);
+    background: var(--bg-primary);
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-5);
+    gap: 0;
+    transform: translateX(100%);
+    transition: transform var(--duration-normal) var(--ease-out);
+    overflow-y: auto;
+  }
+
+  .navMenu.active {
+    transform: translateX(0);
+  }
+
+  .navLink {
+    padding: var(--space-4);
+    font-size: var(--text-lg);
+    border-bottom: 1px solid var(--border-primary);
+    border-radius: 0;
+    display: block;
+  }
+
+  .navLink::after {
+    display: none;
+  }
+
+  .navToggle {
+    display: flex;
+  }
+
+  .navBrandText {
+    display: none;
+  }
+}

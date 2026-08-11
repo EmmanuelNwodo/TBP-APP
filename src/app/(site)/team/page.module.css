@@ -1,0 +1,23 @@
+.section {
+  padding: var(--space-10) var(--space-5) var(--space-16);
+  background: var(--bg-secondary);
+}
+
+.countLine {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-8);
+}
+
+.countLine strong {
+  color: var(--primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(176px, 1fr));
+  gap: var(--space-4);
+  max-width: 1180px;
+  margin: 0 auto;
+}

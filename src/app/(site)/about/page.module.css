@@ -1,0 +1,545 @@
+.section {
+  padding: var(--space-16) var(--space-5);
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-10);
+}
+
+.sectionTitle {
+  font-size: clamp(var(--text-2xl), 4vw, var(--text-3xl));
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: var(--space-2) 0 var(--space-3);
+}
+
+.divider {
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  margin: 0 auto var(--space-4);
+  border-radius: var(--radius-full);
+}
+
+.sectionDesc {
+  font-size: var(--text-base);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.contentTitle {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: var(--space-2) 0 var(--space-4);
+}
+
+.paragraph {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: var(--space-4);
+}
+
+/* Who We Are */
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+@media (max-width: 968px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.aboutVisual {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  min-height: 400px;
+  box-shadow: var(--shadow-lg);
+}
+
+.floatingBadge {
+  position: absolute;
+  bottom: var(--space-5);
+  right: var(--space-5);
+  z-index: 2;
+  background: var(--bg-primary);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  text-align: center;
+}
+
+.floatingBadge h3 {
+  font-size: var(--text-2xl);
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.floatingBadge p {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+.foundedCard {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+}
+
+.foundedIcon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.foundedCard h4 {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.foundedCard p {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+/* Expertise */
+.expertiseGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 968px) {
+  .expertiseGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .expertiseGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.expertiseCard {
+  position: relative;
+  padding: var(--space-6);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  transition: all var(--duration-normal) var(--ease-spring);
+}
+
+.expertiseCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+
+.expertiseCard h3 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.expertiseCard p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.expertiseIcon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  font-size: 22px;
+  margin-bottom: var(--space-4);
+}
+
+.newBadge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  background: var(--accent);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+/* Mission / Vision */
+.mvGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+@media (max-width: 768px) {
+  .mvGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mvCard {
+  position: relative;
+  padding: var(--space-8);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-2xl);
+}
+
+.mvNumber {
+  position: absolute;
+  top: var(--space-5);
+  right: var(--space-6);
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: var(--border-primary);
+}
+
+.mvIcon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  font-size: 26px;
+  margin-bottom: var(--space-4);
+}
+
+.mvCard h3 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+
+.mvCard p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Ethos */
+.ethosGrid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: var(--space-8);
+}
+
+@media (max-width: 968px) {
+  .ethosGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quoteCard {
+  padding: var(--space-8);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--white);
+  border-radius: var(--radius-2xl);
+  position: relative;
+}
+
+.quoteIcon {
+  font-size: 60px;
+  font-family: Georgia, serif;
+  opacity: 0.3;
+  line-height: 1;
+}
+
+.quoteCard blockquote {
+  font-size: var(--text-lg);
+  line-height: 1.5;
+  margin: var(--space-3) 0 var(--space-4);
+}
+
+.quoteCard cite {
+  font-size: var(--text-sm);
+  opacity: 0.85;
+  font-style: normal;
+}
+
+.ethosCards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 640px) {
+  .ethosCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ethosItem {
+  padding: var(--space-5);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+}
+
+.ethosItem h4 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: var(--space-2);
+}
+
+.ethosItem p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Philosophy */
+.philosophyGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-10);
+}
+
+@media (max-width: 968px) {
+  .philosophyGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.highlightBox {
+  padding: var(--space-5);
+  background: var(--bg-secondary);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+.philosophyQuotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.philosophyQuoteCard {
+  padding: var(--space-6);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+/* Certifications */
+.certGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 968px) {
+  .certGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .certGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.certCard {
+  padding: var(--space-6);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  text-align: center;
+  transition: all var(--duration-normal) var(--ease-spring);
+}
+
+.certCard:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.certIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-4);
+}
+
+.certCard h4 {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.certCard p {
+  font-size: var(--text-xs);
+  color: var(--text-tertiary);
+}
+
+/* Contact */
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--space-8);
+}
+
+@media (max-width: 968px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contactCardLarge {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 640px) {
+  .contactCardLarge {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contactItemLarge {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+}
+
+.contactIconLarge {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary);
+  color: var(--white);
+  border-radius: var(--radius-md);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.contactItemLarge h4 {
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.contactItemLarge p {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+}
+
+.socialCard {
+  padding: var(--space-6);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+}
+
+.socialCard h3 {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+}
+
+.socialLinksGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.socialLinkCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  transition: background var(--duration-fast) var(--ease-out);
+}
+
+.socialLinkCard:hover {
+  background: var(--bg-secondary);
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  color: var(--primary);
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.socialLinkCard span {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+}
+
+/* CTA */
+.ctaSection {
+  padding: var(--space-20) var(--space-5);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  text-align: center;
+}
+
+.ctaContent h2 {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: var(--space-4);
+}
+
+.ctaContent p {
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 500px;
+  margin: 0 auto var(--space-8);
+}
+
+.ctaButtons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}

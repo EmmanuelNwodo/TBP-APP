@@ -1,0 +1,2923 @@
+[
+  {
+    "slug": "architectural-design",
+    "icon": "bx-building",
+    "category": "Design Service",
+    "title": "Architectural Design",
+    "subtitle": "Professional Architectural Design Services in Nigeria | Creating Spaces That Inspire",
+    "heroImage": "/images/services/ArchitecturalDesign.jpg",
+    "overview": "<p><strong>Transform Your Vision Into Reality</strong></p>\n                    <p>Building Practice Ltd delivers world-class architectural design services that blend aesthetic excellence with functional brilliance. We specialize in creating spaces that are not just visually stunning but deeply intuitive and user-centric. Every project is a masterpiece of design thinking\u2014combining cutting-edge design principles, user experience optimization, and sustainable innovation.</p>\n                    <p><strong>What Sets Us Apart:</strong></p>\n                    <ul>\n                        <li><strong>Design-First Approach:</strong> Every space is engineered for optimal user experience and visual harmony</li>\n                        <li><strong>UI/UX Integration:</strong> We design buildings like software\u2014intuitive, accessible, and delightfully functional</li>\n                        <li><strong>Innovation + Sustainability:</strong> Modern solutions that respect the environment</li>\n                        <li><strong>From Concept to Reality:</strong> We bring your vision to life with precision and artistic excellence</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-home",
+        "title": "Residential Design",
+        "desc": "Award-winning homes that balance luxury, comfort, and intuitive living spaces"
+      },
+      {
+        "icon": "bx-briefcase-alt",
+        "title": "Commercial Design",
+        "desc": "Smart office spaces optimized for productivity, collaboration, and employee experience"
+      },
+      {
+        "icon": "bx-cube",
+        "title": "3D Visualization",
+        "desc": "Photorealistic renderings that let you experience your project before breaking ground"
+      }
+    ],
+    "features": [
+      "Luxury residential architecture & home design",
+      "Duplex, bungalow & estate masterplanning",
+      "Apartment complexes with optimal flow & accessibility",
+      "Corporate offices designed for collaboration & productivity",
+      "Retail & shopping experiences with premium customer journeys",
+      "Hospitality facilities designed for guest delight",
+      "Architectural floor plans leveraging spatial efficiency",
+      "Technical coordination drawings & specifications",
+      "Construction-ready documentation & permits",
+      "Building approval drawings & regulatory compliance",
+      "Stunning 3D visualization & photorealistic rendering",
+      "Smart renovation & adaptive reuse design",
+      "Green & sustainable architectural solutions"
+    ],
+    "process": [
+      {
+        "title": "Consultation",
+        "desc": "Understanding project goals, site, budget and preferences"
+      },
+      {
+        "title": "Concept Design",
+        "desc": "Developing initial design concepts and layouts"
+      },
+      {
+        "title": "Design Development",
+        "desc": "Refining designs and preparing detailed plans"
+      },
+      {
+        "title": "Documentation",
+        "desc": "Producing comprehensive technical drawings for permits"
+      },
+      {
+        "title": "Project Support",
+        "desc": "Providing guidance during construction execution"
+      }
+    ],
+    "stats": [
+      {
+        "number": "350+",
+        "label": "Projects Designed"
+      },
+      {
+        "number": "13+",
+        "label": "Years Experience"
+      },
+      {
+        "number": "150+",
+        "label": "Happy Clients"
+      },
+      {
+        "number": "98%",
+        "label": "Satisfaction Rate"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What architectural design services do you provide?",
+        "a": "<strong>Comprehensive architectural excellence:</strong> Residential design (homes, duplexes, estates), commercial architecture (offices, retail, hospitality), construction documentation, 3D visualization, sustainable design, and renovation projects. We manage every phase from concept through construction support, ensuring design integrity throughout the delivery process."
+      },
+      {
+        "q": "How do you approach design thinking and user experience?",
+        "a": "<strong>Design-first methodology:</strong> We treat architecture like UX design\u2014every space is engineered for intuitive flow, accessibility, and user delight. We analyze user journeys, optimize spatial efficiency, and create environments that feel effortlessly beautiful and functional."
+      },
+      {
+        "q": "Do your designs comply with Nigerian building codes?",
+        "a": "<strong>Full regulatory compliance:</strong> Every design meets Nigerian building codes, planning regulations, and international standards. We coordinate with authorities, handle permit applications, and ensure seamless approvals\u2014so you can focus on your vision."
+      },
+      {
+        "q": "Can you provide photorealistic 3D visualizations?",
+        "a": "<strong>World-class visualization technology:</strong> Our 3D renderings bring your project to life with stunning photorealism. You'll see lighting, materials, landscaping, and spatial relationships before construction begins\u2014enabling confident design decisions."
+      },
+      {
+        "q": "What's your process from concept to completion?",
+        "a": "<strong>Structured 5-phase delivery:</strong> (1) Consultation\u2014we deeply understand your goals, (2) Concept Design\u2014explore multiple creative directions, (3) Design Development\u2014refine with precision, (4) Documentation\u2014prepare construction-ready drawings, (5) Project Support\u2014guide your team through execution."
+      },
+      {
+        "q": "Do you specialize in sustainable and green architecture?",
+        "a": "<strong>Future-forward sustainability:</strong> Yes. We integrate eco-friendly materials, energy efficiency, passive design, rainwater harvesting, and environmental responsiveness into every project. Beautiful buildings that also respect our planet."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Architectural Design Nigeria",
+        "href": "#",
+        "icon": "bx-building"
+      },
+      {
+        "label": "Building Design Lagos",
+        "href": "#",
+        "icon": "bx-home"
+      },
+      {
+        "label": "ARCON Architects",
+        "href": "about.html#certifications",
+        "icon": "bx-badge-check"
+      },
+      {
+        "label": "House Plans Nigeria",
+        "href": "#",
+        "icon": "bx-map"
+      },
+      {
+        "label": "Commercial Architecture",
+        "href": "#",
+        "icon": "bx-building"
+      },
+      {
+        "label": "Residential Design",
+        "href": "#",
+        "icon": "bx-home"
+      },
+      {
+        "label": "Modern Architecture",
+        "href": "#",
+        "icon": "bx-trending-up"
+      },
+      {
+        "label": "Sustainable Design",
+        "href": "#",
+        "icon": "bx-leaf"
+      },
+      {
+        "label": "Office Building Design",
+        "href": "#",
+        "icon": "bx-briefcase"
+      },
+      {
+        "label": "3D Visualization",
+        "href": "#",
+        "icon": "bx-cube"
+      }
+    ],
+    "filterCategory": "design"
+  },
+  {
+    "slug": "interior-design",
+    "icon": "bx-palette",
+    "category": "Design Service",
+    "title": "Interior Design",
+    "subtitle": "Professional Interior Design Services for Residential, Commercial & Corporate Spaces",
+    "heroImage": "/images/services/interiorDesign.jpg",
+    "overview": "<p><strong>Transform Ordinary Spaces Into Extraordinary Environments</strong></p>\n                    <p>At Building Practice Ltd, we deliver innovative and functional interior design in Nigeria for residential, commercial, and corporate spaces. Our design approach combines creativity, modern aesthetics, and practical functionality to transform ordinary spaces into beautiful, comfortable, and highly efficient environments.</p>\n                    <p>Whether you are designing a new home, renovating an office, or creating a luxury commercial space, our team of experienced interior designers works closely with you to bring your vision to life while maintaining quality, style, and long-term durability.</p>\n                    <p><strong>Our Design Philosophy:</strong></p>\n                    <ul>\n                        <li>Balance aesthetics with functionality</li>\n                        <li>Create spaces that reflect your personality and brand</li>\n                        <li>Optimize every square meter for maximum impact</li>\n                        <li>Source quality materials within your budget</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-home",
+        "title": "Residential Interior Design",
+        "desc": "Stylish, comfortable living spaces tailored to your lifestyle and personality"
+      },
+      {
+        "icon": "bx-building",
+        "title": "Commercial Interior Design",
+        "desc": "Modern office and retail spaces that enhance productivity and brand identity"
+      },
+      {
+        "icon": "bx-layout",
+        "title": "Space Planning",
+        "desc": "Efficient layouts and furniture placement maximizing functionality"
+      }
+    ],
+    "features": [
+      "Living room, bedroom, kitchen & bathroom design",
+      "Luxury apartment interiors and smart home layouts",
+      "Corporate office and executive space design",
+      "Retail stores, restaurants, hotels and hospitality",
+      "Conference room and reception area design",
+      "Space optimization and traffic flow planning",
+      "Lighting and acoustic solutions",
+      "Interior renovation and remodeling",
+      "Furniture selection, procurement and coordination",
+      "Material and finish selection",
+      "Color scheme development and coordination",
+      "Corporate branding integration",
+      "Installation supervision and professional styling"
+    ],
+    "process": [
+      {
+        "title": "Consultation",
+        "desc": "Understanding needs, preferences, budget & requirements"
+      },
+      {
+        "title": "Concept Development",
+        "desc": "Creating mood boards and 3D visualizations"
+      },
+      {
+        "title": "Design Planning",
+        "desc": "Detailed layouts and material specifications"
+      },
+      {
+        "title": "Material & Furniture",
+        "desc": "Selection from trusted suppliers"
+      },
+      {
+        "title": "Implementation",
+        "desc": "Coordination of contractors and artisans"
+      }
+    ],
+    "stats": [
+      {
+        "number": "300+",
+        "label": "Interiors Designed"
+      },
+      {
+        "number": "100+",
+        "label": "Custom Furniture Projects"
+      },
+      {
+        "number": "25+",
+        "label": "Design Awards"
+      },
+      {
+        "number": "100%",
+        "label": "Client Satisfaction"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What property types do you design interiors for?",
+        "a": "We provide interior design for luxury homes, apartments, corporate offices, retail stores, restaurants, cafes, hotels, hospitality spaces, banks, educational facilities, and healthcare environments."
+      },
+      {
+        "q": "Do you offer interior renovation and remodeling?",
+        "a": "Yes! We specialize in full interior remodeling including kitchen and bathroom upgrades, ceiling and lighting redesign, flooring replacement, and wall finishing to transform outdated spaces into modern, stylish environments."
+      },
+      {
+        "q": "Can you work within a specific budget?",
+        "a": "Absolutely. We work with you to establish realistic budgets based on your priorities. We can design to various price points and will always be transparent about costs and material selections."
+      },
+      {
+        "q": "Do you incorporate existing furniture into new designs?",
+        "a": "Yes, we can blend your existing pieces with new elements to create cohesive designs that respect your budget and sentimental items."
+      },
+      {
+        "q": "Can you source materials locally in Nigeria?",
+        "a": "Yes, we have an extensive network of local suppliers, craftsmen, and manufacturers across Lagos, Abuja, and Port Harcourt. We also source internationally when specific materials are required."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Interior Design Nigeria",
+        "href": "#",
+        "icon": "bx-palette"
+      },
+      {
+        "label": "Office Interior Design",
+        "href": "#",
+        "icon": "bx-briefcase"
+      },
+      {
+        "label": "Home Interior Design",
+        "href": "#",
+        "icon": "bx-home"
+      },
+      {
+        "label": "Luxury Interiors",
+        "href": "#",
+        "icon": "bx-diamond"
+      },
+      {
+        "label": "Space Planning",
+        "href": "#",
+        "icon": "bx-grid-alt"
+      },
+      {
+        "label": "Furniture Selection",
+        "href": "#",
+        "icon": "bx-chair"
+      },
+      {
+        "label": "Lighting Design",
+        "href": "#",
+        "icon": "bx-bulb"
+      },
+      {
+        "label": "Color Consultation",
+        "href": "#",
+        "icon": "bx-paint"
+      }
+    ],
+    "filterCategory": "design"
+  },
+  {
+    "slug": "construction-management",
+    "icon": "bx-hard-hat",
+    "category": "Management Service",
+    "title": "Construction Management",
+    "subtitle": "On-Site Leadership Delivering Projects On Time and Within Budget",
+    "heroImage": "/images/services/constructionServices.jpg",
+    "overview": "<p><strong>Professional Construction Oversight & Control</strong></p>\n                    <p>Our construction management service provides comprehensive on-site leadership and project oversight to ensure your construction project is delivered on time, within budget, and to the highest quality standards.</p>\n                    <p>We act as your representative on site, coordinating all contractors, managing schedules, controlling costs, and ensuring safety compliance. Our experienced construction managers bring discipline, expertise, and accountability to every project.</p>\n                    <p><strong>Key Benefits:</strong></p>\n                    <ul>\n                        <li>Single point of accountability for all construction activities</li>\n                        <li>Proactive risk management and issue resolution</li>\n                        <li>Real-time progress tracking and reporting</li>\n                        <li>Quality assurance at every construction phase</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-calendar",
+        "title": "Schedule Management",
+        "desc": "Detailed planning and real-time progress tracking to meet deadlines"
+      },
+      {
+        "icon": "bx-shield",
+        "title": "Safety & Compliance",
+        "desc": "Comprehensive HSE management and risk mitigation protocols"
+      },
+      {
+        "icon": "bx-wallet",
+        "title": "Cost Control",
+        "desc": "Rigorous budget monitoring and transparent reporting"
+      }
+    ],
+    "features": [
+      "Project planning and master scheduling",
+      "Daily construction oversight and coordination",
+      "Subcontractor management and coordination",
+      "Quality assurance and inspection",
+      "Risk identification and mitigation",
+      "Health, safety and environmental management",
+      "Cost tracking and reporting",
+      "Project documentation and record keeping",
+      "Progress photography and reporting",
+      "Material procurement oversight",
+      "Change order management",
+      "Final inspection and handover coordination"
+    ],
+    "process": [
+      {
+        "title": "Planning",
+        "desc": "Establish schedules, budgets, and protocols"
+      },
+      {
+        "title": "Mobilization",
+        "desc": "Site setup and team deployment"
+      },
+      {
+        "title": "Execution",
+        "desc": "Manage daily construction activities"
+      },
+      {
+        "title": "Monitoring",
+        "desc": "Track progress, costs, and quality"
+      },
+      {
+        "title": "Closeout",
+        "desc": "Final inspection and handover"
+      }
+    ],
+    "stats": [
+      {
+        "number": "350+",
+        "label": "Projects Managed"
+      },
+      {
+        "number": "94%",
+        "label": "On Budget Delivery"
+      },
+      {
+        "number": "96%",
+        "label": "On Schedule"
+      },
+      {
+        "number": "Zero",
+        "label": "Lost Time Injuries"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is construction management?",
+        "a": "Construction management involves professional planning, coordination and oversight of construction projects from inception to completion. It covers scheduling, procurement, quality control, cost management, and safety."
+      },
+      {
+        "q": "How does it differ from a general contractor?",
+        "a": "A construction manager acts as your representative, providing transparent oversight and advocating purely for your interests, unlike a general contractor who has a vested interest in the construction contract value."
+      },
+      {
+        "q": "Do you manage contractors directly?",
+        "a": "Yes, we coordinate all contractors and subcontractors on your behalf, managing their contracts, monitoring performance, and ensuring all work meets specifications."
+      },
+      {
+        "q": "How do you ensure quality on site?",
+        "a": "We implement rigorous quality control procedures including material testing, workmanship inspections, milestone reviews, and third-party quality audits when required."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Construction Management Nigeria",
+        "href": "#",
+        "icon": "bx-task"
+      },
+      {
+        "label": "Project Oversight",
+        "href": "#",
+        "icon": "bx-eye"
+      },
+      {
+        "label": "Site Supervision",
+        "href": "#",
+        "icon": "bx-clipboard"
+      },
+      {
+        "label": "Quality Assurance",
+        "href": "#",
+        "icon": "bx-check-shield"
+      },
+      {
+        "label": "Safety Management",
+        "href": "#",
+        "icon": "bx-hard-hat"
+      },
+      {
+        "label": "Cost Control",
+        "href": "#",
+        "icon": "bx-wallet"
+      }
+    ],
+    "filterCategory": "management"
+  },
+  {
+    "slug": "building-construction",
+    "icon": "bx-building-house",
+    "category": "Construction Service",
+    "title": "Building Construction",
+    "subtitle": "Delivering Quality Buildings From Foundation to Finishing With Excellence",
+    "heroImage": "/images/services/buildingConstruction.jpg",
+    "overview": "<p><strong>Complete Construction Solutions</strong></p>\n                    <p>Our building construction service delivers complete construction solutions from site preparation through to finishing works. With experienced teams, quality materials, and robust project management, we bring architectural designs to life with precision and craftsmanship.</p>\n                    <p>We construct residential, commercial, and institutional buildings, including specialized works like swimming pools and external landscaping.</p>\n                    <p><strong>Our Construction Commitment:</strong></p>\n                    <ul>\n                        <li>Quality materials sourced from trusted suppliers</li>\n                        <li>Skilled craftsmen with years of experience</li>\n                        <li>Strict adherence to approved designs and specifications</li>\n                        <li>Transparent pricing with no hidden costs</li>\n                        <li>Timely delivery with minimal disruption</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-home",
+        "title": "Residential",
+        "desc": "Luxury homes, apartments, duplexes, and gated estates"
+      },
+      {
+        "icon": "bx-store",
+        "title": "Commercial",
+        "desc": "Offices, retail spaces, hotels, and mixed-use facilities"
+      },
+      {
+        "icon": "bx-water",
+        "title": "Specialty Works",
+        "desc": "Swimming pools, landscaping, and premium amenities"
+      }
+    ],
+    "features": [
+      "Site preparation and earthworks",
+      "Foundation and structural construction",
+      "Block/brick work and masonry",
+      "Roofing systems installation",
+      "Mechanical, electrical and plumbing (MEP)",
+      "Plastering, screeding and finishing",
+      "Swimming pool construction",
+      "Landscaping and external works",
+      "Interior finishing and fit-out",
+      "Painting and decorating",
+      "Security systems installation",
+      "Final cleaning and handover"
+    ],
+    "process": [
+      {
+        "title": "Mobilization",
+        "desc": "Site preparation, permits, and setup"
+      },
+      {
+        "title": "Substructure",
+        "desc": "Excavation, foundation, and ground floor"
+      },
+      {
+        "title": "Superstructure",
+        "desc": "Columns, beams, walls, and roofing"
+      },
+      {
+        "title": "Finishing",
+        "desc": "MEP, plastering, tiling, and painting"
+      },
+      {
+        "title": "Handover",
+        "desc": "Testing, commissioning, and delivery"
+      }
+    ],
+    "stats": [
+      {
+        "number": "350+",
+        "label": "Buildings Delivered"
+      },
+      {
+        "number": "\u20a630B+",
+        "label": "Total Project Value"
+      },
+      {
+        "number": "45+",
+        "label": "Active Team Members"
+      },
+      {
+        "number": "100%",
+        "label": "Completion Rate"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What types of buildings do you construct?",
+        "a": "We construct residential, commercial, industrial, and institutional buildings of various scales, from luxury villas to commercial complexes."
+      },
+      {
+        "q": "Do you build swimming pools?",
+        "a": "Yes, we construct various swimming pool types including infinity pools, lap pools, plunge pools, and recreational pools with complete equipment installation."
+      },
+      {
+        "q": "What warranty do you provide?",
+        "a": "We provide defects liability periods typically ranging from 6-12 months after handover, during which we address any workmanship issues at no additional cost."
+      },
+      {
+        "q": "Can you work with our own architect's designs?",
+        "a": "Absolutely. We work seamlessly with external architects and designers, ensuring faithful execution of approved designs while providing valuable construction input."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Building Construction Nigeria",
+        "href": "#",
+        "icon": "bx-building-house"
+      },
+      {
+        "label": "Construction Company Lagos",
+        "href": "#",
+        "icon": "bx-building"
+      },
+      {
+        "label": "House Construction",
+        "href": "#",
+        "icon": "bx-home"
+      },
+      {
+        "label": "Commercial Construction",
+        "href": "#",
+        "icon": "bx-store"
+      },
+      {
+        "label": "Swimming Pool Builder",
+        "href": "#",
+        "icon": "bx-swim"
+      },
+      {
+        "label": "Landscaping Services",
+        "href": "#",
+        "icon": "bx-tree"
+      }
+    ],
+    "filterCategory": "construction"
+  },
+  {
+    "slug": "project-management",
+    "icon": "bx-task",
+    "category": "Management Service",
+    "title": "Project Management",
+    "subtitle": "Professional Project Management Services for Timely, Cost-Controlled Delivery",
+    "heroImage": "/images/services/projectManagement.jpg",
+    "overview": "<p><strong>Structured & Results-Driven Project Delivery</strong></p>\n                    <p>At Building Practice Ltd, we provide structured and results-driven project management services in Nigeria for residential, commercial, and large-scale developments. We ensure your project is delivered on time, within budget, and to the highest quality standards.</p>\n                    <p>Construction projects often fail because of poor coordination, cost overruns, and weak supervision. We remove those risks with disciplined planning, transparent reporting, and precise control from project initiation to handover.</p>\n                    <p><strong>Our Project Management Approach:</strong></p>\n                    <ul>\n                        <li>Clear scope definition and stakeholder alignment</li>\n                        <li>Detailed work breakdown and scheduling</li>\n                        <li>Proactive risk identification and mitigation</li>\n                        <li>Regular progress reporting and communication</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-time-five",
+        "title": "Time Management",
+        "desc": "Scheduling, milestone tracking, and delay recovery planning"
+      },
+      {
+        "icon": "bx-wallet",
+        "title": "Cost Control",
+        "desc": "Budget forecasting, procurement control, and value engineering"
+      },
+      {
+        "icon": "bx-check-double",
+        "title": "Execution Control",
+        "desc": "Contractor coordination, quality checks, and on-site supervision"
+      }
+    ],
+    "features": [
+      "Construction project planning and work breakdown structuring",
+      "Scope definition, scheduling, and resource planning",
+      "Budget development, forecasting, and cost benchmarking",
+      "Procurement planning and vendor management",
+      "Contractor selection, coordination, and performance tracking",
+      "Site supervision, progress monitoring, and reporting",
+      "Quality assurance, inspections, and specification compliance",
+      "Risk identification, mitigation planning, and project closeout",
+      "Stakeholder communication and reporting",
+      "Change order management",
+      "Document control and records management",
+      "Project closeout and lessons learned"
+    ],
+    "process": [
+      {
+        "title": "Initiation",
+        "desc": "Define objectives, scope, and key deliverables"
+      },
+      {
+        "title": "Planning",
+        "desc": "Build budgets, schedules, and execution strategy"
+      },
+      {
+        "title": "Execution",
+        "desc": "Coordinate contractors, suppliers, and site activities"
+      },
+      {
+        "title": "Monitoring",
+        "desc": "Track cost, time, quality, and emerging risks"
+      },
+      {
+        "title": "Handover",
+        "desc": "Deliver a completed project ready for use"
+      }
+    ],
+    "stats": [
+      {
+        "number": "180+",
+        "label": "Projects Managed"
+      },
+      {
+        "number": "94%",
+        "label": "On Budget"
+      },
+      {
+        "number": "96%",
+        "label": "On Schedule"
+      },
+      {
+        "number": "Zero",
+        "label": "Major Disputes"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What project management services do you provide?",
+        "a": "We provide project planning, budgeting, procurement coordination, contractor management, site supervision, progress reporting, quality assurance, risk control, and handover support."
+      },
+      {
+        "q": "What types of projects do you manage?",
+        "a": "We manage residential construction, commercial developments, institutional buildings, industrial projects, and mixed-use schemes across different project scales in Nigeria."
+      },
+      {
+        "q": "How do you keep projects on time and within budget?",
+        "a": "We use clear execution plans, milestone tracking, progress audits, cost monitoring, procurement control, and proactive issue resolution to reduce delays and cost overruns."
+      },
+      {
+        "q": "Do you provide regular progress reports?",
+        "a": "Yes, we provide weekly progress reports, monthly executive summaries, and real-time updates on critical issues. Clients have full visibility into project status at all times."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Project Management Nigeria",
+        "href": "#",
+        "icon": "bx-task"
+      },
+      {
+        "label": "Construction Project Manager",
+        "href": "#",
+        "icon": "bx-user"
+      },
+      {
+        "label": "Budget Control",
+        "href": "#",
+        "icon": "bx-wallet"
+      },
+      {
+        "label": "Schedule Management",
+        "href": "#",
+        "icon": "bx-calendar"
+      },
+      {
+        "label": "Risk Management",
+        "href": "#",
+        "icon": "bx-shield"
+      },
+      {
+        "label": "Quality Control",
+        "href": "#",
+        "icon": "bx-check-shield"
+      }
+    ],
+    "filterCategory": "management"
+  },
+  {
+    "slug": "urban-development",
+    "icon": "bx-map-alt",
+    "category": "Planning Service",
+    "title": "Urban Development",
+    "subtitle": "Professional Urban Development, Master Planning & Infrastructure Design in Nigeria",
+    "heroImage": "/images/services/urbanDev.jpg",
+    "overview": "<p><strong>Strategic Urban Planning & Development</strong></p>\n                    <p>At Building Practice Ltd, we deliver strategic and results-driven urban development in Nigeria for government bodies, private developers, and corporate investors. We design and execute large-scale developments that are functional, economically viable, and built for long-term growth.</p>\n                    <p>From new town developments to mixed-use urban projects, our team combines technical expertise, planning intelligence, and design excellence to transform raw land into thriving, structured environments.</p>\n                    <p><strong>Our Urban Development Expertise:</strong></p>\n                    <ul>\n                        <li>Master planning for residential and commercial estates</li>\n                        <li>Infrastructure design and coordination</li>\n                        <li>Sustainable community development</li>\n                        <li>Transit-oriented development planning</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-map",
+        "title": "Master Planning",
+        "desc": "Land use planning, zoning, and scalable development frameworks"
+      },
+      {
+        "icon": "bx-network-chart",
+        "title": "Infrastructure Design",
+        "desc": "Roads, drainage, utilities, and integrated support systems"
+      },
+      {
+        "icon": "bx-world",
+        "title": "Long-Term Value",
+        "desc": "Future-ready urban environments built for growth and returns"
+      }
+    ],
+    "features": [
+      "Feasibility studies and site analysis for large-scale developments",
+      "Master planning and urban design for residential, commercial, and mixed-use projects",
+      "Land use planning, zoning, and circulation frameworks",
+      "Residential estate planning and housing layout optimization",
+      "Infrastructure planning for roads, drainage, water, sewage, and utilities",
+      "Commercial district and mixed-use development planning",
+      "Urban renewal and redevelopment strategy for underutilized sites",
+      "Regulatory approvals support and Nigerian planning compliance",
+      "Environmental impact assessment coordination",
+      "Stakeholder engagement and community consultation",
+      "Phasing strategy and implementation planning"
+    ],
+    "process": [
+      {
+        "title": "Feasibility",
+        "desc": "Evaluate land potential, viability, and planning constraints"
+      },
+      {
+        "title": "Concept",
+        "desc": "Develop zoning strategies and master plan direction"
+      },
+      {
+        "title": "Detailed Design",
+        "desc": "Prepare layouts, infrastructure plans, and technical documentation"
+      },
+      {
+        "title": "Approvals",
+        "desc": "Coordinate compliance and planning submissions"
+      },
+      {
+        "title": "Delivery",
+        "desc": "Support execution and optimize the final development outcome"
+      }
+    ],
+    "stats": [
+      {
+        "number": "15+",
+        "label": "Masterplans Completed"
+      },
+      {
+        "number": "2000+",
+        "label": "Hectares Planned"
+      },
+      {
+        "number": "50K+",
+        "label": "Future Residents"
+      },
+      {
+        "number": "\u20a6200B+",
+        "label": "Development Value"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What does your urban development service include?",
+        "a": "We provide master planning, land use planning, infrastructure design, residential estate planning, mixed-use development strategy, urban renewal planning, and coordination for approvals and project execution."
+      },
+      {
+        "q": "Can you support government and private-sector developments?",
+        "a": "Yes. We work with government bodies, private developers, investors, and institutions on estates, commercial districts, civic projects, and new urban communities."
+      },
+      {
+        "q": "Do you align projects with Nigerian regulations and market realities?",
+        "a": "Yes. Our planning approach reflects Nigerian development regulations, infrastructure realities, investment priorities, and long-term sustainability requirements."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Urban Development Nigeria",
+        "href": "#",
+        "icon": "bx-city"
+      },
+      {
+        "label": "Masterplanning",
+        "href": "#",
+        "icon": "bx-map-alt"
+      },
+      {
+        "label": "Town Planning Lagos",
+        "href": "#",
+        "icon": "bx-map"
+      },
+      {
+        "label": "Infrastructure Planning",
+        "href": "#",
+        "icon": "bx-network-chart"
+      },
+      {
+        "label": "Estate Development",
+        "href": "#",
+        "icon": "bx-home"
+      },
+      {
+        "label": "Mixed-Use Development",
+        "href": "#",
+        "icon": "bx-git-merge"
+      }
+    ],
+    "filterCategory": "consulting"
+  },
+  {
+    "slug": "green-building-advisory",
+    "icon": "bx-leaf",
+    "category": "Advisory Service",
+    "title": "Green Building Advisory",
+    "subtitle": "Expert Sustainable Design and Green Certification Support in Nigeria",
+    "heroImage": "/images/services/greenBuildingAdvisory.jpg",
+    "overview": "<p><strong>Building a Sustainable Future</strong></p>\n                    <p>At Building Practice Ltd, we provide expert green building advisory in Nigeria to help developers, homeowners, and organizations design and construct environmentally responsible, energy-efficient, and cost-effective buildings.</p>\n                    <p>As sustainability becomes increasingly important in Nigeria's construction industry, our team ensures your project meets global green standards while adapting to local conditions.</p>\n                    <p><strong>Green Building Benefits:</strong></p>\n                    <ul>\n                        <li>Reduced environmental impact and carbon footprint</li>\n                        <li>Lower operating costs through energy and water efficiency</li>\n                        <li>Enhanced occupant health, comfort, and productivity</li>\n                        <li>Increased property value and market appeal</li>\n                        <li>Access to green financing and incentives</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-leaf",
+        "title": "Sustainable Design",
+        "desc": "Climate-responsive, passive design strategies optimized for Nigeria"
+      },
+      {
+        "icon": "bx-bolt",
+        "title": "Energy Efficiency",
+        "desc": "Energy modeling, solar integration, and efficient systems"
+      },
+      {
+        "icon": "bx-award",
+        "title": "Green Certifications",
+        "desc": "LEED & EDGE certification support and documentation"
+      }
+    ],
+    "features": [
+      "Sustainable design consultation and planning",
+      "Passive design and climate-responsive strategies",
+      "Energy efficiency planning and modeling",
+      "Solar integration and renewable energy",
+      "LEED certification advisory and support",
+      "EDGE certification documentation and coordination",
+      "Material selection and resource efficiency",
+      "Water efficiency and rainwater harvesting",
+      "Greywater recycling systems",
+      "Construction waste management",
+      "Indoor environmental quality planning",
+      "Green building audits and assessment"
+    ],
+    "process": [
+      {
+        "title": "Consultation",
+        "desc": "Understand goals, site, budget and conditions"
+      },
+      {
+        "title": "Assessment",
+        "desc": "Evaluate sustainability opportunities"
+      },
+      {
+        "title": "Strategy",
+        "desc": "Develop customized sustainability roadmap"
+      },
+      {
+        "title": "Implementation",
+        "desc": "Support with architects and contractors"
+      },
+      {
+        "title": "Certification",
+        "desc": "Documentation, monitoring and compliance"
+      }
+    ],
+    "stats": [
+      {
+        "number": "50+",
+        "label": "Green Projects"
+      },
+      {
+        "number": "15+",
+        "label": "EDGE Certifications"
+      },
+      {
+        "number": "10+",
+        "label": "LEED Projects"
+      },
+      {
+        "number": "40%",
+        "label": "Avg Energy Savings"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is green building advisory?",
+        "a": "Green building advisory provides expert guidance on designing and constructing environmentally sustainable and energy-efficient buildings that reduce operational costs and environmental impact."
+      },
+      {
+        "q": "What is EDGE certification?",
+        "a": "EDGE (Excellence in Design for Greater Efficiencies) is a green building certification developed by IFC for emerging markets, requiring minimum 20% savings in energy, water, and embodied energy."
+      },
+      {
+        "q": "Is green building expensive in Nigeria?",
+        "a": "Initial costs may be slightly higher (1-5%), but lifecycle savings typically provide payback within 3-7 years, with ongoing energy and maintenance savings thereafter."
+      },
+      {
+        "q": "Can existing buildings be made green?",
+        "a": "Yes, we help upgrade existing buildings with energy-efficient systems, sustainable materials, water-saving technologies, and proper retrofitting for improved performance."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Green Building Nigeria",
+        "href": "#",
+        "icon": "bx-leaf"
+      },
+      {
+        "label": "Sustainable Architecture",
+        "href": "#",
+        "icon": "bx-envira"
+      },
+      {
+        "label": "LEED Certification",
+        "href": "#",
+        "icon": "bx-award"
+      },
+      {
+        "label": "EDGE Certification",
+        "href": "#",
+        "icon": "bx-badge-check"
+      },
+      {
+        "label": "Energy Efficiency",
+        "href": "#",
+        "icon": "bx-bolt"
+      },
+      {
+        "label": "Solar Energy Building",
+        "href": "#",
+        "icon": "bx-sun"
+      }
+    ],
+    "filterCategory": "consulting"
+  },
+  {
+    "slug": "real-estate-development",
+    "icon": "bx-landscape",
+    "category": "Development Service",
+    "title": "Real Estate Development",
+    "subtitle": "Expert Real Estate Development Services in Nigeria",
+    "heroImage": "/images/services/realEstateDev.jpg",
+    "overview": "<p><strong>End-to-End Property Development Solutions</strong></p>\n                    <p>Building Practice Ltd is a trusted name in real estate development in Nigeria, delivering innovative, sustainable, and profitable property solutions for investors, businesses, and individuals.</p>\n                    <p>From land acquisition to project completion, we provide end-to-end development services that transform ideas into high-value real estate assets. Whether you're planning residential estates, commercial properties, or mixed-use developments, our team ensures your project is executed efficiently, within budget, and to the highest industry standards.</p>\n                    <p><strong>Our Development Approach:</strong></p>\n                    <ul>\n                        <li>Market-driven planning and feasibility analysis</li>\n                        <li>Risk assessment and investment optimization</li>\n                        <li>Design excellence and construction quality</li>\n                        <li>Sales, marketing, and asset management support</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-building",
+        "title": "Comprehensive Services",
+        "desc": "From land acquisition through project delivery and management"
+      },
+      {
+        "icon": "bx-home-heart",
+        "title": "Residential & Commercial",
+        "desc": "Estates, apartments, offices, retail, and mixed-use developments"
+      },
+      {
+        "icon": "bx-trending-up",
+        "title": "Value Creation",
+        "desc": "Maximizing ROI while delivering quality projects"
+      }
+    ],
+    "features": [
+      "Land acquisition and feasibility analysis",
+      "Property planning and sustainable design",
+      "Project financing and investment advisory",
+      "Construction and project management",
+      "Regulatory approvals and compliance",
+      "Sales, leasing, and marketing services",
+      "Market research and opportunity identification",
+      "Design coordination with architects and engineers",
+      "Cost control and budget management",
+      "Quality assurance and delivery",
+      "Property management services",
+      "Investor liaison and returns optimization"
+    ],
+    "process": [
+      {
+        "title": "Consultation",
+        "desc": "Understanding goals and investment objectives"
+      },
+      {
+        "title": "Feasibility",
+        "desc": "Site selection and market analysis"
+      },
+      {
+        "title": "Design & Planning",
+        "desc": "Architectural plans and approvals"
+      },
+      {
+        "title": "Execution",
+        "desc": "Construction management and oversight"
+      },
+      {
+        "title": "Launch",
+        "desc": "Marketing, sales, and handover"
+      }
+    ],
+    "stats": [
+      {
+        "number": "25+",
+        "label": "Developments Delivered"
+      },
+      {
+        "number": "\u20a650B+",
+        "label": "Development Value"
+      },
+      {
+        "number": "2000+",
+        "label": "Units Completed"
+      },
+      {
+        "number": "13+",
+        "label": "Years Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is real estate development?",
+        "a": "Real estate development is the process of acquiring land, planning, designing, financing, constructing, and managing property projects to create profitable, value-adding assets."
+      },
+      {
+        "q": "How profitable is real estate development in Nigeria?",
+        "a": "Real estate development can be highly profitable, especially in high-demand urban areas like Lagos and Abuja, when managed professionally with proper planning and execution."
+      },
+      {
+        "q": "How long does a real estate development project take?",
+        "a": "Timelines vary by project type and complexity\u2014residential projects typically take 1.5-2.5 years, while larger developments may span 3-5 years."
+      },
+      {
+        "q": "Do you offer investment opportunities?",
+        "a": "Yes, we partner with investors on select developments, offering various participation structures based on project type, risk profile, and investment timeline."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Real Estate Development Nigeria",
+        "href": "#",
+        "icon": "bx-landscape"
+      },
+      {
+        "label": "Property Development Lagos",
+        "href": "#",
+        "icon": "bx-building"
+      },
+      {
+        "label": "Estate Development",
+        "href": "#",
+        "icon": "bx-home"
+      },
+      {
+        "label": "Mixed-Use Development",
+        "href": "#",
+        "icon": "bx-git-merge"
+      },
+      {
+        "label": "Property Investment",
+        "href": "#",
+        "icon": "bx-trending-up"
+      },
+      {
+        "label": "Land Development",
+        "href": "#",
+        "icon": "bx-map"
+      }
+    ],
+    "filterCategory": "construction"
+  },
+  {
+    "slug": "3d-visualization",
+    "icon": "bx-cube-alt",
+    "category": "Visualization Service",
+    "title": "3D Visualization",
+    "subtitle": "Bringing Designs to Life with Stunning Photorealistic Imagery",
+    "heroImage": "/images/services/3dVisualization.jpg",
+    "overview": "<p><strong>Visualize Before You Build</strong></p>\n                    <p>Our 3D visualization service transforms architectural concepts into stunning visual experiences. Using cutting-edge rendering technology and artistic expertise, we create photorealistic images, immersive virtual tours, and dynamic animations that communicate design intent with clarity and impact.</p>\n                    <p>Whether for marketing, stakeholder approval, or design refinement, our visualizations help you make informed decisions before breaking ground.</p>\n                    <p><strong>Why Choose Our Visualization:</strong></p>\n                    <ul>\n                        <li>Photorealistic quality indistinguishable from photography</li>\n                        <li>Fast turnaround times without compromising quality</li>\n                        <li>Unlimited revisions until perfect</li>\n                        <li>Compatible with all major design software formats</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-image-alt",
+        "title": "Photorealistic Renders",
+        "desc": "Stunning high-resolution exterior and interior imagery"
+      },
+      {
+        "icon": "bx-walk",
+        "title": "Virtual Tours",
+        "desc": "Interactive 360\u00b0 immersive walkthrough experiences"
+      },
+      {
+        "icon": "bx-movie-play",
+        "title": "Animation",
+        "desc": "Dynamic video flythroughs and cinematic presentations"
+      }
+    ],
+    "features": [
+      "Photorealistic exterior rendering",
+      "Interior visualization and staging",
+      "360\u00b0 panoramic virtual tours",
+      "Architectural flythrough animations",
+      "Material and finish visualization",
+      "Lighting studies (day and night)",
+      "VR-ready immersive experiences",
+      "Marketing imagery and brochure visuals",
+      "Aerial drone-style renderings",
+      "Landscape and hardscape visualization",
+      "Furniture and decor staging",
+      "Post-production enhancement"
+    ],
+    "process": [
+      {
+        "title": "Brief",
+        "desc": "Gather design data, references, and goals"
+      },
+      {
+        "title": "Modeling",
+        "desc": "Create accurate 3D digital models"
+      },
+      {
+        "title": "Materials",
+        "desc": "Apply textures, lighting, and environment"
+      },
+      {
+        "title": "Rendering",
+        "desc": "Produce high-resolution images"
+      },
+      {
+        "title": "Post-Production",
+        "desc": "Enhancement, color grading, and delivery"
+      }
+    ],
+    "stats": [
+      {
+        "number": "2000+",
+        "label": "Renders Produced"
+      },
+      {
+        "number": "8K",
+        "label": "Max Resolution"
+      },
+      {
+        "number": "24hr",
+        "label": "Express Available"
+      },
+      {
+        "number": "100%",
+        "label": "Client Satisfaction"
+      }
+    ],
+    "faq": [
+      {
+        "q": "How realistic are your renderings?",
+        "a": "Our renderings achieve photorealistic quality using advanced rendering engines (V-Ray, Corona, Lumion), physically accurate materials, and professional HDR lighting."
+      },
+      {
+        "q": "What information do you need?",
+        "a": "We need architectural drawings (plans, sections, elevations), material specifications or references, and direction on the desired style and mood."
+      },
+      {
+        "q": "How long does a render take?",
+        "a": "A single exterior render typically takes 3-5 business days. Express services are available for urgent needs."
+      },
+      {
+        "q": "Can you create virtual reality tours?",
+        "a": "Yes, we create immersive VR experiences allowing clients to walk through spaces virtually before construction."
+      }
+    ],
+    "tags": [
+      {
+        "label": "3D Visualization Nigeria",
+        "href": "#",
+        "icon": "bx-cube"
+      },
+      {
+        "label": "Architectural Rendering",
+        "href": "#",
+        "icon": "bx-image"
+      },
+      {
+        "label": "Virtual Tour Nigeria",
+        "href": "#",
+        "icon": "bx-world"
+      },
+      {
+        "label": "3D Animation",
+        "href": "#",
+        "icon": "bx-movie"
+      },
+      {
+        "label": "Photorealistic Render",
+        "href": "#",
+        "icon": "bx-photo"
+      },
+      {
+        "label": "VR Walkthrough",
+        "href": "#",
+        "icon": "bx-glasses"
+      }
+    ],
+    "filterCategory": "design"
+  },
+  {
+    "slug": "structural-engineering",
+    "icon": "bx-layer",
+    "category": "Engineering Service",
+    "title": "Structural Engineering & Design",
+    "subtitle": "Professional Structural Design for Safe, Durable Buildings in Nigeria",
+    "heroImage": "/images/services/structural.jpg",
+    "overview": "<p><strong>Engineered for Safety & Durability</strong></p>\n                    <p>Building Practice Ltd provides expert structural engineering and design services in Nigeria, ensuring your buildings are safe, durable, and capable of withstanding environmental stresses.</p>\n                    <p>Our experienced structural engineers design efficient load-bearing systems, foundations, and structural frameworks that meet Nigerian building codes and international standards.</p>\n                    <p><strong>Our Engineering Promise:</strong></p>\n                    <ul>\n                        <li>Rigorous analysis using industry-leading software</li>\n                        <li>Optimized designs for cost-efficiency without compromising safety</li>\n                        <li>Full compliance with Nigerian and international codes</li>\n                        <li>Seamless coordination with architectural and MEP teams</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-cube-alt",
+        "title": "Foundation Design",
+        "desc": "Safe, reliable foundations for all soil conditions"
+      },
+      {
+        "icon": "bx-layer",
+        "title": "Structural Analysis",
+        "desc": "Advanced calculations for load capacity and safety"
+      },
+      {
+        "icon": "bx-building",
+        "title": "Frame Design",
+        "desc": "Efficient structural systems for all building types"
+      }
+    ],
+    "features": [
+      "Foundation design and analysis",
+      "Structural stability calculations",
+      "Load bearing capacity assessment",
+      "Steel frame design and detailing",
+      "Reinforced concrete design",
+      "Building enclosure design",
+      "Seismic and wind resistance design",
+      "Structural specifications and details",
+      "Site investigation and soil analysis",
+      "Structural rehabilitation design",
+      "3D structural modeling and analysis",
+      "Construction supervision and coordination"
+    ],
+    "process": [
+      {
+        "title": "Site Assessment",
+        "desc": "Soil testing and site evaluation"
+      },
+      {
+        "title": "Analysis",
+        "desc": "Structural calculations and modeling"
+      },
+      {
+        "title": "Design Development",
+        "desc": "Creating structural drawings and specs"
+      },
+      {
+        "title": "Documentation",
+        "desc": "Detailed structural specifications"
+      },
+      {
+        "title": "Supervision",
+        "desc": "On-site structural monitoring"
+      }
+    ],
+    "stats": [
+      {
+        "number": "300+",
+        "label": "Structures Engineered"
+      },
+      {
+        "number": "13+",
+        "label": "Years Experience"
+      },
+      {
+        "number": "100%",
+        "label": "Code Compliance"
+      },
+      {
+        "number": "0",
+        "label": "Structural Failures"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What structural engineering services do you provide?",
+        "a": "We provide complete structural engineering including foundation design, load analysis, steel and concrete design, seismic design, and structural supervision for all building types."
+      },
+      {
+        "q": "Do you conduct soil investigations?",
+        "a": "Yes, we coordinate comprehensive soil investigations to determine bearing capacity and foundation requirements for your project."
+      },
+      {
+        "q": "How do you ensure structural safety?",
+        "a": "We apply rigorous engineering standards, Nigerian building codes, advanced analysis software, and thorough site supervision to ensure structural integrity."
+      },
+      {
+        "q": "Can you handle complex structures?",
+        "a": "Yes, we have expertise in complex structures including high-rise buildings, large-span structures, and buildings in challenging soil conditions."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Structural Engineering Nigeria",
+        "href": "#",
+        "icon": "bx-layer"
+      },
+      {
+        "label": "Foundation Design",
+        "href": "#",
+        "icon": "bx-data"
+      },
+      {
+        "label": "Steel Design",
+        "href": "#",
+        "icon": "bx-cube"
+      },
+      {
+        "label": "Concrete Design",
+        "href": "#",
+        "icon": "bx-square"
+      },
+      {
+        "label": "Seismic Design",
+        "href": "#",
+        "icon": "bx-activity"
+      },
+      {
+        "label": "Soil Investigation",
+        "href": "#",
+        "icon": "bx-test-tube"
+      }
+    ],
+    "filterCategory": "engineering"
+  },
+  {
+    "slug": "mep-coordination",
+    "icon": "bx-cog",
+    "category": "Engineering Service",
+    "title": "MEP Coordination",
+    "subtitle": "Expert Mechanical, Electrical & Plumbing Systems Integration",
+    "heroImage": "/images/services/mep.jpg",
+    "overview": "<p><strong>Seamless Building Systems Integration</strong></p>\n                    <p>Building Practice Ltd provides professional MEP (Mechanical, Electrical, and Plumbing) coordination services in Nigeria, ensuring all building systems are seamlessly integrated.</p>\n                    <p>Coordinating MEP systems in complex buildings prevents costly conflicts, improves efficiency, and ensures optimal performance. Our experienced MEP coordinators work with specialist engineers to develop coordinated systems, resolve conflicts early, and produce comprehensive documentation.</p>\n                    <p><strong>The Value of MEP Coordination:</strong></p>\n                    <ul>\n                        <li>Eliminate costly on-site clashes and rework</li>\n                        <li>Optimize ceiling voids and service routes</li>\n                        <li>Ensure maintainability and accessibility</li>\n                        <li>Improve energy efficiency and system performance</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-wireframe",
+        "title": "System Integration",
+        "desc": "Seamless coordination of all MEP systems"
+      },
+      {
+        "icon": "bx-check",
+        "title": "Clash Detection",
+        "desc": "Early identification and resolution of conflicts"
+      },
+      {
+        "icon": "bx-file",
+        "title": "Coordination Drawings",
+        "desc": "Clear documentation for construction teams"
+      }
+    ],
+    "features": [
+      "MEP systems coordination and integration",
+      "Equipment layout planning and optimization",
+      "Ductwork and pipeline routing",
+      "Clash detection and conflict resolution",
+      "Coordination between electrical, mechanical, plumbing",
+      "Equipment sizing and capacity verification",
+      "Energy efficiency optimization",
+      "Sequence of works planning",
+      "Coordination drawings and documentation",
+      "System performance verification",
+      "Maintenance access planning",
+      "Operation and maintenance documentation"
+    ],
+    "process": [
+      {
+        "title": "System Review",
+        "desc": "Analyze all MEP system designs"
+      },
+      {
+        "title": "Coordination Planning",
+        "desc": "Develop integrated system layout"
+      },
+      {
+        "title": "Clash Detection",
+        "desc": "Identify and resolve conflicts in BIM"
+      },
+      {
+        "title": "Documentation",
+        "desc": "Produce coordinated shop drawings"
+      },
+      {
+        "title": "Construction Support",
+        "desc": "Guide installation coordination"
+      }
+    ],
+    "stats": [
+      {
+        "number": "180+",
+        "label": "Projects Coordinated"
+      },
+      {
+        "number": "95%",
+        "label": "Clash Prevention"
+      },
+      {
+        "number": "30%",
+        "label": "Cost Savings"
+      },
+      {
+        "number": "13+",
+        "label": "Years Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Why is MEP coordination important?",
+        "a": "MEP coordination prevents conflicts between systems, ensures efficient use of space, reduces rework, saves costs, and improves system performance."
+      },
+      {
+        "q": "What is clash detection?",
+        "a": "Clash detection identifies where different MEP systems occupy the same space or interfere with each other, allowing early resolution before construction begins."
+      },
+      {
+        "q": "How does coordination save costs?",
+        "a": "Early conflict identification prevents expensive rework during construction, improves efficiency, and reduces change orders."
+      },
+      {
+        "q": "Do you provide 3D coordination models?",
+        "a": "Yes, we create 3D BIM models showing all systems coordinated, making conflicts immediately visible and resolvable."
+      }
+    ],
+    "tags": [
+      {
+        "label": "MEP Coordination Nigeria",
+        "href": "#",
+        "icon": "bx-cog"
+      },
+      {
+        "label": "HVAC Design",
+        "href": "#",
+        "icon": "bx-wind"
+      },
+      {
+        "label": "Electrical Design",
+        "href": "#",
+        "icon": "bx-bolt"
+      },
+      {
+        "label": "Plumbing Design",
+        "href": "#",
+        "icon": "bx-droplet"
+      },
+      {
+        "label": "Clash Detection",
+        "href": "#",
+        "icon": "bx-error"
+      },
+      {
+        "label": "BIM Coordination",
+        "href": "#",
+        "icon": "bx-cube"
+      }
+    ],
+    "filterCategory": "engineering"
+  },
+  {
+    "slug": "construction-cost-estimation",
+    "icon": "bx-calculator",
+    "category": "Consulting Service",
+    "title": "Construction Cost Estimation",
+    "subtitle": "Accurate Budgeting & Quantity Surveying for Nigerian Projects",
+    "heroImage": "/images/services/residential.jpg",
+    "overview": "<p><strong>Precise Cost Control & Budget Management</strong></p>\n                    <p>Building Practice Ltd provides accurate construction cost estimation and budget management services in Nigeria, helping clients understand project costs and manage budgets effectively.</p>\n                    <p>Our quantity surveyors and cost consultants analyze project scope, market prices, and local conditions to produce realistic cost estimates. We provide detailed cost breakdowns, value engineering recommendations, budget tracking, and cost control throughout construction.</p>\n                    <p><strong>Our Estimation Accuracy:</strong></p>\n                    <ul>\n                        <li>Detailed quantity take-offs from drawings</li>\n                        <li>Current market rate analysis</li>\n                        <li>Contingency planning for uncertainties</li>\n                        <li>Value engineering to optimize costs</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-calculator",
+        "title": "Accurate Estimation",
+        "desc": "Detailed cost estimates based on market data"
+      },
+      {
+        "icon": "bx-trending-up",
+        "title": "Value Engineering",
+        "desc": "Cost optimization while maintaining quality"
+      },
+      {
+        "icon": "bx-bar-chart",
+        "title": "Budget Control",
+        "desc": "Tracking and managing costs throughout project"
+      }
+    ],
+    "features": [
+      "Conceptual cost estimation",
+      "Detailed cost estimation and analysis",
+      "Quantity take-offs and material lists",
+      "Labor cost analysis",
+      "Equipment and rental cost assessment",
+      "Value engineering and cost optimization",
+      "Life-cycle cost analysis",
+      "Tender document preparation",
+      "Bid evaluation and analysis",
+      "Budget tracking and forecasting",
+      "Change order costing",
+      "Final cost reconciliation"
+    ],
+    "process": [
+      {
+        "title": "Project Review",
+        "desc": "Analyze scope, drawings, and specifications"
+      },
+      {
+        "title": "Estimation",
+        "desc": "Develop detailed cost estimates"
+      },
+      {
+        "title": "Analysis",
+        "desc": "Breakdowns and value engineering"
+      },
+      {
+        "title": "Budgeting",
+        "desc": "Create project budget"
+      },
+      {
+        "title": "Tracking",
+        "desc": "Monitor costs throughout construction"
+      }
+    ],
+    "stats": [
+      {
+        "number": "300+",
+        "label": "Projects Estimated"
+      },
+      {
+        "number": "94%",
+        "label": "Estimate Accuracy"
+      },
+      {
+        "number": "18%",
+        "label": "Avg Savings"
+      },
+      {
+        "number": "14+",
+        "label": "Years QS Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is a construction cost estimate?",
+        "a": "A construction cost estimate is a detailed calculation of project costs including labor, materials, equipment, overhead, and profit."
+      },
+      {
+        "q": "How accurate are cost estimates?",
+        "a": "Our estimates are typically within 5-10% of final costs when based on complete designs and stable market conditions."
+      },
+      {
+        "q": "What is value engineering?",
+        "a": "Value engineering identifies cost-saving opportunities without compromising quality or performance."
+      },
+      {
+        "q": "Can you reduce project costs?",
+        "a": "Yes, through efficient design, material selection, construction planning, and competitive bidding."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Cost Estimation Nigeria",
+        "href": "#",
+        "icon": "bx-calculator"
+      },
+      {
+        "label": "Quantity Surveyor",
+        "href": "#",
+        "icon": "bx-user"
+      },
+      {
+        "label": "Budget Management",
+        "href": "#",
+        "icon": "bx-wallet"
+      },
+      {
+        "label": "Value Engineering",
+        "href": "#",
+        "icon": "bx-trending-down"
+      },
+      {
+        "label": "Bill of Quantities",
+        "href": "#",
+        "icon": "bx-list-ul"
+      },
+      {
+        "label": "Cost Control",
+        "href": "#",
+        "icon": "bx-bar-chart"
+      }
+    ],
+    "filterCategory": "consulting"
+  },
+  {
+    "slug": "renovation-remodeling",
+    "icon": "bx-refresh",
+    "category": "Construction Service",
+    "title": "Renovation & Remodeling",
+    "subtitle": "Breathing New Life Into Existing Structures With Modern Upgrades",
+    "heroImage": "/images/services/renovation.jpg",
+    "overview": "<p><strong>Transform Your Existing Space</strong></p>\n                    <p>Our renovation and remodeling service breathes new life into existing structures through thoughtful renovation, adaptive reuse, and modern upgrades. We transform outdated spaces into contemporary, functional environments that meet current needs while respecting the building's character and potential.</p>\n                    <p>Whether it's a residential home, office space, or commercial facility, we handle everything from minor upgrades to complete overhauls.</p>\n                    <p><strong>Why Renovate With Us:</strong></p>\n                    <ul>\n                        <li>Minimal disruption to your daily life or business operations</li>\n                        <li>Creative solutions for challenging existing conditions</li>\n                        <li>Quality craftsmanship matching new construction standards</li>\n                        <li>Transparent pricing with no hidden surprises</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-home-smile",
+        "title": "Residential",
+        "desc": "Complete home renovations and modernization"
+      },
+      {
+        "icon": "bx-store-alt",
+        "title": "Commercial",
+        "desc": "Office and retail space remodeling"
+      },
+      {
+        "icon": "bx-history",
+        "title": "Heritage",
+        "desc": "Careful restoration and preservation"
+      }
+    ],
+    "features": [
+      "Renovation design and planning",
+      "Structural modifications and upgrades",
+      "MEP system upgrades and modernization",
+      "Interior remodeling and fit-out",
+      "Facade renovation and restoration",
+      "Space reconfiguration and optimization",
+      "Heritage restoration and preservation",
+      "Sustainable upgrades and energy efficiency",
+      "Kitchen and bathroom remodeling",
+      "Flooring and ceiling replacement",
+      "Window and door upgrades",
+      "Painting and finishing"
+    ],
+    "process": [
+      {
+        "title": "Assessment",
+        "desc": "Evaluate existing conditions and needs"
+      },
+      {
+        "title": "Design",
+        "desc": "Develop renovation plans and specs"
+      },
+      {
+        "title": "Planning",
+        "desc": "Permits, approvals, and scheduling"
+      },
+      {
+        "title": "Execution",
+        "desc": "Implement renovations with care"
+      },
+      {
+        "title": "Completion",
+        "desc": "Final touches and handover"
+      }
+    ],
+    "stats": [
+      {
+        "number": "350+",
+        "label": "Renovations"
+      },
+      {
+        "number": "100K+",
+        "label": "Sqm Renovated"
+      },
+      {
+        "number": "30%",
+        "label": "Value Increase"
+      },
+      {
+        "number": "98%",
+        "label": "Satisfaction"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can you renovate while we're living/working there?",
+        "a": "Yes, we can phase works to minimize disruption and maintain functionality during the renovation process."
+      },
+      {
+        "q": "Do renovations require permits?",
+        "a": "Depending on scope, some renovations require permits which we help coordinate with the relevant authorities."
+      },
+      {
+        "q": "How do you handle unexpected issues?",
+        "a": "We conduct thorough assessments to minimize surprises and have contingency plans for any unexpected discoveries during the work."
+      },
+      {
+        "q": "Will renovation increase my property value?",
+        "a": "Absolutely. Quality renovations typically increase property value by 20-40%, depending on the scope and market conditions."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Renovation Nigeria",
+        "href": "#",
+        "icon": "bx-refresh"
+      },
+      {
+        "label": "Home Remodeling",
+        "href": "#",
+        "icon": "bx-home"
+      },
+      {
+        "label": "Office Renovation",
+        "href": "#",
+        "icon": "bx-briefcase"
+      },
+      {
+        "label": "Kitchen Remodeling",
+        "href": "#",
+        "icon": "bx-restaurant"
+      },
+      {
+        "label": "Bathroom Renovation",
+        "href": "#",
+        "icon": "bx-bath"
+      },
+      {
+        "label": "Facade Restoration",
+        "href": "#",
+        "icon": "bx-building"
+      }
+    ],
+    "filterCategory": "construction"
+  },
+  {
+    "slug": "facility-management",
+    "icon": "bx-cog",
+    "category": "Management Service",
+    "title": "Facility Management",
+    "subtitle": "Professional Building Operations & Maintenance Services",
+    "heroImage": "/images/services/facilityMgt.jpg",
+    "overview": "<p><strong>Optimal Building Performance & Longevity</strong></p>\n                    <p>Building Practice Ltd provides comprehensive facility management and building operations services in Nigeria to ensure optimal building performance, occupant comfort, and asset longevity.</p>\n                    <p>Our facility management team handles preventive maintenance, emergency repairs, utility management, security coordination, cleaning services, and overall building operations.</p>\n                    <p><strong>Benefits of Professional FM:</strong></p>\n                    <ul>\n                        <li>Extended building lifespan and asset value</li>\n                        <li>Reduced operational costs through efficiency</li>\n                        <li>Enhanced occupant satisfaction and productivity</li>\n                        <li>Compliance with health, safety, and environmental regulations</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-wrench",
+        "title": "Preventive Maintenance",
+        "desc": "Regular upkeep preventing costly emergency repairs"
+      },
+      {
+        "icon": "bx-energy",
+        "title": "Utility Management",
+        "desc": "Optimizing energy and water efficiency"
+      },
+      {
+        "icon": "bx-user-check",
+        "title": "Occupant Services",
+        "desc": "Superior services enhancing tenant satisfaction"
+      }
+    ],
+    "features": [
+      "Building maintenance planning and management",
+      "Preventive maintenance scheduling",
+      "Emergency repair response services",
+      "HVAC system maintenance and servicing",
+      "Electrical system maintenance",
+      "Plumbing and water systems management",
+      "Cleaning and grounds maintenance",
+      "Security and access management",
+      "Pest control and hygiene management",
+      "Energy and utility optimization",
+      "Vendor and contractor management",
+      "Building inspections and audits"
+    ],
+    "process": [
+      {
+        "title": "Assessment",
+        "desc": "Evaluate building systems and requirements"
+      },
+      {
+        "title": "Planning",
+        "desc": "Develop maintenance and operations plan"
+      },
+      {
+        "title": "Implementation",
+        "desc": "Execute maintenance and services"
+      },
+      {
+        "title": "Monitoring",
+        "desc": "Track performance and efficiency"
+      },
+      {
+        "title": "Reporting",
+        "desc": "Provide regular performance reports"
+      }
+    ],
+    "stats": [
+      {
+        "number": "80+",
+        "label": "Buildings Managed"
+      },
+      {
+        "number": "10M+",
+        "label": "Sq.m Under Mgmt"
+      },
+      {
+        "number": "95%",
+        "label": "Systems Uptime"
+      },
+      {
+        "number": "12+",
+        "label": "Years FM Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What does facility management include?",
+        "a": "Facility management covers maintenance, repairs, utilities management, cleaning, security coordination, and overall building operations."
+      },
+      {
+        "q": "How does outsourcing save money?",
+        "a": "Professional management prevents costly breakdowns, optimizes efficiency, negotiates better vendor rates, and reduces waste."
+      },
+      {
+        "q": "What are preventive maintenance benefits?",
+        "a": "Preventive maintenance extends equipment life, reduces emergency breakdowns, minimizes downtime, and lowers overall costs."
+      },
+      {
+        "q": "How quickly do you respond to emergencies?",
+        "a": "We provide 24/7 emergency response with service arrival within 1-2 hours depending on location."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Facility Management Nigeria",
+        "href": "#",
+        "icon": "bx-cog"
+      },
+      {
+        "label": "Building Maintenance",
+        "href": "#",
+        "icon": "bx-wrench"
+      },
+      {
+        "label": "Property Management",
+        "href": "#",
+        "icon": "bx-task"
+      },
+      {
+        "label": "HVAC Maintenance",
+        "href": "#",
+        "icon": "bx-wind"
+      },
+      {
+        "label": "Cleaning Services",
+        "href": "#",
+        "icon": "bx-spray-can"
+      },
+      {
+        "label": "Security Management",
+        "href": "#",
+        "icon": "bx-shield"
+      }
+    ],
+    "filterCategory": "management"
+  },
+  {
+    "slug": "site-planning-landscape",
+    "icon": "bx-leaf",
+    "category": "Design Service",
+    "title": "Site Planning & Landscape Design",
+    "subtitle": "Creating Beautiful, Functional Outdoor Spaces in Nigeria",
+    "heroImage": "/images/services/residential.jpg",
+    "overview": "<p><strong>Harmonious Indoor-Outdoor Living</strong></p>\n                    <p>Building Practice Ltd provides expert site planning and landscape design services in Nigeria, transforming outdoor spaces into beautiful, sustainable, and functional environments.</p>\n                    <p>Our landscape designers integrate architecture with natural elements, creating cohesive spaces that enhance property appeal, support environmental sustainability, and improve outdoor usability.</p>\n                    <p><strong>Our Landscape Approach:</strong></p>\n                    <ul>\n                        <li>Native plant selection for low maintenance and sustainability</li>\n                        <li>Climate-responsive design for Nigerian weather</li>\n                        <li>Integration of hardscape and softscape elements</li>\n                        <li>Water-efficient irrigation and drainage solutions</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-leaf",
+        "title": "Landscape Design",
+        "desc": "Creative outdoor spaces with natural integration"
+      },
+      {
+        "icon": "bx-tree",
+        "title": "Sustainable Design",
+        "desc": "Eco-friendly solutions and native plantings"
+      },
+      {
+        "icon": "bx-path",
+        "title": "Hardscape Planning",
+        "desc": "Walkways, terraces, and outdoor structures"
+      }
+    ],
+    "features": [
+      "Site analysis and opportunity identification",
+      "Landscape master planning",
+      "Planting design and specification",
+      "Native and adapted plant selection",
+      "Waterscape and fountain design",
+      "Hardscape design and paving",
+      "Drainage and water management",
+      "Lighting design for outdoor spaces",
+      "Site access and circulation planning",
+      "Environmental restoration and conservation",
+      "Maintenance planning and specifications",
+      "3D visualization of landscape designs"
+    ],
+    "process": [
+      {
+        "title": "Site Analysis",
+        "desc": "Assessment of site conditions and constraints"
+      },
+      {
+        "title": "Concept Design",
+        "desc": "Creating landscape concepts"
+      },
+      {
+        "title": "Design Development",
+        "desc": "Detailed planting and hardscape plans"
+      },
+      {
+        "title": "Documentation",
+        "desc": "Specifications and implementation details"
+      },
+      {
+        "title": "Installation Supervision",
+        "desc": "Overseeing landscape installation"
+      }
+    ],
+    "stats": [
+      {
+        "number": "150+",
+        "label": "Landscapes Designed"
+      },
+      {
+        "number": "85%",
+        "label": "Sustainability Goals"
+      },
+      {
+        "number": "92%",
+        "label": "Client Satisfaction"
+      },
+      {
+        "number": "11+",
+        "label": "Years Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What does landscape design involve?",
+        "a": "Landscape design covers site planning, plant selection, hardscape design, water features, lighting, and environmental integration."
+      },
+      {
+        "q": "How do you select appropriate plants?",
+        "a": "We select native and drought-tolerant plants suited to Nigeria's climate, requiring minimal maintenance and supporting local biodiversity."
+      },
+      {
+        "q": "Can you design water-efficient landscapes?",
+        "a": "Yes, we specialize in water-efficient designs using drip irrigation, rainwater harvesting, and drought-tolerant plantings."
+      },
+      {
+        "q": "Do you provide maintenance planning?",
+        "a": "Yes, we provide detailed maintenance specifications enabling owners to properly care for landscapes."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Landscape Design Nigeria",
+        "href": "#",
+        "icon": "bx-leaf"
+      },
+      {
+        "label": "Garden Design",
+        "href": "#",
+        "icon": "bx-flower"
+      },
+      {
+        "label": "Site Planning",
+        "href": "#",
+        "icon": "bx-map"
+      },
+      {
+        "label": "Hardscape Design",
+        "href": "#",
+        "icon": "bx-square"
+      },
+      {
+        "label": "Irrigation Design",
+        "href": "#",
+        "icon": "bx-droplet"
+      },
+      {
+        "label": "Outdoor Lighting",
+        "href": "#",
+        "icon": "bx-lightbulb"
+      }
+    ],
+    "filterCategory": "design"
+  },
+  {
+    "slug": "building-permits",
+    "icon": "bx-file-find",
+    "category": "Compliance Service",
+    "title": "Building Permits & Regulatory Compliance",
+    "subtitle": "Expert Guidance on Permits, Approvals & Regulations",
+    "heroImage": "/images/services/compliance.jpg",
+    "overview": "<p><strong>Navigate Regulations With Confidence</strong></p>\n                    <p>Building Practice Ltd provides expert guidance on building permits, approvals, and regulatory compliance for construction projects in Nigeria.</p>\n                    <p>Navigating the complex regulatory landscape can be challenging; our team has extensive experience with Nigerian building authorities, urban planning regulations, and compliance requirements.</p>\n                    <p><strong>Our Permit Expertise:</strong></p>\n                    <ul>\n                        <li>Deep knowledge of Lagos, Abuja, and PH regulations</li>\n                        <li>Established relationships with key authorities</li>\n                        <li>Streamlined application processes</li>\n                        <li>Fast-track options for urgent projects</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-file-find",
+        "title": "Permit Applications",
+        "desc": "Streamlined applications and government coordination"
+      },
+      {
+        "icon": "bx-check-circle",
+        "title": "Compliance Verification",
+        "desc": "Ensuring full adherence to all regulations"
+      },
+      {
+        "icon": "bx-building",
+        "title": "Authority Relations",
+        "desc": "Expert coordination with government agencies"
+      }
+    ],
+    "features": [
+      "Building permit application preparation",
+      "Regulatory requirement analysis",
+      "Government agency coordination",
+      "Planning approval support",
+      "Environmental clearance management",
+      "Fire safety compliance verification",
+      "Health and hygiene standards compliance",
+      "Building code verification and alignment",
+      "Variance and waiver applications",
+      "Inspection scheduling and coordination",
+      "Documentation and filing management",
+      "Appeal and dispute resolution support"
+    ],
+    "process": [
+      {
+        "title": "Consultation",
+        "desc": "Review project requirements and regulations"
+      },
+      {
+        "title": "Assessment",
+        "desc": "Evaluate regulatory compliance needs"
+      },
+      {
+        "title": "Application",
+        "desc": "Prepare and submit permit applications"
+      },
+      {
+        "title": "Coordination",
+        "desc": "Liaise with authorities and inspectors"
+      },
+      {
+        "title": "Approval",
+        "desc": "Obtain permits and clearances"
+      }
+    ],
+    "stats": [
+      {
+        "number": "500+",
+        "label": "Permits Obtained"
+      },
+      {
+        "number": "15+",
+        "label": "Years Regulatory Exp"
+      },
+      {
+        "number": "98%",
+        "label": "First-Time Approval"
+      },
+      {
+        "number": "45",
+        "label": "Days Avg Timeline"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What permits do I need for building construction?",
+        "a": "Building permits, planning approval, environmental clearance, fire safety approval, and occupancy permits are typically required. Requirements vary by location."
+      },
+      {
+        "q": "How long does the permit process take?",
+        "a": "Timeline varies by jurisdiction and project complexity, typically 4-12 weeks, though we expedite where possible."
+      },
+      {
+        "q": "Can you get permits faster?",
+        "a": "We have established relationships with authorities and know efficient processes that minimize delays."
+      },
+      {
+        "q": "What if my project doesn't comply?",
+        "a": "We analyze gaps and work with you to modify designs or apply for variances while maintaining project viability."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Building Permits Nigeria",
+        "href": "#",
+        "icon": "bx-file"
+      },
+      {
+        "label": "Planning Approval",
+        "href": "#",
+        "icon": "bx-certification"
+      },
+      {
+        "label": "Regulatory Compliance",
+        "href": "#",
+        "icon": "bx-check-shield"
+      },
+      {
+        "label": "Environmental Clearance",
+        "href": "#",
+        "icon": "bx-leaf"
+      },
+      {
+        "label": "Fire Safety Approval",
+        "href": "#",
+        "icon": "bx-flame"
+      },
+      {
+        "label": "Occupancy Permit",
+        "href": "#",
+        "icon": "bx-key"
+      }
+    ],
+    "filterCategory": "consulting"
+  },
+  {
+    "slug": "construction-supervision",
+    "icon": "bx-user-check",
+    "category": "Management Service",
+    "title": "Construction Supervision",
+    "subtitle": "Professional On-Site Construction Oversight & Quality Control",
+    "heroImage": "/images/services/constructionServices.jpg",
+    "overview": "<p><strong>Expert On-Site Construction Oversight</strong></p>\n                    <p>Building Practice Ltd provides professional construction supervision services in Nigeria, ensuring your building project is executed according to approved plans, specifications, and quality standards.</p>\n                    <p>Our construction supervisors monitor daily site activities, verify workmanship quality, ensure safety compliance, and maintain construction records throughout the project lifecycle.</p>\n                    <p><strong>Supervision Benefits:</strong></p>\n                    <ul>\n                        <li>Continuous quality monitoring and control</li>\n                        <li>Compliance with approved designs and specifications</li>\n                        <li>Safety management and incident prevention</li>\n                        <li>Detailed progress documentation and reporting</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-check-shield",
+        "title": "Quality Control",
+        "desc": "Continuous monitoring ensuring workmanship meets standards"
+      },
+      {
+        "icon": "bx-task",
+        "title": "Daily Oversight",
+        "desc": "Regular site visits and activity supervision"
+      },
+      {
+        "icon": "bx-file",
+        "title": "Documentation",
+        "desc": "Comprehensive records and progress reports"
+      }
+    ],
+    "features": [
+      "Daily site supervision and monitoring",
+      "Quality control and workmanship verification",
+      "Construction progress tracking",
+      "Safety compliance monitoring",
+      "Material inspection and approval",
+      "Contractor performance evaluation",
+      "Site meeting coordination",
+      "Variation and change order assessment",
+      "Photo documentation and reporting",
+      "Snag list identification and resolution",
+      "Completion certification",
+      "Handover coordination"
+    ],
+    "process": [
+      {
+        "title": "Assessment",
+        "desc": "Review plans and establish quality benchmarks"
+      },
+      {
+        "title": "Monitoring",
+        "desc": "Daily site visits and activity supervision"
+      },
+      {
+        "title": "Quality Control",
+        "desc": "Inspect workmanship and materials"
+      },
+      {
+        "title": "Reporting",
+        "desc": "Regular progress updates and documentation"
+      },
+      {
+        "title": "Certification",
+        "desc": "Final inspection and completion approval"
+      }
+    ],
+    "stats": [
+      {
+        "number": "200+",
+        "label": "Projects Supervised"
+      },
+      {
+        "number": "98%",
+        "label": "Quality Compliance"
+      },
+      {
+        "number": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "number": "Zero",
+        "label": "Major Defects"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What does construction supervision include?",
+        "a": "Construction supervision includes daily site monitoring, quality control checks, safety compliance verification, progress tracking, material inspection, and comprehensive documentation."
+      },
+      {
+        "q": "How often do supervisors visit the site?",
+        "a": "Supervisors conduct regular site visits based on project phase - typically daily during critical construction phases and 2-3 times per week during standard phases."
+      },
+      {
+        "q": "Do you provide progress reports?",
+        "a": "Yes, we provide detailed weekly progress reports including photos, quality assessments, and any issues requiring attention."
+      },
+      {
+        "q": "Can supervision be combined with project management?",
+        "a": "Yes, supervision can be integrated with full project management or provided as a standalone service depending on your needs."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Construction Supervision Nigeria",
+        "href": "#",
+        "icon": "bx-user-check"
+      },
+      {
+        "label": "Site Supervision",
+        "href": "#",
+        "icon": "bx-building"
+      },
+      {
+        "label": "Quality Control",
+        "href": "#",
+        "icon": "bx-check-shield"
+      },
+      {
+        "label": "Construction Monitoring",
+        "href": "#",
+        "icon": "bx-task"
+      },
+      {
+        "label": "Building Inspection",
+        "href": "#",
+        "icon": "bx-search"
+      },
+      {
+        "label": "Contractor Oversight",
+        "href": "#",
+        "icon": "bx-user"
+      }
+    ],
+    "filterCategory": "management"
+  },
+  {
+    "slug": "feasibility-studies",
+    "icon": "bx-analyse",
+    "category": "Consulting Service",
+    "title": "Feasibility Studies",
+    "subtitle": "Comprehensive Project Feasibility Analysis & Viability Assessment",
+    "heroImage": "/images/services/urbanDev.jpg",
+    "overview": "<p><strong>Smart Investment Decisions Start Here</strong></p>\n                    <p>Building Practice Ltd provides comprehensive feasibility studies and project viability assessments in Nigeria, helping investors, developers, and organizations make informed decisions before committing resources to construction projects.</p>\n                    <p>Our feasibility analysis covers technical, financial, legal, and market dimensions to determine whether a proposed project is viable and to identify the best approach for successful delivery.</p>\n                    <p><strong>Why Feasibility Studies Matter:</strong></p>\n                    <ul>\n                        <li>Reduce investment risk through thorough analysis</li>\n                        <li>Identify potential challenges early</li>\n                        <li>Optimize project scope and budget</li>\n                        <li>Support bank financing applications</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-money",
+        "title": "Financial Analysis",
+        "desc": "Cost-benefit analysis and ROI projections"
+      },
+      {
+        "icon": "bx-map",
+        "title": "Site Assessment",
+        "desc": "Location analysis and accessibility evaluation"
+      },
+      {
+        "icon": "bx-bar-chart",
+        "title": "Market Research",
+        "desc": "Demand analysis and market positioning"
+      }
+    ],
+    "features": [
+      "Technical feasibility assessment",
+      "Financial viability analysis",
+      "Market demand research",
+      "Site evaluation and selection",
+      "Regulatory compliance review",
+      "Environmental impact screening",
+      "Risk identification and assessment",
+      "Return on investment projections",
+      "Cash flow analysis and forecasting",
+      "Construction cost estimation",
+      "Timeline and phasing recommendations",
+      "Bankable feasibility report preparation"
+    ],
+    "process": [
+      {
+        "title": "Data Collection",
+        "desc": "Gather project requirements and constraints"
+      },
+      {
+        "title": "Analysis",
+        "desc": "Technical, financial and market evaluation"
+      },
+      {
+        "title": "Assessment",
+        "desc": "Risk evaluation and opportunity analysis"
+      },
+      {
+        "title": "Recommendations",
+        "desc": "Strategic options and recommendations"
+      },
+      {
+        "title": "Reporting",
+        "desc": "Comprehensive feasibility report delivery"
+      }
+    ],
+    "stats": [
+      {
+        "number": "150+",
+        "label": "Studies Completed"
+      },
+      {
+        "number": "92%",
+        "label": "Approval Rate"
+      },
+      {
+        "number": "85%",
+        "label": "ROI Accuracy"
+      },
+      {
+        "number": "12+",
+        "label": "Years Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What does a feasibility study include?",
+        "a": "A feasibility study includes technical assessment, financial analysis, market research, site evaluation, regulatory review, risk assessment, and detailed recommendations."
+      },
+      {
+        "q": "How long does a feasibility study take?",
+        "a": "Typical feasibility studies are completed within 2-4 weeks depending on project complexity and data availability."
+      },
+      {
+        "q": "Do banks accept your feasibility reports?",
+        "a": "Yes, our feasibility reports are prepared to bankable standards and have been accepted by major Nigerian banks for financing applications."
+      },
+      {
+        "q": "What's the cost of a feasibility study?",
+        "a": "Costs vary based on project scope, typically ranging from \u20a6500,000 to \u20a62,000,000 for standard commercial feasibility studies."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Feasibility Study Nigeria",
+        "href": "#",
+        "icon": "bx-analyse"
+      },
+      {
+        "label": "Project Viability",
+        "href": "#",
+        "icon": "bx-check-double"
+      },
+      {
+        "label": "Investment Analysis",
+        "href": "#",
+        "icon": "bx-money"
+      },
+      {
+        "label": "Market Research",
+        "href": "#",
+        "icon": "bx-search"
+      },
+      {
+        "label": "Site Assessment",
+        "href": "#",
+        "icon": "bx-map"
+      },
+      {
+        "label": "Financial Planning",
+        "href": "#",
+        "icon": "bx-calculator"
+      }
+    ],
+    "filterCategory": "consulting"
+  },
+  {
+    "slug": "land-surveying",
+    "icon": "bx-compass",
+    "category": "Engineering Service",
+    "title": "Land Surveying",
+    "subtitle": "Professional Survey & Topographic Mapping Services in Nigeria",
+    "heroImage": "/images/services/structural.jpg",
+    "overview": "<p><strong>Precision Survey Solutions</strong></p>\n                    <p>Building Practice Ltd provides professional land surveying services in Nigeria, delivering accurate measurements, boundary determinations, and topographic data essential for construction and development projects.</p>\n                    <p>Our licensed surveyors use modern equipment and technology to provide reliable survey data that forms the foundation of successful construction projects.</p>\n                    <p><strong>Survey Capabilities:</strong></p>\n                    <ul>\n                        <li>High-precision GPS and total station equipment</li>\n                        <li>Experienced licensed surveyors</li>\n                        <li>Digital deliverables in multiple formats</li>\n                        <li>Fast turnaround times</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-compass",
+        "title": "Boundary Surveys",
+        "desc": "Property boundary identification and demarcation"
+      },
+      {
+        "icon": "bx-data",
+        "title": "Topographic Surveys",
+        "desc": "Detailed terrain mapping and elevation data"
+      },
+      {
+        "icon": "bx-ruler",
+        "title": "Construction Staking",
+        "desc": "Precise layout and reference point establishment"
+      }
+    ],
+    "features": [
+      "Topographic surveys and mapping",
+      "Boundary surveys and demarcation",
+      "Construction staking and layout",
+      "As-built surveys and documentation",
+      "Site leveling and grading surveys",
+      "Utility location surveys",
+      "Cadastral mapping",
+      "GPS control surveys",
+      "Volume calculations",
+      "Photogrammetric surveys",
+      "GIS data collection",
+      "Survey report preparation"
+    ],
+    "process": [
+      {
+        "title": "Mobilization",
+        "desc": "Equipment setup and control establishment"
+      },
+      {
+        "title": "Field Work",
+        "desc": "Data collection and measurements"
+      },
+      {
+        "title": "Processing",
+        "desc": "Data reduction and quality checks"
+      },
+      {
+        "title": "Mapping",
+        "desc": "Drawings and digital deliverables"
+      },
+      {
+        "title": "Delivery",
+        "desc": "Reports and client presentation"
+      }
+    ],
+    "stats": [
+      {
+        "number": "500+",
+        "label": "Surveys Completed"
+      },
+      {
+        "number": "\u00b15mm",
+        "label": "Accuracy"
+      },
+      {
+        "number": "20+",
+        "label": "Survey Equipment"
+      },
+      {
+        "number": "10+",
+        "label": "Licensed Surveyors"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What types of surveys do you offer?",
+        "a": "We offer topographic surveys, boundary surveys, construction staking, as-built surveys, GPS surveys, and cadastral mapping for various project needs."
+      },
+      {
+        "q": "How accurate are your surveys?",
+        "a": "Our surveys achieve accuracy levels of \u00b15mm for construction staking and \u00b110mm for topographic surveys using modern GPS and total station equipment."
+      },
+      {
+        "q": "How long does a survey take?",
+        "a": "Survey duration depends on site size and complexity. Small residential plots take 1-2 days, while large developments may require 1-2 weeks."
+      },
+      {
+        "q": "Do you provide survey drawings?",
+        "a": "Yes, we provide comprehensive survey drawings in AutoCAD, PDF, and GIS formats suitable for design and regulatory submissions."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Land Survey Nigeria",
+        "href": "#",
+        "icon": "bx-compass"
+      },
+      {
+        "label": "Topographic Survey",
+        "href": "#",
+        "icon": "bx-data"
+      },
+      {
+        "label": "Boundary Survey",
+        "href": "#",
+        "icon": "bx-border-outer"
+      },
+      {
+        "label": "Construction Staking",
+        "href": "#",
+        "icon": "bx-target-lock"
+      },
+      {
+        "label": "GPS Survey",
+        "href": "#",
+        "icon": "bx-globe"
+      },
+      {
+        "label": "Site Mapping",
+        "href": "#",
+        "icon": "bx-map-pin"
+      }
+    ],
+    "filterCategory": "engineering"
+  },
+  {
+    "slug": "environmental-impact",
+    "icon": "bx-world",
+    "category": "Advisory Service",
+    "title": "Environmental Impact Assessment",
+    "subtitle": "Professional EIA Studies & Environmental Compliance in Nigeria",
+    "heroImage": "/images/services/greenBuildingAdvisory.jpg",
+    "overview": "<p><strong>Responsible Development</strong></p>\n                    <p>Building Practice Ltd provides professional Environmental Impact Assessment (EIA) services in Nigeria, ensuring your development projects comply with environmental regulations and minimize ecological impact.</p>\n                    <p>Our environmental team conducts thorough impact studies, develops mitigation measures, and prepares documentation required for regulatory approvals.</p>\n                    <p><strong>EIA Benefits:</strong></p>\n                    <ul>\n                        <li>Regulatory compliance assurance</li>\n                        <li>Environmental risk identification</li>\n                        <li>Sustainable development planning</li>\n                        <li>Community engagement facilitation</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-leaf",
+        "title": "Impact Assessment",
+        "desc": "Comprehensive environmental impact evaluation"
+      },
+      {
+        "icon": "bx-file",
+        "title": "Regulatory Compliance",
+        "desc": "EIA documentation for approvals"
+      },
+      {
+        "icon": "bx-refresh",
+        "title": "Mitigation Planning",
+        "desc": "Environmental protection strategies"
+      }
+    ],
+    "features": [
+      "Screening and scoping studies",
+      "Baseline environmental data collection",
+      "Impact prediction and evaluation",
+      "Mitigation measure development",
+      "Environmental management planning",
+      "Public consultation and engagement",
+      "EIA report preparation",
+      "Regulatory submission support",
+      "Monitoring plan development",
+      "Compliance auditing",
+      "Post-impact monitoring",
+      "Environmental training"
+    ],
+    "process": [
+      {
+        "title": "Scoping",
+        "desc": "Identify key environmental issues"
+      },
+      {
+        "title": "Baseline Study",
+        "desc": "Collect environmental data"
+      },
+      {
+        "title": "Impact Assessment",
+        "desc": "Evaluate potential impacts"
+      },
+      {
+        "title": "Mitigation",
+        "desc": "Develop protection measures"
+      },
+      {
+        "title": "Reporting",
+        "desc": "Prepare EIA documentation"
+      }
+    ],
+    "stats": [
+      {
+        "number": "80+",
+        "label": "EIAs Completed"
+      },
+      {
+        "number": "100%",
+        "label": "Approval Rate"
+      },
+      {
+        "number": "50+",
+        "label": "Regulatory Approvals"
+      },
+      {
+        "number": "12+",
+        "label": "Years Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "When is an EIA required?",
+        "a": "EIAs are typically required for large developments, industrial projects, infrastructure projects, and any development that may significantly impact the environment."
+      },
+      {
+        "q": "How long does an EIA take?",
+        "a": "A standard EIA takes 8-12 weeks depending on project complexity and regulatory requirements."
+      },
+      {
+        "q": "What regulations do you follow?",
+        "a": "We follow Nigerian EIA Act, NESREA regulations, state environmental laws, and international best practices for environmental assessment."
+      },
+      {
+        "q": "Do you handle regulatory submissions?",
+        "a": "Yes, we prepare all EIA documentation and manage submissions to relevant environmental agencies for approvals."
+      }
+    ],
+    "tags": [
+      {
+        "label": "EIA Nigeria",
+        "href": "#",
+        "icon": "bx-world"
+      },
+      {
+        "label": "Environmental Assessment",
+        "href": "#",
+        "icon": "bx-search"
+      },
+      {
+        "label": "Environmental Compliance",
+        "href": "#",
+        "icon": "bx-check-shield"
+      },
+      {
+        "label": "Sustainability",
+        "href": "#",
+        "icon": "bx-leaf"
+      },
+      {
+        "label": "NESREA Compliance",
+        "href": "#",
+        "icon": "bx-file"
+      },
+      {
+        "label": "Green Development",
+        "href": "#",
+        "icon": "bx-tree"
+      }
+    ],
+    "filterCategory": "consulting"
+  },
+  {
+    "slug": "building-certification",
+    "icon": "bx-certification",
+    "category": "Compliance Service",
+    "title": "Building Certification",
+    "subtitle": "ARCON Registration & Building Approval Support in Nigeria",
+    "heroImage": "/images/services/compliance.jpg",
+    "overview": "<p><strong>Official Building Approvals & Certifications</strong></p>\n                    <p>Building Practice Ltd provides building certification services in Nigeria, assisting clients with ARCON registration, building approvals, occupancy certificates, and various regulatory certifications required for construction projects.</p>\n                    <p>Our team navigates the complex regulatory landscape to secure necessary certifications efficiently, ensuring your building meets all legal requirements for occupancy and use.</p>\n                    <p><strong>Certification Services:</strong></p>\n                    <ul>\n                        <li>ARCON registration and compliance</li>\n                        <li>Building approval coordination</li>\n                        <li>Occupancy certification</li>\n                        <li>Regulatory compliance verification</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-certification",
+        "title": "ARCON Registration",
+        "desc": "Architectural Council compliance and registration"
+      },
+      {
+        "icon": "bx-badge-check",
+        "title": "Building Approvals",
+        "desc": "Planning and building permits"
+      },
+      {
+        "icon": "bx-checkbox-checked",
+        "title": "Occupancy Certs",
+        "desc": "Certificate of occupancy acquisition"
+      }
+    ],
+    "features": [
+      "ARCON architect registration support",
+      "Building plan approval processing",
+      "Certificate of occupancy applications",
+      "Fire safety certifications",
+      "Environmental compliance certificates",
+      "Utility connection approvals",
+      "Structural integrity certifications",
+      "MEP compliance verification",
+      "Accessibility compliance certification",
+      "Historical building approvals",
+      "Change of use applications",
+      "Building renovation permits"
+    ],
+    "process": [
+      {
+        "title": "Review",
+        "desc": "Assess certification requirements"
+      },
+      {
+        "title": "Preparation",
+        "desc": "Compile required documentation"
+      },
+      {
+        "title": "Submission",
+        "desc": "Lodge applications with authorities"
+      },
+      {
+        "title": "Follow-up",
+        "desc": "Track progress and respond to queries"
+      },
+      {
+        "title": "Collection",
+        "desc": "Obtain final certifications"
+      }
+    ],
+    "stats": [
+      {
+        "number": "500+",
+        "label": "Approvals Secured"
+      },
+      {
+        "number": "98%",
+        "label": "Success Rate"
+      },
+      {
+        "number": "45",
+        "label": "Days Avg Timeline"
+      },
+      {
+        "number": "15+",
+        "label": "Years Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What certifications can you help obtain?",
+        "a": "We assist with ARCON registration, building plan approvals, certificates of occupancy, fire safety certificates, and various other regulatory certifications."
+      },
+      {
+        "q": "How long does building approval take?",
+        "a": "Building approval timelines vary by jurisdiction, typically 4-12 weeks depending on the local planning authority."
+      },
+      {
+        "q": "Do you handle all the paperwork?",
+        "a": "Yes, we manage the entire certification process including documentation preparation, submissions, follow-ups, and collection."
+      },
+      {
+        "q": "What's needed for ARCON registration?",
+        "a": "ARCON registration requires architect credentials, project drawings, structural calculations, and various technical documents which we help compile."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Building Certification Nigeria",
+        "href": "#",
+        "icon": "bx-certification"
+      },
+      {
+        "label": "ARCON Registration",
+        "href": "#",
+        "icon": "bx-badge"
+      },
+      {
+        "label": "Building Approval",
+        "href": "#",
+        "icon": "bx-check-circle"
+      },
+      {
+        "label": "Occupancy Permit",
+        "href": "#",
+        "icon": "bx-key"
+      },
+      {
+        "label": "Fire Safety Certificate",
+        "href": "#",
+        "icon": "bx-flame"
+      },
+      {
+        "label": "Compliance Certificate",
+        "href": "#",
+        "icon": "bx-clipboard"
+      }
+    ],
+    "filterCategory": "consulting"
+  },
+  {
+    "slug": "space-planning",
+    "icon": "bx-grid-alt",
+    "category": "Design Service",
+    "title": "Space Planning",
+    "subtitle": "Intelligent Space Optimization for Residential & Commercial Interiors",
+    "heroImage": "/images/services/interiorDesign.jpg",
+    "overview": "<p><strong>Maximize Every Square Meter</strong></p>\n                    <p>Building Practice Ltd provides professional space planning services in Nigeria, optimizing interior layouts to maximize functionality, flow, and efficiency for residential and commercial spaces.</p>\n                    <p>Our space planning experts analyze how spaces are used and design layouts that improve circulation, enhance productivity, and create comfortable, functional environments.</p>\n                    <p><strong>Space Planning Benefits:</strong></p>\n                    <ul>\n                        <li>Optimized traffic flow and circulation</li>\n                        <li>Improved space utilization efficiency</li>\n                        <li>Enhanced functionality and comfort</li>\n                        <li>Better natural light distribution</li>\n                    </ul>",
+    "highlights": [
+      {
+        "icon": "bx-layout",
+        "title": "Layout Design",
+        "desc": "Optimal furniture and fixture placement"
+      },
+      {
+        "icon": "bx-route",
+        "title": "Circulation Planning",
+        "desc": "Efficient traffic flow design"
+      },
+      {
+        "icon": "bx-sun",
+        "title": "Light Optimization",
+        "desc": "Natural and artificial light planning"
+      }
+    ],
+    "features": [
+      "Space utilization analysis",
+      "Furniture layout planning",
+      "Circulation and flow optimization",
+      "Zoning and area allocation",
+      "Workstation planning",
+      "Storage solutions design",
+      "ADA compliance planning",
+      "Lighting layout coordination",
+      "Electrical outlet planning",
+      "HVAC zone optimization",
+      "Acoustic space planning",
+      "3D space visualization"
+    ],
+    "process": [
+      {
+        "title": "Assessment",
+        "desc": "Analyze current space and usage"
+      },
+      {
+        "title": "Requirements",
+        "desc": "Define functional needs and preferences"
+      },
+      {
+        "title": "Planning",
+        "desc": "Develop optimized layout options"
+      },
+      {
+        "title": "Design",
+        "desc": "Create detailed space plans"
+      },
+      {
+        "title": "Implementation",
+        "desc": "Support installation and setup"
+      }
+    ],
+    "stats": [
+      {
+        "number": "300+",
+        "label": "Spaces Planned"
+      },
+      {
+        "number": "35%",
+        "label": "Avg Efficiency Gain"
+      },
+      {
+        "number": "95%",
+        "label": "Client Satisfaction"
+      },
+      {
+        "number": "10+",
+        "label": "Years Experience"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What is space planning?",
+        "a": "Space planning is the process of analyzing how a space will be used and designing the optimal layout for furniture, fixtures, and circulation to maximize functionality."
+      },
+      {
+        "q": "What spaces do you plan?",
+        "a": "We plan residential interiors, offices, retail stores, restaurants, healthcare facilities, educational spaces, and various commercial environments."
+      },
+      {
+        "q": "How does space planning help?",
+        "a": "Proper space planning improves workflow, increases comfort, maximizes usable area, enhances safety, and creates more enjoyable environments."
+      },
+      {
+        "q": "Do you provide 3D visualizations?",
+        "a": "Yes, we create 3D space planning visualizations that help you understand and approve the proposed layout before implementation."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Space Planning Nigeria",
+        "href": "#",
+        "icon": "bx-grid-alt"
+      },
+      {
+        "label": "Interior Layout",
+        "href": "#",
+        "icon": "bx-layout"
+      },
+      {
+        "label": "Office Planning",
+        "href": "#",
+        "icon": "bx-briefcase"
+      },
+      {
+        "label": "Space Optimization",
+        "href": "#",
+        "icon": "bx-data"
+      },
+      {
+        "label": "Floor Plan Design",
+        "href": "#",
+        "icon": "bx-draft"
+      },
+      {
+        "label": "Circulation Planning",
+        "href": "#",
+        "icon": "bx-route"
+      }
+    ],
+    "filterCategory": "design"
+  }
+]
