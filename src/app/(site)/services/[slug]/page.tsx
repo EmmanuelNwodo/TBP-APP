@@ -20,7 +20,7 @@ const CONSTRUCTION_MANAGEMENT_TITLE = "Construction Management Services in Lagos
 const CONSTRUCTION_MANAGEMENT_DESCRIPTION =
   "Construction management services in Lagos, Nigeria for residential, commercial, institutional, and mixed-use projects. Coordinate delivery, quality, and progress with The Building Practice.";
 const PROJECT_MANAGEMENT_SLUG = "project-management";
-const PROJECT_MANAGEMENT_TITLE = "Project Management Services in Lagos, Nigeria | Building Practice Ltd";
+const PROJECT_MANAGEMENT_TITLE = "Project Management Services in Lagos, Nigeria";
 const PROJECT_MANAGEMENT_DESCRIPTION =
   "Project management services in Lagos, Nigeria for construction and building projects. Building Practice Ltd provides planning, budgeting, coordination, reporting, and delivery support.";
 const CONSTRUCTION_CONSULTATION_SLUG = "construction-consultation";
