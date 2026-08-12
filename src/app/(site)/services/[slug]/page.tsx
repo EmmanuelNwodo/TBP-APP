@@ -19,6 +19,10 @@ const CONSTRUCTION_MANAGEMENT_SLUG = "construction-management";
 const CONSTRUCTION_MANAGEMENT_TITLE = "Construction Management Services in Lagos, Nigeria";
 const CONSTRUCTION_MANAGEMENT_DESCRIPTION =
   "Construction management services in Lagos, Nigeria for residential, commercial, institutional, and mixed-use projects. Coordinate delivery, quality, and progress with The Building Practice.";
+const BUILDING_CONSTRUCTION_SLUG = "building-construction";
+const BUILDING_CONSTRUCTION_TITLE = "Building Construction Services in Lagos, Nigeria";
+const BUILDING_CONSTRUCTION_DESCRIPTION =
+  "Building construction services in Lagos, Nigeria for residential, commercial, and institutional projects. Building Practice Ltd supports site preparation, construction execution, finishing, and handover.";
 const PROJECT_MANAGEMENT_SLUG = "project-management";
 const PROJECT_MANAGEMENT_TITLE = "Project Management Services in Lagos, Nigeria";
 const PROJECT_MANAGEMENT_DESCRIPTION =
@@ -100,6 +104,38 @@ export async function generateMetadata({
         card: "summary_large_image",
         title: CONSTRUCTION_MANAGEMENT_TITLE,
         description: CONSTRUCTION_MANAGEMENT_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
+
+  if (slug === BUILDING_CONSTRUCTION_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: BUILDING_CONSTRUCTION_TITLE,
+      description: BUILDING_CONSTRUCTION_DESCRIPTION,
+      keywords: [
+        "building construction service firms in Lagos, Nigeria",
+        "building construction services in Lagos",
+        "building construction firms in Lagos",
+        "building construction companies in Lagos",
+        "building contractors in Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: BUILDING_CONSTRUCTION_TITLE,
+        description: BUILDING_CONSTRUCTION_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: BUILDING_CONSTRUCTION_TITLE,
+        description: BUILDING_CONSTRUCTION_DESCRIPTION,
         images: [service.heroImage || DEFAULT_OG_IMAGE],
       },
     };
@@ -232,6 +268,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isArchitecturalDesignPage = slug === ARCHITECTURAL_DESIGN_SLUG;
   const isInteriorDesignPage = slug === INTERIOR_DESIGN_SLUG;
   const isConstructionManagementPage = slug === CONSTRUCTION_MANAGEMENT_SLUG;
+  const isBuildingConstructionPage = slug === BUILDING_CONSTRUCTION_SLUG;
   const isProjectManagementPage = slug === PROJECT_MANAGEMENT_SLUG;
   const isConstructionConsultationPage = slug === CONSTRUCTION_CONSULTATION_SLUG;
 
@@ -386,6 +423,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     {
       q: "Can you help with project reporting and stakeholder coordination?",
       a: "Yes. We support reporting, communication, and coordination so clients can track progress, issues, and decisions more clearly throughout the project.",
+    },
+  ];
+
+  const buildingConstructionProjects = isBuildingConstructionPage
+    ? getAllProjects().filter((project) => {
+        const scope = project.details.find((detail) => detail.label === "Scope")?.value.toLowerCase() ?? "";
+        return ["design & build", "construction"].some((keyword) => scope.includes(keyword));
+      })
+    : [];
+
+  const lagosBuildingConstructionProjects = buildingConstructionProjects.filter((project) =>
+    project.location.toLowerCase().includes("lagos"),
+  );
+
+  const featuredBuildingConstructionProjects = [...lagosBuildingConstructionProjects, ...buildingConstructionProjects]
+    .filter((project, index, arr) => arr.findIndex((candidate) => candidate.slug === project.slug) === index)
+    .slice(0, 3);
+
+  const buildingConstructionFaq = [
+    ...service.faq,
+    {
+      q: "Do you provide building construction services in Lagos?",
+      a: "Yes. Our core studio is in Lagos and we support building construction services in Lagos and other parts of Nigeria where the project brief and logistics align.",
+    },
+    {
+      q: "Can you execute construction from existing architectural drawings?",
+      a: "Yes. We can work from approved architectural and coordinated technical drawings, while aligning execution activities with project requirements.",
+    },
+    {
+      q: "How can I discuss my building project with your team?",
+      a: "Share your project brief through our contact page and our team will review your scope, timeline, and the next practical steps for construction delivery.",
     },
   ];
 
@@ -629,6 +697,66 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           },
         ],
       }
+    : isBuildingConstructionPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: BUILDING_CONSTRUCTION_TITLE,
+            description: BUILDING_CONSTRUCTION_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Building Construction Services",
+            description: BUILDING_CONSTRUCTION_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "Building Construction",
+              "Residential Building Construction",
+              "Commercial Building Construction",
+              "Construction Execution",
+              "Construction Finishing",
+              "Building Project Handover",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: absoluteUrl("/"),
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Services",
+                item: absoluteUrl("/services"),
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Building Construction",
+                item: absoluteUrl(`/services/${slug}`),
+              },
+            ],
+          },
+        ],
+      }
     : isInteriorDesignPage
     ? {
         "@context": "https://schema.org",
@@ -709,6 +837,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 ? "Contemporary architectural design project by The Building Practice in Lagos"
                 : isConstructionManagementPage
                 ? "Construction management project delivery by The Building Practice in Lagos, Nigeria"
+                : isBuildingConstructionPage
+                ? "Building construction project execution by The Building Practice in Lagos, Nigeria"
                 : isInteriorDesignPage
                 ? "Interior design project by The Building Practice in Lagos, Nigeria"
                 : isConstructionConsultationPage
@@ -722,7 +852,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage) && (
+          {(isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
@@ -735,6 +865,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   ? "Interior Design"
                   : isConstructionManagementPage
                   ? "Construction Management"
+                  : isBuildingConstructionPage
+                  ? "Building Construction"
                   : isProjectManagementPage
                   ? "Project Management"
                   : "Construction Consultation"}
@@ -751,6 +883,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               ? "Architectural Design Services in Lagos, Nigeria"
               : isConstructionManagementPage
               ? "Construction Management Services in Lagos, Nigeria"
+              : isBuildingConstructionPage
+              ? "Building Construction Services in Lagos, Nigeria"
               : isInteriorDesignPage
               ? "Interior Design Services in Lagos, Nigeria"
               : isProjectManagementPage
@@ -764,6 +898,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               ? "We provide architectural design for residential, commercial, hospitality, and institutional projects with context-led planning and technical documentation."
               : isConstructionManagementPage
               ? "We coordinate planning, scheduling, site activities, cost and quality monitoring, and project reporting for construction projects in Lagos and across Nigeria."
+              : isBuildingConstructionPage
+              ? "We execute residential, commercial, and institutional building projects from site preparation and structural works through finishing and handover in Lagos and across Nigeria."
               : isInteriorDesignPage
               ? "We design residential and commercial interiors with clear planning, material direction, and implementation support for projects in Lagos and across Nigeria."
               : isProjectManagementPage
@@ -963,6 +1099,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/projects">View projects in our portfolio</Link>
+                      <Link href="/services/building-construction">Explore building construction services</Link>
                       <Link href="/services/architectural-design">Explore architectural design services</Link>
                       <Link href="/services/interior-design">Explore interior design services</Link>
                     </div>
@@ -1354,6 +1491,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your project</Link>
+                      <Link href="/services/building-construction">Explore building construction services</Link>
                       <Link href="/services/construction-management">Explore construction management</Link>
                       <Link href="/services/construction-consultation">Explore construction consultation</Link>
                     </div>
@@ -1537,6 +1675,221 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/contact">Discuss your project</Link>
                       <Link href="/projects">View project portfolio</Link>
                       <Link href="/services/construction-management">Explore construction management</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isBuildingConstructionPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Building Construction Services</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides building construction services for clients who need practical,
+                      quality-focused project execution from site preparation through final handover. We support
+                      residential, commercial, and institutional building projects with structured delivery
+                      coordination and clear communication.
+                    </p>
+                    <p className={styles.bodyText}>
+                      If you are comparing building construction firms in Lagos, this service is built for clients who
+                      want experienced teams, coordinated site activities, and construction outcomes aligned with
+                      approved project requirements.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Start your building project</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                      <Link href="/services/construction-management">Explore construction management services</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Our Building Construction Services</h2>
+                    <p className={styles.bodyText}>
+                      Our building construction scope covers core structural works, coordinated installation stages,
+                      and finishing activities required to move projects from approved plans to completed buildings.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h3>Residential Building Construction</h3>
+                    <p className={styles.bodyText}>
+                      We support residential building projects including homes, apartments, duplexes, and estate
+                      developments where disciplined construction planning and quality workmanship are essential.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h3>Commercial Building Construction</h3>
+                    <p className={styles.bodyText}>
+                      We also execute commercial building projects such as offices, retail spaces, hospitality
+                      facilities, and mixed-use developments based on project scope and approved specifications.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h3>Building Project Execution Scope</h3>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h3>Construction Coordination for Delivery</h3>
+                    <p className={styles.bodyText}>
+                      Building construction projects involve many moving parts, from site activities and material
+                      logistics to sequencing of trades and progress updates. Our approach supports better
+                      coordination across those activities to reduce avoidable rework and communication gaps.
+                    </p>
+                    <p className={styles.bodyText}>
+                      For broader execution oversight and project controls, you can also review our <Link href="/services/construction-management">construction management services</Link> and
+                      <Link href="/services/project-management"> project management services</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h3>Quality-Focused Construction</h3>
+                    <p className={styles.bodyText}>
+                      We prioritize workmanship quality, material suitability, and alignment with approved drawings
+                      and specifications through each construction stage. This helps improve consistency and supports
+                      more reliable project outcomes at completion.
+                    </p>
+                  </div>
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Building Construction Process</h2>
+                      <div className={styles.processList}>
+                        {service.process.map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Building Construction in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Construction projects in Lagos often require careful planning around site logistics, access,
+                      procurement timing, and sequencing of activities. Our construction delivery workflow is designed
+                      to support those realities while keeping project communication clear.
+                    </p>
+                    <p className={styles.bodyText}>
+                      We also support projects in other parts of Nigeria where project scope and logistics are a good
+                      fit.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Project Types We Support</h2>
+                    <p className={styles.bodyText}>
+                      Our building construction services can support residential homes and estates, commercial
+                      buildings, institutional facilities, and selected specialized scopes such as swimming pools and
+                      external landscaping where these are part of the project brief.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/services/architectural-design">Architectural design services</Link>
+                      <Link href="/services/interior-design">Interior design services</Link>
+                      <Link href="/services/construction-consultation">Construction consultation services</Link>
+                    </div>
+                  </div>
+
+                  {featuredBuildingConstructionProjects.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Building Construction Projects</h2>
+                      <div className={styles.projectGrid}>
+                        {featuredBuildingConstructionProjects.map((project) => (
+                          <article key={project.slug} className={styles.projectCard}>
+                            <div className={styles.projectMedia}>
+                              <LazyImage
+                                src={project.images.main}
+                                alt={`${project.title} in ${project.location}`}
+                                fill
+                                sizes="(max-width: 968px) 100vw, 33vw"
+                              />
+                            </div>
+                            <div className={styles.projectContent}>
+                              <p>{project.categoryLabel} • {project.location}</p>
+                              <h3>
+                                <Link href={`/projects/${project.slug}`}>{project.title}</Link>
+                              </h3>
+                              <p>{project.shortDescription}</p>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Why Choose Building Practice Ltd for Building Construction?</h2>
+                    <ul className={styles.featureList}>
+                      <li>
+                        <i className="bx bx-check-circle" aria-hidden="true" />
+                        <span>Integrated building delivery from site preparation to finishing and handover.</span>
+                      </li>
+                      <li>
+                        <i className="bx bx-check-circle" aria-hidden="true" />
+                        <span>Construction coordination focused on execution quality, sequencing, and communication.</span>
+                      </li>
+                      <li>
+                        <i className="bx bx-check-circle" aria-hidden="true" />
+                        <span>Architecture-led project context that supports buildability and practical outcomes.</span>
+                      </li>
+                    </ul>
+                    <div className={styles.linkRow}>
+                      <Link href="/about">Learn more about Building Practice Ltd</Link>
+                      <Link href="/team">Meet our construction and delivery team</Link>
+                      <Link href="/blog">Read construction insights</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {buildingConstructionFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Start Your Building Project</h2>
+                    <p className={styles.bodyText}>
+                      If you are planning a building project in Lagos, share your requirements with our team and we
+                      will review the practical next steps for construction execution.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your building project</Link>
+                      <Link href="/projects">View completed projects</Link>
+                      <Link href="/services/project-management">Explore project management services</Link>
                     </div>
                   </div>
                 </>
@@ -1750,7 +2103,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && service.stats.length > 0 && (
+              {!isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -1845,12 +2198,35 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
+              {isBuildingConstructionPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Studio Base</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Execution</div>
+                    <div className={styles.statLabel}>From Site Preparation to Finishing</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Handover</div>
+                    <div className={styles.statLabel}>Completion-Oriented Delivery</div>
+                  </div>
+                </div>
+              )}
+
               <div className={styles.ctaCard}>
                 <h3>
                   {isArchitecturalDesignPage
                     ? "Start Your Architectural Project"
                     : isConstructionManagementPage
                     ? "Discuss Your Construction Project"
+                    : isBuildingConstructionPage
+                    ? "Start Your Building Project"
                     : isConstructionConsultationPage
                     ? "Request a Construction Consultation"
                     : isInteriorDesignPage
@@ -1862,6 +2238,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     ? "Tell us about your design brief and site context, and our team will guide you on the next steps."
                     : isConstructionManagementPage
                     ? "Tell us about your project scope, timeline, and coordination needs, and our team will advise on practical next steps."
+                    : isBuildingConstructionPage
+                    ? "Tell us about your building scope, timeline, and delivery priorities, and our team will review practical construction next steps."
                     : isConstructionConsultationPage
                     ? "Tell us about your project goals, budget concerns, or design questions, and our team will review the best next steps."
                     : isInteriorDesignPage
@@ -1870,7 +2248,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage
+                    {isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -1898,6 +2276,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <Link href="/services/construction-management" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
                     <span>Explore Construction Management</span>
                     <i className="bx bx-hard-hat" aria-hidden="true" />
+                  </Link>
+                )}
+                {isBuildingConstructionPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Building Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
                   </Link>
                 )}
               </div>
@@ -1977,6 +2361,33 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       </Link>
                       <Link href="/services/interior-design" className="tag tag--outline tag--sm">
                         <i className="bx bx-palette" aria-hidden="true" /> Interior Design
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/about" className="tag tag--outline tag--sm">
+                        <i className="bx bx-info-circle" aria-hidden="true" /> About the Studio
+                      </Link>
+                      <Link href="/team" className="tag tag--outline tag--sm">
+                        <i className="bx bx-group" aria-hidden="true" /> Meet the Team
+                      </Link>
+                    </>
+                  ) : isBuildingConstructionPage ? (
+                    <>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-palette" aria-hidden="true" /> Interior Design
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
                         <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
