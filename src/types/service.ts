@@ -10,6 +10,8 @@ export type Service = {
   category: string;
   title: string;
   subtitle: string;
+  seoTitle?: string;
+  seoDescription?: string;
   heroImage: string;
   overview: string;
   highlights: ServiceHighlight[];

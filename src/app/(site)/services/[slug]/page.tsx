@@ -18,8 +18,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
-  const title = `${service.title} | The Building Practice`;
-  const description = service.subtitle;
+  const title = service.seoTitle || `${service.title} | The Building Practice`;
+  const description = service.seoDescription || service.subtitle;
   const url = absoluteUrl(`/services/${slug}`);
   return {
     title,
