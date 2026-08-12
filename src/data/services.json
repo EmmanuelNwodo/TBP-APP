@@ -453,6 +453,158 @@
     "filterCategory": "management"
   },
   {
+    "slug": "construction-consultation",
+    "icon": "bx-comment-detail",
+    "category": "Consultation Service",
+    "title": "Construction Consultation",
+    "subtitle": "Construction Consultation in Nigeria | Expert Building Advisory Services – Building Practice Ltd",
+    "seoTitle": "Construction Consultation in Nigeria | Expert Building Advisory Services – Building Practice Ltd",
+    "seoDescription": "Need expert construction consultation in Nigeria? Building Practice Ltd provides professional guidance on planning, costs, materials, and execution. Avoid costly mistakes contact us today.",
+    "heroImage": "/images/services/constructionConsultation.jpg",
+    "overview": "<p><strong>Construction Consultation in Nigeria</strong></p>\n                    <p>At <strong>Building Practice Ltd</strong>, we provide expert, results-driven <strong>construction consultation in Nigeria</strong> for individuals, developers, and organizations who want to build with clarity, control, and confidence.</p>\n                    <p>Construction projects fail when decisions are made without proper guidance. Poor planning, wrong contractors, bad material choices, and cost miscalculations can lead to serious financial losses.</p>\n                    <p>Our construction consultation service ensures you make the right decisions before and during construction so your project runs smoothly, stays within budget, and delivers the expected results.</p>\n                    <h2>What Our Construction Consultation Covers</h2>\n                    <h3>Pre-Construction Planning Advisory</h3>\n                    <p>The success of your project is determined before construction even starts.</p>\n                    <ul>\n                        <li>Project feasibility and planning</li>\n                        <li>Budget alignment and cost expectations</li>\n                        <li>Construction methodology</li>\n                        <li>Site preparation requirements</li>\n                        <li>Risk identification and mitigation</li>\n                    </ul>\n                    <p>We help you start right so you don’t fix expensive mistakes later.</p>\n                    <h3>Construction Cost and Budget Advisory</h3>\n                    <p>Cost overruns are one of the biggest problems in construction.</p>\n                    <ul>\n                        <li>Accurate cost estimation guidance</li>\n                        <li>Budget planning and allocation</li>\n                        <li>Cost-saving strategies</li>\n                        <li>Material cost optimization</li>\n                        <li>Financial risk assessment</li>\n                    </ul>\n                    <p>We help you control your spending without compromising quality.</p>\n                    <h3>Contractor Selection and Evaluation</h3>\n                    <p>Choosing the wrong contractor can ruin your project.</p>\n                    <ul>\n                        <li>Evaluate contractor capabilities</li>\n                        <li>Review quotations and contracts</li>\n                        <li>Identify red flags before engagement</li>\n                        <li>Select the right professionals for your project</li>\n                    </ul>\n                    <p>You make informed decisions instead of costly guesses.</p>\n                    <h3>Material Selection and Specification</h3>\n                    <p>Material decisions affect durability, cost, and long-term maintenance.</p>\n                    <ul>\n                        <li>Suitable building materials for your project</li>\n                        <li>Cost vs quality trade-offs</li>\n                        <li>Local availability and sourcing</li>\n                        <li>Long-term performance considerations</li>\n                    </ul>\n                    <p>We ensure your building is durable, efficient, and cost-effective.</p>\n                    <h3>Construction Process Advisory</h3>\n                    <p>Once construction starts, poor coordination leads to delays and errors.</p>\n                    <ul>\n                        <li>Construction workflow and sequencing</li>\n                        <li>Site coordination strategies</li>\n                        <li>Quality control checkpoints</li>\n                        <li>Timeline expectations</li>\n                    </ul>\n                    <p>You stay in control even if you’re not on-site daily.</p>\n                    <h3>Design-to-Construction Alignment</h3>\n                    <p>Many projects fail because design and execution don’t align.</p>\n                    <ul>\n                        <li>Interpret architectural and engineering drawings</li>\n                        <li>Ensure buildability of designs</li>\n                        <li>Identify design gaps before execution</li>\n                        <li>Align contractors with design intent</li>\n                    </ul>\n                    <p>We bridge the gap between plans and reality.</p>\n                    <h2>Why You Need Construction Consultation</h2>\n                    <ul>\n                        <li>Projects exceed budget</li>\n                        <li>Contractors cut corners</li>\n                        <li>Materials are poorly selected</li>\n                        <li>Timelines are not met</li>\n                        <li>Quality is compromised</li>\n                    </ul>\n                    <p>With Building Practice Ltd, you gain the clarity and strategic guidance needed to avoid costly mistakes and protect your investment.</p>\n                    <h2>Our Construction Consultation Process</h2>\n                    <ol>\n                        <li><strong>Initial Discussion:</strong> We understand your project, goals, and concerns.</li>\n                        <li><strong>Project Evaluation:</strong> We assess your plans, budget, and construction approach.</li>\n                        <li><strong>Expert Advisory:</strong> We provide clear, actionable recommendations.</li>\n                        <li><strong>Strategic Guidance:</strong> We align your decisions with cost, quality, and timeline goals.</li>\n                        <li><strong>Ongoing Support:</strong> We remain available for continued consultation as your project progresses.</li>\n                    </ol>\n                    <h2>Why Choose Building Practice Ltd for Construction Consultation in Nigeria</h2>\n                    <ul>\n                        <li><strong>Real Construction Experience:</strong> We advise based on actual project execution.</li>\n                        <li><strong>Cost Protection Focus:</strong> Our goal is to help you avoid financial mistakes and waste.</li>\n                        <li><strong>Independent, Unbiased Guidance:</strong> We advise in your best interest, not contractors’ or suppliers’ interests.</li>\n                        <li><strong>Practical and Actionable Insights:</strong> Every recommendation is something you can immediately apply.</li>\n                        <li><strong>Multi-Disciplinary Expertise:</strong> We combine architecture, construction, and project management knowledge.</li>\n                    </ul>\n                    <h2>Who This Service Is For</h2>\n                    <ul>\n                        <li>Homeowners planning to build</li>\n                        <li>Property developers</li>\n                        <li>Investors entering construction</li>\n                        <li>Business owners developing commercial spaces</li>\n                        <li>Anyone unsure about construction decisions</li>\n                    </ul>\n                    <p>If you want to build without unnecessary risk, this service is critical.</p>\n                    <h2>Hire Construction Consultation Experts in Nigeria</h2>\n                    <p>Before you commit to construction, get the guidance you need. Building Practice Ltd delivers expert <strong>construction consultation in Nigeria</strong> that helps you reduce risk, control costs, and execute your project with confidence.</p>",
+    "highlights": [
+      {
+        "icon": "bx-briefcase",
+        "title": "Pre-Construction Planning",
+        "desc": "Feasibility review, budgeting, timeline planning, and early risk identification"
+      },
+      {
+        "icon": "bx-wallet",
+        "title": "Cost Control",
+        "desc": "Accurate budget guidance, material optimization, and financial risk checks"
+      },
+      {
+        "icon": "bx-user-check",
+        "title": "Contractor Guidance",
+        "desc": "Evaluate bids, assess contractor capability, and avoid poor engagement decisions"
+      },
+      {
+        "icon": "bx-architecture",
+        "title": "Buildability Advice",
+        "desc": "Align design intent with site realities, quality expectations, and construction sequencing"
+      }
+    ],
+    "features": [
+      "Pre-construction feasibility and planning advisory",
+      "Budget alignment and cost expectation review",
+      "Construction methodology guidance",
+      "Site preparation and risk assessment",
+      "Cost estimation and financial planning support",
+      "Contractor evaluation and quotation review",
+      "Material selection and specification advice",
+      "Construction workflow and sequencing guidance",
+      "Quality control and milestone planning",
+      "Design-to-construction alignment support",
+      "Project decision support during execution",
+      "Construction risk reduction and prevention strategy"
+    ],
+    "process": [
+      {
+        "title": "Initial Discussion",
+        "desc": "We understand your project goals, challenges, and concerns."
+      },
+      {
+        "title": "Project Evaluation",
+        "desc": "We assess your plans, budget, and construction approach."
+      },
+      {
+        "title": "Expert Advisory",
+        "desc": "We provide clear, actionable recommendations for better decisions."
+      },
+      {
+        "title": "Strategic Guidance",
+        "desc": "We align every decision with cost, quality, and timeline objectives."
+      },
+      {
+        "title": "Ongoing Support",
+        "desc": "We remain available for consultation as the project progresses."
+      }
+    ],
+    "stats": [
+      {
+        "number": "350+",
+        "label": "Projects Guided"
+      },
+      {
+        "number": "90%+",
+        "label": "Budget Awareness"
+      },
+      {
+        "number": "24/7",
+        "label": "Decision Support"
+      },
+      {
+        "number": "0",
+        "label": "Costly Guesswork"
+      }
+    ],
+    "faq": [
+      {
+        "q": "What does construction consultation include?",
+        "a": "It includes project planning, budget advisory, contractor evaluation, material selection guidance, construction workflow advice, and design-to-execution alignment support."
+      },
+      {
+        "q": "Why do I need construction consultation before building?",
+        "a": "It reduces risk, prevents avoidable mistakes, helps control cost, and gives you better clarity before spending money on contractors and materials."
+      },
+      {
+        "q": "Can you help choose the right contractor?",
+        "a": "Yes. We help assess contractor capability, review quotations, analyze contract terms, and identify red flags before commitment."
+      },
+      {
+        "q": "Does construction consultation help manage cost overruns?",
+        "a": "Yes. We provide budget guidance, cost-saving recommendations, and practical decision support to prevent excessive or avoidable spending."
+      },
+      {
+        "q": "Do you support projects during execution?",
+        "a": "Yes. We can provide strategic guidance throughout the construction phase, helping you make informed decisions as work progresses."
+      }
+    ],
+    "tags": [
+      {
+        "label": "Construction Consultation Nigeria",
+        "href": "#",
+        "icon": "bx-comment-detail"
+      },
+      {
+        "label": "Building Advisory",
+        "href": "#",
+        "icon": "bx-briefcase"
+      },
+      {
+        "label": "Budget Planning",
+        "href": "#",
+        "icon": "bx-wallet"
+      },
+      {
+        "label": "Contractor Review",
+        "href": "#",
+        "icon": "bx-user-check"
+      },
+      {
+        "label": "Material Guidance",
+        "href": "#",
+        "icon": "bx-architecture"
+      },
+      {
+        "label": "Project Risk Management",
+        "href": "#",
+        "icon": "bx-shield"
+      },
+      {
+        "label": "Construction Planning",
+        "href": "#",
+        "icon": "bx-calendar"
+      },
+      {
+        "label": "Cost Control",
+        "href": "#",
+        "icon": "bx-trending-up"
+      }
+    ],
+    "filterCategory": "consulting"
+  },
+  {
     "slug": "building-construction",
     "icon": "bx-building-house",
     "category": "Construction Service",
@@ -588,24 +740,31 @@
     "icon": "bx-task",
     "category": "Management Service",
     "title": "Project Management",
-    "subtitle": "Professional Project Management Services for Timely, Cost-Controlled Delivery",
+    "subtitle": "Project Management Services in Nigeria | Construction & Building Project Experts – Building Practice Ltd",
+    "seoTitle": "Project Management Services in Nigeria | Construction & Building Project Experts Building Practice Ltd",
+    "seoDescription": "Looking for reliable project management services in Nigeria? Building Practice Ltd delivers expert planning, cost control, and on-site coordination for construction projects. Contact us today.",
     "heroImage": "/images/services/projectManagement.jpg",
-    "overview": "<p><strong>Structured & Results-Driven Project Delivery</strong></p>\n                    <p>At Building Practice Ltd, we provide structured and results-driven project management services in Nigeria for residential, commercial, and large-scale developments. We ensure your project is delivered on time, within budget, and to the highest quality standards.</p>\n                    <p>Construction projects often fail because of poor coordination, cost overruns, and weak supervision. We remove those risks with disciplined planning, transparent reporting, and precise control from project initiation to handover.</p>\n                    <p><strong>Our Project Management Approach:</strong></p>\n                    <ul>\n                        <li>Clear scope definition and stakeholder alignment</li>\n                        <li>Detailed work breakdown and scheduling</li>\n                        <li>Proactive risk identification and mitigation</li>\n                        <li>Regular progress reporting and communication</li>\n                    </ul>",
+    "overview": "<p><strong>Professional Project Management by Building Practice Ltd</strong></p>\n                    <p>At <strong>Building Practice Ltd</strong>, we provide structured and results-driven <strong>project management services in Nigeria</strong> for residential, commercial, and large-scale developments. We ensure your project is delivered on time, within budget, and to the highest quality standards.</p>\n                    <p>Construction projects in Nigeria often fail due to poor coordination, cost overruns, and weak supervision. We eliminate these risks with a disciplined project management approach that gives you full control, transparency, and predictable outcomes.</p>\n                    <p>Whether you are building a home, developing a commercial property, or executing a large-scale project, we manage every detail so you don’t have to.</p>\n                    <h2>Our Project Management Services in Nigeria</h2>\n                    <h3>Construction Project Planning</h3>\n                    <p>Every successful project starts with a clear, executable plan.</p>\n                    <ul>\n                        <li>Project scope definition</li>\n                        <li>Work breakdown structure (WBS)</li>\n                        <li>Timeline and scheduling</li>\n                        <li>Resource planning</li>\n                        <li>Risk assessment and mitigation</li>\n                    </ul>\n                    <p>We create a roadmap that ensures smooth execution from day one.</p>\n                    <h3>Cost Management and Budget Control</h3>\n                    <p>Uncontrolled costs can destroy project profitability. We ensure financial discipline at every stage.</p>\n                    <ul>\n                        <li>Budget development and forecasting</li>\n                        <li>Cost estimation and benchmarking</li>\n                        <li>Procurement cost control</li>\n                        <li>Financial tracking and reporting</li>\n                        <li>Value engineering</li>\n                    </ul>\n                    <p>We protect your investment by keeping your project financially aligned.</p>\n                    <h3>Contractor and Site Management</h3>\n                    <p>Execution is where most projects fail. We ensure strict coordination and supervision on-site.</p>\n                    <ul>\n                        <li>Contractor selection and coordination</li>\n                        <li>Site supervision and quality control</li>\n                        <li>Progress monitoring</li>\n                        <li>Material and labor management</li>\n                        <li>Compliance with specifications</li>\n                    </ul>\n                    <p>We ensure that what is designed is properly built without compromise.</p>\n                    <h3>Time and Schedule Management</h3>\n                    <p>Delays cost money and create unnecessary stress. We enforce disciplined timelines.</p>\n                    <ul>\n                        <li>Project scheduling (Gantt charts)</li>\n                        <li>Milestone tracking</li>\n                        <li>Delay analysis and recovery planning</li>\n                        <li>On-site progress audits</li>\n                    </ul>\n                    <p>We keep your project moving efficiently from start to finish.</p>\n                    <h3>Quality Assurance and Compliance</h3>\n                    <p>We ensure that every aspect of your project meets required standards and regulations.</p>\n                    <ul>\n                        <li>Quality control inspections</li>\n                        <li>Compliance with building codes and regulations</li>\n                        <li>Material quality verification</li>\n                        <li>Workmanship assessment</li>\n                    </ul>\n                    <p>We deliver projects that meet both functional and regulatory expectations.</p>\n                    <h3>Procurement and Vendor Management</h3>\n                    <p>The wrong suppliers can derail your project. We manage procurement strategically.</p>\n                    <ul>\n                        <li>Vendor sourcing and evaluation</li>\n                        <li>Material procurement planning</li>\n                        <li>Supplier coordination</li>\n                        <li>Contract administration</li>\n                    </ul>\n                    <p>We ensure timely delivery of quality materials at the right cost.</p>\n                    <h2>Our Project Management Process</h2>\n                    <p>At Building Practice Ltd, we follow a structured system to ensure predictable and successful project outcomes.</p>\n                    <ol>\n                        <li><strong>Project Initiation:</strong> We define project objectives, scope, and key deliverables.</li>\n                        <li><strong>Planning and Strategy:</strong> We develop timelines, budgets, and execution strategies.</li>\n                        <li><strong>Execution and Coordination:</strong> We manage contractors, suppliers, and site operations.</li>\n                        <li><strong>Monitoring and Control:</strong> We track performance, costs, and timelines in real time.</li>\n                        <li><strong>Project Completion and Handover:</strong> We ensure the project is delivered to specification and ready for use.</li>\n                    </ol>\n                    <h2>Why Choose Building Practice Ltd for Project Management in Nigeria</h2>\n                    <ul>\n                        <li><strong>Proven Project Control System:</strong> We use structured processes to eliminate delays, cost overruns, and execution errors.</li>\n                        <li><strong>End-to-End Management:</strong> From planning to delivery, we handle every aspect of your project.</li>\n                        <li><strong>Transparency and Reporting:</strong> You get clear updates, cost visibility, and full accountability at every stage.</li>\n                        <li><strong>Industry Expertise:</strong> We understand the realities of construction and development in Nigeria.</li>\n                        <li><strong>Risk Reduction:</strong> We proactively identify and solve problems before they escalate.</li>\n                    </ul>\n                    <h2>Project Management for All Project Types</h2>\n                    <ul>\n                        <li>Residential construction (homes, estates)</li>\n                        <li>Commercial developments (offices, retail spaces)</li>\n                        <li>Industrial projects</li>\n                        <li>Institutional buildings (schools, hospitals)</li>\n                        <li>Mixed-use developments</li>\n                    </ul>\n                    <p>No matter the scale, we ensure efficient execution and successful delivery.</p>\n                    <h2>Hire Project Management Experts in Nigeria</h2>\n                    <p>If you want your project done right, you need more than contractors — you need control. Building Practice Ltd delivers project management services in Nigeria that ensure your project is completed on time, within budget, and without costly mistakes.</p>",
     "highlights": [
       {
-        "icon": "bx-time-five",
-        "title": "Time Management",
-        "desc": "Scheduling, milestone tracking, and delay recovery planning"
+        "icon": "bx-calendar",
+        "title": "Planning & Scheduling",
+        "desc": "Work breakdown structures, timelines, and milestone control for every phase"
       },
       {
         "icon": "bx-wallet",
         "title": "Cost Control",
-        "desc": "Budget forecasting, procurement control, and value engineering"
+        "desc": "Budget tracking, forecasting, procurement oversight, and value engineering"
+      },
+      {
+        "icon": "bx-shield",
+        "title": "Risk Reduction",
+        "desc": "Early identification of delays, quality issues, and financial pressure points"
       },
       {
         "icon": "bx-check-double",
-        "title": "Execution Control",
-        "desc": "Contractor coordination, quality checks, and on-site supervision"
+        "title": "Execution Oversight",
+        "desc": "Contractor coordination, progress monitoring, and quality assurance"
       }
     ],
     "features": [
@@ -624,24 +783,24 @@
     ],
     "process": [
       {
-        "title": "Initiation",
-        "desc": "Define objectives, scope, and key deliverables"
+        "title": "Project Initiation",
+        "desc": "Define objectives, scope, and key deliverables."
       },
       {
-        "title": "Planning",
-        "desc": "Build budgets, schedules, and execution strategy"
+        "title": "Planning and Strategy",
+        "desc": "Develop timelines, budgets, and execution strategies."
       },
       {
-        "title": "Execution",
-        "desc": "Coordinate contractors, suppliers, and site activities"
+        "title": "Execution and Coordination",
+        "desc": "Manage contractors, suppliers, and site operations."
       },
       {
-        "title": "Monitoring",
-        "desc": "Track cost, time, quality, and emerging risks"
+        "title": "Monitoring and Control",
+        "desc": "Track performance, costs, and timelines in real time."
       },
       {
-        "title": "Handover",
-        "desc": "Deliver a completed project ready for use"
+        "title": "Project Completion and Handover",
+        "desc": "Deliver a completed project ready for use."
       }
     ],
     "stats": [
@@ -710,6 +869,16 @@
         "label": "Quality Control",
         "href": "#",
         "icon": "bx-check-shield"
+      },
+      {
+        "label": "Contractor Coordination",
+        "href": "#",
+        "icon": "bx-group"
+      },
+      {
+        "label": "Procurement Planning",
+        "href": "#",
+        "icon": "bx-package"
       }
     ],
     "filterCategory": "management"
@@ -719,9 +888,11 @@
     "icon": "bx-map-alt",
     "category": "Planning Service",
     "title": "Urban Development",
-    "subtitle": "Professional Urban Development, Master Planning & Infrastructure Design in Nigeria",
+    "subtitle": "Urban Development in Nigeria | Master Planning & Infrastructure Design - Building Practice Ltd",
+    "seoTitle": "Urban Development in Nigeria | Master Planning & Infrastructure Design-Building Practice Ltd",
+    "seoDescription": "Looking for expert urban development in Nigeria? Building Practice Ltd delivers master planning, infrastructure design, and sustainable urban projects. Contact our team today.",
     "heroImage": "/images/services/urbanDev.jpg",
-    "overview": "<p><strong>Strategic Urban Planning & Development</strong></p>\n                    <p>At Building Practice Ltd, we deliver strategic and results-driven urban development in Nigeria for government bodies, private developers, and corporate investors. We design and execute large-scale developments that are functional, economically viable, and built for long-term growth.</p>\n                    <p>From new town developments to mixed-use urban projects, our team combines technical expertise, planning intelligence, and design excellence to transform raw land into thriving, structured environments.</p>\n                    <p><strong>Our Urban Development Expertise:</strong></p>\n                    <ul>\n                        <li>Master planning for residential and commercial estates</li>\n                        <li>Infrastructure design and coordination</li>\n                        <li>Sustainable community development</li>\n                        <li>Transit-oriented development planning</li>\n                    </ul>",
+    "overview": "<p><strong>Professional Urban Development Services by Building Practice Ltd</strong></p>\n                    <p>At Building Practice Ltd, we deliver strategic and results-driven <strong>urban development in Nigeria</strong> for government bodies, private developers, and corporate investors. We design and execute large-scale developments that are functional, economically viable, and built for long-term growth.</p>\n                    <p>From new town developments to mixed-use urban projects, our team combines technical expertise, planning intelligence, and design excellence to transform raw land into thriving, structured environments.</p>\n                    <p>If you are planning a residential estate, commercial district, or large-scale infrastructure project, we provide the expertise required to execute successfully from concept to completion.</p>\n                    <h2>Our Urban Development Services in Nigeria</h2>\n                    <h3>Master Planning and Urban Design</h3>\n                    <p>We create structured, scalable, and future-ready urban environments that support population growth and economic activity.</p>\n                    <ul>\n                        <li>Land use planning and zoning</li>\n                        <li>Residential and mixed-use layouts</li>\n                        <li>Road network and circulation design</li>\n                        <li>Public space and community planning</li>\n                        <li>Infrastructure integration planning</li>\n                    </ul>\n                    <p>We design developments that are not just visually appealing but also efficient, livable, and commercially viable.</p>\n                    <h3>Residential Estate Development</h3>\n                    <p>We plan and design modern residential estates that meet today’s housing demands while ensuring long-term value.</p>\n                    <ul>\n                        <li>Gated community planning</li>\n                        <li>Housing unit layout optimization</li>\n                        <li>Infrastructure and utility planning</li>\n                        <li>Landscape and recreational design</li>\n                        <li>Security and access control planning</li>\n                    </ul>\n                    <p>We help developers maximize land value while creating desirable living environments.</p>\n                    <h3>Commercial and Mixed-Use Development</h3>\n                    <p>Urban growth is driven by commercial activity. We design spaces that support business, retail, and lifestyle integration.</p>\n                    <ul>\n                        <li>Commercial districts</li>\n                        <li>Mixed-use developments (residential + retail + office)</li>\n                        <li>Business parks</li>\n                        <li>Retail and shopping complexes</li>\n                    </ul>\n                    <p>Our approach ensures optimal land use, high foot traffic flow, and strong investment returns.</p>\n                    <h3>Infrastructure Planning and Development</h3>\n                    <p>No urban project succeeds without solid infrastructure. We design systems that support long-term functionality.</p>\n                    <ul>\n                        <li>Road and transportation network design</li>\n                        <li>Drainage and stormwater management</li>\n                        <li>Power and utility planning</li>\n                        <li>Water supply and sewage systems</li>\n                        <li>Smart city infrastructure integration</li>\n                    </ul>\n                    <p>We ensure your development is technically sound and future-ready.</p>\n                    <h3>Urban Renewal and Redevelopment</h3>\n                    <p>Outdated or underutilized areas can be transformed into high-value developments.</p>\n                    <ul>\n                        <li>Site analysis and redevelopment strategy</li>\n                        <li>Layout restructuring</li>\n                        <li>Infrastructure upgrades</li>\n                        <li>Modernization of existing districts</li>\n                    </ul>\n                    <p>We reposition properties and locations for higher economic and social value.</p>\n                    <h2>Urban Development Process</h2>\n                    <ol>\n                        <li><strong>Feasibility Study and Site Analysis:</strong> We evaluate land potential, regulatory requirements, and project viability.</li>\n                        <li><strong>Concept Development:</strong> We develop master plans, zoning strategies, and conceptual layouts.</li>\n                        <li><strong>Detailed Planning and Design:</strong> We produce technical drawings, infrastructure plans, and 3D visualizations.</li>\n                        <li><strong>Regulatory Approvals:</strong> We assist with planning approvals and compliance with Nigerian regulations.</li>\n                        <li><strong>Project Execution and Coordination:</strong> We manage consultants, engineers, and contractors for seamless delivery.</li>\n                        <li><strong>Final Delivery and Optimization:</strong> We ensure the development meets functional, aesthetic, and commercial goals.</li>\n                    </ol>\n                    <h2>Why Choose Building Practice Ltd for Urban Development in Nigeria</h2>\n                    <ul>\n                        <li><strong>Strategic Planning Expertise:</strong> We create development strategies that maximize land value and long-term returns.</li>\n                        <li><strong>End-to-End Project Delivery:</strong> From concept to execution, we manage every stage of your urban development project.</li>\n                        <li><strong>Market-Driven Design:</strong> Our solutions are tailored to Nigeria’s real estate and infrastructure realities.</li>\n                        <li><strong>Technical Excellence:</strong> We combine architecture, engineering, and urban planning into one integrated solution.</li>\n                        <li><strong>Sustainable and Scalable Developments:</strong> We design cities and communities that grow with time, not against it.</li>\n                    </ul>\n                    <h2>Urban Development for Key Sectors</h2>\n                    <p>We provide urban development services across:</p>\n                    <ul>\n                        <li>Residential housing estates</li>\n                        <li>Commercial and business districts</li>\n                        <li>Industrial and logistics hubs</li>\n                        <li>Government and public infrastructure projects</li>\n                        <li>Institutional developments (schools, healthcare, civic centers)</li>\n                    </ul>\n                    <p>Every project is designed to balance functionality, profitability, and long-term sustainability.</p>\n                    <h2>Urban Development Trends in Nigeria</h2>\n                    <p>Urban development in Nigeria is rapidly evolving, driven by population growth and economic expansion. Key trends shaping modern developments include:</p>\n                    <ul>\n                        <li>Smart city planning and digital infrastructure</li>\n                        <li>Mixed-use developments</li>\n                        <li>Sustainable and eco-friendly planning</li>\n                        <li>High-density urban living solutions</li>\n                        <li>Integrated transport systems</li>\n                    </ul>\n                    <p>At Building Practice Ltd, we align every project with these trends while ensuring practical execution within the Nigerian context.</p>\n                    <h2>Hire Urban Development Experts in Nigeria</h2>\n                    <p>If you are planning a large-scale project, you need more than design; you need a strategy that works.</p>\n                    <p>Building Practice Ltd delivers <strong>urban development in Nigeria</strong> that transforms land into structured, profitable, and future-ready environments. Whether you are a private developer or a government agency, we provide the expertise to execute successfully.</p>",
     "highlights": [
       {
         "icon": "bx-map",
@@ -737,6 +908,11 @@
         "icon": "bx-world",
         "title": "Long-Term Value",
         "desc": "Future-ready urban environments built for growth and returns"
+      },
+      {
+        "icon": "bx-building-house",
+        "title": "Mixed-Use Strategy",
+        "desc": "Commercial, residential, and civic planning designed for liveability"
       }
     ],
     "features": [
@@ -750,28 +926,33 @@
       "Regulatory approvals support and Nigerian planning compliance",
       "Environmental impact assessment coordination",
       "Stakeholder engagement and community consultation",
-      "Phasing strategy and implementation planning"
+      "Phasing strategy and implementation planning",
+      "Smart city and integrated urban infrastructure planning"
     ],
     "process": [
       {
-        "title": "Feasibility",
-        "desc": "Evaluate land potential, viability, and planning constraints"
+        "title": "Feasibility Study",
+        "desc": "Evaluate land potential, regulatory requirements, and project viability."
       },
       {
-        "title": "Concept",
-        "desc": "Develop zoning strategies and master plan direction"
+        "title": "Concept Development",
+        "desc": "Develop zoning strategies, master plan direction, and spatial logic."
       },
       {
-        "title": "Detailed Design",
-        "desc": "Prepare layouts, infrastructure plans, and technical documentation"
+        "title": "Detailed Planning",
+        "desc": "Prepare technical layouts, infrastructure plans, and visualizations."
       },
       {
-        "title": "Approvals",
-        "desc": "Coordinate compliance and planning submissions"
+        "title": "Regulatory Approvals",
+        "desc": "Coordinate planning submissions and compliance requirements."
       },
       {
-        "title": "Delivery",
-        "desc": "Support execution and optimize the final development outcome"
+        "title": "Execution Coordination",
+        "desc": "Manage consultants, engineers, and contractors for seamless delivery."
+      },
+      {
+        "title": "Final Delivery",
+        "desc": "Optimize the end result to meet functional, aesthetic, and commercial goals."
       }
     ],
     "stats": [
@@ -795,7 +976,7 @@
     "faq": [
       {
         "q": "What does your urban development service include?",
-        "a": "We provide master planning, land use planning, infrastructure design, residential estate planning, mixed-use development strategy, urban renewal planning, and coordination for approvals and project execution."
+        "a": "We provide master planning, land use planning, infrastructure design, residential estate planning, mixed-use development strategy, urban renewal planning, and coordination for approvals and implementation."
       },
       {
         "q": "Can you support government and private-sector developments?",
@@ -804,6 +985,10 @@
       {
         "q": "Do you align projects with Nigerian regulations and market realities?",
         "a": "Yes. Our planning approach reflects Nigerian development regulations, infrastructure realities, investment priorities, and long-term sustainability requirements."
+      },
+      {
+        "q": "Do you handle large-scale urban projects?",
+        "a": "Yes. Our team is equipped to manage large-scale urban and mixed-use development planning, from feasibility through to strategic implementation and coordination."
       }
     ],
     "tags": [
@@ -836,6 +1021,16 @@
         "label": "Mixed-Use Development",
         "href": "#",
         "icon": "bx-git-merge"
+      },
+      {
+        "label": "Urban Renewal",
+        "href": "#",
+        "icon": "bx-building-house"
+      },
+      {
+        "label": "Smart Cities",
+        "href": "#",
+        "icon": "bx-wifi"
       }
     ],
     "filterCategory": "consulting"
