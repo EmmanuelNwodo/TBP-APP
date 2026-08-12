@@ -130,9 +130,9 @@ export function Footer() {
             &copy; {new Date().getFullYear()} The Building Practice Ltd. All Rights Reserved.
           </p>
           <div className={styles.footerLegal}>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">Sitemap</a>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/contact">Contact</Link>
+            <a href="/sitemap.xml">Sitemap</a>
           </div>
         </div>
       </div>

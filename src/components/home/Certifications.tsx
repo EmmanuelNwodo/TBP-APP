@@ -4,42 +4,38 @@ import styles from "./Certifications.module.css";
 
 const CERTS = [
   {
+    icon: "bx-building-house",
+    title: "ARCON",
+    desc: "Architects Registration Council of Nigeria recognition.",
+    tags: ["Regulatory", "Practice"],
+  },
+  {
+    icon: "bx-group",
+    title: "NIA",
+    desc: "Nigerian Institute of Architects membership.",
+    tags: ["Professional", "Architecture"],
+  },
+  {
     icon: "bx-check-shield",
-    title: "ISO 9001:2015",
-    desc: "Quality Management System certified for consistent excellence.",
-    tags: ["Quality", "Standards"],
-  },
-  {
-    icon: "bx-leaf",
-    title: "ISO 14001:2015",
-    desc: "Environmental Management System for sustainable operations.",
-    tags: ["Green", "Eco"],
-  },
-  {
-    icon: "bx-hard-hat",
-    title: "ISO 45001:2018",
-    desc: "Occupational Health & Safety for worker protection.",
-    tags: ["Safety", "Health"],
+    title: "ACAN",
+    desc: "Association of Consulting Architects Nigeria affiliation.",
+    tags: ["Consulting", "Standards"],
   },
   {
     icon: "bx-building-house",
-    title: "Green Building",
-    desc: "Nigeria Green Building Council member and advocate.",
+    title: "LEED / EDGE",
+    desc: "Sustainability-aligned design and documentation capability.",
     tags: ["LEED", "EDGE"],
   },
 ];
 
 const LINKS = [
   { href: "/about#certifications", icon: "bx-file", label: "View Certificates" },
-  { href: "/about#affiliations", icon: "bx-group", label: "Professional Affiliations" },
-  { href: "/blog#standards", icon: "bx-book-reader", label: "Industry Standards Blog" },
-  { href: "/contact", icon: "bx-phone", label: "Verify Credentials" },
-  { href: "/services#green", icon: "bx-leaf", label: "Sustainable Design" },
-  { href: "/services#construction", icon: "bx-hard-hat", label: "Construction Quality" },
-  { href: "/services#architectural", icon: "bx-buildings", label: "Architecture Nigeria" },
-  { href: "/locations#lagos", icon: "bx-map", label: "Lagos Office" },
-  { href: "/locations#abuja", icon: "bx-map-alt", label: "Abuja Office" },
-  { href: "/locations#port-harcourt", icon: "bx-map-pin", label: "Port Harcourt" },
+  { href: "/about#expertise", icon: "bx-group", label: "Professional Expertise" },
+  { href: "/blog", icon: "bx-book-reader", label: "Read Architecture Insights" },
+  { href: "/contact", icon: "bx-phone", label: "Contact the Studio" },
+  { href: "/services", icon: "bx-buildings", label: "Architectural Services" },
+  { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria Presence" },
 ];
 
 export function Certifications() {
@@ -49,8 +45,8 @@ export function Certifications() {
         <SectionHeader
           icon="bx-certification"
           label="Quality Assurance"
-          title="Certifications & Standards"
-          description="Our certifications demonstrate our unwavering dedication to quality, safety, and environmental responsibility."
+          title="Professional Credentials"
+          description="Our credentials and affiliations reflect a strong commitment to professional practice, technical quality, and responsible design delivery."
           light
         />
 

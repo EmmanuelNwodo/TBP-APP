@@ -22,10 +22,12 @@ export function Studio() {
               <i className="bx bx-info-circle" aria-hidden="true" />
               Studio
             </span>
-            <h2>We believe architecture should feel calm, generous, and enduring.</h2>
+            <h2>A Nigerian Architecture Studio Designing for People, Place, and Climate</h2>
             <p>
-              From private residences to civic and commercial commissions, we design with sensitivity to context,
-              climate, and the everyday rituals that shape life.
+              The Building Practice is a Lagos-based architecture company working across Nigeria. We shape homes,
+              workplaces, and public-facing spaces through careful planning, technical rigor, and context-led design.
+              As an established name among architectural firms in Nigeria, our focus is design quality with practical
+              project delivery.
             </p>
             <Link href="/about" className={styles.link}>
               <span>Read the studio story</span>

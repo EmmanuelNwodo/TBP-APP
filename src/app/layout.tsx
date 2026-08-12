@@ -13,7 +13,8 @@ const inter = Inter({
 
 const ORGANIZATION_JSON_LD = {
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ArchitecturalService"],
+  "@id": `${SITE_URL}/#organization`,
+  "@type": ["LocalBusiness", "ProfessionalService"],
   name: "The Building Practice Ltd",
   url: SITE_URL,
   telephone: "+2349049721840",
@@ -52,14 +53,31 @@ const ORGANIZATION_JSON_LD = {
   ],
 };
 
+const WEBSITE_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  inLanguage: "en-NG",
+};
+
+const DEFAULT_TITLE = "The Building Practice | Architects in Lagos, Nigeria";
+const DEFAULT_DESCRIPTION =
+  "The Building Practice is a Lagos-based architectural firm delivering residential, commercial, and institutional design services across Nigeria.";
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Architectural Design Services Nigeria | ARCON Architects TBP",
-  description:
-    "ARCON registered architects Nigeria offering architectural design services Nigeria, 3D building design Lagos, modern residential architecture Port Harcourt, sustainable building consultant Nigeria. Lagos Abuja PH.",
+  title: {
+    default: DEFAULT_TITLE,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: DEFAULT_DESCRIPTION,
   authors: [{ name: SITE_NAME }],
   robots: { index: true, follow: true },
   openGraph: {
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
     siteName: SITE_NAME,
     type: "website",
     locale: "en_NG",
@@ -68,6 +86,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
@@ -86,6 +107,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION_JSON_LD) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBSITE_JSON_LD) }}
         />
       </head>
       <body>

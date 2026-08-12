@@ -1,35 +1,39 @@
 import Link from "next/link";
 import { LazyImage } from "@/components/ui/LazyImage";
+import { getAllProjects } from "@/lib/projects";
+import { getAllServices } from "@/lib/services";
+import { getRoster } from "@/lib/team";
 import { StatItem } from "./StatItem";
 import styles from "./Stats.module.css";
 
-const STATS = [
-  { icon: "bx-award", target: 75, label: "Awards Won" },
-  { icon: "bx-building", target: 320, label: "Projects Completed" },
-  { icon: "bx-happy-heart-eyes", target: 500, label: "Happy Clients" },
-  { icon: "bx-user-check", target: 45, label: "Team Members" },
-];
-
 const TAGS = [
-  { href: "/about#awards", icon: "bx-trophy", label: "Award Winners" },
-  { href: "/projects", icon: "bx-building", label: "Portfolio" },
+  { href: "/projects", icon: "bx-building", label: "Project Portfolio" },
   { href: "/reviews", icon: "bx-star", label: "Client Reviews" },
-  { href: "/team", icon: "bx-group", label: "Our Team" },
-  { href: "/services#architectural", icon: "bx-buildings", label: "Architecture Nigeria" },
-  { href: "/services#construction", icon: "bx-hard-hat", label: "Construction" },
-  { href: "/services#green", icon: "bx-leaf", label: "Green Building" },
-  { href: "/locations#lagos", icon: "bx-map", label: "Lagos" },
-  { href: "/locations#abuja", icon: "bx-map-alt", label: "Abuja" },
-  { href: "/locations#port-harcourt", icon: "bx-map-pin", label: "Port Harcourt" },
+  { href: "/team", icon: "bx-group", label: "Architects and Team" },
+  { href: "/services", icon: "bx-buildings", label: "Architecture Services" },
+  { href: "/about#certifications", icon: "bx-award", label: "Credentials" },
+  { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria" },
 ];
 
 export function Stats() {
+  const projectsCount = getAllProjects().length;
+  const serviceCount = getAllServices().length;
+  const teamCount = getRoster().length;
+  const yearsSinceFounding = new Date().getFullYear() - 2013;
+
+  const STATS = [
+    { icon: "bx-calendar", target: yearsSinceFounding, label: "Years Since 2013" },
+    { icon: "bx-building", target: projectsCount, label: "Portfolio Projects" },
+    { icon: "bx-grid-alt", target: serviceCount, label: "Service Lines" },
+    { icon: "bx-user-check", target: teamCount, label: "Team Members" },
+  ];
+
   return (
     <section className={styles.section} id="stats">
       <div className={styles.bg}>
         <LazyImage
           src="/images/projects/BLOOM TOWERS/BLOOM 4A NIGHT 3 copy.jpg"
-          alt="Bloom Towers night rendering"
+          alt="Night view of a completed architecture project"
           fill
           sizes="100vw"
         />

@@ -2,14 +2,14 @@ import Link from "next/link";
 import styles from "./Values.module.css";
 
 const VALUES = [
-  { icon: "bx-shield-quarter", title: "Integrity", desc: "Honest & transparent", anchor: "integrity" },
-  { icon: "bx-star", title: "Excellence", desc: "Quality in every detail", anchor: "excellence" },
-  { icon: "bx-bulb", title: "Innovation", desc: "Creative solutions", anchor: "innovation" },
-  { icon: "bx-leaf", title: "Sustainability", desc: "Eco-friendly design", anchor: "sustainability" },
-  { icon: "bx-group", title: "Collaboration", desc: "Team-driven success", anchor: "collaboration" },
-  { icon: "bx-user-check", title: "Client Focus", desc: "Your vision first", anchor: "client-focus" },
-  { icon: "bx-wrench", title: "Craftsmanship", desc: "Precision building", anchor: "craftsmanship" },
-  { icon: "bx-buildings", title: "Legacy", desc: "Enduring structures", anchor: "legacy" },
+  { icon: "bx-shield-quarter", title: "Integrity", desc: "Honest & transparent", href: "/about#who-we-are" },
+  { icon: "bx-star", title: "Excellence", desc: "Quality in every detail", href: "/about#expertise" },
+  { icon: "bx-bulb", title: "Innovation", desc: "Creative solutions", href: "/about#philosophy" },
+  { icon: "bx-leaf", title: "Sustainability", desc: "Eco-friendly design", href: "/about#certifications" },
+  { icon: "bx-group", title: "Collaboration", desc: "Team-driven success", href: "/about#clients-partners" },
+  { icon: "bx-user-check", title: "Client Focus", desc: "Your vision first", href: "/about#who-we-are" },
+  { icon: "bx-wrench", title: "Craftsmanship", desc: "Precision building", href: "/projects" },
+  { icon: "bx-buildings", title: "Legacy", desc: "Enduring structures", href: "/about#ethos" },
 ];
 
 export function Values() {
@@ -27,7 +27,7 @@ export function Values() {
 
           <div className={styles.grid}>
             {VALUES.map((value, i) => (
-              <Link key={`${value.title}-${i}`} href={`/about#${value.anchor}`} className={`${styles.card} reveal`}>
+              <Link key={`${value.title}-${i}`} href={value.href} className={`${styles.card} reveal`}>
                 <div className={styles.cardIcon}>
                   <i className={`bx ${value.icon}`} aria-hidden="true" />
                 </div>

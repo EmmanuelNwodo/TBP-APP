@@ -40,15 +40,13 @@ export function Testimonials() {
           description="Here's what our satisfied clients have to say about working with our team on their architectural projects."
           tags={[
             { href: "/reviews", icon: "bx-star", label: "All Reviews", variant: "primary" },
-            { href: "/reviews#video", icon: "bx-video", label: "Video Testimonials" },
-            { href: "/projects", icon: "bx-building", label: "View Projects" },
-            { href: "/services#residential", icon: "bx-home", label: "Residential Reviews" },
-            { href: "/services#commercial", icon: "bx-building", label: "Commercial Reviews" },
-            { href: "/services#interior", icon: "bx-palette", label: "Interior Reviews" },
-            { href: "/locations#lagos", icon: "bx-map", label: "Lagos Clients" },
-            { href: "/locations#abuja", icon: "bx-map-alt", label: "Abuja Clients" },
-            { href: "/locations#port-harcourt", icon: "bx-map-pin", label: "Port Harcourt Clients" },
-            { href: "/projects#featured", icon: "bx-award", label: "Awarded Projects", variant: "accent" },
+            { href: "/reviews", icon: "bx-video", label: "Video Testimonials" },
+            { href: "/projects", icon: "bx-building", label: "View Completed Projects" },
+            { href: "/services", icon: "bx-home", label: "Residential Services" },
+            { href: "/services", icon: "bx-building", label: "Commercial Services" },
+            { href: "/services/interior-design", icon: "bx-palette", label: "Interior Design Services" },
+            { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria Coverage" },
+            { href: "/contact", icon: "bx-message-dots", label: "Start a Project Conversation", variant: "accent" },
           ]}
         />
 

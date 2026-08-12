@@ -10,7 +10,8 @@ const SERVICES = [
     title: "Residential Design",
     desc: "We craft homes that breathe with the climate, celebrating family moments with light-filled spaces and resilient design.",
     tags: ["Homes", "Villas", "Apartments"],
-    href: "/services#residential",
+    alt: "Residential architecture project in Nigeria",
+    href: "/services",
   },
   {
     image: "/images/services/ArchitecturalDesign.jpg",
@@ -18,7 +19,8 @@ const SERVICES = [
     title: "Architectural Design",
     desc: "From initial concepts to construction-ready drawings, we navigate Nigerian regulations to deliver designs that build beautifully.",
     tags: ["Concept", "Drawings", "Permits"],
-    href: "/services#architectural",
+    alt: "Architectural design presentation for a building project",
+    href: "/services/architectural-design",
   },
   {
     image: "/images/services/interiorDesign.jpg",
@@ -26,7 +28,8 @@ const SERVICES = [
     title: "Interior Design",
     desc: "We design interiors that flow seamlessly with your architecture, selecting materials that endure while delivering elegance.",
     tags: ["Luxury", "Furniture", "Finishes"],
-    href: "/services#interior",
+    alt: "Interior architecture and design concept",
+    href: "/services/interior-design",
   },
   {
     image: "/images/services/projectManagement.jpg",
@@ -34,7 +37,8 @@ const SERVICES = [
     title: "Project Management",
     desc: "From LASPPA approvals to final handover, we coordinate every consultant, contractor, and delivery milestone.",
     tags: ["Planning", "Coordination", "Delivery"],
-    href: "/services#management",
+    alt: "Architect-led project management meeting",
+    href: "/services",
   },
   {
     image: "/images/services/constructionManagement.jpg",
@@ -42,7 +46,8 @@ const SERVICES = [
     title: "Construction Management",
     desc: "Daily site oversight by dedicated architects ensures quality control, schedule adherence, and building standard compliance.",
     tags: ["Supervision", "Quality", "Safety"],
-    href: "/services#construction",
+    alt: "Construction management and site coordination",
+    href: "/services",
   },
   {
     image: "/images/services/3dVisualization.jpg",
@@ -50,7 +55,8 @@ const SERVICES = [
     title: "3D Visualization",
     desc: "Photo-realistic renders and immersive walkthroughs help you visualize your space before construction begins.",
     tags: ["Renders", "VR Tours", "Animation"],
-    href: "/services#visualization",
+    alt: "3D architectural visualization",
+    href: "/services",
   },
   {
     image: "/images/services/greenBuildingAdvisory.jpg",
@@ -58,7 +64,8 @@ const SERVICES = [
     title: "Green Building",
     desc: "EDGE/LEED advisory helping you build sustainably with lower running costs and better comfort.",
     tags: ["LEED", "EDGE", "Solar"],
-    href: "/services#green",
+    alt: "Sustainable building design strategy",
+    href: "/services",
   },
   {
     image: "/images/services/urbanDev.jpg",
@@ -66,7 +73,8 @@ const SERVICES = [
     title: "Urban Planning",
     desc: "Master plans for estates and mixed-use developments that balance density, green space, and infrastructure.",
     tags: ["Master Plan", "Estates", "Mixed-Use"],
-    href: "/services#urban",
+    alt: "Urban planning and master planning concept",
+    href: "/services",
   },
   {
     image: "/images/services/buildingConstruction.jpg",
@@ -74,7 +82,8 @@ const SERVICES = [
     title: "Building Construction",
     desc: "Turnkey construction delivery from foundation to finishes, ensuring your vision is realized exactly as designed.",
     tags: ["Turnkey", "Foundation", "Finishes"],
-    href: "/services#construction-full",
+    alt: "Building construction delivery project",
+    href: "/services",
   },
   {
     image: "/images/services/realEstateDev.jpg",
@@ -82,7 +91,8 @@ const SERVICES = [
     title: "Real Estate Development",
     desc: "From feasibility studies to market-ready schemes, we partner with developers to create profitable developments.",
     tags: ["Feasibility", "Investment", "ROI"],
-    href: "/services#development",
+    alt: "Real estate development planning",
+    href: "/services",
   },
   {
     image: "/images/services/reconstructionRemodelling.jpg",
@@ -90,7 +100,8 @@ const SERVICES = [
     title: "Renovation",
     desc: "Structural assessments, adaptive reuse, and elegant remodelling that extends building life and meets modern standards.",
     tags: ["Remodel", "Upgrade", "Restoration"],
-    href: "/services#renovation",
+    alt: "Building renovation and remodeling work",
+    href: "/services",
   },
   {
     image: "/images/services/consultationConstruction.jpg",
@@ -98,7 +109,8 @@ const SERVICES = [
     title: "Consultation",
     desc: "Expert advice on site feasibility, cost planning, building regulations, and design direction before major commitments.",
     tags: ["Advisory", "Feasibility", "Guidance"],
-    href: "/services#consultation",
+    alt: "Architectural consultation session",
+    href: "/contact",
   },
 ];
 
@@ -109,19 +121,15 @@ export function Services() {
         <SectionHeader
           icon="bx-grid-alt"
           label="What We Do"
-          title="Our Services"
-          description="Comprehensive architectural solutions tailored to bring your vision to life with innovation, precision, and excellence."
+          title="Architectural Services in Nigeria"
+          description="From architectural design and building planning to interior architecture and project delivery support, we provide end-to-end services for clients across Nigeria."
           tags={[
             { href: "/services", icon: "bx-list-ul", label: "All Services", variant: "primary" },
-            { href: "/contact#quote", icon: "bx-calculator", label: "Get Quote", variant: "accent" },
-            { href: "/projects", icon: "bx-image", label: "Portfolio" },
-            { href: "/services#architectural", icon: "bx-buildings", label: "Architecture Nigeria" },
-            { href: "/services#interior", icon: "bx-palette", label: "Interior Design" },
-            { href: "/services#urban", icon: "bx-city", label: "Urban Planning" },
-            { href: "/services#construction", icon: "bx-hard-hat", label: "Construction Management" },
-            { href: "/services#renovation", icon: "bx-revision", label: "Renovation" },
-            { href: "/locations#lagos", icon: "bx-map", label: "Lagos Design" },
-            { href: "/locations#abuja", icon: "bx-map-alt", label: "Abuja Design" },
+            { href: "/contact", icon: "bx-phone-call", label: "Request Consultation", variant: "accent" },
+            { href: "/projects", icon: "bx-image", label: "Our Completed Projects" },
+            { href: "/services/architectural-design", icon: "bx-buildings", label: "Architectural Design Services" },
+            { href: "/services/interior-design", icon: "bx-palette", label: "Interior Architecture" },
+            { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria Coverage" },
           ]}
         />
 
@@ -129,7 +137,7 @@ export function Services() {
           {SERVICES.map((service, si) => (
             <article key={`${service.title}-${si}`} className={`${styles.card} reveal`}>
               <div className={styles.cardImage}>
-                <LazyImage src={service.image} alt={`${service.title} Nigeria`} fill sizes="(max-width: 968px) 100vw, 33vw" />
+                <LazyImage src={service.image} alt={service.alt} fill sizes="(max-width: 968px) 100vw, 33vw" />
                 <div className={styles.cardIcon}>
                   <i className={`bx ${service.icon}`} aria-hidden="true" />
                 </div>
@@ -146,11 +154,11 @@ export function Services() {
                 </div>
                 <div className={styles.cardFooter}>
                   <Link href={service.href} className={styles.cardLink}>
-                    <span>Learn More</span>
+                    <span>View service scope</span>
                     <i className="bx bx-right-arrow-alt" aria-hidden="true" />
                   </Link>
-                  <Link href={service.href} className="btn btn--sm btn--primary">
-                    Read More
+                  <Link href="/contact" className="btn btn--sm btn--primary">
+                    Discuss This Service
                   </Link>
                 </div>
               </div>
@@ -160,11 +168,11 @@ export function Services() {
 
         <div className="section-action reveal">
           <Link href="/services" className="btn btn--secondary">
-            <span>View All Services</span>
+            <span>Learn About Our Architectural Services</span>
             <i className="bx bx-right-arrow-alt" aria-hidden="true" />
           </Link>
-          <Link href="/contact#quote" className="btn btn--primary" style={{ marginLeft: 12 }}>
-            <span>Request a Quote</span>
+          <Link href="/contact" className="btn btn--primary" style={{ marginLeft: 12 }}>
+            <span>Request a Project Consultation</span>
             <i className="bx bx-calculator" aria-hidden="true" />
           </Link>
         </div>

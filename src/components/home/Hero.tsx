@@ -21,14 +21,14 @@ export function Hero() {
       </div>
 
       <div className={styles.heroImageCaption}>
-        <h2>Architecture with calm presence.</h2>
+        <h1>An Architectural Firm in Nigeria for Thoughtful, Enduring Design</h1>
         <p>
-          We create thoughtful homes, civic spaces, and workplaces for Nigeria and beyond — shaped by light,
-          climate, and everyday life.
+          Based in Lagos, we design residential, commercial, and civic projects across Nigeria with a clear focus on
+          climate, context, and long-term performance.
         </p>
         <div className={styles.heroImageLinks}>
-          <Link href="/projects">Explore Projects</Link>
-          <Link href="/contact">Start a Conversation</Link>
+          <Link href="/projects">View Our Completed Projects</Link>
+          <Link href="/contact">Discuss Your Project</Link>
         </div>
       </div>
 

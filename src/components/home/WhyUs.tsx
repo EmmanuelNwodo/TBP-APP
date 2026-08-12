@@ -5,54 +5,52 @@ import styles from "./WhyUs.module.css";
 const CARDS = [
   {
     icon: "bx-bulb",
-    title: "Innovative Design",
-    desc: "Pushing boundaries with creative solutions that blend form and function beautifully.",
-    tags: [{ label: "Creative", variant: "primary" as const }, { label: "Modern" }],
-    href: "/services#design",
+    title: "Context-Led Design",
+    desc: "Design responses shaped by site, climate, and the realities of how people use space every day.",
+    tags: [{ label: "Context", variant: "primary" as const }, { label: "Function" }],
+    href: "/about#philosophy",
   },
   {
     icon: "bx-leaf",
-    title: "Sustainable Practices",
-    desc: "Committed to eco-friendly design using sustainable materials and green solutions.",
-    tags: [{ label: "Green", variant: "primary" as const }, { label: "LEED" }],
-    href: "/services#green",
+    title: "Sustainable Design Thinking",
+    desc: "We integrate material, orientation, and environmental strategies that support long-term building performance.",
+    tags: [{ label: "Sustainable", variant: "primary" as const }, { label: "Efficient" }],
+    href: "/services",
   },
   {
     icon: "bx-compass",
-    title: "Detailed Planning",
-    desc: "Meticulous attention to every detail ensures seamless project execution.",
-    tags: [{ label: "Precision", variant: "primary" as const }, { label: "Quality" }],
-    href: "/services#management",
+    title: "Technical Coordination",
+    desc: "From concept to documentation, we coordinate design intent with practical delivery requirements.",
+    tags: [{ label: "Documentation", variant: "primary" as const }, { label: "Coordination" }],
+    href: "/services",
   },
   {
     icon: "bx-cube-alt",
     title: "3D Visualization",
     desc: "Advanced rendering brings designs to life before construction begins.",
-    tags: [{ label: "Realistic", variant: "primary" as const }, { label: "Virtual" }],
-    href: "/services#visualization",
+    tags: [{ label: "Visualization", variant: "primary" as const }, { label: "Clarity" }],
+    href: "/services",
   },
   {
     icon: "bx-briefcase-alt-2",
-    title: "Full-Service Support",
-    desc: "Comprehensive project management from site selection through completion.",
+    title: "Project Delivery Support",
+    desc: "Structured support from briefing and design development through construction-stage coordination.",
     tags: [{ label: "End-to-End", variant: "primary" as const }, { label: "Support" }],
-    href: "/services#construction",
+    href: "/services",
   },
   {
-    icon: "bx-trophy",
-    title: "Award-Winning",
-    desc: "Recognized globally for design excellence and innovation in architecture.",
-    tags: [{ label: "75+ Awards", variant: "accent" as const }, { label: "Excellence" }],
-    href: "/about#awards",
+    icon: "bx-check-shield",
+    title: "Professional Standards",
+    desc: "Our studio maintains recognized certifications and professional affiliations relevant to architectural practice.",
+    tags: [{ label: "ARCON", variant: "accent" as const }, { label: "Standards" }],
+    href: "/about#certifications",
   },
 ];
 
 const LOCATIONS = [
-  { label: "Lagos", href: "/contact#lagos", variant: "primary" as const },
-  { label: "Abuja", href: "/contact#abuja" },
-  { label: "Port Harcourt", href: "/contact#ph" },
-  { label: "Ibadan", href: "/contact#ibadan" },
-  { label: "International", href: "/contact#international", variant: "accent" as const },
+  { label: "Lagos", href: "/locations", variant: "primary" as const },
+  { label: "Nigeria", href: "/locations" },
+  { label: "Contact Our Studio", href: "/contact", variant: "accent" as const },
 ];
 
 export function WhyUs() {
@@ -62,19 +60,15 @@ export function WhyUs() {
         <SectionHeader
           icon="bx-trophy"
           label="Why Choose Us"
-          title="Why We're Nigeria's Trusted Choice"
-          description="We combine innovative design thinking with practical expertise to deliver solutions that exceed expectations across the nation."
+          title="Why Clients Engage Our Architects in Nigeria"
+          description="We combine architectural creativity with practical delivery expertise to shape projects that are buildable, durable, and contextually grounded."
           tags={[
-            { href: "/reviews", icon: "bx-star", label: "500+ Happy Clients", variant: "accent" },
-            { href: "/projects", icon: "bx-building", label: "320+ Projects" },
-            { href: "/about#awards", icon: "bx-award", label: "75+ Awards" },
-            { href: "/services#construction", icon: "bx-hard-hat", label: "Nigeria Construction" },
-            { href: "/services#architectural", icon: "bx-buildings", label: "African Architecture" },
-            { href: "/services#design", icon: "bx-pencil", label: "Design-Build" },
-            { href: "/locations#lagos", icon: "bx-map", label: "Lagos Projects" },
-            { href: "/locations#abuja", icon: "bx-map-alt", label: "Abuja Projects" },
-            { href: "/locations#port-harcourt", icon: "bx-map-pin", label: "Port Harcourt" },
-            { href: "/services#green", icon: "bx-leaf", label: "Sustainable Design" },
+            { href: "/projects", icon: "bx-building", label: "Architecture Portfolio", variant: "primary" },
+            { href: "/services", icon: "bx-buildings", label: "Architectural Design Services" },
+            { href: "/team", icon: "bx-group", label: "Meet Our Architects" },
+            { href: "/reviews", icon: "bx-star", label: "Client Reviews" },
+            { href: "/about#certifications", icon: "bx-award", label: "Certifications and Memberships" },
+            { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria Coverage" },
           ]}
         />
 

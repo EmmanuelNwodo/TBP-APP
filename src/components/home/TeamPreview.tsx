@@ -10,8 +10,6 @@ const TEAM = [
   { image: "/images/team/nduka.jpg", name: "Nduka Akanu", role: "Senior Associate" },
 ];
 
-const SOCIALS = ["bxl-facebook", "bxl-twitter", "bxl-linkedin"];
-
 export function TeamPreview() {
   return (
     <section className={`${styles.section} section--alt`} id="team">
@@ -20,18 +18,16 @@ export function TeamPreview() {
           icon="bx-group"
           label="Our People"
           title="Meet Our Architects"
-          description="Our award-winning team brings decades of combined experience and passion to every project we undertake."
+          description="Meet the architects and built-environment professionals behind our residential, commercial, and institutional projects."
           tags={[
             { href: "/team", icon: "bx-group", label: "Full Team", variant: "primary" },
             { href: "/careers", icon: "bx-briefcase", label: "Join Us", variant: "accent" },
-            { href: "/about#leadership", icon: "bx-user-circle", label: "Leadership" },
+            { href: "/about#who-we-are", icon: "bx-user-circle", label: "About the Studio" },
             { href: "/about#philosophy", icon: "bx-shape-polygon", label: "Design Philosophy" },
-            { href: "/services#architectural", icon: "bx-buildings", label: "Architecture Nigeria" },
-            { href: "/services#interior", icon: "bx-palette", label: "Interior Design" },
-            { href: "/locations#lagos", icon: "bx-map", label: "Lagos Studio" },
-            { href: "/locations#abuja", icon: "bx-map-alt", label: "Abuja Studio" },
-            { href: "/locations#port-harcourt", icon: "bx-map-pin", label: "Port Harcourt" },
-            { href: "/projects", icon: "bx-image", label: "Project Leaders" },
+            { href: "/services", icon: "bx-buildings", label: "Architectural Services" },
+            { href: "/services/interior-design", icon: "bx-palette", label: "Interior Architecture" },
+            { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria Presence" },
+            { href: "/projects", icon: "bx-image", label: "View Project Team Work" },
           ]}
         />
 
@@ -41,17 +37,10 @@ export function TeamPreview() {
               <div className={styles.cardImage}>
                 <LazyImage
                   src={member.image}
-                  alt={`${member.name} - ${member.role}`}
+                  alt={`Portrait of ${member.name}, ${member.role}`}
                   fill
                   sizes="(max-width: 968px) 50vw, 25vw"
                 />
-                <div className={styles.cardSocial}>
-                  {SOCIALS.map((icon) => (
-                    <a key={icon} href="#" aria-label={icon.replace("bxl-", "")} target="_blank" rel="noreferrer">
-                      <i className={`bx ${icon}`} aria-hidden="true" />
-                    </a>
-                  ))}
-                </div>
               </div>
               <div className={styles.cardInfo}>
                 <h3 className={styles.cardName}>{member.name}</h3>
