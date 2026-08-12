@@ -19,6 +19,10 @@ const CONSTRUCTION_MANAGEMENT_SLUG = "construction-management";
 const CONSTRUCTION_MANAGEMENT_TITLE = "Construction Management Services in Lagos, Nigeria";
 const CONSTRUCTION_MANAGEMENT_DESCRIPTION =
   "Construction management services in Lagos, Nigeria for residential, commercial, institutional, and mixed-use projects. Coordinate delivery, quality, and progress with The Building Practice.";
+const PROJECT_MANAGEMENT_SLUG = "project-management";
+const PROJECT_MANAGEMENT_TITLE = "Project Management Services in Lagos, Nigeria | Building Practice Ltd";
+const PROJECT_MANAGEMENT_DESCRIPTION =
+  "Project management services in Lagos, Nigeria for construction and building projects. Building Practice Ltd provides planning, budgeting, coordination, reporting, and delivery support.";
 const CONSTRUCTION_CONSULTATION_SLUG = "construction-consultation";
 const CONSTRUCTION_CONSULTATION_TITLE = "Construction Consultation Services in Lagos, Nigeria";
 const CONSTRUCTION_CONSULTATION_DESCRIPTION =
@@ -96,6 +100,38 @@ export async function generateMetadata({
         card: "summary_large_image",
         title: CONSTRUCTION_MANAGEMENT_TITLE,
         description: CONSTRUCTION_MANAGEMENT_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
+
+  if (slug === PROJECT_MANAGEMENT_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: PROJECT_MANAGEMENT_TITLE,
+      description: PROJECT_MANAGEMENT_DESCRIPTION,
+      keywords: [
+        "project management service firms in Lagos, Nigeria",
+        "project management services in Lagos",
+        "project management firms in Lagos",
+        "construction project management Lagos",
+        "building project management Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: PROJECT_MANAGEMENT_TITLE,
+        description: PROJECT_MANAGEMENT_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: PROJECT_MANAGEMENT_TITLE,
+        description: PROJECT_MANAGEMENT_DESCRIPTION,
         images: [service.heroImage || DEFAULT_OG_IMAGE],
       },
     };
@@ -196,6 +232,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isArchitecturalDesignPage = slug === ARCHITECTURAL_DESIGN_SLUG;
   const isInteriorDesignPage = slug === INTERIOR_DESIGN_SLUG;
   const isConstructionManagementPage = slug === CONSTRUCTION_MANAGEMENT_SLUG;
+  const isProjectManagementPage = slug === PROJECT_MANAGEMENT_SLUG;
   const isConstructionConsultationPage = slug === CONSTRUCTION_CONSULTATION_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
@@ -318,6 +355,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     {
       q: "Can you advise on construction costs and materials?",
       a: "Yes. We provide cost and material advisory support so you can better understand scope implications, budget choices, and durability trade-offs.",
+    },
+  ];
+
+  const projectManagementProjects = isProjectManagementPage
+    ? getAllProjects().filter((project) => {
+        const scope = project.details.find((detail) => detail.label === "Scope")?.value.toLowerCase() ?? "";
+        return ["project management", "design & build", "construction"].some((keyword) => scope.includes(keyword));
+      })
+    : [];
+
+  const lagosProjectManagementProjects = projectManagementProjects.filter((project) =>
+    project.location.toLowerCase().includes("lagos"),
+  );
+
+  const featuredProjectManagementProjects = [...lagosProjectManagementProjects, ...projectManagementProjects]
+    .filter((project, index, arr) => arr.findIndex((candidate) => candidate.slug === project.slug) === index)
+    .slice(0, 3);
+
+  const projectManagementFaq = [
+    ...service.faq,
+    {
+      q: "Do you provide project management services in Lagos?",
+      a: "Yes. Our core studio is in Lagos and we support project management for construction and building projects in Lagos and other parts of Nigeria where the brief and logistics align.",
+    },
+    {
+      q: "What is the difference between project management and construction management?",
+      a: "Project management focuses on scope, planning, budgets, schedules, procurement, reporting, and decision control. Construction management is more closely tied to coordinating site execution, contractor performance, and delivery on the ground.",
+    },
+    {
+      q: "Can you help with project reporting and stakeholder coordination?",
+      a: "Yes. We support reporting, communication, and coordination so clients can track progress, issues, and decisions more clearly throughout the project.",
     },
   ];
 
@@ -501,6 +569,66 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           },
         ],
       }
+    : isProjectManagementPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: PROJECT_MANAGEMENT_TITLE,
+            description: PROJECT_MANAGEMENT_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Project Management Services",
+            description: PROJECT_MANAGEMENT_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "Project Management",
+              "Construction Project Management",
+              "Project Planning",
+              "Cost Control",
+              "Procurement Coordination",
+              "Project Reporting",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: absoluteUrl("/"),
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Services",
+                item: absoluteUrl("/services"),
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: "Project Management",
+                item: absoluteUrl(`/services/${slug}`),
+              },
+            ],
+          },
+        ],
+      }
     : isInteriorDesignPage
     ? {
         "@context": "https://schema.org",
@@ -594,7 +722,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage) && (
+          {(isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
@@ -607,6 +735,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   ? "Interior Design"
                   : isConstructionManagementPage
                   ? "Construction Management"
+                  : isProjectManagementPage
+                  ? "Project Management"
                   : "Construction Consultation"}
               </span>
             </nav>
@@ -623,6 +753,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               ? "Construction Management Services in Lagos, Nigeria"
               : isInteriorDesignPage
               ? "Interior Design Services in Lagos, Nigeria"
+              : isProjectManagementPage
+              ? "Project Management Services in Lagos, Nigeria"
               : isConstructionConsultationPage
               ? "Construction Consultation Services in Lagos, Nigeria"
               : service.title}
@@ -634,6 +766,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               ? "We coordinate planning, scheduling, site activities, cost and quality monitoring, and project reporting for construction projects in Lagos and across Nigeria."
               : isInteriorDesignPage
               ? "We design residential and commercial interiors with clear planning, material direction, and implementation support for projects in Lagos and across Nigeria."
+              : isProjectManagementPage
+              ? "We provide project planning, budgeting, coordination, and reporting support for construction and building projects in Lagos and across Nigeria."
               : isConstructionConsultationPage
               ? "We provide practical construction advisory support for planning, cost, contractor, material, and buildability decisions on projects in Lagos and across Nigeria."
               : service.subtitle}
@@ -1200,6 +1334,209 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/contact">Request a construction consultation</Link>
                       <Link href="/services/construction-management">Explore construction management</Link>
                       <Link href="/projects">View project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isProjectManagementPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Project Management</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides project management services for construction and building
+                      projects that need stronger planning, clearer control, and more disciplined coordination. We
+                      support clients with scope definition, scheduling, budgeting, procurement planning, reporting,
+                      and delivery oversight.
+                    </p>
+                    <p className={styles.bodyText}>
+                      If you are comparing project management service firms in Lagos, this service is designed to help
+                      homeowners, developers, and organizations keep complex building work organized from initiation to
+                      handover.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your project</Link>
+                      <Link href="/services/construction-management">Explore construction management</Link>
+                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>What Our Project Management Service Covers</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Project Management Process</h2>
+                      <div className={styles.processList}>
+                        {service.process.map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Why Project Management Matters</h2>
+                    <p className={styles.bodyText}>
+                      Building projects can lose momentum when scope, budget, schedules, procurement, and stakeholder
+                      expectations are not managed in a structured way. Project management helps bring those moving
+                      parts into one clear plan so decisions are easier to track and review.
+                    </p>
+                    <p className={styles.bodyText}>
+                      In Lagos, where project coordination can be affected by logistics, delivery timing, and changing
+                      site conditions, disciplined project controls are especially useful for keeping work organized.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Project Management in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Project management in Lagos often requires close attention to reporting, vendor coordination,
+                      milestone tracking, and practical sequencing between planning and execution. Our approach is
+                      built to support those realities without overpromising outcomes.
+                    </p>
+                    <p className={styles.bodyText}>
+                      We also support projects elsewhere in Nigeria when the brief, location, and logistics make the
+                      engagement a practical fit.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Project Management for Different Project Types</h2>
+                    <p className={styles.bodyText}>
+                      Our project management services can support residential construction, homes, estates,
+                      commercial developments, offices, retail spaces, industrial projects, institutional buildings,
+                      schools, hospitals, and mixed-use developments where clear planning and control are required.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Review our <Link href="/projects">published projects</Link> to see the kinds of work contexts
+                      that inform our service approach.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Project Management vs Construction Management</h2>
+                    <p className={styles.bodyText}>
+                      Project management is centered on scope, planning, budgets, schedules, procurement, reporting,
+                      stakeholder coordination, and overall project controls. Construction management is more closely
+                      tied to site execution, delivery coordination, and managing construction activities on the ground.
+                    </p>
+                    <p className={styles.bodyText}>
+                      If you need the execution-focused side of delivery, our <Link href="/services/construction-management">construction management services</Link> are a related
+                      option.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/services/architectural-design">Architectural design services</Link>
+                      <Link href="/services/interior-design">Interior design services</Link>
+                      <Link href="/services/construction-consultation">Construction consultation services</Link>
+                    </div>
+                  </div>
+
+                  {featuredProjectManagementProjects.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Featured Projects Relevant to Project Management</h2>
+                      <div className={styles.projectGrid}>
+                        {featuredProjectManagementProjects.map((project) => (
+                          <article key={project.slug} className={styles.projectCard}>
+                            <div className={styles.projectMedia}>
+                              <LazyImage
+                                src={project.images.main}
+                                alt={`${project.title} in ${project.location}`}
+                                fill
+                                sizes="(max-width: 968px) 100vw, 33vw"
+                              />
+                            </div>
+                            <div className={styles.projectContent}>
+                              <p>{project.categoryLabel} • {project.location}</p>
+                              <h3>
+                                <Link href={`/projects/${project.slug}`}>{project.title}</Link>
+                              </h3>
+                              <p>{project.shortDescription}</p>
+                            </div>
+                          </article>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Why Choose Building Practice Ltd for Project Management?</h2>
+                    <ul className={styles.featureList}>
+                      <li>
+                        <i className="bx bx-check-circle" aria-hidden="true" />
+                        <span>Structured planning that keeps scope, budgets, and timelines easier to manage.</span>
+                      </li>
+                      <li>
+                        <i className="bx bx-check-circle" aria-hidden="true" />
+                        <span>Coordination support across contractors, suppliers, and project stakeholders.</span>
+                      </li>
+                      <li>
+                        <i className="bx bx-check-circle" aria-hidden="true" />
+                        <span>Progress, quality, and cost tracking that supports informed decisions.</span>
+                      </li>
+                      <li>
+                        <i className="bx bx-check-circle" aria-hidden="true" />
+                        <span>Architecture-led project awareness that connects planning to buildable outcomes.</span>
+                      </li>
+                    </ul>
+                    <div className={styles.linkRow}>
+                      <Link href="/about">Learn more about Building Practice Ltd</Link>
+                      <Link href="/team">Meet our team</Link>
+                      <Link href="/blog">Read project management insights</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {projectManagementFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Start Your Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your project brief if you need support with planning, scheduling, budgeting, coordination,
+                      or reporting for a construction or building project in Lagos.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your project</Link>
+                      <Link href="/projects">View project portfolio</Link>
+                      <Link href="/services/construction-management">Explore construction management</Link>
                     </div>
                   </div>
                 </>
