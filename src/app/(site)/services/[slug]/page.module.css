@@ -33,6 +33,19 @@
   align-items: center;
 }
 
+.breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: var(--space-3);
+}
+
+.breadcrumbs a:hover {
+  color: var(--white);
+}
+
 .backLink {
   display: inline-flex;
   align-items: center;
@@ -88,6 +101,29 @@
   color: var(--text-secondary);
   line-height: 1.75;
   margin-bottom: var(--space-8);
+}
+
+.bodyText {
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: var(--space-4);
+}
+
+.linkRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.linkRow a {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.linkRow a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
 }
 
 .overview :global(p) {
@@ -149,6 +185,12 @@
 .highlightCard p {
   font-size: var(--text-xs);
   color: var(--text-secondary);
+}
+
+.highlightCard h3 {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-1);
 }
 
 .block {
@@ -253,6 +295,55 @@
 
 .faqItem div :global(strong) {
   color: var(--text-primary);
+}
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+@media (max-width: 968px) {
+  .projectGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.projectCard {
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-primary);
+}
+
+.projectMedia {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+}
+
+.projectContent {
+  padding: var(--space-4);
+}
+
+.projectContent p {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.projectContent h3 {
+  font-size: var(--text-base);
+  line-height: 1.3;
+  margin-bottom: var(--space-2);
+}
+
+.projectContent h3 a {
+  color: var(--text-primary);
+}
+
+.projectContent h3 a:hover {
+  color: var(--primary);
 }
 
 .sidebar {
