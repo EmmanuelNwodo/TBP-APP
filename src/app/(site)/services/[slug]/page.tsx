@@ -63,6 +63,10 @@ const RENOVATION_REMODELING_SLUG = "renovation-remodeling";
 const RENOVATION_REMODELING_TITLE = "Renovation & Remodelling Services in Lagos, Nigeria";
 const RENOVATION_REMODELING_DESCRIPTION =
   "Building Practice Ltd provides renovation and remodelling services in Lagos for homes, offices, commercial properties, hospitality, and institutional buildings, from planning through execution.";
+const FACILITY_MANAGEMENT_SLUG = "facility-management";
+const FACILITY_MANAGEMENT_TITLE = "Facility Management Services in Lagos, Nigeria";
+const FACILITY_MANAGEMENT_DESCRIPTION =
+  "Looking for facility management services in Lagos? Building Practice Ltd coordinates building maintenance, operations, inspections, and essential facility services for suitable properties.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -76,6 +80,41 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === FACILITY_MANAGEMENT_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: FACILITY_MANAGEMENT_TITLE,
+      description: FACILITY_MANAGEMENT_DESCRIPTION,
+      keywords: [
+        "Facility Management Services in Lagos",
+        "Facility Management Company in Lagos",
+        "Facility Management Services in Lagos, Nigeria",
+        "facility maintenance services Lagos",
+        "building maintenance services Lagos",
+        "property maintenance Lagos",
+        "preventive maintenance Lagos",
+        "MEP maintenance Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: FACILITY_MANAGEMENT_TITLE,
+        description: FACILITY_MANAGEMENT_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: FACILITY_MANAGEMENT_TITLE,
+        description: FACILITY_MANAGEMENT_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === RENOVATION_REMODELING_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -628,6 +667,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isMepCoordinationPage = slug === MEP_COORDINATION_SLUG;
   const isConstructionCostEstimationPage = slug === CONSTRUCTION_COST_ESTIMATION_SLUG;
   const isRenovationRemodelingPage = slug === RENOVATION_REMODELING_SLUG;
+  const isFacilityManagementPage = slug === FACILITY_MANAGEMENT_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -1049,7 +1089,72 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isRenovationRemodelingPage
+  const facilityManagementFaq = [
+    {
+      q: "What is facility management?",
+      a: "Facility management coordinates the maintenance, operation, condition, and support services of a physical facility so that the property can remain functional and usable throughout its operational life.",
+    },
+    {
+      q: "What does a facility management company do?",
+      a: "The agreed scope may include maintenance planning, building inspections, repairs coordination, building-systems maintenance, utility management, cleaning, security coordination, vendor management, and reporting.",
+    },
+    {
+      q: "Does facility management include building maintenance?",
+      a: "Yes. Building maintenance is a central part of facility management, including planned maintenance, condition review, and coordination of repair needs within the agreed scope.",
+    },
+    {
+      q: "How much does facility management cost in Lagos?",
+      a: "Costs depend on the property type and size, building systems, service scope, maintenance frequency, staffing needs, equipment condition, location, and contract terms. A property assessment is needed for a responsible proposal.",
+    },
+    {
+      q: "What is the difference between facility management and property management?",
+      a: "Facility management focuses on the functionality, maintenance, operation, and support services of physical facilities. Property management often includes tenancy, rent, leasing, and property administration. Scope can vary by provider.",
+    },
+  ];
+
+  const servicePageJsonLd = isFacilityManagementPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: FACILITY_MANAGEMENT_TITLE,
+            description: FACILITY_MANAGEMENT_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Facility Management Services",
+            description: FACILITY_MANAGEMENT_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
+            serviceType: [
+              "Facility Management",
+              "Building Maintenance Planning",
+              "Preventive Maintenance",
+              "Building Inspection",
+              "Building Systems Maintenance Coordination",
+              "Vendor and Contractor Management",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Facility Management", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isRenovationRemodelingPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -1803,7 +1908,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isRenovationRemodelingPage
+              isFacilityManagementPage
+                ? "Building operations and maintenance at a managed facility"
+                : isRenovationRemodelingPage
                 ? "Building renovation project during construction"
                 : isConstructionCostEstimationPage
                 ? "Construction cost planning documents for a building project"
@@ -1838,14 +1945,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isRenovationRemodelingPage
+                {isFacilityManagementPage
+                  ? "Facility Management"
+                  : isRenovationRemodelingPage
                   ? "Renovation & Remodelling"
                   : isConstructionCostEstimationPage
                   ? "Construction Cost Estimation"
@@ -1881,7 +1990,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isRenovationRemodelingPage
+            {isFacilityManagementPage
+              ? "Facility Management Services in Lagos, Nigeria"
+              : isRenovationRemodelingPage
               ? "Renovation & Remodelling Services in Lagos, Nigeria"
               : isConstructionCostEstimationPage
               ? "Construction Cost Estimation Services in Lagos, Nigeria"
@@ -1912,7 +2023,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isRenovationRemodelingPage
+            {isFacilityManagementPage
+              ? "We coordinate maintenance, building operations, inspections, and essential facility services for suitable properties in Lagos."
+              : isRenovationRemodelingPage
               ? "We provide renovation, remodelling, refurbishment, alterations, extensions, interior upgrades, and renovation construction support for existing properties in Lagos and across Nigeria."
               : isConstructionCostEstimationPage
               ? "We provide construction cost estimation, budgeting, cost planning, quantity take-offs, and cost analysis for building projects in Lagos and across Nigeria."
@@ -1949,7 +2062,159 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isRenovationRemodelingPage ? (
+              {isFacilityManagementPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Facility Management by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides facility management services in Lagos for property owners,
+                      developers, businesses, organizations, and institutions that need a more structured approach to
+                      maintaining and operating a building or facility.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope includes maintenance planning, preventive maintenance scheduling, repair
+                      coordination, HVAC, electrical, plumbing and water-systems maintenance, cleaning and grounds
+                      maintenance, security and access management, utility management, inspections, and vendor
+                      coordination. The agreed scope should reflect the property and its operational needs.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your facility management needs</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                      <Link href="/about">Learn about Building Practice Ltd</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((highlight, index) => (
+                        <div key={`${highlight.title}-${index}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${highlight.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{highlight.title}</h3>
+                          <p>{highlight.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is Facility Management?</h2>
+                    <p className={styles.bodyText}>
+                      Facility management is the coordinated care of a building&apos;s condition, systems, maintenance,
+                      operational services, contractors, and users. It helps keep a facility functional, usable, and
+                      appropriately maintained throughout its operational life.
+                    </p>
+                    <p className={styles.bodyText}>
+                      It is distinct from the design and construction of a new building. Our <Link href="/services/building-construction">building construction services</Link> focus on delivery of new works, while facility management focuses on the ongoing operation and maintenance of an existing property.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Facility Management Services in Lagos</h2>
+                    <h3>Preventive Maintenance and Maintenance Planning</h3>
+                    <p className={styles.bodyText}>We plan and schedule routine maintenance activities so building systems and maintenance requirements can be reviewed before issues become more significant.</p>
+                    <h3>Corrective Maintenance and Repairs Coordination</h3>
+                    <p className={styles.bodyText}>Where faults or maintenance issues are identified, the scope can include coordinating the appropriate repair response, contractors, and follow-up work.</p>
+                    <h3>Building Inspection and Facility Assessment</h3>
+                    <p className={styles.bodyText}>Building inspections and audits can help document current conditions, recurring maintenance needs, and work priorities. Structural concerns should be assessed by qualified structural professionals where appropriate.</p>
+                    <h3>Building Systems Maintenance and Coordination</h3>
+                    <p className={styles.bodyText}>The documented service scope includes HVAC servicing, electrical-system maintenance, and plumbing and water-systems management as appropriate to the property and agreed engagement.</p>
+                    <h3>Operational Services and Vendor Coordination</h3>
+                    <p className={styles.bodyText}>We can coordinate cleaning and grounds maintenance, security and access management, pest control and hygiene management, utility management, and relevant vendors or contractors within the agreed scope.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Facility Assessment and Maintenance Planning</h2>
+                    <p className={styles.bodyText}>
+                      An initial review can clarify the building condition, systems, maintenance history, recurring
+                      faults, operational requirements, and priorities. That information provides a practical basis
+                      for planned maintenance, service coordination, and reporting rather than relying on assumptions
+                      about a property&apos;s needs.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>MEP Systems Maintenance and Coordination</h2>
+                    <p className={styles.bodyText}>
+                      Facility management addresses the operation and ongoing maintenance of relevant mechanical,
+                      electrical, plumbing, HVAC, and water systems. This differs from our <Link href="/services/mep-coordination">MEP coordination services</Link>, which focus on coordinating building-services information during design and construction.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Facility Management for Property Owners and Developers</h2>
+                    <p className={styles.bodyText}>
+                      Property owners can use facility management to organize maintenance responsibilities, coordinate
+                      service providers, identify maintenance needs, and plan recurring work. Developers can also
+                      consider facility-management requirements as a project moves from construction into operation.
+                    </p>
+                    <p className={styles.bodyText}>
+                      For the earlier project stages, explore our <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/project-management">project management services</Link>, and <Link href="/services/real-estate-development">real estate development services</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why Professional Facility Management Matters in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Building operation in Lagos can require close attention to maintenance, water and drainage,
+                      building services, utilities, and the effects of frequent use and local weather conditions.
+                      A defined facility-management scope helps property stakeholders coordinate these ongoing needs
+                      with clearer responsibilities and maintenance priorities.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Much Does Facility Management Cost in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Costs depend on property size and type, the number and condition of building systems, service
+                      scope, maintenance frequency, staffing requirements, equipment, location, and contract terms.
+                      An assessment is required before Building Practice Ltd can provide an accurate proposal.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Facility Management vs Property Management</h2>
+                    <p className={styles.bodyText}>
+                      Facility management is primarily concerned with physical facilities: their functionality,
+                      maintenance, operation, and support services. Property management often has a broader focus on
+                      ownership administration, tenancy, rent, leasing, and occupants. The exact responsibilities can
+                      vary by provider and engagement.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Related Building Services</h2>
+                    <p className={styles.bodyText}>
+                      Facility needs can overlap with <Link href="/services/renovation-remodeling">renovation and remodelling</Link> for physical upgrades, <Link href="/services/structural-engineering">structural engineering and design</Link> for appropriate structural assessment, <Link href="/services/interior-design">interior design services</Link>, <Link href="/services/green-building-advisory">green building advisory</Link>, and <Link href="/services/construction-consultation">construction consultation</Link> where a building issue requires a different specialist scope.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {facilityManagementFaq.map((item, index) => (
+                        <details key={`${item.q}-${index}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Facility Management Needs</h2>
+                    <p className={styles.bodyText}>
+                      Share your property type, location, current maintenance concerns, building systems, and the
+                      support you need. Our team will review the appropriate facility-management scope and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request a facility management consultation</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isRenovationRemodelingPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Building Renovation and Remodelling</h2>
@@ -4907,7 +5172,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -5193,7 +5458,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               <div className={styles.ctaCard}>
                 <h3>
-                  {isRenovationRemodelingPage
+                  {isFacilityManagementPage
+                    ? "Discuss Your Facility Management Needs"
+                    : isRenovationRemodelingPage
                     ? "Discuss Your Renovation Project"
                     : isConstructionCostEstimationPage
                     ? "Discuss Your Project Budget"
@@ -5222,7 +5489,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isRenovationRemodelingPage
+                  {isFacilityManagementPage
+                    ? "Tell us about your property type, location, building systems, maintenance concerns, and operational needs, and our team will guide you on the appropriate scope."
+                    : isRenovationRemodelingPage
                     ? "Tell us about your property type, existing conditions, intended changes, drawings, and project stage, and our team will guide you on the appropriate renovation scope."
                     : isConstructionCostEstimationPage
                     ? "Tell us about your project type, drawings, specifications, location, current stage, and cost-planning objectives, and our team will guide you on the appropriate scope."
@@ -5252,7 +5521,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -5340,7 +5609,34 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isRenovationRemodelingPage ? (
+                  {isFacilityManagementPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/mep-coordination" className="tag tag--outline tag--sm">
+                        <i className="bx bx-cog" aria-hidden="true" /> MEP Coordination
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/renovation-remodeling" className="tag tag--outline tag--sm">
+                        <i className="bx bx-wrench" aria-hidden="true" /> Renovation &amp; Remodelling
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isRenovationRemodelingPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
