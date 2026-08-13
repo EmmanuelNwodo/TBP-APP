@@ -43,6 +43,10 @@ const REAL_ESTATE_DEVELOPMENT_SLUG = "real-estate-development";
 const REAL_ESTATE_DEVELOPMENT_TITLE = "Real Estate Development Services in Lagos, Nigeria";
 const REAL_ESTATE_DEVELOPMENT_DESCRIPTION =
   "Building Practice Ltd supports real estate development in Lagos through feasibility, property planning, architectural design, construction, project management, and development coordination.";
+const THREE_D_VISUALIZATION_SLUG = "3d-visualization";
+const THREE_D_VISUALIZATION_TITLE = "3D Visualisation Services in Lagos, Nigeria";
+const THREE_D_VISUALIZATION_DESCRIPTION =
+  "Building Practice Ltd provides 3D visualisation services in Lagos, including architectural rendering, interior and exterior visuals, walkthroughs, animation, and design presentation support.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -56,6 +60,46 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === THREE_D_VISUALIZATION_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: THREE_D_VISUALIZATION_TITLE,
+      description: THREE_D_VISUALIZATION_DESCRIPTION,
+      keywords: [
+        "3D visualisation services in Lagos",
+        "3D visualisation service firms in Lagos, Nigeria",
+        "3D visualization company Lagos",
+        "3D rendering services Lagos",
+        "architectural 3D visualisation Lagos",
+        "architectural 3D rendering Lagos",
+        "architectural rendering services Lagos",
+        "3D building visualization Lagos",
+        "exterior 3D rendering Lagos",
+        "interior 3D rendering Lagos",
+        "architectural walkthrough services Lagos",
+        "architectural visualization Nigeria",
+        "3D visualization services Nigeria",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: THREE_D_VISUALIZATION_TITLE,
+        description: THREE_D_VISUALIZATION_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: THREE_D_VISUALIZATION_TITLE,
+        description: THREE_D_VISUALIZATION_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === REAL_ESTATE_DEVELOPMENT_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -396,6 +440,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isUrbanDevelopmentPage = slug === URBAN_DEVELOPMENT_SLUG;
   const isGreenBuildingAdvisoryPage = slug === GREEN_BUILDING_ADVISORY_SLUG;
   const isRealEstateDevelopmentPage = slug === REAL_ESTATE_DEVELOPMENT_SLUG;
+  const isThreeDVisualizationPage = slug === THREE_D_VISUALIZATION_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -654,7 +699,85 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isRealEstateDevelopmentPage
+  const threeDVisualizationFaq = [
+    {
+      q: "What is architectural 3D visualisation?",
+      a: "Architectural 3D visualisation converts drawings, design concepts, materials, lighting, and spatial information into realistic or representative visual outputs that help clients understand a proposed project before construction.",
+    },
+    {
+      q: "What is the difference between 3D visualisation and 3D rendering?",
+      a: "3D visualisation is the broader process of representing a design in three dimensions. Rendering is the production of the final still image or visual output from that model, materials, lighting, and environment.",
+    },
+    {
+      q: "Can you create exterior and interior 3D renders?",
+      a: "Yes. The service scope includes exterior rendering, interior visualisation and staging, material and finish visualisation, and lighting studies where required by the project brief.",
+    },
+    {
+      q: "Can you create architectural walkthroughs?",
+      a: "Yes. The service includes 360-degree panoramic virtual tours, immersive walkthrough experiences, and architectural flythrough animations where the required scope is agreed.",
+    },
+    {
+      q: "What information is needed to create a 3D visualisation?",
+      a: "Useful inputs include architectural drawings, design references, material or finish information, furniture requirements, site or context references, and the intended visual output.",
+    },
+    {
+      q: "Can you create visualisations for real estate developments?",
+      a: "Yes. Development concepts, residential schemes, commercial buildings, mixed-use environments, and related presentation imagery can be considered where the project brief provides the required design information.",
+    },
+    {
+      q: "How much do 3D visualisation services cost in Lagos?",
+      a: "Pricing depends on project complexity, the number of views, level of detail, modeling requirements, interior or exterior scope, animation requirements, and agreed review requirements. Share a project brief for a scope-based discussion.",
+    },
+  ];
+
+  const servicePageJsonLd = isThreeDVisualizationPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: THREE_D_VISUALIZATION_TITLE,
+            description: THREE_D_VISUALIZATION_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "3D Visualisation Services",
+            description: THREE_D_VISUALIZATION_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "3D Visualisation",
+              "Architectural 3D Visualisation",
+              "Exterior 3D Rendering",
+              "Interior 3D Rendering",
+              "360-Degree Virtual Tours",
+              "Architectural Flythrough Animation",
+              "Material and Finish Visualisation",
+              "Landscape Visualisation",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "3D Visualisation", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isRealEstateDevelopmentPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -1170,7 +1293,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isRealEstateDevelopmentPage
+              isThreeDVisualizationPage
+                ? "3D architectural visualization of a contemporary building"
+                : isRealEstateDevelopmentPage
                 ? "Real estate development planning and property construction project"
                 : isGreenBuildingAdvisoryPage
                 ? "Energy-efficient building designed with sustainable features"
@@ -1195,14 +1320,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isRealEstateDevelopmentPage
+                {isThreeDVisualizationPage
+                  ? "3D Visualisation"
+                  : isRealEstateDevelopmentPage
                   ? "Real Estate Development"
                   : isGreenBuildingAdvisoryPage
                   ? "Green Building Advisory"
@@ -1228,7 +1355,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isRealEstateDevelopmentPage
+            {isThreeDVisualizationPage
+              ? "3D Visualisation Services in Lagos, Nigeria"
+              : isRealEstateDevelopmentPage
               ? "Real Estate Development Services in Lagos, Nigeria"
               : isGreenBuildingAdvisoryPage
               ? "Green Building Advisory Services in Lagos, Nigeria"
@@ -1249,7 +1378,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isRealEstateDevelopmentPage
+            {isThreeDVisualizationPage
+              ? "We create architectural renders, interior and exterior visuals, walkthroughs, animation, and design presentation imagery for projects in Lagos and across Nigeria."
+              : isRealEstateDevelopmentPage
               ? "We support development feasibility, property planning, architectural design, construction, project management, and development coordination for projects in Lagos and across Nigeria."
               : isGreenBuildingAdvisoryPage
               ? "We provide sustainable building design guidance, energy efficiency planning, resource efficiency advice, and green certification support for projects in Lagos and across Nigeria."
@@ -1276,7 +1407,220 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isRealEstateDevelopmentPage ? (
+              {isThreeDVisualizationPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Architectural 3D Visualisation</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides 3D visualisation services for architects, property developers,
+                      homeowners, contractors, businesses, interior designers, real estate professionals, and
+                      institutions that need clearer ways to understand, present, or communicate building concepts.
+                    </p>
+                    <p className={styles.bodyText}>
+                      For clients looking for 3D visualisation services in Lagos, our work connects architectural
+                      drawings and design information with visual outputs such as exterior renders, interior visuals,
+                      panoramic tours, flythroughs, material studies, and presentation imagery. The service supports
+                      design communication without replacing architectural design or construction documentation.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your 3D visualisation project</Link>
+                      <Link href="/projects">View our projects</Link>
+                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is 3D Visualisation?</h2>
+                    <p className={styles.bodyText}>
+                      3D visualisation is the process of turning architectural drawings, design concepts, materials,
+                      lighting, and spatial information into realistic or representative visual outputs. It helps a
+                      client see how a proposed building, room, development, or landscape may be understood before the
+                      project reaches construction.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Depending on the brief, the output may be a still render, an interior or exterior view, a 360-degree
+                      panorama, a walkthrough, an animation, or presentation imagery for design review and communication.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our 3D Visualisation Services</h2>
+                    <h3>Architectural 3D Visualisation</h3>
+                    <p className={styles.bodyText}>
+                      Proposed buildings can be represented visually before construction, including building form,
+                      proportions, materials, colours, openings, architectural details, and surrounding context where
+                      the supplied design information supports it.
+                    </p>
+                    <h3>Exterior 3D Rendering</h3>
+                    <p className={styles.bodyText}>
+                      Exterior rendering can communicate facades, entrances, outdoor spaces, landscape elements, site
+                      context, and day or night lighting studies for residential, commercial, hospitality, institutional,
+                      and related building concepts.
+                    </p>
+                    <h3>Interior 3D Rendering and Staging</h3>
+                    <p className={styles.bodyText}>
+                      Interior visualisation can show room layouts, furniture, finishes, lighting, materials, colours,
+                      and spatial relationships so clients can review the intended character and arrangement of a space.
+                    </p>
+                    <h3>360-Degree Virtual Tours and Walkthroughs</h3>
+                    <p className={styles.bodyText}>
+                      Panoramic tours and immersive walkthrough experiences help clients move through a proposed space
+                      or review a design concept from different viewpoints. They can support presentations, stakeholder
+                      communication, and design review.
+                    </p>
+                    <h3>Architectural Flythrough Animation</h3>
+                    <p className={styles.bodyText}>
+                      Dynamic flythroughs and architectural animations can communicate movement through a building or
+                      development concept when a still image does not provide enough spatial information.
+                    </p>
+                    <h3>Materials, Lighting, Landscape, and Presentation Visuals</h3>
+                    <p className={styles.bodyText}>
+                      The service also includes material and finish visualisation, lighting studies, landscape and
+                      hardscape visualisation, furniture and decor staging, aerial-style renderings, and post-production
+                      enhancement where these are relevant to the agreed brief.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>What Our 3D Visualisation Service Covers</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Why 3D Visualisation Matters for Architectural Projects</h2>
+                    <p className={styles.bodyText}>
+                      Visual outputs can make design communication clearer, help clients understand proposed spaces,
+                      support earlier discussion of materials and finishes, and improve presentations to stakeholders.
+                      They can also help teams review design intent before construction and prepare appropriate marketing
+                      or presentation material where that use is part of the project brief.
+                    </p>
+                    <p className={styles.bodyText}>
+                      3D visualisation is most useful when it works alongside the design process: architectural drawings
+                      inform the model, the visual output supports review, and agreed design decisions continue into
+                      documentation and construction.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Who Our 3D Visualisation Services Are For</h2>
+                    <p className={styles.bodyText}>
+                      Architects can use visuals to communicate design intent; property developers can present proposed
+                      developments; homeowners can understand a new home or renovation; contractors can review proposed
+                      outcomes; interior designers can communicate finishes and layouts; and businesses or institutions
+                      can present building concepts to relevant stakeholders.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Projects We Can Visualise</h2>
+                    <p className={styles.bodyText}>
+                      Depending on the project brief, the service can support visualisation for residential buildings,
+                      apartments, duplexes, estates, offices, retail spaces, hospitality projects, institutional
+                      buildings, mixed-use developments, renovations, and interior spaces. This describes supported
+                      project contexts, not a claim that every category has been completed as a visualisation project.
+                    </p>
+                  </div>
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our 3D Visualisation Process</h2>
+                      <div className={styles.processList}>
+                        {[
+                          { title: "Project Brief", desc: "Confirm the project purpose, visual outputs, audience, views, and design information available." },
+                          { title: "Drawing and Reference Review", desc: "Review plans, elevations, sections, references, materials, finishes, furniture, and context information." },
+                          { title: "3D Modeling", desc: "Build the digital representation required for the agreed building, interior, exterior, landscape, or development views." },
+                          { title: "Materials, Lighting, and Environment", desc: "Apply the supplied or agreed material direction, lighting approach, surroundings, and staging elements." },
+                          { title: "Rendering and Visualisation", desc: "Produce the agreed still images, panoramas, walkthroughs, animations, or presentation visuals." },
+                          { title: "Review and Final Delivery", desc: "Review the output against the brief, address agreed feedback, and prepare the final deliverables." },
+                        ].map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>3D Visualisation Services in Lagos, Nigeria</h2>
+                    <p className={styles.bodyText}>
+                      3D visualisation can support residential development, commercial projects, property development
+                      presentations, architectural reviews, construction planning, and stakeholder communication in
+                      Lagos. It gives project teams a practical way to discuss a proposed building or space before the
+                      physical work is complete.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd also supports projects elsewhere in Nigeria where the design information,
+                      project scope, and delivery requirements make the engagement suitable.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Visualisation Connects to Design and Development</h2>
+                    <p className={styles.bodyText}>
+                      Architectural drawings inform the 3D model, the visualisation supports client review and design
+                      refinement, and the approved direction can continue into architectural documentation, construction,
+                      or development coordination. Explore our <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/real-estate-development">real estate development services</Link>, and <Link href="/services/urban-development">urban development services</Link> for connected project needs.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/services/interior-design">Explore interior design services</Link>
+                      <Link href="/services/building-construction">Explore building construction</Link>
+                      <Link href="/services/green-building-advisory">Explore green building advisory</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {threeDVisualizationFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your 3D Visualisation Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your drawings, project type, intended visual outputs, and presentation goals with our team.
+                      We will help identify the appropriate visualisation scope and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request a 3D visualisation</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isRealEstateDevelopmentPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Real Estate Development Services</h2>
@@ -3029,7 +3373,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -3208,9 +3552,32 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
+              {isThreeDVisualizationPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Service Location</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>3D</div>
+                    <div className={styles.statLabel}>Architectural Visualisation</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Views</div>
+                    <div className={styles.statLabel}>Still, Panorama, and Animation</div>
+                  </div>
+                </div>
+              )}
+
               <div className={styles.ctaCard}>
                 <h3>
-                  {isRealEstateDevelopmentPage
+                  {isThreeDVisualizationPage
+                    ? "Discuss Your 3D Visualisation Project"
+                    : isRealEstateDevelopmentPage
                     ? "Discuss Your Real Estate Development Project"
                     : isGreenBuildingAdvisoryPage
                     ? "Discuss Your Green Building Project"
@@ -3229,7 +3596,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isRealEstateDevelopmentPage
+                  {isThreeDVisualizationPage
+                    ? "Tell us about your drawings, project type, intended visual outputs, and presentation goals, and our team will guide you on the appropriate scope."
+                    : isRealEstateDevelopmentPage
                     ? "Tell us about your site, intended use, development objectives, and current project stage, and our team will guide you on practical next steps."
                     : isGreenBuildingAdvisoryPage
                     ? "Tell us about your project type, site, sustainability objectives, and current stage, and our team will guide you on practical next steps."
@@ -3249,7 +3618,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -3303,11 +3672,47 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <i className="bx bx-image" aria-hidden="true" />
                   </Link>
                 )}
+                {isThreeDVisualizationPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Our Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isRealEstateDevelopmentPage ? (
+                  {isThreeDVisualizationPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-palette" aria-hidden="true" /> Interior Design
+                      </Link>
+                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
+                      </Link>
+                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-city" aria-hidden="true" /> Urban Development
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact the Design Team
+                      </Link>
+                    </>
+                  ) : isRealEstateDevelopmentPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
