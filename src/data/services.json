@@ -1641,24 +1641,26 @@
     "icon": "bx-cog",
     "category": "Engineering Service",
     "title": "MEP Coordination",
-    "subtitle": "Expert Mechanical, Electrical & Plumbing Systems Integration",
+    "subtitle": "MEP Coordination Services in Lagos, Nigeria | Mechanical, Electrical and Plumbing Coordination - Building Practice Ltd",
+    "seoTitle": "MEP Coordination Services in Lagos, Nigeria",
+    "seoDescription": "Building Practice Ltd provides mechanical, electrical and plumbing coordination services in Lagos for building systems integration, clash coordination, drawings, routing, and construction support.",
     "heroImage": "/images/services/mep.jpg",
     "overview": "<p><strong>Seamless Building Systems Integration</strong></p>\n                    <p>Building Practice Ltd provides professional MEP (Mechanical, Electrical, and Plumbing) coordination services in Nigeria, ensuring all building systems are seamlessly integrated.</p>\n                    <p>Coordinating MEP systems in complex buildings prevents costly conflicts, improves efficiency, and ensures optimal performance. Our experienced MEP coordinators work with specialist engineers to develop coordinated systems, resolve conflicts early, and produce comprehensive documentation.</p>\n                    <p><strong>The Value of MEP Coordination:</strong></p>\n                    <ul>\n                        <li>Eliminate costly on-site clashes and rework</li>\n                        <li>Optimize ceiling voids and service routes</li>\n                        <li>Ensure maintainability and accessibility</li>\n                        <li>Improve energy efficiency and system performance</li>\n                    </ul>",
     "highlights": [
       {
         "icon": "bx-wireframe",
         "title": "System Integration",
-        "desc": "Seamless coordination of all MEP systems"
+        "desc": "Coordination of mechanical, electrical, and plumbing systems within the building design"
       },
       {
         "icon": "bx-check",
         "title": "Clash Detection",
-        "desc": "Early identification and resolution of conflicts"
+        "desc": "Early identification and review of potential service conflicts"
       },
       {
         "icon": "bx-file",
         "title": "Coordination Drawings",
-        "desc": "Clear documentation for construction teams"
+        "desc": "Coordinated documentation that communicates building services to project teams"
       }
     ],
     "features": [

@@ -48,9 +48,13 @@ const THREE_D_VISUALIZATION_TITLE = "3D Visualisation Services in Lagos, Nigeria
 const THREE_D_VISUALIZATION_DESCRIPTION =
   "Building Practice Ltd provides 3D visualisation services in Lagos, including architectural rendering, interior and exterior visuals, walkthroughs, animation, and design presentation support.";
 const STRUCTURAL_ENGINEERING_SLUG = "structural-engineering";
-const STRUCTURAL_ENGINEERING_TITLE = "Structural Engineering Services in Lagoss, Nigeria";
+const STRUCTURAL_ENGINEERING_TITLE = "Structural Engineering Services in Lagos, Nigeria";
 const STRUCTURAL_ENGINEERING_DESCRIPTION =
   "Building Practice Ltd provides structural engineering and design services in Lagos for building analysis, foundations, structural calculations, drawings, reinforced concrete, steel, and construction coordination.";
+const MEP_COORDINATION_SLUG = "mep-coordination";
+const MEP_COORDINATION_TITLE = "MEP Coordination Services in Lagos, Nigeria";
+const MEP_COORDINATION_DESCRIPTION =
+  "Building Practice Ltd provides mechanical, electrical and plumbing coordination services in Lagos for building systems integration, clash coordination, drawings, routing, and construction support.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -64,6 +68,47 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === MEP_COORDINATION_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: MEP_COORDINATION_TITLE,
+      description: MEP_COORDINATION_DESCRIPTION,
+      keywords: [
+        "MEP Coordination Services in Lagos",
+        "MEP Coordination Service Firms in Lagos, Nigeria",
+        "MEP coordination services Lagos",
+        "MEP coordination company Lagos",
+        "MEP coordination firms Lagos",
+        "MEP coordination consultants Lagos",
+        "MEP engineering coordination Lagos",
+        "mechanical electrical plumbing coordination Lagos",
+        "MEP design coordination Lagos",
+        "building services coordination Lagos",
+        "MEP coordination services Nigeria",
+        "MEP clash detection Lagos",
+        "MEP drawing coordination Lagos",
+        "multidisciplinary design coordination Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: MEP_COORDINATION_TITLE,
+        description: MEP_COORDINATION_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: MEP_COORDINATION_TITLE,
+        description: MEP_COORDINATION_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === STRUCTURAL_ENGINEERING_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -485,6 +530,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isRealEstateDevelopmentPage = slug === REAL_ESTATE_DEVELOPMENT_SLUG;
   const isThreeDVisualizationPage = slug === THREE_D_VISUALIZATION_SLUG;
   const isStructuralEngineeringPage = slug === STRUCTURAL_ENGINEERING_SLUG;
+  const isMepCoordinationPage = slug === MEP_COORDINATION_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -805,7 +851,85 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isStructuralEngineeringPage
+  const mepCoordinationFaq = [
+    {
+      q: "What is MEP coordination?",
+      a: "MEP coordination is the review and integration of mechanical, electrical, and plumbing systems with architectural, structural, and construction requirements so that building services can be appropriately coordinated within the project.",
+    },
+    {
+      q: "What does MEP stand for in construction?",
+      a: "MEP stands for mechanical, electrical, and plumbing. These building services need to be coordinated with the building layout and other disciplines during design and construction planning.",
+    },
+    {
+      q: "Do you provide MEP coordination services in Lagos?",
+      a: "Yes. Building Practice Ltd provides MEP coordination services in Lagos and across Nigeria for suitable residential, commercial, institutional, and development projects.",
+    },
+    {
+      q: "Do you coordinate mechanical, electrical, and plumbing systems?",
+      a: "Yes. The documented service scope includes coordination between electrical, mechanical, and plumbing systems, including routing, equipment locations, documentation, and construction coordination.",
+    },
+    {
+      q: "Can MEP systems be coordinated with architectural and structural designs?",
+      a: "Yes. MEP coordination can review how building services interact with architectural layouts, ceilings, walls, shafts, beams, slabs, columns, openings, equipment areas, and access requirements.",
+    },
+    {
+      q: "Do you provide MEP clash detection?",
+      a: "Yes. Clash detection and conflict resolution are included in the documented service scope. Early identification of potential conflicts can help reduce site coordination problems and rework, but it does not guarantee that every construction issue will be eliminated.",
+    },
+    {
+      q: "How much does MEP coordination cost in Lagos?",
+      a: "Fees depend on project size, building complexity, number of disciplines and drawings, coordination level, project stage, applicable modeling requirements, review requirements, and overall scope. A project brief is needed before costs can be discussed responsibly.",
+    },
+  ];
+
+  const servicePageJsonLd = isMepCoordinationPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: MEP_COORDINATION_TITLE,
+            description: MEP_COORDINATION_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "MEP Coordination Services",
+            description: MEP_COORDINATION_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "MEP Coordination",
+              "Mechanical Services Coordination",
+              "Electrical Services Coordination",
+              "Plumbing Services Coordination",
+              "MEP Drawing Coordination",
+              "MEP Clash Detection",
+              "Building Services Coordination",
+              "Construction MEP Coordination",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "MEP Coordination", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isStructuralEngineeringPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -1416,7 +1540,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isStructuralEngineeringPage
+              isMepCoordinationPage
+                ? "MEP coordination drawing showing building services layout"
+                : isStructuralEngineeringPage
                 ? "Structural engineering and building design project"
                 : isThreeDVisualizationPage
                 ? "3D architectural visualization of a contemporary building"
@@ -1445,14 +1571,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isStructuralEngineeringPage
+                {isMepCoordinationPage
+                  ? "MEP Coordination"
+                  : isStructuralEngineeringPage
                   ? "Structural Engineering & Design"
                   : isThreeDVisualizationPage
                   ? "3D Visualisation"
@@ -1482,7 +1610,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isStructuralEngineeringPage
+            {isMepCoordinationPage
+              ? "MEP Coordination Services in Lagos, Nigeria"
+              : isStructuralEngineeringPage
               ? "Structural Engineering & Design Services in Lagos, Nigeria"
               : isThreeDVisualizationPage
               ? "3D Visualisation Services in Lagos, Nigeria"
@@ -1507,7 +1637,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isStructuralEngineeringPage
+            {isMepCoordinationPage
+              ? "We coordinate mechanical, electrical and plumbing systems with architectural, structural and construction requirements for projects in Lagos and across Nigeria."
+              : isStructuralEngineeringPage
               ? "We provide structural analysis, design, calculations, foundations, structural drawings, reinforced concrete and steel design, and construction coordination for projects in Lagos and across Nigeria."
               : isThreeDVisualizationPage
               ? "We create architectural renders, interior and exterior visuals, walkthroughs, animation, and design presentation imagery for projects in Lagos and across Nigeria."
@@ -1538,7 +1670,244 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isStructuralEngineeringPage ? (
+              {isMepCoordinationPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional MEP Coordination by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides MEP coordination services for architects, property developers,
+                      contractors, construction companies, businesses, institutions, homeowners, and project teams
+                      working on building and development projects in Lagos and across Nigeria.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope covers mechanical, electrical, and plumbing systems integration, equipment
+                      layout planning, service routing, drawing coordination, clash detection, multidisciplinary review,
+                      maintenance access planning, and construction support. The page describes coordination rather than
+                      claiming named software, professional registrations, or a complete MEP design authority role.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your MEP coordination project</Link>
+                      <Link href="/projects">View our projects</Link>
+                      <Link href="/services/architectural-design">Coordinate with architectural design</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is MEP Coordination?</h2>
+                    <p className={styles.bodyText}>
+                      MEP coordination is the review and integration of mechanical, electrical, and plumbing systems
+                      with architectural, structural, and construction requirements. The aim is to coordinate building
+                      services within the available spaces, routes, rooms, shafts, ceilings, equipment areas, and access
+                      requirements shown or described in the project information.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Good coordination brings the relevant disciplines into the same conversation before construction
+                      where possible. It can help identify potential conflicts, clarify documentation, support
+                      constructability, and improve communication between consultants and contractors.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our MEP Coordination Services</h2>
+                    <h3>Mechanical Services Coordination</h3>
+                    <p className={styles.bodyText}>
+                      We coordinate relevant mechanical systems with architectural and structural requirements,
+                      including equipment layout planning, ductwork routing, plant or equipment areas, access needs, and
+                      service routes where included in the project information.
+                    </p>
+                    <h3>Electrical Services Coordination</h3>
+                    <p className={styles.bodyText}>
+                      Electrical coordination considers electrical layouts, equipment locations, distribution spaces,
+                      service routes, and interfaces with architectural layouts and other building services.
+                    </p>
+                    <h3>Plumbing Services Coordination</h3>
+                    <p className={styles.bodyText}>
+                      Plumbing coordination covers relevant water, drainage, sanitary, pipeline, and service-space
+                      relationships where those systems form part of the project scope.
+                    </p>
+                    <h3>Architectural and MEP Coordination</h3>
+                    <p className={styles.bodyText}>
+                      Building services often interact with ceilings, walls, shafts, rooms, doors, windows, finishes,
+                      equipment locations, and building layouts. Reviewing these interfaces can help keep the design
+                      information coordinated.
+                    </p>
+                    <h3>Structural and MEP Coordination</h3>
+                    <p className={styles.bodyText}>
+                      MEP routes and equipment areas may need to be reviewed alongside beams, slabs, columns, structural
+                      openings, plant areas, and service shafts. Coordination helps the disciplines identify issues that
+                      require design discussion before site execution.
+                    </p>
+                    <h3>MEP Drawing Coordination</h3>
+                    <p className={styles.bodyText}>
+                      Coordination drawings and documentation help communicate the relationship between mechanical,
+                      electrical, plumbing, architectural, and structural information to the wider project team.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>MEP Coordination and Building Services Scope</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>MEP Clash Detection and Coordination</h2>
+                    <p className={styles.bodyText}>
+                      Clashes can occur when different building systems compete for the same physical space, such as
+                      ductwork and beams, pipework and structural elements, cable trays and ducts, ceiling services and
+                      architectural components, or equipment and access requirements.
+                    </p>
+                    <p className={styles.bodyText}>
+                      The existing service scope includes clash detection and conflict resolution, including BIM-based
+                      clash-detection language in the source record. Early identification of potential conflicts can
+                      help reduce site coordination problems and rework, but it does not guarantee clash-free construction
+                      or eliminate every project issue.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why MEP Coordination Is Important</h2>
+                    <p className={styles.bodyText}>
+                      MEP coordination can support multidisciplinary design review, better use of building space,
+                      improved constructability, clearer documentation, communication between consultants and
+                      contractors, smoother construction execution, and earlier discussion of potential conflicts.
+                      These benefits depend on the quality and completeness of the project information and the agreed
+                      coordination scope.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Who Our MEP Coordination Services Are For</h2>
+                    <p className={styles.bodyText}>
+                      Architects and engineering consultants can use coordination to align building services with design
+                      information. Developers, contractors, construction companies, project managers, commercial property
+                      owners, institutional teams, and homeowners may need coordination support when multiple building
+                      systems must fit within one project.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Projects We Provide MEP Coordination For</h2>
+                    <p className={styles.bodyText}>
+                      The documented project context supports MEP coordination for residential buildings, apartments,
+                      duplexes, housing estates, commercial and office buildings, retail developments, hospitality and
+                      institutional buildings, industrial projects, and mixed-use developments where the brief and
+                      building-services information are suitable.
+                    </p>
+                  </div>
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our MEP Coordination Process</h2>
+                      <div className={styles.processList}>
+                        {[
+                          { title: "Project Brief and Requirements", desc: "Clarify the project type, building services scope, intended outputs, stage, and coordination objectives." },
+                          { title: "Review of Architectural and Engineering Information", desc: "Review available architectural, structural, mechanical, electrical, plumbing, equipment, and reference information." },
+                          { title: "MEP Drawing Review", desc: "Review layouts, routes, equipment locations, spaces, access requirements, and documentation interfaces." },
+                          { title: "Multidisciplinary Coordination", desc: "Coordinate building services with architectural, structural, and construction requirements." },
+                          { title: "Identification of Potential Conflicts", desc: "Identify apparent clashes, route conflicts, access issues, and coordination questions for review." },
+                          { title: "Coordination and Design Adjustments", desc: "Support agreed coordination decisions and updates to the relevant project information." },
+                          { title: "Final Review and Documentation", desc: "Prepare or review coordinated drawings and documentation for the agreed scope." },
+                          { title: "Construction Support Where Applicable", desc: "Provide relevant coordination clarification during construction where included in the engagement." },
+                        ].map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Integrating MEP Coordination with Architectural and Structural Design</h2>
+                    <p className={styles.bodyText}>
+                      Architectural design establishes the building layout and user requirements; structural engineering
+                      provides the structural framework; MEP systems provide building services; and construction brings
+                      the coordinated information into physical delivery. Reviewing these relationships before
+                      construction where possible can support clearer decisions and better constructability.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Explore our <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/structural-engineering">structural engineering and design services</Link>, and <Link href="/services/building-construction">building construction services</Link> for connected project requirements.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>MEP Coordination Services in Lagos, Nigeria</h2>
+                    <p className={styles.bodyText}>
+                      MEP coordination can support residential, commercial, mixed-use, and institutional projects in
+                      Lagos where several disciplines need to work within a shared building layout. The local project
+                      context, building type, development scale, available information, and construction team all shape
+                      the appropriate coordination scope.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd also supports suitable projects elsewhere in Nigeria where the project brief,
+                      information, and delivery requirements align.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Related Engineering and Delivery Services</h2>
+                    <p className={styles.bodyText}>
+                      MEP coordination can be connected to <Link href="/services/construction-management">construction management services</Link>, <Link href="/services/project-management">project management services</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/3d-visualization">3D visualisation services</Link>, <Link href="/services/real-estate-development">real estate development services</Link>, <Link href="/services/urban-development">urban development services</Link>, and <Link href="/services/green-building-advisory">green building advisory</Link> where relevant to the project.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/projects">View our project portfolio</Link>
+                      <Link href="/contact">Contact our team</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {mepCoordinationFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your MEP Coordination Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your building type, architectural and engineering information, project stage, and
+                      coordination objectives with our team. We will help identify the appropriate MEP coordination
+                      scope and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request MEP coordination services</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isStructuralEngineeringPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Structural Engineering and Design</h2>
@@ -3742,7 +4111,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -3963,9 +4332,32 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
+              {isMepCoordinationPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Service Location</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>MEP</div>
+                    <div className={styles.statLabel}>Mechanical, Electrical, Plumbing</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Support</div>
+                    <div className={styles.statLabel}>Drawings and Construction Coordination</div>
+                  </div>
+                </div>
+              )}
+
               <div className={styles.ctaCard}>
                 <h3>
-                  {isStructuralEngineeringPage
+                  {isMepCoordinationPage
+                    ? "Discuss Your MEP Coordination Project"
+                    : isStructuralEngineeringPage
                     ? "Discuss Your Structural Design Project"
                     : isThreeDVisualizationPage
                     ? "Discuss Your 3D Visualisation Project"
@@ -3988,7 +4380,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isStructuralEngineeringPage
+                  {isMepCoordinationPage
+                    ? "Tell us about your building type, architectural and engineering information, project stage, and coordination objectives, and our team will guide you on the appropriate scope."
+                    : isStructuralEngineeringPage
                     ? "Tell us about your building type, site information, architectural drawings, project stage, and structural requirements, and our team will guide you on the appropriate scope."
                     : isThreeDVisualizationPage
                     ? "Tell us about your drawings, project type, intended visual outputs, and presentation goals, and our team will guide you on the appropriate scope."
@@ -4012,7 +4406,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -4078,11 +4472,53 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <i className="bx bx-image" aria-hidden="true" />
                   </Link>
                 )}
+                {isMepCoordinationPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Our Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isStructuralEngineeringPage ? (
+                  {isMepCoordinationPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/structural-engineering" className="tag tag--outline tag--sm">
+                        <i className="bx bx-layer" aria-hidden="true" /> Structural Engineering
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/services/3d-visualization" className="tag tag--outline tag--sm">
+                        <i className="bx bx-cube-alt" aria-hidden="true" /> 3D Visualisation
+                      </Link>
+                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isStructuralEngineeringPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
