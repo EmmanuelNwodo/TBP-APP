@@ -83,6 +83,10 @@ const FEASIBILITY_STUDIES_SLUG = "feasibility-studies";
 const FEASIBILITY_STUDIES_TITLE = "Feasibility Study Services in Lagos, Nigeria";
 const FEASIBILITY_STUDIES_DESCRIPTION =
   "Need a feasibility study in Lagos? Building Practice Ltd provides property, real estate, and construction feasibility analysis to assess project costs, risks, and implementation considerations.";
+const LAND_SURVEYING_SLUG = "land-surveying";
+const LAND_SURVEYING_TITLE = "Land Surveying Services in Lagos, Nigeria";
+const LAND_SURVEYING_DESCRIPTION =
+  "Need land surveying in Lagos? Building Practice Ltd provides site, topographic, boundary-related, and construction survey support for suitable property and development projects.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -96,6 +100,41 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === LAND_SURVEYING_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: LAND_SURVEYING_TITLE,
+      description: LAND_SURVEYING_DESCRIPTION,
+      keywords: [
+        "Land Surveying Services in Lagos",
+        "Land Surveying Firms in Lagos",
+        "Land Surveyors in Lagos",
+        "Land Surveying Company in Lagos",
+        "Property Survey Lagos",
+        "Topographic Survey Lagos",
+        "Boundary Survey Lagos",
+        "Construction Survey Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: LAND_SURVEYING_TITLE,
+        description: LAND_SURVEYING_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: LAND_SURVEYING_TITLE,
+        description: LAND_SURVEYING_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === FEASIBILITY_STUDIES_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -829,6 +868,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isBuildingPermitsPage = slug === BUILDING_PERMITS_SLUG;
   const isConstructionSupervisionPage = slug === CONSTRUCTION_SUPERVISION_SLUG;
   const isFeasibilityStudiesPage = slug === FEASIBILITY_STUDIES_SLUG;
+  const isLandSurveyingPage = slug === LAND_SURVEYING_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -1381,7 +1421,77 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isFeasibilityStudiesPage
+  const landSurveyingFaq = [
+    {
+      q: "What is land surveying?",
+      a: "Land surveying involves measuring and documenting relevant physical site information, such as dimensions, levels, visible features, and boundaries, for appropriate property, planning, engineering, and construction purposes.",
+    },
+    {
+      q: "What land surveying services do you provide?",
+      a: "The documented scope includes topographic surveys and mapping, boundary surveys and demarcation, construction staking and layout, as-built surveys, site leveling and grading surveys, utility location surveys, volume calculations, GIS data collection, and survey report preparation.",
+    },
+    {
+      q: "How much does land surveying cost in Lagos?",
+      a: "Fees depend on site size, location, terrain, survey type, accessibility, project complexity, required detail, technical requirements, documentation, and site visits. A project-specific quotation is required.",
+    },
+    {
+      q: "How long does a land survey take?",
+      a: "Duration depends on the site size, survey type, terrain, accessibility, project requirements, amount of data needed, and processing or documentation scope. We do not publish a universal timeline.",
+    },
+    {
+      q: "What is a topographic survey?",
+      a: "A topographic survey documents relevant physical features and elevation differences across a site so the information can support design, planning, drainage, engineering, and development decisions within the agreed scope.",
+    },
+    {
+      q: "Can a boundary survey establish land ownership?",
+      a: "Survey information can assist with boundary-related documentation, but it is not legal advice and does not by itself determine ownership or resolve land disputes. Confirm the appropriate professional and legal requirements for the specific property.",
+    },
+  ];
+
+  const servicePageJsonLd = isLandSurveyingPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: LAND_SURVEYING_TITLE,
+            description: LAND_SURVEYING_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Land Surveying Services",
+            description: LAND_SURVEYING_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
+            serviceType: [
+              "Topographic Surveys and Mapping",
+              "Boundary Surveys and Demarcation",
+              "Construction Staking and Layout",
+              "As-Built Surveys and Documentation",
+              "Site Leveling and Grading Surveys",
+              "Utility Location Surveys",
+              "Survey Report Preparation",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Land Surveying", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isFeasibilityStudiesPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -2347,7 +2457,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isFeasibilityStudiesPage
+              isLandSurveyingPage
+                ? "Site information review for a property development project"
+                : isFeasibilityStudiesPage
                 ? "Property development site and project planning review"
                 : isConstructionSupervisionPage
                 ? "Construction work being monitored on a building site"
@@ -2392,14 +2504,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isFeasibilityStudiesPage
+                {isLandSurveyingPage
+                  ? "Land Surveying"
+                  : isFeasibilityStudiesPage
                   ? "Feasibility Studies"
                   : isConstructionSupervisionPage
                   ? "Construction Supervision"
@@ -2445,7 +2559,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isFeasibilityStudiesPage
+            {isLandSurveyingPage
+              ? "Land Surveying Services in Lagos, Nigeria"
+              : isFeasibilityStudiesPage
               ? "Feasibility Study Services in Lagos, Nigeria"
               : isConstructionSupervisionPage
               ? "Construction Supervision Services in Lagos, Nigeria"
@@ -2486,7 +2602,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isFeasibilityStudiesPage
+            {isLandSurveyingPage
+              ? "We provide site, topographic, boundary-related, and construction survey support for suitable property and development projects in Lagos."
+              : isFeasibilityStudiesPage
               ? "We assess site, market, technical, cost, regulatory, and risk considerations for suitable property and construction projects in Lagos."
               : isConstructionSupervisionPage
               ? "We provide construction site monitoring, workmanship checks, progress tracking, and practical oversight for suitable building projects in Lagos."
@@ -2533,7 +2651,226 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isFeasibilityStudiesPage ? (
+              {isLandSurveyingPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Land Surveying Services by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides land surveying services in Lagos for landowners, homeowners,
+                      developers, architects, engineers, construction teams, businesses, and organizations that need
+                      relevant site information for suitable property and development projects.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope includes topographic surveys and mapping, boundary surveys and demarcation,
+                      construction staking and layout, as-built surveys, site leveling and grading surveys, utility
+                      location surveys, volume calculations, GIS data collection, and survey report preparation. The
+                      appropriate survey scope and professional requirements should be established for each project.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your surveying requirements</Link>
+                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>What Is Land Surveying?</h2>
+                    <p className={styles.bodyText}>
+                      Land surveying involves measuring and documenting relevant physical features, dimensions,
+                      boundaries, levels, elevations, and site information for appropriate property, planning,
+                      engineering, and construction purposes. Survey information can support site planning,
+                      architectural design, engineering design, construction, and property development.
+                    </p>
+                    <p className={styles.bodyText}>
+                      The precise purpose and professional requirements of a survey depend on the project. This page
+                      does not provide legal advice or state that every survey establishes legal ownership or resolves
+                      boundary disputes.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Land Surveying Services in Lagos</h2>
+                    <h3>Topographic Surveys and Mapping</h3>
+                    <p className={styles.bodyText}>The documented scope includes topographic surveys and mapping to record relevant site features and elevation information for an agreed project purpose.</p>
+                    <h3>Boundary Surveys and Demarcation</h3>
+                    <p className={styles.bodyText}>Boundary surveys and demarcation are included in the documented service scope. Their appropriate use, records, and professional requirements should be confirmed for the specific property.</p>
+                    <h3>Construction Staking and Layout</h3>
+                    <p className={styles.bodyText}>Construction staking and layout can support positioning and reference information during suitable construction projects, based on the agreed scope and available design information.</p>
+                    <h3>As-Built, Leveling, and Grading Surveys</h3>
+                    <p className={styles.bodyText}>The service scope also includes as-built surveys and documentation plus site leveling and grading surveys where relevant to the project brief.</p>
+                    <h3>Utility Location and Survey Reporting</h3>
+                    <p className={styles.bodyText}>Utility location surveys, GIS data collection, volume calculations, and survey report preparation are available within the documented scope where suitable to the assignment.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Topographic Survey Services in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      A topographic survey can document relevant physical features and elevation differences across a
+                      site, such as visible structures, roads, drainage features, vegetation, and levels where those
+                      items form part of the agreed scope. This information can support architectural design, site
+                      planning, drainage considerations, engineering coordination, and development planning.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Boundary Survey Services in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Boundary-related survey work can help document property boundaries using the appropriate survey
+                      information and professional procedures for the assignment. It should not be treated as legal
+                      advice, ownership verification, or a solution to a land dispute without the appropriate legal
+                      and professional processes.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Site Survey Services for Construction and Development</h2>
+                    <p className={styles.bodyText}>
+                      Site survey information can provide a useful basis for <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/site-planning-landscape">site planning and landscape design</Link>, and <Link href="/services/feasibility-studies">feasibility studies</Link>. It helps project teams understand the physical site before detailed design or construction decisions are made.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Construction Surveying and Building Setting Out</h2>
+                    <p className={styles.bodyText}>
+                      Construction survey support can contribute to site preparation, positioning, layout, and checks
+                      of relevant locations or levels during an agreed project scope. Building setting out transfers
+                      available design information to the physical site to guide construction positioning; the exact
+                      requirements depend on the project and technical professionals involved.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Related delivery support includes <Link href="/services/building-construction">building construction</Link>, <Link href="/services/construction-supervision">construction supervision</Link>, <Link href="/services/construction-management">construction management</Link>, and <Link href="/services/project-management">project management</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Site Level and Contour Surveys</h2>
+                    <p className={styles.bodyText}>
+                      Site level and grading information can help designers and engineers consider ground conditions,
+                      elevation differences, drainage, access, building placement, and site development. The resulting
+                      information should be coordinated with the relevant project disciplines rather than treated as a
+                      standalone design solution.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Land Surveying for Property Development in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Survey information can support land-development planning for suitable residential, commercial,
+                      mixed-use, estate, redevelopment, and related project briefs. Explore our <Link href="/services/real-estate-development">real estate development</Link> and <Link href="/services/urban-development">urban development services</Link> for broader development planning requirements.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why Land Surveying Is Important Before Construction</h2>
+                    <p className={styles.bodyText}>
+                      Appropriate site information can help reduce positioning errors, inaccurate site plans, design
+                      conflicts, site-planning problems, construction errors, and unexpected constraints. Starting
+                      construction without the relevant site information may create incorrect positioning, inaccurate
+                      dimensions, unexpected levels, drainage concerns, planning complications, delays, or additional
+                      costs depending on the project.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Land Surveying Process</h2>
+                    <div className={styles.processList}>
+                      {[
+                        { title: "Initial Consultation and Site Brief", desc: "Clarify the property, proposed use, survey purpose, available information, and required outputs." },
+                        { title: "Site Reconnaissance and Data Collection", desc: "Review the site and collect the relevant physical information within the agreed survey scope." },
+                        { title: "Processing and Survey Information", desc: "Process the collected information and prepare the agreed survey documentation or mapping outputs." },
+                        { title: "Design and Engineering Coordination", desc: "Coordinate survey information with the project team where architectural, engineering, planning, or construction inputs are required." },
+                        { title: "Documentation and Handover", desc: "Present the agreed survey information and clarify relevant next steps for the project brief." },
+                      ].map((step, index) => (
+                        <div key={`${step.title}-${index}`} className={styles.processStep}>
+                          <span className={styles.processNumber}>{index + 1}</span>
+                          <div><h3>{step.title}</h3><p>{step.desc}</p></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Land Surveying Supports Construction Planning</h2>
+                    <p className={styles.bodyText}>
+                      Survey information can inform site layout, architectural design, foundation planning, grading,
+                      drainage, access, infrastructure planning, and construction setting out. It provides relevant
+                      physical site information, while the related design and construction disciplines determine how
+                      that information is applied to the project.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Land Surveying for Feasibility Studies</h2>
+                    <p className={styles.bodyText}>
+                      Survey and site information can contribute to a feasibility study by clarifying site
+                      characteristics, dimensions, levels, access, existing features, apparent constraints, and
+                      development options. Land surveying collects relevant physical site information; <Link href="/services/feasibility-studies">feasibility studies</Link> assess wider project viability, risks, costs, and assumptions.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Land Surveying vs Other Property and Construction Services</h2>
+                    <p className={styles.bodyText}>
+                      Land surveying provides physical site information. Architectural design develops the building
+                      solution; site planning organizes a development using site information; construction supervision
+                      monitors execution; and construction management coordinates delivery. Land surveying also differs
+                      from property valuation and does not replace legal due diligence.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Much Does Land Surveying Cost in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Fees may depend on site size, location, terrain, survey type, complexity, accessibility,
+                      required detail, technical requirements, documentation, and the number of site visits. Share
+                      your site and survey requirements with our team for a project-specific quotation.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Long Does a Land Survey Take in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Duration depends on the site size, survey type, terrain, access, project requirements, data
+                      needs, processing, documentation, and applicable professional requirements. The appropriate
+                      programme can be discussed after reviewing the specific brief.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>When Should You Conduct a Land Survey?</h2>
+                    <p className={styles.bodyText}>
+                      Surveying may be useful before buying or developing land, before architectural design, before
+                      construction or site planning, during construction, before redevelopment, when site information
+                      is outdated, or when boundaries and dimensions require professional assessment. Informal site
+                      measurement does not necessarily meet the needs of a project-specific survey scope.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {landSurveyingFaq.map((item, index) => (
+                        <details key={`${item.q}-${index}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Land Surveying Requirements</h2>
+                    <p className={styles.bodyText}>
+                      Share your site location, intended use, available information, survey purpose, and current
+                      project stage. Our team will review the appropriate survey scope and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request land surveying support</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isFeasibilityStudiesPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Feasibility Studies by Building Practice Ltd</h2>
@@ -6435,7 +6772,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isFeasibilityStudiesPage && !isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isLandSurveyingPage && !isFeasibilityStudiesPage && !isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -6721,7 +7058,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               <div className={styles.ctaCard}>
                 <h3>
-                  {isFeasibilityStudiesPage
+                  {isLandSurveyingPage
+                    ? "Discuss Your Land Surveying Requirements"
+                    : isFeasibilityStudiesPage
                     ? "Discuss Your Feasibility Study Requirements"
                     : isConstructionSupervisionPage
                     ? "Discuss Your Construction Supervision Needs"
@@ -6760,7 +7099,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isFeasibilityStudiesPage
+                  {isLandSurveyingPage
+                    ? "Tell us about your site location, intended use, available information, survey purpose, and project stage, and our team will guide you on the appropriate scope."
+                    : isFeasibilityStudiesPage
                     ? "Tell us about your proposed site or project, objectives, available information, and project stage, and our team will guide you on the appropriate feasibility scope."
                     : isConstructionSupervisionPage
                     ? "Tell us about your project type, location, current stage, available drawings, contractor arrangement, and oversight needs, and our team will guide you on the appropriate scope."
@@ -6800,7 +7141,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -6888,7 +7229,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isFeasibilityStudiesPage ? (
+                  {isLandSurveyingPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/site-planning-landscape" className="tag tag--outline tag--sm">
+                        <i className="bx bx-leaf" aria-hidden="true" /> Site Planning &amp; Landscape Design
+                      </Link>
+                      <Link href="/services/feasibility-studies" className="tag tag--outline tag--sm">
+                        <i className="bx bx-analyse" aria-hidden="true" /> Feasibility Studies
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-supervision" className="tag tag--outline tag--sm">
+                        <i className="bx bx-user-check" aria-hidden="true" /> Construction Supervision
+                      </Link>
+                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isFeasibilityStudiesPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
