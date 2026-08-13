@@ -39,6 +39,10 @@ const GREEN_BUILDING_ADVISORY_SLUG = "green-building-advisory";
 const GREEN_BUILDING_ADVISORY_TITLE = "Green Building Advisory Services in Lagos, Nigeria";
 const GREEN_BUILDING_ADVISORY_DESCRIPTION =
   "Building Practice Ltd provides green building advisory in Lagos, including sustainable design, energy efficiency, resource planning, and LEED or EDGE documentation support.";
+const REAL_ESTATE_DEVELOPMENT_SLUG = "real-estate-development";
+const REAL_ESTATE_DEVELOPMENT_TITLE = "Real Estate Development Services in Lagos, Nigeria";
+const REAL_ESTATE_DEVELOPMENT_DESCRIPTION =
+  "Building Practice Ltd supports real estate development in Lagos through feasibility, property planning, architectural design, construction, project management, and development coordination.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -52,6 +56,44 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === REAL_ESTATE_DEVELOPMENT_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: REAL_ESTATE_DEVELOPMENT_TITLE,
+      description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
+      keywords: [
+        "real estate development service firms in Lagos, Nigeria",
+        "real estate development firms in Lagos",
+        "real estate development companies in Lagos",
+        "real estate developers in Lagos",
+        "property development services in Lagos",
+        "real estate development consultants Lagos",
+        "property development consultants Lagos",
+        "residential property development Lagos",
+        "commercial property development Lagos",
+        "mixed-use development Lagos",
+        "real estate development Nigeria",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: REAL_ESTATE_DEVELOPMENT_TITLE,
+        description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: REAL_ESTATE_DEVELOPMENT_TITLE,
+        description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === GREEN_BUILDING_ADVISORY_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -353,6 +395,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isConstructionConsultationPage = slug === CONSTRUCTION_CONSULTATION_SLUG;
   const isUrbanDevelopmentPage = slug === URBAN_DEVELOPMENT_SLUG;
   const isGreenBuildingAdvisoryPage = slug === GREEN_BUILDING_ADVISORY_SLUG;
+  const isRealEstateDevelopmentPage = slug === REAL_ESTATE_DEVELOPMENT_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -583,7 +626,82 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isGreenBuildingAdvisoryPage
+  const realEstateDevelopmentFaq = [
+    ...service.faq,
+    {
+      q: "What is real estate development?",
+      a: "Real estate development is the coordinated process of evaluating a property opportunity, defining a development brief, planning and designing the scheme, coordinating approvals, and delivering the resulting project where the required services are engaged.",
+    },
+    {
+      q: "Does Building Practice Ltd provide real estate development services in Lagos?",
+      a: "Yes. Building Practice Ltd supports development feasibility, property planning, architectural design, construction, project management, and coordination for suitable projects in Lagos and elsewhere in Nigeria.",
+    },
+    {
+      q: "What types of property developments can you help plan?",
+      a: "We can support planning and related delivery services for residential developments, commercial property, mixed-use environments, and institutional or other building projects where the brief matches our capabilities.",
+    },
+    {
+      q: "What factors affect property development costs in Lagos?",
+      a: "Costs depend on location, site conditions, development type, project size, design complexity, materials, labour, infrastructure, utilities, approvals, duration, and the required finishes and specifications.",
+    },
+    {
+      q: "Can Building Practice Ltd manage construction as part of a development project?",
+      a: "Where the project scope is suitable, our building construction, construction management, and project management services can support delivery alongside development planning and design coordination.",
+    },
+    {
+      q: "How do I start a property development project in Lagos?",
+      a: "Begin with a project brief covering the site, intended use, development objectives, current documentation, and project stage. Our team can then advise on appropriate feasibility, planning, design, and delivery next steps.",
+    },
+  ];
+
+  const servicePageJsonLd = isRealEstateDevelopmentPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: REAL_ESTATE_DEVELOPMENT_TITLE,
+            description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Real Estate Development Services",
+            description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "Real Estate Development",
+              "Property Development Planning",
+              "Development Feasibility",
+              "Architectural Design Coordination",
+              "Building Construction",
+              "Construction Management",
+              "Project Management",
+              "Development Coordination",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Real Estate Development", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isGreenBuildingAdvisoryPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -1052,7 +1170,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isGreenBuildingAdvisoryPage
+              isRealEstateDevelopmentPage
+                ? "Real estate development planning and property construction project"
+                : isGreenBuildingAdvisoryPage
                 ? "Energy-efficient building designed with sustainable features"
                 : isUrbanDevelopmentPage
                 ? "Master-planned urban development concept in Lagos, Nigeria"
@@ -1075,14 +1195,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isGreenBuildingAdvisoryPage
+                {isRealEstateDevelopmentPage
+                  ? "Real Estate Development"
+                  : isGreenBuildingAdvisoryPage
                   ? "Green Building Advisory"
                   : isUrbanDevelopmentPage
                   ? "Urban Development"
@@ -1106,7 +1228,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isGreenBuildingAdvisoryPage
+            {isRealEstateDevelopmentPage
+              ? "Real Estate Development Services in Lagos, Nigeria"
+              : isGreenBuildingAdvisoryPage
               ? "Green Building Advisory Services in Lagos, Nigeria"
               : isUrbanDevelopmentPage
               ? "Urban Development Services in Lagos, Nigeria"
@@ -1125,7 +1249,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isGreenBuildingAdvisoryPage
+            {isRealEstateDevelopmentPage
+              ? "We support development feasibility, property planning, architectural design, construction, project management, and development coordination for projects in Lagos and across Nigeria."
+              : isGreenBuildingAdvisoryPage
               ? "We provide sustainable building design guidance, energy efficiency planning, resource efficiency advice, and green certification support for projects in Lagos and across Nigeria."
               : isUrbanDevelopmentPage
               ? "We provide master planning, urban design, land-use planning, infrastructure integration, and redevelopment strategy for development projects in Lagos and across Nigeria."
@@ -1150,7 +1276,231 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isGreenBuildingAdvisoryPage ? (
+              {isRealEstateDevelopmentPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Real Estate Development Services</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd supports property owners, developers, businesses, institutions, and other
+                      organizations planning residential, commercial, mixed-use, and related building developments in
+                      Lagos and across Nigeria. Our role is to connect development objectives with feasibility,
+                      planning, design, construction, and project delivery decisions.
+                    </p>
+                    <p className={styles.bodyText}>
+                      For clients comparing real estate development firms in Lagos, this service focuses on the parts of
+                      development the practice can evidence through its service cluster: feasibility studies, property
+                      planning, architectural design, construction, project management, construction management, and
+                      coordination. It does not present land brokerage, financing, sales, or leasing as services without
+                      separate confirmation.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your development project</Link>
+                      <Link href="/projects">View our projects</Link>
+                      <Link href="/about">Learn about Building Practice Ltd</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is Real Estate Development?</h2>
+                    <p className={styles.bodyText}>
+                      Real estate development is the coordinated process of evaluating a property opportunity, defining
+                      a development brief, considering site and planning constraints, developing the design, coordinating
+                      approvals, and delivering a usable property through construction and project management where those
+                      services are engaged.
+                    </p>
+                    <p className={styles.bodyText}>
+                      The broader industry process may also involve land acquisition, financing, valuation, sales, or
+                      leasing. Those activities are not represented here as Building Practice Ltd services unless confirmed
+                      separately; this page concentrates on the planning, design, construction, and coordination support
+                      evidenced in the website.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Real Estate Development Services</h2>
+                    <h3>Development Feasibility and Site Assessment</h3>
+                    <p className={styles.bodyText}>
+                      Feasibility work can help clarify development objectives, site potential, land-use considerations,
+                      constraints, preliminary cost considerations, project risks, and the information needed before a
+                      property development brief moves into detailed planning. This is development feasibility support,
+                      not a promise of valuation, profitability, or investment returns.
+                    </p>
+                    <h3>Property Development Planning</h3>
+                    <p className={styles.bodyText}>
+                      We help translate the intended use of a site into a clearer development strategy, project scope,
+                      spatial concept, planning direction, and potential phasing approach. Residential, commercial, and
+                      mixed-use development planning can be considered where the project brief is suitable.
+                    </p>
+                    <h3>Architectural Design and Development Planning</h3>
+                    <p className={styles.bodyText}>
+                      Architectural concepts, building layouts, design coordination, and technical documentation form the
+                      building-level part of a development. See our <Link href="/services/architectural-design">architectural design services</Link> for the detailed design scope.
+                    </p>
+                    <h3>Construction and Project Delivery</h3>
+                    <p className={styles.bodyText}>
+                      Once a development is planned and documented, our <Link href="/services/building-construction">building construction services</Link> can support physical execution. <Link href="/services/construction-management">Construction management</Link> and <Link href="/services/project-management">project management</Link> provide related coordination, oversight, scheduling, reporting, and delivery controls.
+                    </p>
+                    <h3>Regulatory and Approval Coordination</h3>
+                    <p className={styles.bodyText}>
+                      We can support planning documentation and coordination around relevant approval requirements where
+                      the project scope aligns. Approvals remain the responsibility of the appropriate authorities, and
+                      no approval outcome is guaranteed.
+                    </p>
+                    <h3>Development Coordination</h3>
+                    <p className={styles.bodyText}>
+                      Development planning benefits from coordination between architects, engineers, contractors,
+                      consultants, suppliers, and stakeholders. Our related project and construction services help keep
+                      design intent, scope, sequence, and delivery decisions connected.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Development Planning and Delivery Scope</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.filter((feature) => !["Land acquisition and feasibility analysis", "Project financing and investment advisory", "Sales, leasing, and marketing services", "Investor liaison and returns optimization"].includes(feature)).map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Real Estate Development Process</h2>
+                      <div className={styles.processList}>
+                        {[
+                          { title: "Consultation and Project Brief", desc: "Clarify the site, intended use, development objectives, current documentation, and project stage." },
+                          { title: "Feasibility Study and Site Assessment", desc: "Review site potential, constraints, planning context, preliminary costs, and development risks." },
+                          { title: "Development Planning and Design", desc: "Shape the development strategy, design direction, layouts, documentation, and coordination requirements." },
+                          { title: "Approvals and Documentation", desc: "Prepare and coordinate relevant technical and planning documentation; final approvals remain with the authorities." },
+                          { title: "Construction and Project Execution", desc: "Connect the approved development plan to construction, project management, and construction management support where engaged." },
+                          { title: "Completion and Handover", desc: "Coordinate completion activities, documentation, and handover requirements for the delivered project scope." },
+                        ].map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Types of Real Estate Developments</h2>
+                    <h3>Residential Developments</h3>
+                    <p className={styles.bodyText}>We provide development planning and related services for homes, apartments, duplexes, housing estates, and residential communities where the brief matches our capabilities.</p>
+                    <h3>Commercial Developments</h3>
+                    <p className={styles.bodyText}>Commercial property planning can include offices, retail spaces, business premises, and other commercial building projects supported by the relevant design and delivery services.</p>
+                    <h3>Mixed-Use Developments</h3>
+                    <p className={styles.bodyText}>Mixed-use planning considers how residential, office, retail, and shared functions can be coordinated within one development concept.</p>
+                    <h3>Institutional and Related Developments</h3>
+                    <p className={styles.bodyText}>Institutional, hospitality, industrial, and logistics contexts can be considered where they align with the project scope and the practice&apos;s documented architectural, construction, and management capabilities.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Real Estate Development in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Property development in Lagos requires attention to location, access, drainage, utilities,
+                      infrastructure, planning requirements, density, site conditions, and the relationship between
+                      buildings and the surrounding urban context. Our development approach keeps these practical factors
+                      visible from feasibility through delivery coordination.
+                    </p>
+                    <p className={styles.bodyText}>
+                      For larger land-use and infrastructure questions, our <Link href="/services/urban-development">urban development services</Link> address the master-planning context. For sustainability objectives, see our <Link href="/services/green-building-advisory">green building advisory</Link> service.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Factors Affecting Real Estate Development Costs in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Development costs vary by land and location, project size, development type, design complexity,
+                      construction materials, labour, infrastructure, utilities, approvals, site conditions, project
+                      duration, and finishes or specifications. A project-specific brief is required before any cost
+                      estimate can be responsibly prepared.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Common Challenges in Real Estate Development</h2>
+                    <p className={styles.bodyText}>
+                      Common challenges include inadequate feasibility analysis, unclear development objectives,
+                      unrealistic budgets, approval delays, poor contractor coordination, weak project planning,
+                      construction cost changes, infrastructure constraints, and quality-control gaps. Professional
+                      feasibility, design coordination, project management, and construction management can help identify
+                      and reduce these risks, but no planning process removes every project risk.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Professional Development Planning Adds Value</h2>
+                    <p className={styles.bodyText}>
+                      Clear development planning supports better decisions, clearer scope, earlier risk identification,
+                      coordinated design, more informed construction oversight, efficient resource allocation, and
+                      long-term project functionality. It can also help align a scheme with intended users and the
+                      practical conditions of its location without guaranteeing profitability, sales, rental income, or
+                      investment returns.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Related Real Estate and Construction Services</h2>
+                    <p className={styles.bodyText}>
+                      Explore our <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/construction-management">construction management services</Link>, <Link href="/services/project-management">project management services</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, and <Link href="/services/interior-design">interior design services</Link> for connected development requirements.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/projects">View our project portfolio</Link>
+                      <Link href="/team">Meet the team</Link>
+                      <Link href="/blog">Read development insights</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {realEstateDevelopmentFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Real Estate Development Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your site, intended use, development objectives, available documentation, and current
+                      project stage. Our team will help identify the appropriate feasibility, planning, design, and
+                      delivery next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request a development consultation</Link>
+                      <Link href="/projects">View our projects</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isGreenBuildingAdvisoryPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Sustainable Building Solutions by Building Practice Ltd</h2>
@@ -2679,7 +3029,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -2837,9 +3187,32 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
+              {isRealEstateDevelopmentPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Service Location</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Planning</div>
+                    <div className={styles.statLabel}>Feasibility and Development Strategy</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Delivery</div>
+                    <div className={styles.statLabel}>Design, Construction, and Coordination</div>
+                  </div>
+                </div>
+              )}
+
               <div className={styles.ctaCard}>
                 <h3>
-                  {isGreenBuildingAdvisoryPage
+                  {isRealEstateDevelopmentPage
+                    ? "Discuss Your Real Estate Development Project"
+                    : isGreenBuildingAdvisoryPage
                     ? "Discuss Your Green Building Project"
                     : isUrbanDevelopmentPage
                     ? "Discuss Your Development Project"
@@ -2856,7 +3229,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isGreenBuildingAdvisoryPage
+                  {isRealEstateDevelopmentPage
+                    ? "Tell us about your site, intended use, development objectives, and current project stage, and our team will guide you on practical next steps."
+                    : isGreenBuildingAdvisoryPage
                     ? "Tell us about your project type, site, sustainability objectives, and current stage, and our team will guide you on practical next steps."
                     : isUrbanDevelopmentPage
                     ? "Tell us about your site, development goals, location, and current project stage, and our team will guide you on practical next steps."
@@ -2874,7 +3249,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -2922,11 +3297,50 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <i className="bx bx-image" aria-hidden="true" />
                   </Link>
                 )}
+                {isRealEstateDevelopmentPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Our Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isGreenBuildingAdvisoryPage ? (
+                  {isRealEstateDevelopmentPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-city" aria-hidden="true" /> Urban Development
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/green-building-advisory" className="tag tag--outline tag--sm">
+                        <i className="bx bx-leaf" aria-hidden="true" /> Green Building Advisory
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/about" className="tag tag--outline tag--sm">
+                        <i className="bx bx-info-circle" aria-hidden="true" /> About the Studio
+                      </Link>
+                    </>
+                  ) : isGreenBuildingAdvisoryPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
