@@ -71,6 +71,10 @@ const SITE_PLANNING_LANDSCAPE_SLUG = "site-planning-landscape";
 const SITE_PLANNING_LANDSCAPE_TITLE = "Site Planning & Landscape Design in Lagos, Nigeria";
 const SITE_PLANNING_LANDSCAPE_DESCRIPTION =
   "Looking for site planning and landscape design services in Lagos? Building Practice Ltd plans functional site layouts, access, outdoor spaces, planting, and hardscape for suitable developments.";
+const BUILDING_PERMITS_SLUG = "building-permits";
+const BUILDING_PERMITS_TITLE = "Building Permit & Regulatory Compliance Services in Lagos, Nigeria";
+const BUILDING_PERMITS_DESCRIPTION =
+  "Need building approval in Lagos? Building Practice Ltd supports permit preparation, planning approval documentation, and regulatory compliance coordination for suitable projects.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -84,6 +88,41 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === BUILDING_PERMITS_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: BUILDING_PERMITS_TITLE,
+      description: BUILDING_PERMITS_DESCRIPTION,
+      keywords: [
+        "Building Permit and Regulatory Compliance Services in Lagos",
+        "Building Permit Services in Lagos",
+        "Building Permit Consultants in Lagos",
+        "Building Approval Services in Lagos",
+        "Planning Approval Services in Lagos",
+        "Building Regulatory Compliance Services in Lagos",
+        "building approval Lagos",
+        "building documentation Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: BUILDING_PERMITS_TITLE,
+        description: BUILDING_PERMITS_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: BUILDING_PERMITS_TITLE,
+        description: BUILDING_PERMITS_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === SITE_PLANNING_LANDSCAPE_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -709,6 +748,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isRenovationRemodelingPage = slug === RENOVATION_REMODELING_SLUG;
   const isFacilityManagementPage = slug === FACILITY_MANAGEMENT_SLUG;
   const isSitePlanningLandscapePage = slug === SITE_PLANNING_LANDSCAPE_SLUG;
+  const isBuildingPermitsPage = slug === BUILDING_PERMITS_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -1180,7 +1220,75 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isSitePlanningLandscapePage
+  const buildingPermitsFaq = [
+    {
+      q: "What is a building permit?",
+      a: "A building permit or approval generally records that a development proposal has been reviewed through an applicable approval process. The exact role, requirements, and terminology can vary by project and authority.",
+    },
+    {
+      q: "Do I need building approval before construction in Lagos?",
+      a: "Applicable approvals should be addressed before construction begins. Requirements depend on the project, location, land use, scale, and the authority involved, so they should be confirmed for the specific development.",
+    },
+    {
+      q: "Can Building Practice Ltd help with building approval documentation?",
+      a: "Our documented scope includes building permit application preparation, regulatory requirement analysis, planning approval support, and documentation and filing management for suitable project briefs.",
+    },
+    {
+      q: "How much does a building permit cost in Lagos?",
+      a: "Total costs can depend on project type, development size, location, applicable statutory charges, professional fees, documentation requirements, specialist consultants, and project complexity. Current charges should be confirmed with the applicable authority.",
+    },
+    {
+      q: "How long does building approval take in Lagos?",
+      a: "Timelines vary with project complexity, documentation completeness, authority review, requested revisions, required approvals, and applicable procedures. We do not publish fixed approval timelines or guarantee an outcome.",
+    },
+    {
+      q: "Can approval requirements vary by project?",
+      a: "Yes. Requirements can vary according to the development proposal, project location, land use, scale, building characteristics, and the applicable authority. Confirm current requirements before relying on a general checklist.",
+    },
+  ];
+
+  const servicePageJsonLd = isBuildingPermitsPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: BUILDING_PERMITS_TITLE,
+            description: BUILDING_PERMITS_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Building Permit & Regulatory Compliance Services",
+            description: BUILDING_PERMITS_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
+            serviceType: [
+              "Building Permit Application Preparation",
+              "Planning Approval Support",
+              "Regulatory Requirement Analysis",
+              "Building Approval Documentation",
+              "Documentation and Filing Management",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Building Permits & Regulatory Compliance", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isSitePlanningLandscapePage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -2019,7 +2127,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isSitePlanningLandscapePage
+              isBuildingPermitsPage
+                ? "Construction drawings and project documentation under review"
+                : isSitePlanningLandscapePage
                 ? "Residential outdoor space with integrated landscape design"
                 : isFacilityManagementPage
                 ? "Building operations and maintenance at a managed facility"
@@ -2058,14 +2168,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isSitePlanningLandscapePage
+                {isBuildingPermitsPage
+                  ? "Building Permits & Regulatory Compliance"
+                  : isSitePlanningLandscapePage
                   ? "Site Planning & Landscape Design"
                   : isFacilityManagementPage
                   ? "Facility Management"
@@ -2105,7 +2217,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isSitePlanningLandscapePage
+            {isBuildingPermitsPage
+              ? "Building Permit & Regulatory Compliance Services in Lagos, Nigeria"
+              : isSitePlanningLandscapePage
               ? "Site Planning & Landscape Design Services in Lagos, Nigeria"
               : isFacilityManagementPage
               ? "Facility Management Services in Lagos, Nigeria"
@@ -2140,7 +2254,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isSitePlanningLandscapePage
+            {isBuildingPermitsPage
+              ? "We support permit preparation, planning approval documentation, and regulatory compliance coordination for suitable construction and development projects in Lagos."
+              : isSitePlanningLandscapePage
               ? "We plan functional site layouts, circulation, outdoor spaces, planting, hardscape, and landscape details for suitable developments in Lagos."
               : isFacilityManagementPage
               ? "We coordinate maintenance, building operations, inspections, and essential facility services for suitable properties in Lagos."
@@ -2181,7 +2297,187 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isSitePlanningLandscapePage ? (
+              {isBuildingPermitsPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Building Permit and Regulatory Compliance Services</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd supports property owners, homeowners, developers, businesses,
+                      institutions, and project teams preparing for building permits, planning approvals, and
+                      regulatory compliance requirements in Lagos.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope includes building permit application preparation, regulatory requirement
+                      analysis, planning approval support, documentation and filing management, and coordination for
+                      suitable project briefs. The exact requirements, process, and decision remain dependent on the
+                      project and applicable authority.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your building approval requirements</Link>
+                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>What Is a Building Permit?</h2>
+                    <p className={styles.bodyText}>
+                      A building permit or approval generally records that a development proposal has been considered
+                      through an applicable approval process. It can involve project information, drawings,
+                      documentation, and review against relevant requirements. Terminology and requirements vary by
+                      project and authority.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>What Is Building Regulatory Compliance?</h2>
+                    <p className={styles.bodyText}>
+                      Building regulatory compliance concerns how a proposed or ongoing development aligns with
+                      applicable planning requirements, approved information, development controls, and relevant
+                      construction considerations. Our role is professional project and documentation support, not
+                      legal advice or a substitute for confirmation from the applicable authority.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Building Permit Services in Lagos</h2>
+                    <h3>Building Permit Application Preparation</h3>
+                    <p className={styles.bodyText}>We prepare permit-application information for the agreed project scope and help organize the relevant project documentation.</p>
+                    <h3>Regulatory Requirements Assessment</h3>
+                    <p className={styles.bodyText}>We review the available project information and identify regulatory requirements that should be clarified for the applicable approval process.</p>
+                    <h3>Planning Approval Support</h3>
+                    <p className={styles.bodyText}>Our documented service includes planning approval support for suitable development and construction briefs.</p>
+                    <h3>Documentation and Filing Management</h3>
+                    <p className={styles.bodyText}>We coordinate the agreed documentation and filing tasks, recognising that authorities may require further information or revisions during their review.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Building Approval Documentation and Preparation</h2>
+                    <p className={styles.bodyText}>
+                      Consistent project information helps a team prepare for an approval process. Depending on the
+                      project and applicable authority, this can involve architectural and engineering information,
+                      site information, supporting documents, and other consultant inputs. Requirements should always
+                      be confirmed for the particular project rather than assumed from a generic list.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Planning Approval Services in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Planning approval support can connect the development proposal, site planning, land-use
+                      considerations, building design, and supporting documentation. For site-specific layout and
+                      external-space planning, see our <Link href="/services/site-planning-landscape">site planning and landscape design service</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why Building Permits and Approvals Matter</h2>
+                    <p className={styles.bodyText}>
+                      Addressing applicable approvals before construction can support clearer documentation, better
+                      coordination, and a more informed development process. Starting work without the approvals that
+                      apply to a project may create regulatory problems, delays, redesign, additional costs, or
+                      documentation issues depending on the relevant requirements.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Building Permit Requirements in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Requirements can vary according to project type, location, land use, development scale, building
+                      characteristics, and the applicable authority. This page does not provide a definitive statutory
+                      checklist; current requirements should be confirmed directly with the relevant authority before
+                      an application or construction decision is made.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Building Approval Process in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      At a high level, a project team may define the proposal, review site and project information,
+                      prepare relevant drawings and documentation, clarify applicable requirements, submit through the
+                      appropriate process, respond to requested information or revisions, and maintain documentation
+                      for project execution. The exact process depends on the project and applicable authority.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Factors That Can Affect Building Approval</h2>
+                    <p className={styles.bodyText}>
+                      Project location, land use, development type, site conditions, building size, project complexity,
+                      drawing quality, documentation completeness, specialist inputs, and requested revisions can all
+                      affect an approval process. They do not guarantee a particular approval result or timeline.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Much Does a Building Permit Cost in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Total costs may include applicable statutory charges and separate professional service fees.
+                      They can depend on project type, development size, location, documentation needs, specialist
+                      inputs, and complexity. Current authority charges should be verified directly; a project brief
+                      is needed before professional fees can be discussed responsibly.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Long Does Building Approval Take in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Timelines can vary with project complexity, documentation completeness, authority review,
+                      requested revisions, project type, applicable procedures, and required approvals. Building
+                      Practice Ltd does not publish fixed approval timelines or guarantee approval outcomes.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Pre-Construction Compliance and Design Coordination</h2>
+                    <p className={styles.bodyText}>
+                      Addressing approval and compliance considerations before construction helps connect design,
+                      documentation, consultant coordination, and construction readiness. Explore our <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/project-management">project management</Link>, and <Link href="/services/construction-management">construction management services</Link> for related support.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Coordinating Building Approvals with Engineering Design</h2>
+                    <p className={styles.bodyText}>
+                      Building approval documentation may need coordinated inputs from the project disciplines involved.
+                      Our <Link href="/services/structural-engineering">structural engineering and design</Link> and <Link href="/services/mep-coordination">MEP coordination</Link> services address related engineering and building-services coordination; neither this page nor those services claim approval authority.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Building Permit and Compliance Services for Different Project Types</h2>
+                    <p className={styles.bodyText}>
+                      The wider documented service context supports suitable residential, commercial, hospitality,
+                      institutional, and development projects where the brief and available information align. Estate
+                      and larger development briefs may also involve <Link href="/services/real-estate-development">real estate development</Link> or <Link href="/services/urban-development">urban development</Link> planning.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {buildingPermitsFaq.map((item, index) => (
+                        <details key={`${item.q}-${index}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Building Approval Requirements</h2>
+                    <p className={styles.bodyText}>
+                      Share your project type, location, available drawings, current documentation, and project stage.
+                      Our team will review the appropriate support scope and next steps for your brief.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request building permit support</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isSitePlanningLandscapePage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Site Planning &amp; Landscape Design by Building Practice Ltd</h2>
@@ -5486,7 +5782,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -5772,7 +6068,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               <div className={styles.ctaCard}>
                 <h3>
-                  {isSitePlanningLandscapePage
+                  {isBuildingPermitsPage
+                    ? "Discuss Your Building Approval Requirements"
+                    : isSitePlanningLandscapePage
                     ? "Discuss Your Site Planning Project"
                     : isFacilityManagementPage
                     ? "Discuss Your Facility Management Needs"
@@ -5805,7 +6103,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isSitePlanningLandscapePage
+                  {isBuildingPermitsPage
+                    ? "Tell us about your project type, location, available drawings, current documentation, and project stage, and our team will guide you on the appropriate support scope."
+                    : isSitePlanningLandscapePage
                     ? "Tell us about your site, intended use, outdoor-space requirements, available information, and project stage, and our team will guide you on the appropriate scope."
                     : isFacilityManagementPage
                     ? "Tell us about your property type, location, building systems, maintenance concerns, and operational needs, and our team will guide you on the appropriate scope."
@@ -5839,7 +6139,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -5927,7 +6227,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isSitePlanningLandscapePage ? (
+                  {isBuildingPermitsPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/structural-engineering" className="tag tag--outline tag--sm">
+                        <i className="bx bx-layer" aria-hidden="true" /> Structural Engineering
+                      </Link>
+                      <Link href="/services/mep-coordination" className="tag tag--outline tag--sm">
+                        <i className="bx bx-cog" aria-hidden="true" /> MEP Coordination
+                      </Link>
+                      <Link href="/services/site-planning-landscape" className="tag tag--outline tag--sm">
+                        <i className="bx bx-leaf" aria-hidden="true" /> Site Planning &amp; Landscape Design
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isSitePlanningLandscapePage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
