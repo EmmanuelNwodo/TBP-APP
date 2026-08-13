@@ -79,6 +79,10 @@ const CONSTRUCTION_SUPERVISION_SLUG = "construction-supervision";
 const CONSTRUCTION_SUPERVISION_TITLE = "Construction Supervision Services in Lagos, Nigeria";
 const CONSTRUCTION_SUPERVISION_DESCRIPTION =
   "Need construction supervision in Lagos? Building Practice Ltd provides site monitoring, workmanship checks, progress tracking, and construction oversight for suitable projects.";
+const FEASIBILITY_STUDIES_SLUG = "feasibility-studies";
+const FEASIBILITY_STUDIES_TITLE = "Feasibility Study Services in Lagos, Nigeria";
+const FEASIBILITY_STUDIES_DESCRIPTION =
+  "Need a feasibility study in Lagos? Building Practice Ltd provides property, real estate, and construction feasibility analysis to assess project costs, risks, and implementation considerations.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -92,6 +96,41 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === FEASIBILITY_STUDIES_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: FEASIBILITY_STUDIES_TITLE,
+      description: FEASIBILITY_STUDIES_DESCRIPTION,
+      keywords: [
+        "Feasibility Study Services in Lagos",
+        "Feasibility Study Company in Lagos",
+        "Feasibility Study Firms in Lagos",
+        "Feasibility Study Consultants in Lagos",
+        "Property Feasibility Study Lagos",
+        "Real Estate Feasibility Study Lagos",
+        "Construction Feasibility Study Lagos",
+        "Development Feasibility Study Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: FEASIBILITY_STUDIES_TITLE,
+        description: FEASIBILITY_STUDIES_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: FEASIBILITY_STUDIES_TITLE,
+        description: FEASIBILITY_STUDIES_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === CONSTRUCTION_SUPERVISION_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -789,6 +828,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isSitePlanningLandscapePage = slug === SITE_PLANNING_LANDSCAPE_SLUG;
   const isBuildingPermitsPage = slug === BUILDING_PERMITS_SLUG;
   const isConstructionSupervisionPage = slug === CONSTRUCTION_SUPERVISION_SLUG;
+  const isFeasibilityStudiesPage = slug === FEASIBILITY_STUDIES_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -1314,7 +1354,77 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isConstructionSupervisionPage
+  const feasibilityStudiesFaq = [
+    {
+      q: "What is a feasibility study?",
+      a: "A feasibility study evaluates whether a proposed project is practical and potentially viable by reviewing relevant site, market, technical, cost, regulatory, financial, and risk considerations.",
+    },
+    {
+      q: "What does a feasibility study include?",
+      a: "The documented scope includes technical feasibility assessment, financial viability analysis, market demand research, site evaluation, regulatory review, risk assessment, construction cost estimation, and recommendations appropriate to the agreed brief.",
+    },
+    {
+      q: "How much does a feasibility study cost in Lagos?",
+      a: "Fees depend on project size, type, location, complexity, analysis depth, site assessment, market research, financial analysis, technical assessment, regulatory review, and the professionals involved. A project-specific quotation is required.",
+    },
+    {
+      q: "How long does a feasibility study take?",
+      a: "Duration depends on project complexity, available site information, research requirements, technical assessment, financial analysis, regulatory considerations, and the agreed scope. We do not publish a universal timeline.",
+    },
+    {
+      q: "Can a feasibility study assess construction costs?",
+      a: "Yes. Construction cost estimation is included in the documented feasibility scope. The level of cost analysis depends on the project information and agreed assignment; it is not a guarantee of final construction cost.",
+    },
+    {
+      q: "Does a feasibility study guarantee a project will be profitable?",
+      a: "No. A feasibility study can identify assumptions, costs, risks, market considerations, and development options, but future market conditions, approvals, costs, financing, and project outcomes cannot be guaranteed.",
+    },
+  ];
+
+  const servicePageJsonLd = isFeasibilityStudiesPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: FEASIBILITY_STUDIES_TITLE,
+            description: FEASIBILITY_STUDIES_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Feasibility Study Services",
+            description: FEASIBILITY_STUDIES_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
+            serviceType: [
+              "Technical Feasibility Assessment",
+              "Financial Viability Analysis",
+              "Market Demand Research",
+              "Site Evaluation",
+              "Regulatory Compliance Review",
+              "Risk Assessment",
+              "Construction Cost Estimation",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Feasibility Studies", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isConstructionSupervisionPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -2237,7 +2347,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isConstructionSupervisionPage
+              isFeasibilityStudiesPage
+                ? "Property development site and project planning review"
+                : isConstructionSupervisionPage
                 ? "Construction work being monitored on a building site"
                 : isBuildingPermitsPage
                 ? "Construction drawings and project documentation under review"
@@ -2280,14 +2392,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isConstructionSupervisionPage
+                {isFeasibilityStudiesPage
+                  ? "Feasibility Studies"
+                  : isConstructionSupervisionPage
                   ? "Construction Supervision"
                   : isBuildingPermitsPage
                   ? "Building Permits & Regulatory Compliance"
@@ -2331,7 +2445,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isConstructionSupervisionPage
+            {isFeasibilityStudiesPage
+              ? "Feasibility Study Services in Lagos, Nigeria"
+              : isConstructionSupervisionPage
               ? "Construction Supervision Services in Lagos, Nigeria"
               : isBuildingPermitsPage
               ? "Building Permit & Regulatory Compliance Services in Lagos, Nigeria"
@@ -2370,7 +2486,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isConstructionSupervisionPage
+            {isFeasibilityStudiesPage
+              ? "We assess site, market, technical, cost, regulatory, and risk considerations for suitable property and construction projects in Lagos."
+              : isConstructionSupervisionPage
               ? "We provide construction site monitoring, workmanship checks, progress tracking, and practical oversight for suitable building projects in Lagos."
               : isBuildingPermitsPage
               ? "We support permit preparation, planning approval documentation, and regulatory compliance coordination for suitable construction and development projects in Lagos."
@@ -2415,7 +2533,239 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isConstructionSupervisionPage ? (
+              {isFeasibilityStudiesPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Feasibility Studies by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides feasibility study services in Lagos for developers, investors,
+                      landowners, homeowners, businesses, institutions, and organizations considering suitable
+                      property, real estate, construction, and development opportunities.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope includes technical feasibility assessment, financial viability analysis,
+                      market demand research, site evaluation and selection, regulatory compliance review,
+                      environmental impact screening, risk assessment, construction cost estimation, cash flow
+                      analysis, and development recommendations where appropriate to the agreed brief. A feasibility
+                      study supports informed decisions; it does not guarantee approvals, financing, demand, profits,
+                      or project outcomes.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request a feasibility study</Link>
+                      <Link href="/services/real-estate-development">Explore real estate development services</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>What Is a Feasibility Study?</h2>
+                    <p className={styles.bodyText}>
+                      A feasibility study evaluates whether a proposed project is practical and potentially viable
+                      based on available information. It can consider the site, scope, market demand, technical
+                      requirements, costs, financial assumptions, regulatory considerations, risks, and implementation
+                      constraints before significant resources are committed.
+                    </p>
+                    <p className={styles.bodyText}>
+                      It is distinct from architectural design, property valuation, project management, construction
+                      management, or an investment guarantee. A feasibility study clarifies assumptions and options;
+                      it cannot predict future market or financial results with certainty.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Feasibility Study Services in Lagos</h2>
+                    <h3>Property and Real Estate Development Feasibility</h3>
+                    <p className={styles.bodyText}>We assess suitable property and development opportunities by reviewing proposed use, site context, development potential, demand, costs, risks, and implementation considerations within the agreed scope.</p>
+                    <h3>Construction Project Feasibility</h3>
+                    <p className={styles.bodyText}>Construction feasibility can consider the project requirements, site information, scope, estimated costs, infrastructure needs, technical constraints, materials, and delivery considerations relevant to the brief.</p>
+                    <h3>Site, Market, and Demand Assessment</h3>
+                    <p className={styles.bodyText}>The documented scope includes site evaluation and selection alongside market demand research. Findings depend on the information available and do not guarantee demand, occupancy, sales, or market performance.</p>
+                    <h3>Financial, Cost, and Risk Analysis</h3>
+                    <p className={styles.bodyText}>Financial viability analysis, cash flow analysis, construction cost estimation, and risk assessment can help project teams review assumptions, cost pressures, and development options without promising returns.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Property Feasibility Studies in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      A property feasibility study can help a client assess proposed use, location, development
+                      potential, project scale, market assumptions, estimated costs, regulatory considerations, and
+                      risk before moving further into a project. It is not legal due diligence, title verification, or
+                      a valuation unless those services are separately confirmed.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Real Estate Development Feasibility Studies</h2>
+                    <p className={styles.bodyText}>
+                      Developers can use feasibility analysis to review land-development opportunities, proposed
+                      development type, target market, scale, costs, revenue assumptions, planning considerations,
+                      and delivery risks before a development proceeds. See our <Link href="/services/real-estate-development">real estate development service</Link> for broader planning and delivery support.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Site and Land Feasibility Assessment</h2>
+                    <p className={styles.bodyText}>
+                      Depending on the brief, a site assessment may review location, accessibility, land use, site
+                      characteristics, existing infrastructure, utilities, drainage considerations, surrounding
+                      development, and apparent development constraints. Specialist surveys, legal due diligence, or
+                      engineering investigations should be provided by appropriately qualified professionals where
+                      required.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our <Link href="/services/site-planning-landscape">site planning and landscape design service</Link> addresses the detailed organization of a specific site and its external spaces.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Market Feasibility and Demand Analysis</h2>
+                    <p className={styles.bodyText}>
+                      Market analysis can consider target users, demand, competing developments, location
+                      characteristics, market positioning, and property-type assumptions. The analysis should be
+                      interpreted as decision support based on available information, not a prediction or guarantee of
+                      future sales, rent, occupancy, or demand.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Financial Feasibility and Development Cost Analysis</h2>
+                    <p className={styles.bodyText}>
+                      Financial analysis may consider land, construction, professional, approval, infrastructure,
+                      financing, operating, and contingency assumptions where relevant to the assignment. Cash flow
+                      analysis and financial-viability considerations can help clients test project assumptions; they
+                      are not investment advice or guaranteed financial forecasts.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Construction Cost and Budget Feasibility</h2>
+                    <p className={styles.bodyText}>
+                      Early feasibility analysis can help identify approximate cost drivers, scope implications,
+                      materials, labour, professional inputs, infrastructure needs, and potential cost risks. For a
+                      more focused cost scope, see our <Link href="/services/construction-cost-estimation">construction cost estimation services</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Planning, Regulatory and Approval Considerations</h2>
+                    <p className={styles.bodyText}>
+                      Feasibility can be affected by planning requirements, land-use considerations, building
+                      regulations, environmental considerations, permits, approvals, and development restrictions.
+                      Our <Link href="/services/building-permits">building permit and regulatory compliance service</Link> provides related documentation and approval support. Approval decisions remain with the applicable authorities.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Technical Feasibility Assessment</h2>
+                    <p className={styles.bodyText}>
+                      Technical feasibility may consider apparent site constraints, access, infrastructure, utilities,
+                      drainage, construction methods, and engineering requirements. This work can be coordinated with
+                      <Link href="/services/architectural-design"> architectural design</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, and <Link href="/services/mep-coordination">MEP coordination</Link> where those inputs are required.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Project Risk Assessment</h2>
+                    <p className={styles.bodyText}>
+                      Feasibility analysis can help identify risks such as unsuitable sites, unrealistic budgets, weak
+                      demand, regulatory constraints, construction complexity, infrastructure limitations, financing
+                      constraints, market uncertainty, scheduling risks, and unforeseen site conditions. It helps make
+                      risk visible; it cannot eliminate every project risk.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Feasibility Study Process</h2>
+                    <div className={styles.processList}>
+                      {[
+                        { title: "Initial Consultation and Project Brief", desc: "Clarify the proposed project, objectives, available information, intended use, and required level of analysis." },
+                        { title: "Site and Project Assessment", desc: "Review relevant site, project, market, technical, and regulatory information within the agreed scope." },
+                        { title: "Cost, Financial, and Risk Analysis", desc: "Assess project assumptions, cost drivers, financial considerations, and key risks using the available information." },
+                        { title: "Feasibility Findings", desc: "Organize the assessment findings, constraints, assumptions, and potential development options for discussion." },
+                        { title: "Recommendations and Next Steps", desc: "Identify practical next steps, which may include design, cost planning, approvals, or further specialist assessment." },
+                      ].map((step, index) => (
+                        <div key={`${step.title}-${index}`} className={styles.processStep}>
+                          <span className={styles.processNumber}>{index + 1}</span>
+                          <div><h3>{step.title}</h3><p>{step.desc}</p></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why You Need a Feasibility Study Before Starting a Project</h2>
+                    <p className={styles.bodyText}>
+                      A feasibility study can help clients make more informed decisions, identify constraints and
+                      risks, assess development options, understand project requirements, test early cost assumptions,
+                      and avoid committing resources before key questions have been examined. Skipping this work may
+                      leave a project more exposed to unexpected costs, unsuitable strategies, weak demand, planning
+                      issues, infrastructure problems, financing challenges, or construction difficulties.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Feasibility Studies for Developers, Landowners, and Investors</h2>
+                    <p className={styles.bodyText}>
+                      Developers may use feasibility analysis before acquiring land, selecting a development type,
+                      investing in design, seeking financing, or committing to construction. Landowners may use it to
+                      consider land utilization, development options, constraints, infrastructure needs, and project
+                      costs. Investors can use the findings to evaluate assumptions and development risks, not as a
+                      substitute for independent financial, legal, or investment advice.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Feasibility Study vs Other Development Services</h2>
+                    <p className={styles.bodyText}>
+                      Feasibility studies assess whether and how a proposal may be viable. <Link href="/services/architectural-design">Architectural design</Link> develops the building solution; <Link href="/services/project-management">project management</Link> supports project delivery; <Link href="/services/construction-management">construction management</Link> coordinates construction execution; and <Link href="/services/building-construction">building construction</Link> delivers the physical work. These services can connect, but they have different primary roles.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Much Does a Feasibility Study Cost in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Fees depend on project size, type, location, complexity, analysis depth, site assessment,
+                      market research, financial modelling, technical inputs, regulatory review, and the number of
+                      professionals involved. Share your brief for a project-specific quotation rather than relying on
+                      a generic price range.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Long Does a Feasibility Study Take?</h2>
+                    <p className={styles.bodyText}>
+                      Duration depends on project complexity, available site information, research needs, technical
+                      assessment requirements, financial analysis, regulatory considerations, and the agreed scope.
+                      The appropriate programme can be discussed once the project brief is reviewed.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {feasibilityStudiesFaq.map((item, index) => (
+                        <details key={`${item.q}-${index}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Feasibility Study Requirements</h2>
+                    <p className={styles.bodyText}>
+                      Share your proposed site or project, intended use, development objectives, available
+                      information, and current project stage. Our team will review the appropriate feasibility scope
+                      and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request a feasibility study</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isConstructionSupervisionPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Construction Supervision by Building Practice Ltd</h2>
@@ -6085,7 +6435,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isFeasibilityStudiesPage && !isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -6371,7 +6721,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               <div className={styles.ctaCard}>
                 <h3>
-                  {isConstructionSupervisionPage
+                  {isFeasibilityStudiesPage
+                    ? "Discuss Your Feasibility Study Requirements"
+                    : isConstructionSupervisionPage
                     ? "Discuss Your Construction Supervision Needs"
                     : isBuildingPermitsPage
                     ? "Discuss Your Building Approval Requirements"
@@ -6408,7 +6760,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isConstructionSupervisionPage
+                  {isFeasibilityStudiesPage
+                    ? "Tell us about your proposed site or project, objectives, available information, and project stage, and our team will guide you on the appropriate feasibility scope."
+                    : isConstructionSupervisionPage
                     ? "Tell us about your project type, location, current stage, available drawings, contractor arrangement, and oversight needs, and our team will guide you on the appropriate scope."
                     : isBuildingPermitsPage
                     ? "Tell us about your project type, location, available drawings, current documentation, and project stage, and our team will guide you on the appropriate support scope."
@@ -6446,7 +6800,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -6534,7 +6888,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isConstructionSupervisionPage ? (
+                  {isFeasibilityStudiesPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
+                      </Link>
+                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-city" aria-hidden="true" /> Urban Development
+                      </Link>
+                      <Link href="/services/construction-cost-estimation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-calculator" aria-hidden="true" /> Cost Estimation
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/site-planning-landscape" className="tag tag--outline tag--sm">
+                        <i className="bx bx-leaf" aria-hidden="true" /> Site Planning &amp; Landscape Design
+                      </Link>
+                      <Link href="/services/building-permits" className="tag tag--outline tag--sm">
+                        <i className="bx bx-file-find" aria-hidden="true" /> Building Permits &amp; Compliance
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isConstructionSupervisionPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
