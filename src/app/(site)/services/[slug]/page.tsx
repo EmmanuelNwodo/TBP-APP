@@ -31,6 +31,14 @@ const CONSTRUCTION_CONSULTATION_SLUG = "construction-consultation";
 const CONSTRUCTION_CONSULTATION_TITLE = "Construction Consultation Services in Lagos, Nigeria";
 const CONSTRUCTION_CONSULTATION_DESCRIPTION =
   "Construction consultation services in Lagos, Nigeria for planning, cost, contractor, material, and buildability decisions. Get practical advisory support from Building Practice Ltd.";
+const URBAN_DEVELOPMENT_SLUG = "urban-development";
+const URBAN_DEVELOPMENT_TITLE = "Urban Development Services in Lagos, Nigeria";
+const URBAN_DEVELOPMENT_DESCRIPTION =
+  "Building Practice Ltd provides urban development, master planning, urban design, and infrastructure planning services for Lagos and projects across Nigeria.";
+const GREEN_BUILDING_ADVISORY_SLUG = "green-building-advisory";
+const GREEN_BUILDING_ADVISORY_TITLE = "Green Building Advisory Services in Lagos, Nigeria";
+const GREEN_BUILDING_ADVISORY_DESCRIPTION =
+  "Building Practice Ltd provides green building advisory in Lagos, including sustainable design, energy efficiency, resource planning, and LEED or EDGE documentation support.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -44,6 +52,78 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === GREEN_BUILDING_ADVISORY_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: GREEN_BUILDING_ADVISORY_TITLE,
+      description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
+      keywords: [
+        "green building advisory service firms in Lagos, Nigeria",
+        "green building advisory firms in Lagos",
+        "green building advisory services in Lagos",
+        "green building consultants in Lagos",
+        "sustainable building consultants Lagos",
+        "energy efficiency consultants Lagos",
+        "sustainable building design Lagos",
+        "LEED consulting Lagos",
+        "EDGE certification consulting Lagos",
+        "sustainable building materials Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: GREEN_BUILDING_ADVISORY_TITLE,
+        description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: GREEN_BUILDING_ADVISORY_TITLE,
+        description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
+
+  if (slug === URBAN_DEVELOPMENT_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: URBAN_DEVELOPMENT_TITLE,
+      description: URBAN_DEVELOPMENT_DESCRIPTION,
+      keywords: [
+        "urban development service firms in Lagos, Nigeria",
+        "urban development firms in Lagos",
+        "urban development services in Lagos",
+        "urban planning firms Lagos",
+        "master planning services Lagos",
+        "mixed-use development planning Lagos",
+        "infrastructure planning Lagos",
+        "urban redevelopment Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: URBAN_DEVELOPMENT_TITLE,
+        description: URBAN_DEVELOPMENT_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: URBAN_DEVELOPMENT_TITLE,
+        description: URBAN_DEVELOPMENT_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === CONSTRUCTION_CONSULTATION_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -271,6 +351,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isBuildingConstructionPage = slug === BUILDING_CONSTRUCTION_SLUG;
   const isProjectManagementPage = slug === PROJECT_MANAGEMENT_SLUG;
   const isConstructionConsultationPage = slug === CONSTRUCTION_CONSULTATION_SLUG;
+  const isUrbanDevelopmentPage = slug === URBAN_DEVELOPMENT_SLUG;
+  const isGreenBuildingAdvisoryPage = slug === GREEN_BUILDING_ADVISORY_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -457,7 +539,144 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isArchitecturalDesignPage
+  const urbanDevelopmentFaq = [
+    ...service.faq,
+    {
+      q: "Do you provide urban development services in Lagos?",
+      a: "Yes. Building Practice Ltd supports urban development, master planning, urban design, and infrastructure planning briefs in Lagos and elsewhere in Nigeria where the project scope and logistics align.",
+    },
+    {
+      q: "Can you help plan residential estates and mixed-use developments?",
+      a: "Yes. Our urban development service covers estate layouts, land-use planning, mixed-use development concepts, circulation, public spaces, and infrastructure integration.",
+    },
+    {
+      q: "What is the difference between urban development and architectural design?",
+      a: "Urban development focuses on land use, spatial structure, movement, infrastructure, and the relationships between buildings and public systems. Architectural design focuses on the design and documentation of individual buildings.",
+    },
+    {
+      q: "Can you assist with planning approval processes?",
+      a: "We support clients with relevant planning and approval processes and help coordinate the documentation and technical inputs required for a development brief. Final approvals remain with the appropriate authorities.",
+    },
+  ];
+
+  const greenBuildingAdvisoryFaq = [
+    ...service.faq,
+    {
+      q: "What is green building advisory?",
+      a: "Green building advisory is professional guidance on sustainable design, energy and water efficiency, materials, resource use, indoor environmental quality, and the documentation needed to support project sustainability objectives.",
+    },
+    {
+      q: "Do you provide green building advisory services in Lagos?",
+      a: "Yes. Building Practice Ltd supports green building and sustainable design briefs in Lagos and elsewhere in Nigeria where the project scope and logistics align.",
+    },
+    {
+      q: "How can a building respond to Nigerian climate conditions?",
+      a: "A project can consider orientation, solar exposure, shading, natural daylight, natural ventilation, passive cooling, efficient systems, and water management as part of an integrated sustainability strategy.",
+    },
+    {
+      q: "Do you provide LEED and EDGE certification support?",
+      a: "We provide advisory, documentation, and coordination support for green building certification requirements such as LEED and EDGE. Certification decisions and awards remain with the relevant certification bodies.",
+    },
+    {
+      q: "What factors affect the cost of green building advisory?",
+      a: "Scope depends on project size and complexity, sustainability targets, certification requirements, systems and technology, site conditions, location, logistics, and the level of documentation or implementation support required.",
+    },
+  ];
+
+  const servicePageJsonLd = isGreenBuildingAdvisoryPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: GREEN_BUILDING_ADVISORY_TITLE,
+            description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Green Building Advisory Services",
+            description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "Green Building Advisory",
+              "Sustainable Building Design Consultation",
+              "Energy Efficiency Planning",
+              "Green Building Certification Support",
+              "Sustainable Materials Advisory",
+              "Water Efficiency Planning",
+              "Construction Waste Management Advisory",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Green Building Advisory", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isUrbanDevelopmentPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: URBAN_DEVELOPMENT_TITLE,
+            description: URBAN_DEVELOPMENT_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Urban Development Services",
+            description: URBAN_DEVELOPMENT_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "Urban Development",
+              "Master Planning",
+              "Urban Design",
+              "Land Use Planning",
+              "Infrastructure Planning",
+              "Mixed-Use Development Planning",
+              "Urban Renewal",
+              "Urban Redevelopment",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Urban Development", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isArchitecturalDesignPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -833,7 +1052,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isArchitecturalDesignPage
+              isGreenBuildingAdvisoryPage
+                ? "Energy-efficient building designed with sustainable features"
+                : isUrbanDevelopmentPage
+                ? "Master-planned urban development concept in Lagos, Nigeria"
+                : isArchitecturalDesignPage
                 ? "Contemporary architectural design project by The Building Practice in Lagos"
                 : isConstructionManagementPage
                 ? "Construction management project delivery by The Building Practice in Lagos, Nigeria"
@@ -852,14 +1075,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isArchitecturalDesignPage
+                {isGreenBuildingAdvisoryPage
+                  ? "Green Building Advisory"
+                  : isUrbanDevelopmentPage
+                  ? "Urban Development"
+                  : isArchitecturalDesignPage
                   ? "Architectural Design"
                   : isInteriorDesignPage
                   ? "Interior Design"
@@ -879,7 +1106,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isArchitecturalDesignPage
+            {isGreenBuildingAdvisoryPage
+              ? "Green Building Advisory Services in Lagos, Nigeria"
+              : isUrbanDevelopmentPage
+              ? "Urban Development Services in Lagos, Nigeria"
+              : isArchitecturalDesignPage
               ? "Architectural Design Services in Lagos, Nigeria"
               : isConstructionManagementPage
               ? "Construction Management Services in Lagos, Nigeria"
@@ -894,7 +1125,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isArchitecturalDesignPage
+            {isGreenBuildingAdvisoryPage
+              ? "We provide sustainable building design guidance, energy efficiency planning, resource efficiency advice, and green certification support for projects in Lagos and across Nigeria."
+              : isUrbanDevelopmentPage
+              ? "We provide master planning, urban design, land-use planning, infrastructure integration, and redevelopment strategy for development projects in Lagos and across Nigeria."
+              : isArchitecturalDesignPage
               ? "We provide architectural design for residential, commercial, hospitality, and institutional projects with context-led planning and technical documentation."
               : isConstructionManagementPage
               ? "We coordinate planning, scheduling, site activities, cost and quality monitoring, and project reporting for construction projects in Lagos and across Nigeria."
@@ -915,7 +1150,348 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isArchitecturalDesignPage ? (
+              {isGreenBuildingAdvisoryPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Sustainable Building Solutions by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides green building advisory services for developers, homeowners,
+                      corporate organizations, institutions, investors, and public-sector projects where sustainability
+                      objectives form part of the brief. We help clients make practical decisions about environmental
+                      performance, occupant comfort, energy, water, materials, and resource use.
+                    </p>
+                    <p className={styles.bodyText}>
+                      For clients comparing green building advisory firms in Lagos, our role is to help integrate
+                      sustainability into design and construction planning. This is building-level advisory work focused
+                      on energy, water, materials, indoor environmental quality, and certification support, rather than
+                      urban-scale master planning or construction execution alone.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your green building project</Link>
+                      <Link href="/projects">View our projects</Link>
+                      <Link href="/about#certifications">Review our credentials</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is Green Building Advisory?</h2>
+                    <p className={styles.bodyText}>
+                      Green building advisory is professional guidance for planning and delivering buildings with
+                      considered environmental performance, energy and water efficiency, occupant comfort, resource
+                      efficiency, and long-term operational needs. The right strategy depends on the project brief,
+                      site, climate, systems, materials, budget, and sustainability objectives.
+                    </p>
+                    <p className={styles.bodyText}>
+                      In Lagos and other Nigerian contexts, this may include practical responses to heat, solar
+                      exposure, cooling demand, daylight, natural ventilation, water use, and material availability
+                      without relying on unsupported performance guarantees.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Green Building Advisory Services</h2>
+                    <h3>Sustainable Building Design Consultation</h3>
+                    <p className={styles.bodyText}>
+                      We advise on passive design, climate-responsive architecture, building orientation where
+                      applicable, solar exposure, shading, natural daylight, natural ventilation, passive cooling, and
+                      site-responsive design. Sustainability can be considered alongside the project&apos;s architectural
+                      brief from the early planning stage.
+                    </p>
+                    <h3>Energy Efficiency Planning</h3>
+                    <p className={styles.bodyText}>
+                      Our advisory scope can include energy efficiency planning and modeling, solar integration
+                      recommendations, efficient HVAC strategies, efficient lighting, and coordination of building
+                      systems with the project&apos;s performance objectives. We do not promise a fixed energy saving without
+                      project-specific evidence.
+                    </p>
+                    <h3>Green Building Certification Support</h3>
+                    <p className={styles.bodyText}>
+                      We provide advisory, documentation, and design coordination support for green building
+                      certification requirements such as LEED and EDGE. Building Practice Ltd does not award those
+                      certifications; the relevant certification bodies make the certification decisions.
+                    </p>
+                    <h3>Sustainable Materials and Resource Efficiency</h3>
+                    <p className={styles.bodyText}>
+                      We help project teams consider locally sourced, lower-impact, and recycled materials where
+                      appropriate, alongside durability, maintenance, availability, and resource efficiency. We also
+                      advise on construction waste reduction and practical material planning.
+                    </p>
+                    <h3>Water Efficiency and Waste Management</h3>
+                    <p className={styles.bodyText}>
+                      Our guidance can cover water conservation, rainwater harvesting, greywater systems, construction
+                      waste management, and resource planning as part of a broader sustainable building strategy.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>What Our Green Building Advisory Covers</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Green Building Advisory Process</h2>
+                      <div className={styles.processList}>
+                        {service.process.map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Green Building Advisory in Lagos and Nigeria</h2>
+                    <p className={styles.bodyText}>
+                      Sustainable building design in Lagos needs to respond to local climate conditions, solar exposure,
+                      ventilation, cooling demand, water use, maintenance, and the practical availability of materials
+                      and systems. Our advisory approach keeps these considerations connected to the project&apos;s design
+                      and delivery decisions.
+                    </p>
+                    <p className={styles.bodyText}>
+                      When sustainability advice forms part of a wider development, our <Link href="/services/urban-development">urban development services</Link> address the larger land-use, infrastructure, and planning context. For building-level design, see our <Link href="/services/architectural-design">architectural design services</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Green Building Cost Considerations</h2>
+                    <p className={styles.bodyText}>
+                      Advisory scope and project cost depend on the size and complexity of the project, certification
+                      requirements, sustainability targets, technology and system requirements, site conditions,
+                      location, logistics, and the level of documentation or implementation support required. A project
+                      brief is needed before costs can be discussed responsibly.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Related Design and Delivery Services</h2>
+                    <p className={styles.bodyText}>
+                      Green building advisory can complement architectural design, construction planning, and delivery
+                      services without replacing them. Explore our <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/construction-management">construction management services</Link>, <Link href="/services/project-management">project management services</Link>, and <Link href="/services/construction-consultation">construction consultation</Link> for related project needs.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/services/interior-design">Explore interior design services</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                      <Link href="/blog">Read sustainability insights</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {greenBuildingAdvisoryFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Green Building Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your project type, site location, sustainability objectives, and current stage with our
+                      team. We will help identify the appropriate advisory and coordination next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request a green building consultation</Link>
+                      <Link href="/services">Explore all services</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isUrbanDevelopmentPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Urban Development Services</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides urban development services for developers, landowners, public-sector
+                      bodies, institutions, and organizations planning coordinated growth in Lagos and across Nigeria.
+                      We help translate development goals into practical spatial strategies covering land use, movement,
+                      infrastructure, public space, and phased delivery.
+                    </p>
+                    <p className={styles.bodyText}>
+                      For clients comparing urban development firms in Lagos, our work is centered on master planning,
+                      urban design, estate planning, mixed-use development, infrastructure integration, and the renewal
+                      of underused areas. The focus is the development framework around buildings, rather than the
+                      architectural design of one building alone.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your development project</Link>
+                      <Link href="/projects">View our projects</Link>
+                      <Link href="/about">Learn about Building Practice Ltd</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Our Urban Development Services</h2>
+                    <h3>Master Planning and Urban Design</h3>
+                    <p className={styles.bodyText}>
+                      We develop structured frameworks for land-use planning, zoning, residential and mixed-use layouts,
+                      road networks, circulation, public spaces, community planning, and infrastructure integration.
+                      These decisions establish how a development works as a connected place.
+                    </p>
+                    <h3>Residential Estate Development</h3>
+                    <p className={styles.bodyText}>
+                      Our estate master planning work supports housing layouts, access, utilities, recreation, landscape
+                      structure, and security planning for residential communities and gated estates.
+                    </p>
+                    <h3>Commercial and Mixed-Use Development</h3>
+                    <p className={styles.bodyText}>
+                      We plan commercial districts, business parks, retail complexes, and mixed-use environments where
+                      residential, office, retail, and community functions need to work together. The objective is a
+                      functional layout that supports long-term commercial viability without promising financial returns.
+                    </p>
+                    <h3>Infrastructure Planning</h3>
+                    <p className={styles.bodyText}>
+                      Infrastructure planning may include roads and transportation networks, drainage and stormwater
+                      systems, power and utilities, water supply, sewage, and smart-city infrastructure integration.
+                      These systems are considered alongside land use and development phasing.
+                    </p>
+                    <h3>Urban Renewal and Redevelopment</h3>
+                    <p className={styles.bodyText}>
+                      For underused or outdated areas, we provide site analysis, redevelopment strategy, layout
+                      restructuring, infrastructure upgrade planning, and district modernization support.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>What Our Urban Development Service Covers</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Urban Development Process</h2>
+                      <div className={styles.processList}>
+                        {service.process.map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Urban Development Services for Different Sectors</h2>
+                    <p className={styles.bodyText}>
+                      Our urban development services support residential housing estates, commercial and business
+                      districts, industrial and logistics hubs, government and public infrastructure, and institutional
+                      developments including schools, healthcare facilities, and civic centers.
+                    </p>
+                    <p className={styles.bodyText}>
+                      We also support sustainable urban development strategies that connect growth, infrastructure,
+                      movement, public space, and the practical needs of the Nigerian context.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Urban Development in Lagos and Nigeria</h2>
+                    <p className={styles.bodyText}>
+                      Development planning in Lagos requires careful attention to land use, access, drainage, utilities,
+                      infrastructure capacity, and the relationship between private development and shared urban systems.
+                      Our approach keeps those dependencies visible from feasibility through implementation planning.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Where individual buildings form part of a larger development, our <Link href="/services/architectural-design">architectural design services</Link> can support the building-level design and documentation. For physical execution and delivery coordination, review our <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/construction-management">construction management services</Link>, and <Link href="/services/project-management">project management services</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Planning, Approvals, and Delivery Coordination</h2>
+                    <p className={styles.bodyText}>
+                      We support clients through relevant planning and approval processes, technical documentation, and
+                      coordination with the wider project team. Approvals remain the responsibility of the appropriate
+                      authorities; our role is to help clients prepare and navigate the development process.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
+                      <Link href="/services">Explore all services</Link>
+                      <Link href="/blog">Read development insights</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {urbanDevelopmentFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Development Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your site, development objectives, location, and project stage with our team. We will help
+                      identify the next practical steps for urban development planning in Lagos or elsewhere in Nigeria.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request an urban development consultation</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isArchitecturalDesignPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Architectural Design Services</h2>
@@ -2103,7 +2679,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -2219,9 +2795,55 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
+              {isUrbanDevelopmentPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Service Location</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Planning</div>
+                    <div className={styles.statLabel}>Land Use and Urban Systems</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Support</div>
+                    <div className={styles.statLabel}>From Feasibility to Coordination</div>
+                  </div>
+                </div>
+              )}
+
+              {isGreenBuildingAdvisoryPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Service Location</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Energy</div>
+                    <div className={styles.statLabel}>Efficiency Planning</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Support</div>
+                    <div className={styles.statLabel}>LEED and EDGE Documentation</div>
+                  </div>
+                </div>
+              )}
+
               <div className={styles.ctaCard}>
                 <h3>
-                  {isArchitecturalDesignPage
+                  {isGreenBuildingAdvisoryPage
+                    ? "Discuss Your Green Building Project"
+                    : isUrbanDevelopmentPage
+                    ? "Discuss Your Development Project"
+                    : isArchitecturalDesignPage
                     ? "Start Your Architectural Project"
                     : isConstructionManagementPage
                     ? "Discuss Your Construction Project"
@@ -2234,7 +2856,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isArchitecturalDesignPage
+                  {isGreenBuildingAdvisoryPage
+                    ? "Tell us about your project type, site, sustainability objectives, and current stage, and our team will guide you on practical next steps."
+                    : isUrbanDevelopmentPage
+                    ? "Tell us about your site, development goals, location, and current project stage, and our team will guide you on practical next steps."
+                    : isArchitecturalDesignPage
                     ? "Tell us about your design brief and site context, and our team will guide you on the next steps."
                     : isConstructionManagementPage
                     ? "Tell us about your project scope, timeline, and coordination needs, and our team will advise on practical next steps."
@@ -2248,7 +2874,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -2284,11 +2910,83 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <i className="bx bx-image" aria-hidden="true" />
                   </Link>
                 )}
+                {isUrbanDevelopmentPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Our Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
+                  </Link>
+                )}
+                {isGreenBuildingAdvisoryPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Our Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isArchitecturalDesignPage ? (
+                  {isGreenBuildingAdvisoryPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-city" aria-hidden="true" /> Urban Development
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/about" className="tag tag--outline tag--sm">
+                        <i className="bx bx-info-circle" aria-hidden="true" /> About the Studio
+                      </Link>
+                    </>
+                  ) : isUrbanDevelopmentPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/about" className="tag tag--outline tag--sm">
+                        <i className="bx bx-info-circle" aria-hidden="true" /> About the Studio
+                      </Link>
+                      <Link href="/team" className="tag tag--outline tag--sm">
+                        <i className="bx bx-group" aria-hidden="true" /> Meet the Team
+                      </Link>
+                    </>
+                  ) : isArchitecturalDesignPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> Architectural Services
