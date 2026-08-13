@@ -67,6 +67,10 @@ const FACILITY_MANAGEMENT_SLUG = "facility-management";
 const FACILITY_MANAGEMENT_TITLE = "Facility Management Services in Lagos, Nigeria";
 const FACILITY_MANAGEMENT_DESCRIPTION =
   "Looking for facility management services in Lagos? Building Practice Ltd coordinates building maintenance, operations, inspections, and essential facility services for suitable properties.";
+const SITE_PLANNING_LANDSCAPE_SLUG = "site-planning-landscape";
+const SITE_PLANNING_LANDSCAPE_TITLE = "Site Planning & Landscape Design in Lagos, Nigeria";
+const SITE_PLANNING_LANDSCAPE_DESCRIPTION =
+  "Looking for site planning and landscape design services in Lagos? Building Practice Ltd plans functional site layouts, access, outdoor spaces, planting, and hardscape for suitable developments.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -80,6 +84,42 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === SITE_PLANNING_LANDSCAPE_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: SITE_PLANNING_LANDSCAPE_TITLE,
+      description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
+      keywords: [
+        "Site Planning and Landscape Design Services in Lagos",
+        "Site Planning and Landscape Design Company in Lagos",
+        "Site Planning and Landscape Design Firms in Lagos, Nigeria",
+        "site planning services Lagos",
+        "landscape design services Lagos",
+        "site layout planning Lagos",
+        "landscape planning Lagos",
+        "residential landscape design Lagos",
+        "commercial landscape design Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: SITE_PLANNING_LANDSCAPE_TITLE,
+        description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: SITE_PLANNING_LANDSCAPE_TITLE,
+        description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === FACILITY_MANAGEMENT_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -668,6 +708,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isConstructionCostEstimationPage = slug === CONSTRUCTION_COST_ESTIMATION_SLUG;
   const isRenovationRemodelingPage = slug === RENOVATION_REMODELING_SLUG;
   const isFacilityManagementPage = slug === FACILITY_MANAGEMENT_SLUG;
+  const isSitePlanningLandscapePage = slug === SITE_PLANNING_LANDSCAPE_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -1112,7 +1153,77 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isFacilityManagementPage
+  const sitePlanningLandscapeFaq = [
+    {
+      q: "What is site planning?",
+      a: "Site planning organizes a specific development site by considering building placement, access, circulation, landscape, open space, drainage, and the relationship between the built and natural environment.",
+    },
+    {
+      q: "What does landscape design include?",
+      a: "Depending on the agreed brief, landscape design can include landscape master planning, planting design, hardscape and paving, water features, outdoor lighting, access and circulation planning, and maintenance specifications.",
+    },
+    {
+      q: "Do you provide site planning for residential and commercial developments?",
+      a: "The documented scope supports site analysis, access and circulation planning, landscape master planning, and outdoor-space design for suitable project briefs. The specific project type and scope are reviewed at consultation.",
+    },
+    {
+      q: "How much does site planning and landscape design cost in Lagos?",
+      a: "Fees depend on site size, project type, site complexity, planning and landscape scope, design detail, required drawings, revisions, location, coordination requirements, and any specialist input needed. A project brief is required for an accurate proposal.",
+    },
+    {
+      q: "Can site planning be coordinated with architectural design?",
+      a: "Yes. Site planning can be coordinated with architectural information so building placement, access, circulation, outdoor spaces, and landscape are considered alongside the wider project design.",
+    },
+    {
+      q: "How long does site planning and landscape design take?",
+      a: "Timelines depend on site size, complexity, available site information, scope, revisions, coordination requirements, and any applicable approvals. A project-specific programme can be discussed after the brief is reviewed.",
+    },
+  ];
+
+  const servicePageJsonLd = isSitePlanningLandscapePage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: SITE_PLANNING_LANDSCAPE_TITLE,
+            description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Site Planning & Landscape Design Services",
+            description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
+            serviceType: [
+              "Site Analysis",
+              "Landscape Master Planning",
+              "Planting Design",
+              "Hardscape Design and Paving",
+              "Drainage and Water Management",
+              "Site Access and Circulation Planning",
+              "Landscape Lighting Design",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Site Planning & Landscape Design", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isFacilityManagementPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -1908,7 +2019,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isFacilityManagementPage
+              isSitePlanningLandscapePage
+                ? "Residential outdoor space with integrated landscape design"
+                : isFacilityManagementPage
                 ? "Building operations and maintenance at a managed facility"
                 : isRenovationRemodelingPage
                 ? "Building renovation project during construction"
@@ -1945,14 +2058,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isFacilityManagementPage
+                {isSitePlanningLandscapePage
+                  ? "Site Planning & Landscape Design"
+                  : isFacilityManagementPage
                   ? "Facility Management"
                   : isRenovationRemodelingPage
                   ? "Renovation & Remodelling"
@@ -1990,7 +2105,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isFacilityManagementPage
+            {isSitePlanningLandscapePage
+              ? "Site Planning & Landscape Design Services in Lagos, Nigeria"
+              : isFacilityManagementPage
               ? "Facility Management Services in Lagos, Nigeria"
               : isRenovationRemodelingPage
               ? "Renovation & Remodelling Services in Lagos, Nigeria"
@@ -2023,7 +2140,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isFacilityManagementPage
+            {isSitePlanningLandscapePage
+              ? "We plan functional site layouts, circulation, outdoor spaces, planting, hardscape, and landscape details for suitable developments in Lagos."
+              : isFacilityManagementPage
               ? "We coordinate maintenance, building operations, inspections, and essential facility services for suitable properties in Lagos."
               : isRenovationRemodelingPage
               ? "We provide renovation, remodelling, refurbishment, alterations, extensions, interior upgrades, and renovation construction support for existing properties in Lagos and across Nigeria."
@@ -2062,7 +2181,202 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isFacilityManagementPage ? (
+              {isSitePlanningLandscapePage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Site Planning &amp; Landscape Design by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides site planning and landscape design services in Lagos for property
+                      owners, homeowners, developers, businesses, institutions, and organizations planning suitable
+                      residential, commercial, and development projects.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope includes site analysis, landscape master planning, planting design,
+                      hardscape and paving, drainage and water management, outdoor lighting, site access and
+                      circulation planning, maintenance planning, and landscape visualisation. The appropriate scope
+                      depends on the property, available information, and project brief.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your site planning project</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                      <Link href="/about">Learn about Building Practice Ltd</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((highlight, index) => (
+                        <div key={`${highlight.title}-${index}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${highlight.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{highlight.title}</h3>
+                          <p>{highlight.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is Site Planning?</h2>
+                    <p className={styles.bodyText}>
+                      Site planning organizes a particular development site by considering the relationship between
+                      buildings, land use, access, circulation, landscape, open space, drainage, utilities, and local
+                      conditions. It helps shape a coherent layout before detailed building and outdoor-space decisions
+                      are made.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Good site planning can support more functional movement, clearer building-to-site relationships,
+                      and better coordination with the wider project team. It complements rather than replaces our
+                      <Link href="/services/architectural-design"> architectural design services</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>What Is Landscape Design?</h2>
+                    <p className={styles.bodyText}>
+                      Landscape design plans the outdoor spaces around a building or development, including green
+                      areas, planting, paving, walkways, water features, lighting, and the relationship between built
+                      elements and the site. It focuses on external environments, unlike <Link href="/services/interior-design">interior design</Link>, which addresses internal spaces, finishes, and furnishings.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Site Planning Services in Lagos</h2>
+                    <h3>Site Analysis and Opportunity Identification</h3>
+                    <p className={styles.bodyText}>We review the available site information, access, constraints, orientation, circulation needs, and opportunities that are relevant to the agreed planning brief. Specialist investigations should be undertaken by appropriately qualified professionals where required.</p>
+                    <h3>Site Layout, Access, and Circulation Planning</h3>
+                    <p className={styles.bodyText}>The documented scope includes site access and circulation planning, helping coordinate movement, outdoor areas, and the relationship between landscape and proposed site elements.</p>
+                    <h3>Landscape Master Planning</h3>
+                    <p className={styles.bodyText}>Landscape master planning establishes a coordinated direction for outdoor spaces, planting, hardscape, water elements, lighting, and related site features within the agreed scope.</p>
+                    <h3>Drainage and Water Management</h3>
+                    <p className={styles.bodyText}>Drainage and water management can be considered alongside the landscape design and site-planning brief. Where specialist engineering input is required, it should be coordinated appropriately.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Landscape Design Services in Lagos</h2>
+                    <h3>Planting and Green Space Design</h3>
+                    <p className={styles.bodyText}>Our scope includes planting design and specification, including native and adapted plant selection where appropriate to the project requirements.</p>
+                    <h3>Hardscape, Paving, and Outdoor Features</h3>
+                    <p className={styles.bodyText}>Hardscape design can include paving, walkways, terraces, and outdoor structures within the documented landscape scope. Water features and fountains can also be considered where included in the agreed brief.</p>
+                    <h3>Outdoor Lighting and Landscape Visualisation</h3>
+                    <p className={styles.bodyText}>The service scope includes lighting design for outdoor spaces and 3D visualisation of landscape designs to help communicate the intended external environment.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Hardscape and Softscape Design</h2>
+                    <p className={styles.bodyText}>
+                      Hardscape refers to built outdoor elements such as paving, walkways, terraces, and other fixed
+                      landscape structures. Softscape refers to planting and vegetation. A coordinated landscape
+                      design considers how these elements work together with buildings, access, drainage, and intended
+                      use of the outdoor space.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Site Planning &amp; Landscape Design for Different Project Types</h2>
+                    <p className={styles.bodyText}>
+                      Suitable site and landscape briefs may relate to residential properties, private homes, apartment
+                      developments, estates, commercial buildings, offices, hospitality projects, institutional
+                      buildings, mixed-use developments, and other project contexts where the scope aligns with the
+                      practice&apos;s documented design and planning capabilities.
+                    </p>
+                    <p className={styles.bodyText}>
+                      For project-wide development planning, see our <Link href="/services/real-estate-development">real estate development services</Link>. For larger districts, infrastructure, and urban systems, see our <Link href="/services/urban-development">urban development services</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Site Planning Considerations in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Site planning in Lagos can require careful attention to rainfall, drainage, access, traffic,
+                      parking, pedestrian movement, urban density, orientation, vegetation, and the surrounding
+                      development context. The relevant considerations should be established from the actual site and
+                      brief rather than assumed from a general template.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Sustainable Landscape Design in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Appropriate plant selection, shade, vegetation, water-conscious planning, and the relationship
+                      between landscape and drainage can be considered as part of a landscape brief. These are
+                      project-specific design decisions, not fixed environmental-performance guarantees. Explore our
+                      <Link href="/services/green-building-advisory"> green building advisory</Link> for related sustainable building guidance.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Site Planning &amp; Landscape Design Process</h2>
+                    <div className={styles.processList}>
+                      {[
+                        { title: "Initial Consultation", desc: "Understand the site, intended use, project objectives, available information, and required outputs." },
+                        { title: "Site Information Review", desc: "Review available site conditions, access, constraints, and opportunities relevant to the agreed scope." },
+                        { title: "Planning and Landscape Concept", desc: "Develop the site-planning and landscape direction for circulation, outdoor areas, planting, and hardscape." },
+                        { title: "Design Development", desc: "Develop agreed landscape layouts, specifications, and design details appropriate to the brief." },
+                        { title: "Coordination and Documentation", desc: "Coordinate with relevant architectural, engineering, and delivery information, then prepare agreed documentation." },
+                      ].map((step, index) => (
+                        <div key={`${step.title}-${index}`} className={styles.processStep}>
+                          <span className={styles.processNumber}>{index + 1}</span>
+                          <div><h3>{step.title}</h3><p>{step.desc}</p></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Site Planning vs Urban Development</h2>
+                    <p className={styles.bodyText}>
+                      Site planning focuses on the organization of a particular development site, including its
+                      buildings, access, circulation, open spaces, and landscape. Urban development addresses the
+                      larger-scale relationships between land use, infrastructure, districts, communities, and urban
+                      systems. Read more about our <Link href="/services/urban-development">urban development service</Link> where that broader scale is required.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Much Does Site Planning &amp; Landscape Design Cost in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Fees depend on site size, project type, site complexity, planning and landscape scope, design
+                      detail, required drawings, revisions, location, coordination requirements, and specialist input
+                      where needed. Building Practice Ltd needs to review the brief before providing an accurate fee
+                      proposal.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Related Design, Engineering, and Delivery Services</h2>
+                    <p className={styles.bodyText}>
+                      A site-planning brief may connect to <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination</Link>, <Link href="/services/building-construction">building construction</Link>, <Link href="/services/construction-management">construction management</Link>, <Link href="/services/project-management">project management</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/renovation-remodeling">renovation and remodelling</Link>, <Link href="/services/facility-management">facility management</Link>, and <Link href="/services/3d-visualization">3D visualisation</Link> where relevant to the project.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {sitePlanningLandscapeFaq.map((item, index) => (
+                        <details key={`${item.q}-${index}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Site Planning &amp; Landscape Design Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your property type, site location, available drawings or site information, intended use,
+                      outdoor-space requirements, and current project stage. Our team will review the appropriate
+                      scope and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request a site planning consultation</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isFacilityManagementPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Facility Management by Building Practice Ltd</h2>
@@ -5172,7 +5486,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -5458,7 +5772,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               <div className={styles.ctaCard}>
                 <h3>
-                  {isFacilityManagementPage
+                  {isSitePlanningLandscapePage
+                    ? "Discuss Your Site Planning Project"
+                    : isFacilityManagementPage
                     ? "Discuss Your Facility Management Needs"
                     : isRenovationRemodelingPage
                     ? "Discuss Your Renovation Project"
@@ -5489,7 +5805,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isFacilityManagementPage
+                  {isSitePlanningLandscapePage
+                    ? "Tell us about your site, intended use, outdoor-space requirements, available information, and project stage, and our team will guide you on the appropriate scope."
+                    : isFacilityManagementPage
                     ? "Tell us about your property type, location, building systems, maintenance concerns, and operational needs, and our team will guide you on the appropriate scope."
                     : isRenovationRemodelingPage
                     ? "Tell us about your property type, existing conditions, intended changes, drawings, and project stage, and our team will guide you on the appropriate renovation scope."
@@ -5521,7 +5839,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -5609,7 +5927,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isFacilityManagementPage ? (
+                  {isSitePlanningLandscapePage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-city" aria-hidden="true" /> Urban Development
+                      </Link>
+                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
+                      </Link>
+                      <Link href="/services/green-building-advisory" className="tag tag--outline tag--sm">
+                        <i className="bx bx-leaf" aria-hidden="true" /> Green Building Advisory
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/facility-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-cog" aria-hidden="true" /> Facility Management
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isFacilityManagementPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
