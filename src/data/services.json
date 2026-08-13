@@ -1774,24 +1774,26 @@
     "icon": "bx-calculator",
     "category": "Consulting Service",
     "title": "Construction Cost Estimation",
-    "subtitle": "Accurate Budgeting & Quantity Surveying for Nigerian Projects",
+    "subtitle": "Construction Cost Estimation Services in Lagos, Nigeria",
+    "seoTitle": "Construction Cost Estimation Services in Lagos, Nigeria",
+    "seoDescription": "Building Practice Ltd provides construction cost estimation, budgeting, cost planning, quantity take-offs, and cost analysis for residential, commercial, institutional, and development projects in Lagos.",
     "heroImage": "/images/services/residential.jpg",
     "overview": "<p><strong>Precise Cost Control & Budget Management</strong></p>\n                    <p>Building Practice Ltd provides accurate construction cost estimation and budget management services in Nigeria, helping clients understand project costs and manage budgets effectively.</p>\n                    <p>Our quantity surveyors and cost consultants analyze project scope, market prices, and local conditions to produce realistic cost estimates. We provide detailed cost breakdowns, value engineering recommendations, budget tracking, and cost control throughout construction.</p>\n                    <p><strong>Our Estimation Accuracy:</strong></p>\n                    <ul>\n                        <li>Detailed quantity take-offs from drawings</li>\n                        <li>Current market rate analysis</li>\n                        <li>Contingency planning for uncertainties</li>\n                        <li>Value engineering to optimize costs</li>\n                    </ul>",
     "highlights": [
       {
         "icon": "bx-calculator",
         "title": "Accurate Estimation",
-        "desc": "Detailed cost estimates based on market data"
+        "desc": "Cost estimates developed from available project scope and market information"
       },
       {
         "icon": "bx-trending-up",
         "title": "Value Engineering",
-        "desc": "Cost optimization while maintaining quality"
+        "desc": "Reviewing alternatives and cost drivers against project requirements"
       },
       {
         "icon": "bx-bar-chart",
         "title": "Budget Control",
-        "desc": "Tracking and managing costs throughout project"
+        "desc": "Budget tracking, forecasting, and cost review where applicable"
       }
     ],
     "features": [

@@ -55,6 +55,10 @@ const MEP_COORDINATION_SLUG = "mep-coordination";
 const MEP_COORDINATION_TITLE = "MEP Coordination Services in Lagos, Nigeria";
 const MEP_COORDINATION_DESCRIPTION =
   "Building Practice Ltd provides mechanical, electrical and plumbing coordination services in Lagos for building systems integration, clash coordination, drawings, routing, and construction support.";
+const CONSTRUCTION_COST_ESTIMATION_SLUG = "construction-cost-estimation";
+const CONSTRUCTION_COST_ESTIMATION_TITLE = "Construction Cost Estimation Services in Lagos, Nigeria";
+const CONSTRUCTION_COST_ESTIMATION_DESCRIPTION =
+  "Building Practice Ltd provides construction cost estimation, budgeting, cost planning, quantity take-offs, and cost analysis for residential, commercial, institutional, and development projects in Lagos.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -68,6 +72,49 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === CONSTRUCTION_COST_ESTIMATION_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: CONSTRUCTION_COST_ESTIMATION_TITLE,
+      description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
+      keywords: [
+        "Construction Cost Estimation Services in Lagos",
+        "Construction Cost Estimation Firms in Lagos, Nigeria",
+        "construction cost estimation Lagos",
+        "construction cost estimator Lagos",
+        "construction cost estimation company Lagos",
+        "construction cost estimation consultants Lagos",
+        "building cost estimation Lagos",
+        "construction cost planning Lagos",
+        "construction budgeting services Lagos",
+        "construction cost consultancy Lagos",
+        "preliminary construction cost estimate Lagos",
+        "construction cost analysis Lagos",
+        "construction cost advisory Lagos",
+        "residential construction cost estimation Lagos",
+        "commercial construction cost estimation Lagos",
+        "construction cost estimation Nigeria",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: CONSTRUCTION_COST_ESTIMATION_TITLE,
+        description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: CONSTRUCTION_COST_ESTIMATION_TITLE,
+        description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === MEP_COORDINATION_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -531,6 +578,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isThreeDVisualizationPage = slug === THREE_D_VISUALIZATION_SLUG;
   const isStructuralEngineeringPage = slug === STRUCTURAL_ENGINEERING_SLUG;
   const isMepCoordinationPage = slug === MEP_COORDINATION_SLUG;
+  const isConstructionCostEstimationPage = slug === CONSTRUCTION_COST_ESTIMATION_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -882,7 +930,89 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isMepCoordinationPage
+  const constructionCostEstimationFaq = [
+    {
+      q: "What is construction cost estimation?",
+      a: "Construction cost estimation is the process of assessing the expected cost of delivering a construction project from the available scope, drawings, specifications, quantities, materials, labour, equipment, site information, and other relevant project data.",
+    },
+    {
+      q: "Do you provide construction cost estimation services in Lagos?",
+      a: "Yes. Building Practice Ltd provides construction cost estimation, budgeting, cost planning, and related cost analysis for suitable residential, commercial, institutional, and development projects in Lagos and elsewhere in Nigeria.",
+    },
+    {
+      q: "What information is needed for a construction cost estimate?",
+      a: "Useful information may include the project brief, drawings, specifications, building size and type, materials, finishes, site information, infrastructure requirements, and the project stage. The estimate depends on the quality and completeness of the available information.",
+    },
+    {
+      q: "How accurate is a construction cost estimate?",
+      a: "The level of detail and reliability depends on the project stage, scope definition, drawings, specifications, quantities, market conditions, and information available. Preliminary estimates should not be treated as a guaranteed final construction cost.",
+    },
+    {
+      q: "What factors affect construction costs in Lagos?",
+      a: "Costs may be affected by location, project size, design complexity, specifications, materials, labour, site conditions, foundation requirements, access, infrastructure, project duration, and market conditions.",
+    },
+    {
+      q: "Can you estimate residential and commercial construction costs?",
+      a: "Yes. The service can support cost estimation and budgeting for houses, duplexes, apartments, housing estates, offices, retail spaces, commercial buildings, hospitality, institutional, industrial, and mixed-use projects where the scope is suitable.",
+    },
+    {
+      q: "When should I get a construction cost estimate?",
+      a: "Cost advice can be useful during feasibility, design development, before design finalization, before construction or contractor engagement, before financing discussions, and when the project scope changes. The appropriate stage depends on the project circumstances.",
+    },
+    {
+      q: "Can construction costs change after an estimate?",
+      a: "Yes. Costs can change when scope, design, specifications, quantities, site conditions, programme, procurement decisions, or market conditions change. Estimates should be reviewed when material project information changes.",
+    },
+  ];
+
+  const servicePageJsonLd = isConstructionCostEstimationPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: CONSTRUCTION_COST_ESTIMATION_TITLE,
+            description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Construction Cost Estimation Services",
+            description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "Construction Cost Estimation",
+              "Building Cost Estimation",
+              "Construction Budget Planning",
+              "Construction Cost Analysis",
+              "Quantity Take-offs",
+              "Material and Labour Cost Assessment",
+              "Value Engineering",
+              "Cost Monitoring and Forecasting",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Construction Cost Estimation", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isMepCoordinationPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -1540,7 +1670,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isMepCoordinationPage
+              isConstructionCostEstimationPage
+                ? "Construction cost planning documents for a building project"
+                : isMepCoordinationPage
                 ? "MEP coordination drawing showing building services layout"
                 : isStructuralEngineeringPage
                 ? "Structural engineering and building design project"
@@ -1571,14 +1703,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isMepCoordinationPage
+                {isConstructionCostEstimationPage
+                  ? "Construction Cost Estimation"
+                  : isMepCoordinationPage
                   ? "MEP Coordination"
                   : isStructuralEngineeringPage
                   ? "Structural Engineering & Design"
@@ -1610,7 +1744,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isMepCoordinationPage
+            {isConstructionCostEstimationPage
+              ? "Construction Cost Estimation Services in Lagos, Nigeria"
+              : isMepCoordinationPage
               ? "MEP Coordination Services in Lagos, Nigeria"
               : isStructuralEngineeringPage
               ? "Structural Engineering & Design Services in Lagos, Nigeria"
@@ -1637,7 +1773,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isMepCoordinationPage
+            {isConstructionCostEstimationPage
+              ? "We provide construction cost estimation, budgeting, cost planning, quantity take-offs, and cost analysis for building projects in Lagos and across Nigeria."
+              : isMepCoordinationPage
               ? "We coordinate mechanical, electrical and plumbing systems with architectural, structural and construction requirements for projects in Lagos and across Nigeria."
               : isStructuralEngineeringPage
               ? "We provide structural analysis, design, calculations, foundations, structural drawings, reinforced concrete and steel design, and construction coordination for projects in Lagos and across Nigeria."
@@ -1670,7 +1808,273 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isMepCoordinationPage ? (
+              {isConstructionCostEstimationPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Construction Cost Estimation by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides construction cost estimation and related cost advisory services for
+                      homeowners, property developers, architects, contractors, businesses, institutions, and project
+                      teams planning residential, commercial, institutional, and development projects in Lagos and
+                      across Nigeria.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope includes conceptual and detailed cost estimation, quantity take-offs, material
+                      lists, labour and equipment assessment, value engineering, tender documents, bid analysis, budget
+                      tracking and forecasting, change-order costing, and final cost reconciliation. Estimates depend on
+                      the quality and completeness of the available project information.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your project budget</Link>
+                      <Link href="/projects">View our projects</Link>
+                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is Construction Cost Estimation?</h2>
+                    <p className={styles.bodyText}>
+                      Construction cost estimation is the process of assessing the expected cost of delivering a
+                      construction project from available project information. Depending on the stage, an estimate may
+                      consider scope, building size, design complexity, materials, labour, location, construction
+                      methods, specifications, site conditions, infrastructure, and project duration.
+                    </p>
+                    <p className={styles.bodyText}>
+                      An estimate is not automatically the final construction cost. The level of detail and reliability
+                      depends on the drawings, specifications, quantities, project assumptions, market information, and
+                      other data available at the time of assessment.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Construction Cost Estimation Services</h2>
+                    <h3>Preliminary Construction Cost Estimates</h3>
+                    <p className={styles.bodyText}>
+                      Early cost estimates help clients understand the approximate financial requirements of a proposed
+                      project while the scope, design, and specifications are still developing.
+                    </p>
+                    <h3>Detailed Construction Cost Estimation</h3>
+                    <p className={styles.bodyText}>
+                      When more complete drawings, specifications, and quantities are available, a more developed cost
+                      estimate and analysis can be prepared for the agreed project scope.
+                    </p>
+                    <h3>Construction Budget Planning</h3>
+                    <p className={styles.bodyText}>
+                      Estimated costs can be organized into a practical project budget that helps clients review major
+                      cost categories, scope priorities, assumptions, and potential cost pressures.
+                    </p>
+                    <h3>Material, Labour, and Equipment Cost Assessment</h3>
+                    <p className={styles.bodyText}>
+                      The service scope includes quantity take-offs, material lists, labour cost analysis, and equipment
+                      or rental cost assessment where these are relevant to the project information and estimate type.
+                    </p>
+                    <h3>Project Feasibility Cost Assessment</h3>
+                    <p className={styles.bodyText}>
+                      Cost assessment can contribute to early feasibility decisions by showing how project scope,
+                      specifications, development options, and construction requirements may affect expected expenditure.
+                    </p>
+                    <h3>Cost Analysis, Value Engineering, and Advisory</h3>
+                    <p className={styles.bodyText}>
+                      Cost analysis and value engineering can help compare alternatives, identify cost drivers, and
+                      consider options while keeping the project&apos;s functional and quality requirements in view.
+                    </p>
+                    <h3>Budget Tracking, Change-Order Costing, and Reconciliation</h3>
+                    <p className={styles.bodyText}>
+                      Where included in the engagement, cost tracking, forecasting, change-order costing, and final cost
+                      reconciliation can help maintain clearer financial records as the project develops.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>What Our Cost Estimation Scope Covers</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Does a Construction Cost Estimate Include?</h2>
+                    <p className={styles.bodyText}>
+                      Depending on the project stage and agreed scope, an estimate may consider materials, labour,
+                      plant or equipment, site preparation, foundations, structural works, roofing, external works,
+                      mechanical, electrical and plumbing systems, finishes, professional services, approvals or
+                      statutory requirements, contingency where appropriate, and other project-specific costs.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Not every estimate includes every category. The estimate type, project information, assumptions,
+                      and level of detail should be agreed before preparation.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Residential Construction Cost Estimation in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Homeowners and developers planning houses, duplexes, apartments, and housing estates can use cost
+                      estimation to understand expected expenditure, compare design or specification choices, and build
+                      a more informed construction budget without relying on unverified current prices.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Commercial Construction Cost Estimation in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Cost estimation can support offices, retail spaces, commercial buildings, hospitality projects,
+                      institutional buildings, industrial projects, and mixed-use developments where the scope and
+                      drawings provide an appropriate basis for assessment.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Factors That Affect Construction Costs in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Construction costs vary with location, project size, building design, specifications, materials,
+                      labour, site conditions, foundation requirements, accessibility, infrastructure, project
+                      complexity, market conditions, imported or exchange-rate-sensitive materials, and the project
+                      timeline. Current prices should be assessed from current project and market information rather
+                      than assumed from a generic figure.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why Construction Cost Estimation Is Important</h2>
+                    <p className={styles.bodyText}>
+                      Cost estimation can support financial planning, project feasibility, informed decisions, budget
+                      development, early identification of major cost drivers, scope evaluation, financing preparation,
+                      comparison of alternatives, and clearer cost control. It does not completely prevent cost changes or
+                      guarantee that a project will remain within an initial estimate.
+                    </p>
+                  </div>
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Construction Cost Estimation Process</h2>
+                      <div className={styles.processList}>
+                        {[
+                          { title: "Project Brief", desc: "Clarify the project type, intended use, location, stage, scope, and cost-planning objective." },
+                          { title: "Review of Drawings and Specifications", desc: "Review available drawings, specifications, schedules, finishes, and project assumptions." },
+                          { title: "Project Scope Assessment", desc: "Identify the work categories, quantities, exclusions, assumptions, and information gaps relevant to the estimate." },
+                          { title: "Cost Data and Quantity Assessment", desc: "Assess quantities, materials, labour, equipment, and other cost components required for the agreed estimate type." },
+                          { title: "Preliminary or Detailed Cost Estimation", desc: "Prepare the cost estimate at a level appropriate to the project stage and available information." },
+                          { title: "Cost Review and Analysis", desc: "Review cost drivers, alternatives, value-engineering considerations, and project assumptions." },
+                          { title: "Client Presentation", desc: "Present the estimate, assumptions, exclusions, and key cost considerations for informed discussion." },
+                          { title: "Updates and Cost Advice Where Applicable", desc: "Review changes or provide agreed tracking, forecasting, change-order costing, or reconciliation support." },
+                        ].map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>When Should You Get a Construction Cost Estimate?</h2>
+                    <p className={styles.bodyText}>
+                      Cost advice may be useful during feasibility, before design finalization, during design development,
+                      before construction or contractor engagement, before financing discussions, and whenever project
+                      scope or specifications change. The appropriate timing depends on the project circumstances and
+                      information available.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Construction Cost Estimation for Developers and Homeowners</h2>
+                    <p className={styles.bodyText}>
+                      Developers can use cost assessment to compare development options, review project feasibility, and
+                      plan expected construction expenditure. Homeowners can use it to understand major cost categories,
+                      evaluate design choices, and prepare a realistic construction budget before committing to work.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/services/real-estate-development">Explore real estate development services</Link>
+                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Construction Cost Estimation Services in Lagos, Nigeria</h2>
+                    <p className={styles.bodyText}>
+                      Construction cost planning in Lagos can support residential development, commercial projects,
+                      mixed-use schemes, institutional buildings, and other construction planning decisions. Building
+                      Practice Ltd also supports suitable projects elsewhere in Nigeria where the scope, information,
+                      and delivery requirements align.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Cost Estimation, Construction Management, and Project Management</h2>
+                    <p className={styles.bodyText}>
+                      Construction cost estimation assesses expected project costs. Construction management focuses on
+                      construction execution and site coordination. Project management addresses broader scope, time,
+                      cost, resources, reporting, and delivery controls. These services can relate to the same project,
+                      but they have different primary responsibilities.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Explore our <Link href="/services/construction-management">construction management services</Link>, <Link href="/services/project-management">project management services</Link>, and <Link href="/services/construction-consultation">construction consultation</Link> for related support.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Related Design and Engineering Services</h2>
+                    <p className={styles.bodyText}>
+                      Cost assessment depends on project information. Related services include <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination services</Link>, <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/urban-development">urban development services</Link>, <Link href="/services/green-building-advisory">green building advisory</Link>, <Link href="/services/interior-design">interior design</Link>, and <Link href="/services/3d-visualization">3D visualisation</Link> where relevant to the brief.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/projects">View our project portfolio</Link>
+                      <Link href="/contact">Contact Building Practice Ltd</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {constructionCostEstimationFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Project Budget</h2>
+                    <p className={styles.bodyText}>
+                      Share your project type, drawings, specifications, location, current stage, and cost-planning
+                      objectives. Our team will help identify the appropriate construction cost estimation scope and next
+                      steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request construction cost estimation</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isMepCoordinationPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional MEP Coordination by Building Practice Ltd</h2>
@@ -4111,7 +4515,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -4353,9 +4757,32 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
+              {isConstructionCostEstimationPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Service Location</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Cost</div>
+                    <div className={styles.statLabel}>Estimation and Analysis</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Budget</div>
+                    <div className={styles.statLabel}>Planning and Forecasting</div>
+                  </div>
+                </div>
+              )}
+
               <div className={styles.ctaCard}>
                 <h3>
-                  {isMepCoordinationPage
+                  {isConstructionCostEstimationPage
+                    ? "Discuss Your Project Budget"
+                    : isMepCoordinationPage
                     ? "Discuss Your MEP Coordination Project"
                     : isStructuralEngineeringPage
                     ? "Discuss Your Structural Design Project"
@@ -4380,7 +4807,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isMepCoordinationPage
+                  {isConstructionCostEstimationPage
+                    ? "Tell us about your project type, drawings, specifications, location, current stage, and cost-planning objectives, and our team will guide you on the appropriate scope."
+                    : isMepCoordinationPage
                     ? "Tell us about your building type, architectural and engineering information, project stage, and coordination objectives, and our team will guide you on the appropriate scope."
                     : isStructuralEngineeringPage
                     ? "Tell us about your building type, site information, architectural drawings, project stage, and structural requirements, and our team will guide you on the appropriate scope."
@@ -4406,7 +4835,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -4478,11 +4907,53 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <i className="bx bx-image" aria-hidden="true" />
                   </Link>
                 )}
+                {isConstructionCostEstimationPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Our Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isMepCoordinationPage ? (
+                  {isConstructionCostEstimationPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/structural-engineering" className="tag tag--outline tag--sm">
+                        <i className="bx bx-layer" aria-hidden="true" /> Structural Engineering
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/services/mep-coordination" className="tag tag--outline tag--sm">
+                        <i className="bx bx-cog" aria-hidden="true" /> MEP Coordination
+                      </Link>
+                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isMepCoordinationPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
