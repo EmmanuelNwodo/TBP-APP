@@ -1907,24 +1907,26 @@
     "icon": "bx-refresh",
     "category": "Construction Service",
     "title": "Renovation & Remodeling",
-    "subtitle": "Breathing New Life Into Existing Structures With Modern Upgrades",
+    "subtitle": "Renovation & Remodelling Services in Lagos, Nigeria | Building Refurbishment and Modernization - Building Practice Ltd",
+    "seoTitle": "Renovation & Remodelling Services in Lagos, Nigeria",
+    "seoDescription": "Building Practice Ltd provides renovation and remodelling services in Lagos for homes, offices, commercial properties, hospitality, and institutional buildings, from planning through execution.",
     "heroImage": "/images/services/renovation.jpg",
-    "overview": "<p><strong>Transform Your Existing Space</strong></p>\n                    <p>Our renovation and remodeling service breathes new life into existing structures through thoughtful renovation, adaptive reuse, and modern upgrades. We transform outdated spaces into contemporary, functional environments that meet current needs while respecting the building's character and potential.</p>\n                    <p>Whether it's a residential home, office space, or commercial facility, we handle everything from minor upgrades to complete overhauls.</p>\n                    <p><strong>Why Renovate With Us:</strong></p>\n                    <ul>\n                        <li>Minimal disruption to your daily life or business operations</li>\n                        <li>Creative solutions for challenging existing conditions</li>\n                        <li>Quality craftsmanship matching new construction standards</li>\n                        <li>Transparent pricing with no hidden surprises</li>\n                    </ul>",
+    "overview": "<p><strong>Improve Your Existing Space</strong></p>\n                    <p>Our renovation and remodelling service supports the assessment, planning, design, refurbishment, alteration, and modernization of existing buildings.</p>\n                    <p>Whether it is a residential home, office, commercial facility, hospitality space, or institution, the appropriate scope depends on the building condition, project brief, intended use, and required approvals.</p>\n                    <p><strong>Renovation support may include:</strong></p>\n                    <ul>\n                        <li>Review of existing conditions and project requirements</li>\n                        <li>Design and planning for upgrades, alterations, and reconfiguration</li>\n                        <li>Coordination of structural, MEP, interior, facade, and finishing work where required</li>\n                        <li>Construction, refurbishment, and project coordination for the agreed scope</li>\n                    </ul>",
     "highlights": [
       {
         "icon": "bx-home-smile",
         "title": "Residential",
-        "desc": "Complete home renovations and modernization"
+        "desc": "Home renovation and modernization for existing residential properties"
       },
       {
         "icon": "bx-store-alt",
         "title": "Commercial",
-        "desc": "Office and retail space remodeling"
+        "desc": "Office, retail, and commercial renovation and remodelling"
       },
       {
         "icon": "bx-history",
         "title": "Heritage",
-        "desc": "Careful restoration and preservation"
+        "desc": "Restoration and preservation planning for existing buildings"
       }
     ],
     "features": [
@@ -1965,20 +1967,20 @@
     ],
     "stats": [
       {
-        "number": "350+",
-        "label": "Renovations"
+        "number": "Lagos",
+        "label": "Core Service Location"
       },
       {
-        "number": "100K+",
-        "label": "Sqm Renovated"
+        "number": "Nigeria",
+        "label": "Project Coverage"
       },
       {
-        "number": "30%",
-        "label": "Value Increase"
+        "number": "Existing",
+        "label": "Building Assessment"
       },
       {
-        "number": "98%",
-        "label": "Satisfaction"
+        "number": "Support",
+        "label": "Design, Works, and Coordination"
       }
     ],
     "faq": [
@@ -1996,7 +1998,7 @@
       },
       {
         "q": "Will renovation increase my property value?",
-        "a": "Absolutely. Quality renovations typically increase property value by 20-40%, depending on the scope and market conditions."
+        "a": "Renovation may improve functionality, condition, appearance, or market suitability, but any effect on property value depends on the property, scope, quality, location, and market conditions and cannot be guaranteed."
       }
     ],
     "tags": [

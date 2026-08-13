@@ -59,6 +59,10 @@ const CONSTRUCTION_COST_ESTIMATION_SLUG = "construction-cost-estimation";
 const CONSTRUCTION_COST_ESTIMATION_TITLE = "Construction Cost Estimation Services in Lagos, Nigeria";
 const CONSTRUCTION_COST_ESTIMATION_DESCRIPTION =
   "Building Practice Ltd provides construction cost estimation, budgeting, cost planning, quantity take-offs, and cost analysis for residential, commercial, institutional, and development projects in Lagos.";
+const RENOVATION_REMODELING_SLUG = "renovation-remodeling";
+const RENOVATION_REMODELING_TITLE = "Renovation & Remodelling Services in Lagos, Nigeria";
+const RENOVATION_REMODELING_DESCRIPTION =
+  "Building Practice Ltd provides renovation and remodelling services in Lagos for homes, offices, commercial properties, hospitality, and institutional buildings, from planning through execution.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -72,6 +76,50 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === RENOVATION_REMODELING_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: RENOVATION_REMODELING_TITLE,
+      description: RENOVATION_REMODELING_DESCRIPTION,
+      keywords: [
+        "Renovation and Remodelling Services in Lagos",
+        "Renovation and Remodeling Services in Lagos",
+        "Renovation and Remodelling Companies in Lagos, Nigeria",
+        "renovation services Lagos",
+        "remodelling services Lagos",
+        "remodeling services Lagos",
+        "renovation company Lagos",
+        "renovation contractors Lagos",
+        "building renovation Lagos",
+        "house renovation Lagos",
+        "home renovation Lagos",
+        "residential renovation Lagos",
+        "commercial renovation Lagos",
+        "office renovation Lagos",
+        "property refurbishment Lagos",
+        "building refurbishment Lagos",
+        "renovation services Nigeria",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: RENOVATION_REMODELING_TITLE,
+        description: RENOVATION_REMODELING_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: RENOVATION_REMODELING_TITLE,
+        description: RENOVATION_REMODELING_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === CONSTRUCTION_COST_ESTIMATION_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -579,6 +627,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isStructuralEngineeringPage = slug === STRUCTURAL_ENGINEERING_SLUG;
   const isMepCoordinationPage = slug === MEP_COORDINATION_SLUG;
   const isConstructionCostEstimationPage = slug === CONSTRUCTION_COST_ESTIMATION_SLUG;
+  const isRenovationRemodelingPage = slug === RENOVATION_REMODELING_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -965,7 +1014,91 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isConstructionCostEstimationPage
+  const renovationRemodelingFaq = [
+    {
+      q: "What is the difference between renovation and remodelling?",
+      a: "Renovation generally improves, repairs, restores, or updates an existing property. Remodelling usually changes the layout, configuration, functionality, or arrangement of an existing space. A project can involve both renovation and remodelling.",
+    },
+    {
+      q: "Do you provide renovation and remodelling services in Lagos?",
+      a: "Yes. Building Practice Ltd provides renovation and remodelling services in Lagos and elsewhere in Nigeria where the project scope and logistics align.",
+    },
+    {
+      q: "Can you renovate an existing house, apartment, office, or commercial building?",
+      a: "Yes. The documented scope includes residential homes, offices, retail spaces, commercial facilities, hospitality and institutional buildings, and existing properties requiring refurbishment, reconfiguration, or modernization.",
+    },
+    {
+      q: "Can renovation include structural changes or building extensions?",
+      a: "Structural modifications, extensions, and alterations can form part of a renovation scope where appropriate. Structural changes should be assessed by qualified professionals and coordinated with applicable documentation and approval requirements.",
+    },
+    {
+      q: "Do renovation projects require architectural drawings or approvals?",
+      a: "Some renovation scopes require drawings, technical coordination, permits, or approvals depending on the work and location. We can help coordinate relevant planning and documentation requirements; final approvals remain with the appropriate authorities.",
+    },
+    {
+      q: "How much does renovation cost in Lagos?",
+      a: "Renovation cost depends on property size, existing condition, scope, design, materials, labour, structural changes, MEP requirements, finishes, location, complexity, approvals, and unforeseen existing conditions. A project brief and assessment are needed before costs can be discussed responsibly.",
+    },
+    {
+      q: "How long does a renovation project take?",
+      a: "Duration depends on property size, scope, design, approvals, procurement, site conditions, contractor availability, and complexity. A project-specific programme can be discussed after the scope and existing conditions are reviewed.",
+    },
+    {
+      q: "Can you help with renovation budgeting and project coordination?",
+      a: "Yes. Renovation planning can be coordinated with cost assessment, construction consultation, project management, construction management, material decisions, quality review, and execution support where included in the engagement.",
+    },
+  ];
+
+  const servicePageJsonLd = isRenovationRemodelingPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: RENOVATION_REMODELING_TITLE,
+            description: RENOVATION_REMODELING_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Renovation & Remodelling Services",
+            description: RENOVATION_REMODELING_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "Building Renovation",
+              "Building Remodelling",
+              "Residential Renovation",
+              "Commercial Renovation",
+              "Office Renovation",
+              "Interior Renovation",
+              "Building Refurbishment",
+              "Adaptive Reuse",
+              "Renovation Design and Planning",
+              "Renovation Construction",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Renovation & Remodelling", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isConstructionCostEstimationPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -1670,7 +1803,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isConstructionCostEstimationPage
+              isRenovationRemodelingPage
+                ? "Building renovation project during construction"
+                : isConstructionCostEstimationPage
                 ? "Construction cost planning documents for a building project"
                 : isMepCoordinationPage
                 ? "MEP coordination drawing showing building services layout"
@@ -1703,14 +1838,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isConstructionCostEstimationPage
+                {isRenovationRemodelingPage
+                  ? "Renovation & Remodelling"
+                  : isConstructionCostEstimationPage
                   ? "Construction Cost Estimation"
                   : isMepCoordinationPage
                   ? "MEP Coordination"
@@ -1744,7 +1881,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isConstructionCostEstimationPage
+            {isRenovationRemodelingPage
+              ? "Renovation & Remodelling Services in Lagos, Nigeria"
+              : isConstructionCostEstimationPage
               ? "Construction Cost Estimation Services in Lagos, Nigeria"
               : isMepCoordinationPage
               ? "MEP Coordination Services in Lagos, Nigeria"
@@ -1773,7 +1912,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isConstructionCostEstimationPage
+            {isRenovationRemodelingPage
+              ? "We provide renovation, remodelling, refurbishment, alterations, extensions, interior upgrades, and renovation construction support for existing properties in Lagos and across Nigeria."
+              : isConstructionCostEstimationPage
               ? "We provide construction cost estimation, budgeting, cost planning, quantity take-offs, and cost analysis for building projects in Lagos and across Nigeria."
               : isMepCoordinationPage
               ? "We coordinate mechanical, electrical and plumbing systems with architectural, structural and construction requirements for projects in Lagos and across Nigeria."
@@ -1808,7 +1949,258 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isConstructionCostEstimationPage ? (
+              {isRenovationRemodelingPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Building Renovation and Remodelling</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides renovation and remodelling services for homeowners, property
+                      owners, developers, businesses, institutions, and project teams improving existing buildings in
+                      Lagos and across Nigeria.
+                    </p>
+                    <p className={styles.bodyText}>
+                      The documented scope covers renovation design and planning, structural modifications and upgrades,
+                      MEP modernization, interior remodeling and fit-out, facade renovation, space reconfiguration,
+                      refurbishment, adaptive reuse, kitchen and bathroom work, flooring and ceiling replacement,
+                      window and door upgrades, painting, and finishing.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your renovation project</Link>
+                      <Link href="/projects">View our projects</Link>
+                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is Building Renovation and Remodelling?</h2>
+                    <p className={styles.bodyText}>
+                      Renovation can involve repairing, updating, restoring, modernizing, or improving existing building
+                      elements. Remodelling can involve changing layouts, reconfiguring spaces, altering functionality,
+                      improving circulation, or adapting an existing arrangement to new requirements.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Renovation projects differ from new construction because existing conditions can affect the scope,
+                      cost, structure, services, materials, sequence, and design decisions. The extent of work should be
+                      established through an appropriate assessment and project brief.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Renovation &amp; Remodelling Services</h2>
+                    <h3>Residential Renovation</h3>
+                    <p className={styles.bodyText}>
+                      We support renovation of houses, duplexes, apartments, and residential properties through layout
+                      improvements, interior upgrades, finishes, extensions, and other modernization work appropriate to
+                      the building and brief.
+                    </p>
+                    <h3>House and Home Remodelling</h3>
+                    <p className={styles.bodyText}>
+                      Existing homes can be remodelled to improve functionality, update rooms, reconfigure spaces, and
+                      integrate new design requirements without assuming that every project requires structural work.
+                    </p>
+                    <h3>Commercial Building and Office Renovation</h3>
+                    <p className={styles.bodyText}>
+                      Commercial and office renovation may address workspace configuration, circulation, reception and
+                      meeting areas, lighting, finishes, fit-out, and operational requirements for the existing property.
+                    </p>
+                    <h3>Interior Renovation and Upgrades</h3>
+                    <p className={styles.bodyText}>
+                      Interior work can include kitchen and bathroom remodeling, flooring and ceiling replacement,
+                      lighting and finish upgrades, painting, space reconfiguration, and interior fit-out.
+                    </p>
+                    <h3>Building Extensions and Alterations</h3>
+                    <p className={styles.bodyText}>
+                      Extensions, wall modifications, and functional alterations may be considered where the existing
+                      structure and project requirements allow. Structural changes should be assessed by qualified
+                      professionals and coordinated with the required drawings and approvals.
+                    </p>
+                    <h3>Facade Renovation, Refurbishment, and Adaptive Reuse</h3>
+                    <p className={styles.bodyText}>
+                      Facade upgrades, restoration, heritage work, building refurbishment, sustainable upgrades, and
+                      adaptive reuse can help align an existing property with new functional or design requirements.
+                    </p>
+                    <h3>Renovation Construction and Project Coordination</h3>
+                    <p className={styles.bodyText}>
+                      Renovation design can be connected to construction execution, consultant and contractor coordination,
+                      materials, scheduling, quality review, and project management where included in the engagement.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Renovation and Remodelling Scope</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Residential Renovation Services in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Homeowners and residential developers can use professional renovation planning to coordinate
+                      existing conditions, layouts, materials, finishes, budget decisions, and construction works for
+                      homes, duplexes, apartments, and estates. Current renovation prices are not published because the
+                      scope depends on the property and project requirements.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Commercial Renovation Services in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Commercial, office, retail, hospitality, institutional, and mixed-use properties may require
+                      renovation to improve functionality, circulation, appearance, space utilization, finishes,
+                      durability, or operational fit. The appropriate scope depends on the existing building and intended
+                      use.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why Existing Building Assessment Matters</h2>
+                    <p className={styles.bodyText}>
+                      Assessment of existing conditions helps clarify renovation scope, cost, structural requirements,
+                      services, materials, construction sequence, and design decisions. It can also identify information
+                      gaps or unforeseen conditions that should be considered before major work begins.
+                    </p>
+                  </div>
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Renovation and Remodelling Process</h2>
+                      <div className={styles.processList}>
+                        {[
+                          { title: "Initial Consultation", desc: "Understand the property, objectives, concerns, intended use, and current project stage." },
+                          { title: "Existing Building Assessment", desc: "Review available information and existing conditions relevant to the renovation scope." },
+                          { title: "Project Brief and Scope Definition", desc: "Clarify the work categories, priorities, constraints, assumptions, and desired outcomes." },
+                          { title: "Design and Planning", desc: "Develop renovation layouts, design direction, drawings, specifications, and finish decisions where required." },
+                          { title: "Cost Assessment and Budget Development", desc: "Coordinate the project scope with cost planning and budget information where included." },
+                          { title: "Approvals Where Required", desc: "Support relevant documentation and coordination; final approvals remain with the appropriate authorities." },
+                          { title: "Construction and Renovation Works", desc: "Coordinate agreed renovation, refurbishment, alteration, upgrade, or fit-out works." },
+                          { title: "Quality Control and Handover", desc: "Review completion requirements, final works, documentation, and handover for the agreed scope." },
+                        ].map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Renovation Design and Planning</h2>
+                    <p className={styles.bodyText}>
+                      Renovation planning may include existing-condition review, client requirements, design development,
+                      layout planning, material and finish selection, coordination with engineering disciplines where
+                      necessary, drawings, and construction planning. See our <Link href="/services/architectural-design">architectural design services</Link> for the related design scope.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Renovation Project Management and Coordination</h2>
+                    <p className={styles.bodyText}>
+                      Renovation work often requires coordination between contractors, consultants, suppliers, materials,
+                      schedules, quality checks, and changing existing conditions. Our <Link href="/services/project-management">project management services</Link> and <Link href="/services/construction-management">construction management services</Link> provide related support without making this page a duplicate of those services.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Factors That Affect Renovation Costs in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Renovation costs vary with building size, existing condition, scope, design, materials, labour,
+                      structural modifications, MEP requirements, finishes, location, complexity, approvals, demolition,
+                      and unforeseen existing conditions. A project-specific assessment is required before costs can be
+                      discussed responsibly.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>What Is the Difference Between Renovation and Remodelling?</h2>
+                    <p className={styles.bodyText}>
+                      Renovation improves, repairs, restores, or updates an existing property. Remodelling changes the
+                      structure, layout, configuration, circulation, or functionality of an existing space. Many
+                      building projects combine both approaches.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Renovation vs New Construction</h2>
+                    <p className={styles.bodyText}>
+                      Whether renovation or new construction is more suitable depends on the existing building condition,
+                      project objectives, required changes, structural feasibility, budget, location, planning
+                      requirements, and intended use. Where a new build is more appropriate, review our <Link href="/services/building-construction">building construction services</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Renovation and Remodelling Services in Lagos, Nigeria</h2>
+                    <p className={styles.bodyText}>
+                      Building renovation in Lagos can support residential properties, offices, commercial buildings,
+                      hospitality spaces, institutional facilities, and other existing properties requiring upgrades,
+                      refurbishment, modernization, or changed space requirements. Building Practice Ltd also supports
+                      suitable projects elsewhere in Nigeria.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Related Design, Engineering, and Delivery Services</h2>
+                    <p className={styles.bodyText}>
+                      Renovation may connect to <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination services</Link>, <Link href="/services/interior-design">interior design services</Link>, <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/green-building-advisory">green building advisory</Link>, and <Link href="/services/3d-visualization">3D visualisation</Link> where relevant to the project.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/services/real-estate-development">Explore real estate development</Link>
+                      <Link href="/services/urban-development">Explore urban development</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {renovationRemodelingFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Renovation Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your property type, location, existing conditions, intended changes, drawings, and project
+                      stage with our team. We will help identify the appropriate renovation scope and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request a renovation consultation</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isConstructionCostEstimationPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Construction Cost Estimation by Building Practice Ltd</h2>
@@ -4515,7 +4907,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -4778,9 +5170,32 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
+              {isRenovationRemodelingPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Service Location</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Existing</div>
+                    <div className={styles.statLabel}>Building Assessment</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Support</div>
+                    <div className={styles.statLabel}>Design, Works, and Coordination</div>
+                  </div>
+                </div>
+              )}
+
               <div className={styles.ctaCard}>
                 <h3>
-                  {isConstructionCostEstimationPage
+                  {isRenovationRemodelingPage
+                    ? "Discuss Your Renovation Project"
+                    : isConstructionCostEstimationPage
                     ? "Discuss Your Project Budget"
                     : isMepCoordinationPage
                     ? "Discuss Your MEP Coordination Project"
@@ -4807,7 +5222,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isConstructionCostEstimationPage
+                  {isRenovationRemodelingPage
+                    ? "Tell us about your property type, existing conditions, intended changes, drawings, and project stage, and our team will guide you on the appropriate renovation scope."
+                    : isConstructionCostEstimationPage
                     ? "Tell us about your project type, drawings, specifications, location, current stage, and cost-planning objectives, and our team will guide you on the appropriate scope."
                     : isMepCoordinationPage
                     ? "Tell us about your building type, architectural and engineering information, project stage, and coordination objectives, and our team will guide you on the appropriate scope."
@@ -4835,7 +5252,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -4913,11 +5330,53 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <i className="bx bx-image" aria-hidden="true" />
                   </Link>
                 )}
+                {isRenovationRemodelingPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Our Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isConstructionCostEstimationPage ? (
+                  {isRenovationRemodelingPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-palette" aria-hidden="true" /> Interior Design
+                      </Link>
+                      <Link href="/services/structural-engineering" className="tag tag--outline tag--sm">
+                        <i className="bx bx-layer" aria-hidden="true" /> Structural Engineering
+                      </Link>
+                      <Link href="/services/mep-coordination" className="tag tag--outline tag--sm">
+                        <i className="bx bx-cog" aria-hidden="true" /> MEP Coordination
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isConstructionCostEstimationPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
