@@ -75,6 +75,10 @@ const BUILDING_PERMITS_SLUG = "building-permits";
 const BUILDING_PERMITS_TITLE = "Building Permit & Regulatory Compliance Services in Lagos, Nigeria";
 const BUILDING_PERMITS_DESCRIPTION =
   "Need building approval in Lagos? Building Practice Ltd supports permit preparation, planning approval documentation, and regulatory compliance coordination for suitable projects.";
+const CONSTRUCTION_SUPERVISION_SLUG = "construction-supervision";
+const CONSTRUCTION_SUPERVISION_TITLE = "Construction Supervision Services in Lagos, Nigeria";
+const CONSTRUCTION_SUPERVISION_DESCRIPTION =
+  "Need construction supervision in Lagos? Building Practice Ltd provides site monitoring, workmanship checks, progress tracking, and construction oversight for suitable projects.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -88,6 +92,41 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === CONSTRUCTION_SUPERVISION_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: CONSTRUCTION_SUPERVISION_TITLE,
+      description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
+      keywords: [
+        "Construction Supervision Services in Lagos",
+        "Construction Supervision Companies in Lagos",
+        "Construction Site Supervision Lagos",
+        "Building Supervision Services Lagos",
+        "Construction Monitoring Services Lagos",
+        "Construction Inspection Services Lagos",
+        "construction quality control Lagos",
+        "construction supervision Nigeria",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: CONSTRUCTION_SUPERVISION_TITLE,
+        description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: CONSTRUCTION_SUPERVISION_TITLE,
+        description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === BUILDING_PERMITS_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -749,6 +788,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isFacilityManagementPage = slug === FACILITY_MANAGEMENT_SLUG;
   const isSitePlanningLandscapePage = slug === SITE_PLANNING_LANDSCAPE_SLUG;
   const isBuildingPermitsPage = slug === BUILDING_PERMITS_SLUG;
+  const isConstructionSupervisionPage = slug === CONSTRUCTION_SUPERVISION_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -1247,7 +1287,77 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isBuildingPermitsPage
+  const constructionSupervisionFaq = [
+    {
+      q: "What is construction supervision?",
+      a: "Construction supervision is site-level professional oversight of construction activities, workmanship, materials, progress, contractor activities, and coordination against the agreed project information.",
+    },
+    {
+      q: "What does construction site supervision include?",
+      a: "The documented scope includes site supervision and monitoring, workmanship verification, construction progress tracking, material inspection, contractor performance evaluation, site meeting coordination, photo documentation, reporting, snag identification, and handover coordination.",
+    },
+    {
+      q: "How much does construction supervision cost in Lagos?",
+      a: "Costs depend on project size, duration, location, complexity, supervision frequency, number of site visits, scope, reporting requirements, and the number of consultants or contractors involved. A project-specific quotation is required.",
+    },
+    {
+      q: "How often should a construction site be supervised?",
+      a: "The appropriate frequency depends on project stage, complexity, contractor arrangements, project requirements, risk level, and the agreed scope of professional services. Not every project requires daily supervision.",
+    },
+    {
+      q: "Can construction supervision identify defects?",
+      a: "Site supervision can help identify visible workmanship issues, deviations, incomplete work, material concerns, and coordination problems. Some technical matters may require assessment by an appropriately qualified specialist engineer.",
+    },
+    {
+      q: "What is the difference between construction supervision and project management?",
+      a: "Construction supervision focuses on site-level execution, workmanship, observations, and progress. Project management has a broader role covering planning, budgeting, schedules, reporting, coordination, risk, and overall project delivery.",
+    },
+  ];
+
+  const servicePageJsonLd = isConstructionSupervisionPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: CONSTRUCTION_SUPERVISION_TITLE,
+            description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Construction Supervision Services",
+            description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
+            serviceType: [
+              "Construction Site Supervision",
+              "Construction Progress Monitoring",
+              "Workmanship Verification",
+              "Material Inspection",
+              "Contractor Performance Evaluation",
+              "Construction Reporting",
+              "Handover Coordination",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Construction Supervision", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isBuildingPermitsPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -2127,7 +2237,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isBuildingPermitsPage
+              isConstructionSupervisionPage
+                ? "Construction work being monitored on a building site"
+                : isBuildingPermitsPage
                 ? "Construction drawings and project documentation under review"
                 : isSitePlanningLandscapePage
                 ? "Residential outdoor space with integrated landscape design"
@@ -2168,14 +2280,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isBuildingPermitsPage
+                {isConstructionSupervisionPage
+                  ? "Construction Supervision"
+                  : isBuildingPermitsPage
                   ? "Building Permits & Regulatory Compliance"
                   : isSitePlanningLandscapePage
                   ? "Site Planning & Landscape Design"
@@ -2217,7 +2331,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isBuildingPermitsPage
+            {isConstructionSupervisionPage
+              ? "Construction Supervision Services in Lagos, Nigeria"
+              : isBuildingPermitsPage
               ? "Building Permit & Regulatory Compliance Services in Lagos, Nigeria"
               : isSitePlanningLandscapePage
               ? "Site Planning & Landscape Design Services in Lagos, Nigeria"
@@ -2254,7 +2370,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isBuildingPermitsPage
+            {isConstructionSupervisionPage
+              ? "We provide construction site monitoring, workmanship checks, progress tracking, and practical oversight for suitable building projects in Lagos."
+              : isBuildingPermitsPage
               ? "We support permit preparation, planning approval documentation, and regulatory compliance coordination for suitable construction and development projects in Lagos."
               : isSitePlanningLandscapePage
               ? "We plan functional site layouts, circulation, outdoor spaces, planting, hardscape, and landscape details for suitable developments in Lagos."
@@ -2297,7 +2415,192 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isBuildingPermitsPage ? (
+              {isConstructionSupervisionPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Construction Supervision by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides construction supervision services in Lagos for homeowners,
+                      property owners, developers, businesses, institutions, and project teams that need practical
+                      site-level oversight of suitable construction work.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope includes site supervision and monitoring, quality control and workmanship
+                      verification, progress tracking, material inspection, contractor performance evaluation, site
+                      meeting coordination, photo documentation, reporting, snag identification, and handover
+                      coordination. The agreed service scope and visit frequency depend on the project.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request construction supervision</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                      <Link href="/services/building-construction">Explore building construction services</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>What Is Construction Supervision?</h2>
+                    <p className={styles.bodyText}>
+                      Construction supervision is professional site-level oversight of ongoing activities,
+                      workmanship, materials, progress, contractor work, and coordination against the agreed project
+                      information. It helps clients maintain visibility over work on site without guaranteeing that
+                      every construction issue can be eliminated.
+                    </p>
+                    <p className={styles.bodyText}>
+                      It differs from <Link href="/services/project-management">project management</Link>, which has a broader role across planning, budget, schedule, and delivery, and from <Link href="/services/construction-management">construction management</Link>, which addresses broader execution coordination. Construction consultation provides advice; supervision concerns actual work on site.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Construction Supervision Services in Lagos</h2>
+                    <h3>Construction Site Supervision</h3>
+                    <p className={styles.bodyText}>We monitor ongoing site activities, work sequencing, contractor performance, and coordination within the agreed supervision scope.</p>
+                    <h3>Workmanship and Quality Checks</h3>
+                    <p className={styles.bodyText}>The documented service includes quality control and workmanship verification against the available project requirements and information.</p>
+                    <h3>Progress Monitoring and Reporting</h3>
+                    <p className={styles.bodyText}>Construction progress tracking, photo documentation, and reporting can help clients review completed work, current activities, and issues requiring attention.</p>
+                    <h3>Material Inspection and Contractor Monitoring</h3>
+                    <p className={styles.bodyText}>The scope includes material inspection and approval as well as contractor performance evaluation, subject to the project information and agreed responsibilities.</p>
+                    <h3>Snag Identification and Handover Coordination</h3>
+                    <p className={styles.bodyText}>Snag identification, issue follow-up, and handover coordination can form part of the agreed supervision engagement. This does not represent a completion-certification authority role.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Construction Quality Control and Inspection</h2>
+                    <p className={styles.bodyText}>
+                      Workmanship checks, material observations, site meetings, and quality checkpoints can help a
+                      project team identify visible defects, quality inconsistencies, construction deviations, and
+                      outstanding work earlier. Technical structural or specialist concerns may require assessment by
+                      an appropriately qualified engineer.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Construction Progress Monitoring</h2>
+                    <p className={styles.bodyText}>
+                      Progress monitoring considers completed activities, current site work, contractor activity,
+                      milestone status, outstanding tasks, and issues that may affect the next stage. Reporting and
+                      photographic documentation can support clearer discussion and follow-up without promising a
+                      particular delivery outcome.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Ensuring Construction Follows Approved Designs</h2>
+                    <p className={styles.bodyText}>
+                      Site supervision can review construction against the project information available for the
+                      engagement, such as architectural drawings, structural information, MEP information, and
+                      specifications where applicable. Explore our <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination</Link>, and <Link href="/services/building-permits">building permit and regulatory compliance services</Link> for connected requirements.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why Construction Supervision Is Important</h2>
+                    <p className={styles.bodyText}>
+                      Professional oversight can help clients monitor quality, progress, materials, contractor
+                      activities, and design intent; identify issues earlier; improve project visibility; and support
+                      clearer accountability on site. It cannot eliminate all risks, delays, defects, or changes that
+                      may arise during construction.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Risks of Poor Construction Supervision</h2>
+                    <p className={styles.bodyText}>
+                      Without appropriate oversight, projects may be more exposed to unnoticed workmanship problems,
+                      material concerns, construction deviations, rework, delays, coordination gaps, incomplete
+                      documentation, and reduced visibility for the client. The relevant risks vary by project and
+                      contractor arrangement.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Construction Supervision Process</h2>
+                    <div className={styles.processList}>
+                      {[
+                        { title: "Project Brief and Documentation Review", desc: "Clarify the site, scope, available drawings, project requirements, and agreed supervision responsibilities." },
+                        { title: "Site Inspection and Monitoring Plan", desc: "Review current site conditions and agree the appropriate inspection and monitoring approach." },
+                        { title: "Construction Monitoring", desc: "Monitor agreed site activities, workmanship, materials, progress, and coordination items." },
+                        { title: "Issue Identification and Reporting", desc: "Document relevant observations, outstanding work, and items requiring project-team attention." },
+                        { title: "Follow-Up and Handover Coordination", desc: "Follow up on agreed actions and support snag or handover coordination where included in the engagement." },
+                      ].map((step, index) => (
+                        <div key={`${step.title}-${index}`} className={styles.processStep}>
+                          <span className={styles.processNumber}>{index + 1}</span>
+                          <div><h3>{step.title}</h3><p>{step.desc}</p></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Construction Supervision for Homeowners and Developers</h2>
+                    <p className={styles.bodyText}>
+                      Homeowners may use professional supervision when they want clearer visibility into contractor
+                      work or cannot visit a site regularly. Developers and commercial project teams may need support
+                      coordinating several contractors, monitoring milestones, and documenting site issues. Related
+                      services include <Link href="/services/real-estate-development">real estate development</Link>, <Link href="/services/construction-management">construction management</Link>, and <Link href="/services/project-management">project management</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Residential and Commercial Construction Supervision in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      The documented project context supports suitable residential, commercial, hospitality,
+                      institutional, and mixed-use building briefs. Construction supervision should be tailored to the
+                      property type, project stage, available documentation, contractor arrangement, and agreed scope.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Much Does Construction Supervision Cost in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Fees depend on project size, duration, location, complexity, site-visit frequency, reporting
+                      needs, scope of supervision, and the number of contractors or consultants involved. Contact our
+                      team with your project brief for a project-specific quotation.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Often Should a Construction Site Be Supervised?</h2>
+                    <p className={styles.bodyText}>
+                      The appropriate frequency depends on project stage, complexity, contractor arrangements, risk,
+                      project requirements, and the agreed professional scope. Not every project requires daily site
+                      supervision; the approach should be agreed for the particular project.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Related Construction and Design Services</h2>
+                    <p className={styles.bodyText}>
+                      Construction supervision may connect to <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/building-construction">building construction</Link>, <Link href="/services/site-planning-landscape">site planning and landscape design</Link>, <Link href="/services/green-building-advisory">green building advisory</Link>, <Link href="/services/urban-development">urban development</Link>, <Link href="/services/renovation-remodeling">renovation and remodelling</Link>, <Link href="/services/facility-management">facility management</Link>, <Link href="/services/interior-design">interior design</Link>, and <Link href="/services/3d-visualization">3D visualisation</Link> where relevant to the project.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {constructionSupervisionFaq.map((item, index) => (
+                        <details key={`${item.q}-${index}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Construction Supervision Needs</h2>
+                    <p className={styles.bodyText}>
+                      Share your project type, site location, current stage, available drawings, contractor
+                      arrangement, and the oversight you need. Our team will review the appropriate supervision scope
+                      and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request construction supervision</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isBuildingPermitsPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Building Permit and Regulatory Compliance Services</h2>
@@ -5782,7 +6085,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -6068,7 +6371,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               <div className={styles.ctaCard}>
                 <h3>
-                  {isBuildingPermitsPage
+                  {isConstructionSupervisionPage
+                    ? "Discuss Your Construction Supervision Needs"
+                    : isBuildingPermitsPage
                     ? "Discuss Your Building Approval Requirements"
                     : isSitePlanningLandscapePage
                     ? "Discuss Your Site Planning Project"
@@ -6103,7 +6408,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isBuildingPermitsPage
+                  {isConstructionSupervisionPage
+                    ? "Tell us about your project type, location, current stage, available drawings, contractor arrangement, and oversight needs, and our team will guide you on the appropriate scope."
+                    : isBuildingPermitsPage
                     ? "Tell us about your project type, location, available drawings, current documentation, and project stage, and our team will guide you on the appropriate support scope."
                     : isSitePlanningLandscapePage
                     ? "Tell us about your site, intended use, outdoor-space requirements, available information, and project stage, and our team will guide you on the appropriate scope."
@@ -6139,7 +6446,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -6227,7 +6534,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isBuildingPermitsPage ? (
+                  {isConstructionSupervisionPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/building-permits" className="tag tag--outline tag--sm">
+                        <i className="bx bx-file-find" aria-hidden="true" /> Building Permits &amp; Compliance
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isBuildingPermitsPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
