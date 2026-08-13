@@ -47,6 +47,10 @@ const THREE_D_VISUALIZATION_SLUG = "3d-visualization";
 const THREE_D_VISUALIZATION_TITLE = "3D Visualisation Services in Lagos, Nigeria";
 const THREE_D_VISUALIZATION_DESCRIPTION =
   "Building Practice Ltd provides 3D visualisation services in Lagos, including architectural rendering, interior and exterior visuals, walkthroughs, animation, and design presentation support.";
+const STRUCTURAL_ENGINEERING_SLUG = "structural-engineering";
+const STRUCTURAL_ENGINEERING_TITLE = "Structural Engineering Services in Lagoss, Nigeria";
+const STRUCTURAL_ENGINEERING_DESCRIPTION =
+  "Building Practice Ltd provides structural engineering and design services in Lagos for building analysis, foundations, structural calculations, drawings, reinforced concrete, steel, and construction coordination.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -60,6 +64,45 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === STRUCTURAL_ENGINEERING_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: STRUCTURAL_ENGINEERING_TITLE,
+      description: STRUCTURAL_ENGINEERING_DESCRIPTION,
+      keywords: [
+        "Structural Engineering Services in Lagos",
+        "Structural Engineering & Design firms in Lagos, Nigeria",
+        "structural engineering company Lagos",
+        "structural engineering firms Lagos",
+        "structural engineers Lagos",
+        "structural design services Lagos",
+        "structural analysis Lagos",
+        "structural calculations Lagos",
+        "structural assessment Lagos",
+        "building structural design Lagos",
+        "structural engineering services Nigeria",
+        "structural engineering consultants Lagos",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: STRUCTURAL_ENGINEERING_TITLE,
+        description: STRUCTURAL_ENGINEERING_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: STRUCTURAL_ENGINEERING_TITLE,
+        description: STRUCTURAL_ENGINEERING_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === THREE_D_VISUALIZATION_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -441,6 +484,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isGreenBuildingAdvisoryPage = slug === GREEN_BUILDING_ADVISORY_SLUG;
   const isRealEstateDevelopmentPage = slug === REAL_ESTATE_DEVELOPMENT_SLUG;
   const isThreeDVisualizationPage = slug === THREE_D_VISUALIZATION_SLUG;
+  const isStructuralEngineeringPage = slug === STRUCTURAL_ENGINEERING_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -730,7 +774,86 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isThreeDVisualizationPage
+  const structuralEngineeringFaq = [
+    {
+      q: "What is structural engineering and design?",
+      a: "Structural engineering and design involves developing and documenting systems that carry and transfer building loads while responding to the project brief, architectural information, site data, applicable requirements, and construction needs.",
+    },
+    {
+      q: "Do you provide structural engineering services in Lagos?",
+      a: "Yes. Building Practice Ltd provides structural engineering and design services in Lagos and across Nigeria for suitable residential, commercial, institutional, and related building projects.",
+    },
+    {
+      q: "Do you provide structural analysis and calculations?",
+      a: "Yes. The documented service scope includes structural analysis, stability calculations, load-bearing assessment, and structural modeling based on the project requirements and available information.",
+    },
+    {
+      q: "Do you design foundations, reinforced concrete, and steel structures?",
+      a: "Yes. The service scope includes foundation design and analysis, reinforced concrete design, steel frame design and detailing, and structural specifications and details.",
+    },
+    {
+      q: "Do you provide structural assessment or inspection services?",
+      a: "The service content supports assessment of existing structures, site and soil information review, and structural rehabilitation design. The appropriate scope depends on the building condition, proposed changes, available records, and the required professional assessment.",
+    },
+    {
+      q: "How much does structural engineering cost in Lagos?",
+      a: "Fees depend on building type, project size, structural complexity, engineering scope, existing drawings, site information, assessment requirements, and documentation requirements. A project brief is needed before costs can be discussed responsibly.",
+    },
+    {
+      q: "Can structural engineering be coordinated with architectural design?",
+      a: "Yes. Structural design can be coordinated with architectural information and construction requirements so that structural systems, layouts, details, and delivery decisions are reviewed together.",
+    },
+  ];
+
+  const servicePageJsonLd = isStructuralEngineeringPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: STRUCTURAL_ENGINEERING_TITLE,
+            description: STRUCTURAL_ENGINEERING_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Structural Engineering & Design Services",
+            description: STRUCTURAL_ENGINEERING_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Lagos" },
+              { "@type": "Country", name: "Nigeria" },
+            ],
+            serviceType: [
+              "Structural Engineering",
+              "Structural Design",
+              "Structural Analysis",
+              "Structural Calculations",
+              "Foundation Design",
+              "Reinforced Concrete Design",
+              "Steel Structural Design",
+              "Structural Rehabilitation",
+              "Structural Construction Coordination",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Structural Engineering & Design", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isThreeDVisualizationPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -1293,7 +1416,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isThreeDVisualizationPage
+              isStructuralEngineeringPage
+                ? "Structural engineering and building design project"
+                : isThreeDVisualizationPage
                 ? "3D architectural visualization of a contemporary building"
                 : isRealEstateDevelopmentPage
                 ? "Real estate development planning and property construction project"
@@ -1320,14 +1445,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isThreeDVisualizationPage
+                {isStructuralEngineeringPage
+                  ? "Structural Engineering & Design"
+                  : isThreeDVisualizationPage
                   ? "3D Visualisation"
                   : isRealEstateDevelopmentPage
                   ? "Real Estate Development"
@@ -1355,7 +1482,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isThreeDVisualizationPage
+            {isStructuralEngineeringPage
+              ? "Structural Engineering & Design Services in Lagos, Nigeria"
+              : isThreeDVisualizationPage
               ? "3D Visualisation Services in Lagos, Nigeria"
               : isRealEstateDevelopmentPage
               ? "Real Estate Development Services in Lagos, Nigeria"
@@ -1378,7 +1507,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isThreeDVisualizationPage
+            {isStructuralEngineeringPage
+              ? "We provide structural analysis, design, calculations, foundations, structural drawings, reinforced concrete and steel design, and construction coordination for projects in Lagos and across Nigeria."
+              : isThreeDVisualizationPage
               ? "We create architectural renders, interior and exterior visuals, walkthroughs, animation, and design presentation imagery for projects in Lagos and across Nigeria."
               : isRealEstateDevelopmentPage
               ? "We support development feasibility, property planning, architectural design, construction, project management, and development coordination for projects in Lagos and across Nigeria."
@@ -1407,7 +1538,245 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isThreeDVisualizationPage ? (
+              {isStructuralEngineeringPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Professional Structural Engineering and Design</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides structural engineering and design services for homeowners, property
+                      developers, architects, contractors, businesses, institutions, and organizations planning or
+                      modifying building projects in Lagos and across Nigeria.
+                    </p>
+                    <p className={styles.bodyText}>
+                      The service connects architectural information, site and project requirements, structural analysis,
+                      calculations, drawings, detailing, and construction coordination. It is focused on structural
+                      engineering and design rather than architectural design, physical construction, or project control
+                      alone.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Discuss your structural design project</Link>
+                      <Link href="/projects">View our projects</Link>
+                      <Link href="/services/architectural-design">Coordinate with architectural design</Link>
+                    </div>
+                  </div>
+
+                  {service.highlights.length > 0 && (
+                    <div className={styles.highlights}>
+                      {service.highlights.map((h, i) => (
+                        <div key={`${h.title}-${i}`} className={styles.highlightCard}>
+                          <div className={styles.highlightIcon}>
+                            <i className={`bx ${h.icon}`} aria-hidden="true" />
+                          </div>
+                          <h3>{h.title}</h3>
+                          <p>{h.desc}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>What Is Structural Engineering &amp; Design?</h2>
+                    <p className={styles.bodyText}>
+                      Structural engineering and design involves determining how a building and its structural
+                      components carry and transfer loads. The work considers the project brief, architectural
+                      information, site and ground information, building type, structural requirements, applicable
+                      standards, and the practical needs of construction.
+                    </p>
+                    <p className={styles.bodyText}>
+                      A structural design should be developed through appropriate professional judgment and project
+                      information. This page provides a service overview and is not a substitute for project-specific
+                      engineering advice, calculations, inspections, or approvals.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Structural Engineering Services in Lagos</h2>
+                    <h3>Structural Analysis and Design</h3>
+                    <p className={styles.bodyText}>
+                      We assess structural requirements and develop appropriate load-bearing systems for building
+                      projects based on the available architectural, site, and project information.
+                    </p>
+                    <h3>Structural Calculations</h3>
+                    <p className={styles.bodyText}>
+                      The documented service scope includes stability calculations, load-bearing assessment, structural
+                      analysis, and calculations that support structural design decisions and documentation.
+                    </p>
+                    <h3>Structural Drawings and Detailing</h3>
+                    <p className={styles.bodyText}>
+                      Structural drawings, specifications, and detailing communicate design information to architects,
+                      contractors, and construction teams. Clear documentation helps coordinate structural intent with
+                      the wider project information.
+                    </p>
+                    <h3>Foundation Design</h3>
+                    <p className={styles.bodyText}>
+                      Foundation design and analysis can be considered in relation to building loads, ground information,
+                      structural requirements, and project type. Site-specific investigation and professional assessment
+                      are important where foundation decisions depend on conditions not established in the brief.
+                    </p>
+                    <h3>Reinforced Concrete and Steel Design</h3>
+                    <p className={styles.bodyText}>
+                      The service includes reinforced concrete design, steel frame design and detailing, and structural
+                      specifications for appropriate building elements and project requirements.
+                    </p>
+                    <h3>Structural Assessment and Rehabilitation</h3>
+                    <p className={styles.bodyText}>
+                      Existing buildings may require professional assessment when there are concerns about condition,
+                      deterioration, alterations, proposed modifications, extensions, or change of use. The scope of an
+                      assessment depends on the building, available records, observed issues, and required investigation.
+                    </p>
+                    <h3>Structural Construction Coordination</h3>
+                    <p className={styles.bodyText}>
+                      Structural information can be coordinated with architectural and construction requirements to support
+                      interpretation, detailing, sequencing, and construction-stage communication where applicable.
+                    </p>
+                  </div>
+
+                  {service.features.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Structural Engineering and Design Scope</h2>
+                      <ul className={styles.featureList}>
+                        {service.features.map((f, i) => (
+                          <li key={`${f}-${i}`}>
+                            <i className="bx bx-check-circle" aria-hidden="true" />
+                            <span>{f}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Structural Elements We Design</h2>
+                    <p className={styles.bodyText}>
+                      Depending on the project scope, structural design may address foundations, structural frames,
+                      columns, beams, slabs, roof structures, reinforced concrete elements, steel framing, building
+                      enclosures, and related structural details. The exact elements depend on the building and the
+                      information available for professional design.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why Structural Engineering Is Important</h2>
+                    <p className={styles.bodyText}>
+                      Structural engineering helps support structural integrity, appropriate material use, coordination
+                      with architectural design, constructability, project planning, and long-term building performance.
+                      Early coordination can also help identify conflicts between the architectural concept, structural
+                      system, and construction requirements.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Who Our Structural Engineering Services Are For</h2>
+                    <p className={styles.bodyText}>
+                      Homeowners may need structural design for new buildings, extensions, or alterations. Property
+                      developers, architects, contractors, construction companies, businesses, institutions, and
+                      commercial property owners may need structural analysis, design documentation, review, or
+                      coordination for their projects.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Projects We Provide Structural Engineering For</h2>
+                    <p className={styles.bodyText}>
+                      The service scope can support residential buildings, duplexes, apartments, housing estates,
+                      commercial and office buildings, retail developments, industrial structures, institutional
+                      buildings, mixed-use developments, renovations, and building extensions where the project brief
+                      aligns with the practice&apos;s capabilities.
+                    </p>
+                  </div>
+
+                  {service.process.length > 0 && (
+                    <div className={styles.block}>
+                      <h2>Our Structural Engineering Process</h2>
+                      <div className={styles.processList}>
+                        {[
+                          { title: "Project Brief and Requirements", desc: "Understand the building type, scope, intended use, available information, and structural questions." },
+                          { title: "Review of Architectural Information", desc: "Review plans, layouts, elevations, sections, design changes, and coordination requirements." },
+                          { title: "Site and Project Information Assessment", desc: "Consider available site, ground, existing-building, and project information relevant to structural decisions." },
+                          { title: "Structural Analysis", desc: "Assess structural requirements, loads, stability, and the behavior of the proposed system." },
+                          { title: "Structural Design", desc: "Develop structural systems and details appropriate to the agreed building scope and requirements." },
+                          { title: "Drawings and Documentation", desc: "Prepare structural drawings, specifications, calculations, and details required for the agreed scope." },
+                          { title: "Coordination and Review", desc: "Coordinate structural information with architects, contractors, consultants, and project stakeholders." },
+                          { title: "Construction Support Where Applicable", desc: "Provide relevant structural clarification or coordination during construction where included in the engagement." },
+                        ].map((step, i) => (
+                          <div key={`${step.title}-${i}`} className={styles.processStep}>
+                            <span className={styles.processNumber}>{i + 1}</span>
+                            <div>
+                              <h3>{step.title}</h3>
+                              <p>{step.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={styles.block}>
+                    <h2>Integrating Structural Engineering with Architectural Design</h2>
+                    <p className={styles.bodyText}>
+                      Architectural design establishes the building&apos;s spatial and functional direction; structural
+                      engineering develops the systems that support that direction; construction brings the coordinated
+                      information into physical delivery. Early communication between these disciplines can support
+                      clearer decisions and better constructability.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Review our <Link href="/services/architectural-design">architectural design services</Link> for the building-design scope and our <Link href="/services/building-construction">building construction services</Link> for physical execution.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Structural Engineering Services in Lagos, Nigeria</h2>
+                    <p className={styles.bodyText}>
+                      Structural engineering in Lagos should respond to the specific project context, including building
+                      type, development scale, site information, local construction practices, applicable requirements,
+                      and coordination with architects and contractors. Site-specific ground information may be relevant
+                      to structural and foundation design; conditions should not be assumed across every Lagos site.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Where a project also involves construction execution, our <Link href="/services/construction-management">construction management services</Link> and <Link href="/services/project-management">project management services</Link> provide related delivery support.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Engineering Coordination and Applicable Requirements</h2>
+                    <p className={styles.bodyText}>
+                      Structural design and documentation should be coordinated with applicable Nigerian building
+                      regulations, relevant codes and standards, local planning requirements, and project-specific
+                      engineering requirements. The appropriate authorities and qualified professionals determine the
+                      applicable approvals and compliance requirements for each project.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
+                      <Link href="/services/3d-visualization">Explore 3D visualisation services</Link>
+                      <Link href="/services/real-estate-development">Explore real estate development services</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {structuralEngineeringFaq.map((item, i) => (
+                        <details key={`${item.q}-${i}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Structural Design Project</h2>
+                    <p className={styles.bodyText}>
+                      Share your building type, site information, architectural drawings, project stage, and structural
+                      requirements with our team. We will help identify the appropriate engineering scope and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request structural engineering services</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isThreeDVisualizationPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Professional Architectural 3D Visualisation</h2>
@@ -3373,7 +3742,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -3573,9 +3942,32 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               )}
 
+              {isStructuralEngineeringPage && (
+                <div className={styles.statsCard}>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Lagos</div>
+                    <div className={styles.statLabel}>Core Service Location</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Nigeria</div>
+                    <div className={styles.statLabel}>Project Coverage</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Design</div>
+                    <div className={styles.statLabel}>Analysis and Documentation</div>
+                  </div>
+                  <div className={styles.statItem}>
+                    <div className={styles.statNumber}>Support</div>
+                    <div className={styles.statLabel}>Coordination Through Construction</div>
+                  </div>
+                </div>
+              )}
+
               <div className={styles.ctaCard}>
                 <h3>
-                  {isThreeDVisualizationPage
+                  {isStructuralEngineeringPage
+                    ? "Discuss Your Structural Design Project"
+                    : isThreeDVisualizationPage
                     ? "Discuss Your 3D Visualisation Project"
                     : isRealEstateDevelopmentPage
                     ? "Discuss Your Real Estate Development Project"
@@ -3596,7 +3988,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isThreeDVisualizationPage
+                  {isStructuralEngineeringPage
+                    ? "Tell us about your building type, site information, architectural drawings, project stage, and structural requirements, and our team will guide you on the appropriate scope."
+                    : isThreeDVisualizationPage
                     ? "Tell us about your drawings, project type, intended visual outputs, and presentation goals, and our team will guide you on the appropriate scope."
                     : isRealEstateDevelopmentPage
                     ? "Tell us about your site, intended use, development objectives, and current project stage, and our team will guide you on practical next steps."
@@ -3618,7 +4012,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -3678,11 +4072,50 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <i className="bx bx-image" aria-hidden="true" />
                   </Link>
                 )}
+                {isStructuralEngineeringPage && (
+                  <Link href="/projects" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                    <span>View Our Projects</span>
+                    <i className="bx bx-image" aria-hidden="true" />
+                  </Link>
+                )}
               </div>
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isThreeDVisualizationPage ? (
+                  {isStructuralEngineeringPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
+                      </Link>
+                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                        <i className="bx bx-building" aria-hidden="true" /> Building Construction
+                      </Link>
+                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
+                      </Link>
+                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                        <i className="bx bx-task" aria-hidden="true" /> Project Management
+                      </Link>
+                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                        <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
+                      </Link>
+                      <Link href="/services/3d-visualization" className="tag tag--outline tag--sm">
+                        <i className="bx bx-cube-alt" aria-hidden="true" /> 3D Visualisation
+                      </Link>
+                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact the Engineering Team
+                      </Link>
+                    </>
+                  ) : isThreeDVisualizationPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
