@@ -87,6 +87,10 @@ const LAND_SURVEYING_SLUG = "land-surveying";
 const LAND_SURVEYING_TITLE = "Land Surveying Services in Lagos, Nigeria";
 const LAND_SURVEYING_DESCRIPTION =
   "Need land surveying in Lagos? Building Practice Ltd provides site, topographic, boundary-related, and construction survey support for suitable property and development projects.";
+const ENVIRONMENTAL_IMPACT_SLUG = "environmental-impact";
+const ENVIRONMENTAL_IMPACT_TITLE = "Environmental Impact Assessment Services in Lagos, Nigeria";
+const ENVIRONMENTAL_IMPACT_DESCRIPTION =
+  "Need an Environmental Impact Assessment in Lagos? Building Practice Ltd provides environmental assessment and development advisory to help suitable projects identify risks and plan responsibly.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -100,6 +104,41 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === ENVIRONMENTAL_IMPACT_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: ENVIRONMENTAL_IMPACT_TITLE,
+      description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
+      keywords: [
+        "Environmental Impact Assessment Services in Lagos",
+        "Environmental Impact Assessment Firms in Lagos",
+        "Environmental Impact Assessment Consultants in Lagos",
+        "Environmental Consultants in Lagos",
+        "EIA Consultants in Lagos",
+        "environmental assessment Lagos",
+        "environmental compliance services Lagos",
+        "Environmental Impact Assessment Nigeria",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: {
+        title: ENVIRONMENTAL_IMPACT_TITLE,
+        description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
+        url,
+        siteName: SITE_NAME,
+        locale: "en_NG",
+        type: "website",
+        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: ENVIRONMENTAL_IMPACT_TITLE,
+        description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
+        images: [service.heroImage || DEFAULT_OG_IMAGE],
+      },
+    };
+  }
 
   if (slug === LAND_SURVEYING_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -869,6 +908,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isConstructionSupervisionPage = slug === CONSTRUCTION_SUPERVISION_SLUG;
   const isFeasibilityStudiesPage = slug === FEASIBILITY_STUDIES_SLUG;
   const isLandSurveyingPage = slug === LAND_SURVEYING_SLUG;
+  const isEnvironmentalImpactPage = slug === ENVIRONMENTAL_IMPACT_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -1448,7 +1488,77 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isLandSurveyingPage
+  const environmentalImpactFaq = [
+    {
+      q: "What is an Environmental Impact Assessment?",
+      a: "An Environmental Impact Assessment is a systematic process used to identify, evaluate, and manage potential environmental effects associated with a proposed project. Its exact scope depends on the project and applicable requirements.",
+    },
+    {
+      q: "What does an environmental assessment include?",
+      a: "The documented scope includes screening and scoping studies, baseline environmental data collection, impact prediction and evaluation, mitigation development, environmental management planning, public consultation and engagement, report preparation, submission support, monitoring planning, compliance auditing, post-impact monitoring, and environmental training.",
+    },
+    {
+      q: "Does every construction project require an EIA?",
+      a: "No general statement applies to every project. Requirements can depend on the nature, scale, location, environmental sensitivity, development activity, and applicable regulations. Confirm current requirements for the specific project with the appropriate authority.",
+    },
+    {
+      q: "How much does an Environmental Impact Assessment cost in Lagos?",
+      a: "Costs depend on project type, scale, location, environmental sensitivity, assessment scope, fieldwork, reporting, specialist inputs, regulatory requirements, and project complexity. A project-specific quotation is required.",
+    },
+    {
+      q: "How long does an Environmental Impact Assessment take?",
+      a: "Duration depends on project size, assessment scope, environmental complexity, field studies, documentation, consultation, and applicable regulatory processes. Assessment preparation and authority review are separate stages, and no universal timeline can be guaranteed.",
+    },
+    {
+      q: "Does an EIA guarantee approval or compliance?",
+      a: "No. An assessment can identify potential impacts and support mitigation and planning, but it does not guarantee an approval, a regulatory outcome, or complete compliance with every applicable requirement.",
+    },
+  ];
+
+  const servicePageJsonLd = isEnvironmentalImpactPage
+    ? {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/services/${slug}#webpage`),
+            url: absoluteUrl(`/services/${slug}`),
+            name: ENVIRONMENTAL_IMPACT_TITLE,
+            description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
+            isPartOf: { "@id": `${SITE_URL}/#website` },
+            about: { "@id": `${SITE_URL}/#organization` },
+            inLanguage: "en-NG",
+          },
+          {
+            "@type": "Service",
+            "@id": absoluteUrl(`/services/${slug}#service`),
+            name: "Environmental Impact Assessment Services",
+            description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
+            provider: { "@id": `${SITE_URL}/#organization` },
+            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
+            serviceType: [
+              "Environmental Screening and Scoping",
+              "Baseline Environmental Data Collection",
+              "Environmental Impact Evaluation",
+              "Mitigation Measure Development",
+              "Environmental Management Planning",
+              "Environmental Assessment Report Preparation",
+              "Monitoring Plan Development",
+            ],
+            url: absoluteUrl(`/services/${slug}`),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+              { "@type": "ListItem", position: 3, name: "Environmental Impact Assessment", item: absoluteUrl(`/services/${slug}`) },
+            ],
+          },
+        ],
+      }
+    : isLandSurveyingPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -2457,7 +2567,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isLandSurveyingPage
+              isEnvironmentalImpactPage
+                ? "Sustainable development planning for a building project"
+                : isLandSurveyingPage
                 ? "Site information review for a property development project"
                 : isFeasibilityStudiesPage
                 ? "Property development site and project planning review"
@@ -2504,14 +2616,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isEnvironmentalImpactPage || isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isLandSurveyingPage
+                {isEnvironmentalImpactPage
+                  ? "Environmental Impact Assessment"
+                  : isLandSurveyingPage
                   ? "Land Surveying"
                   : isFeasibilityStudiesPage
                   ? "Feasibility Studies"
@@ -2559,7 +2673,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isLandSurveyingPage
+            {isEnvironmentalImpactPage
+              ? "Environmental Impact Assessment Services in Lagos, Nigeria"
+              : isLandSurveyingPage
               ? "Land Surveying Services in Lagos, Nigeria"
               : isFeasibilityStudiesPage
               ? "Feasibility Study Services in Lagos, Nigeria"
@@ -2602,7 +2718,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isLandSurveyingPage
+            {isEnvironmentalImpactPage
+              ? "We provide environmental assessment, impact evaluation, mitigation planning, and development advisory for suitable projects in Lagos."
+              : isLandSurveyingPage
               ? "We provide site, topographic, boundary-related, and construction survey support for suitable property and development projects in Lagos."
               : isFeasibilityStudiesPage
               ? "We assess site, market, technical, cost, regulatory, and risk considerations for suitable property and construction projects in Lagos."
@@ -2651,7 +2769,185 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isLandSurveyingPage ? (
+              {isEnvironmentalImpactPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Environmental Impact Assessment Services by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>
+                      Building Practice Ltd provides Environmental Impact Assessment and environmental assessment
+                      services in Lagos for developers, businesses, institutions, investors, construction teams, and
+                      organizations planning suitable property, infrastructure, and development projects.
+                    </p>
+                    <p className={styles.bodyText}>
+                      Our documented scope includes screening and scoping studies, baseline environmental data
+                      collection, impact prediction and evaluation, mitigation development, environmental management
+                      planning, public consultation and engagement, report preparation, submission support, monitoring
+                      planning, compliance auditing, post-impact monitoring, and environmental training. The agreed
+                      scope depends on the project and applicable requirements.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request an environmental assessment consultation</Link>
+                      <Link href="/services/green-building-advisory">Explore green building advisory</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>What Is an Environmental Impact Assessment?</h2>
+                    <p className={styles.bodyText}>
+                      An Environmental Impact Assessment is a systematic process used to identify, evaluate, and
+                      manage potential environmental effects associated with a proposed project. Depending on the
+                      brief, assessment may consider land, water, air, vegetation, waste, noise, resource use,
+                      infrastructure, and surrounding communities.
+                    </p>
+                    <p className={styles.bodyText}>
+                      This service provides assessment and project-planning support, not legal advice, regulatory
+                      authority, or a guarantee of approval or compliance.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Environmental Impact Assessment Services in Lagos</h2>
+                    <h3>Environmental Screening and Scoping</h3>
+                    <p className={styles.bodyText}>Early screening and scoping can identify key environmental issues, site sensitivities, potential risks, and the environmental questions that should be considered for the agreed project scope.</p>
+                    <h3>Baseline Data and Impact Assessment</h3>
+                    <p className={styles.bodyText}>The documented scope includes baseline environmental data collection and impact prediction and evaluation. The categories, methods, and specialist input depend on the project and assignment.</p>
+                    <h3>Environmental Risk and Mitigation Planning</h3>
+                    <p className={styles.bodyText}>Assessment can identify potential risks and inform mitigation measures and environmental management planning without guaranteeing that every impact can be avoided.</p>
+                    <h3>Documentation, Monitoring, and Advisory</h3>
+                    <p className={styles.bodyText}>The service scope includes EIA report preparation, regulatory submission support, monitoring-plan development, compliance auditing, post-impact monitoring, and environmental training where applicable to the agreed brief.</p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Environmental Impact Identification and Risk Assessment</h2>
+                    <p className={styles.bodyText}>
+                      Proposed development can affect land, water, air, vegetation, waste generation, noise,
+                      resource use, traffic, surrounding communities, and infrastructure. Identifying potential
+                      impacts early helps project teams incorporate environmental considerations into planning,
+                      design, construction, and mitigation discussions.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Environmental Mitigation and Management Planning</h2>
+                    <p className={styles.bodyText}>
+                      Assessment should help identify practical measures to manage relevant impacts, such as resource
+                      use, waste, water management, pollution prevention, noise, site disturbance, and restoration
+                      considerations where appropriate. Measures should be tailored to the actual project and do not
+                      replace applicable professional or regulatory requirements.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Environmental Compliance Advisory in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      Environmental requirements may depend on project type, scale, location, sensitivity, activity,
+                      and applicable regulations. Building Practice Ltd can provide the documented environmental
+                      advisory and submission-support scope, but does not represent an approval authority or guarantee
+                      a regulatory outcome. Confirm current requirements with the appropriate authority for the
+                      specific project.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Environmental Assessment for Property and Construction Projects</h2>
+                    <p className={styles.bodyText}>
+                      Environmental assessment can support suitable residential, commercial, mixed-use, industrial,
+                      infrastructure, redevelopment, and construction project briefs by identifying potential impacts
+                      before and during planning. Related services include <Link href="/services/real-estate-development">real estate development</Link>, <Link href="/services/urban-development">urban development</Link>, <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/building-construction">building construction</Link>, <Link href="/services/construction-management">construction management</Link>, and <Link href="/services/construction-supervision">construction supervision</Link>.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Environmental Assessment for Feasibility Studies</h2>
+                    <p className={styles.bodyText}>
+                      Environmental assessment evaluates potential environmental effects and mitigation measures.
+                      <Link href="/services/feasibility-studies"> Feasibility studies</Link> evaluate wider project viability, including technical, financial, market, environmental, and risk considerations. They are related but distinct early-stage services.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Why Environmental Impact Assessment Matters in Lagos</h2>
+                    <p className={styles.bodyText}>
+                      In an active urban development context, environmental planning can help keep drainage, waste,
+                      water, infrastructure, construction impacts, land use, and surrounding conditions visible as a
+                      project develops. The relevant issues should be established from the actual site and proposal,
+                      rather than assumed from a generic template.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Benefits of Environmental Impact Assessment</h2>
+                    <p className={styles.bodyText}>
+                      Environmental assessment can support earlier identification of environmental risks, better
+                      project planning, mitigation discussions, stakeholder awareness, environmental management, and
+                      more responsible development decisions. It cannot guarantee approval, compliance, project
+                      success, or a particular environmental outcome.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Our Environmental Impact Assessment Process</h2>
+                    <div className={styles.processList}>
+                      {[
+                        { title: "Project and Site Review", desc: "Clarify the proposal, site, objectives, available information, and the agreed assessment scope." },
+                        { title: "Screening and Baseline Information", desc: "Identify key environmental questions and gather relevant baseline information within the assignment." },
+                        { title: "Impact and Risk Assessment", desc: "Evaluate potential impacts, risks, and mitigation considerations connected to the proposed project." },
+                        { title: "Management Recommendations and Documentation", desc: "Develop relevant management recommendations and prepare the agreed assessment documentation." },
+                        { title: "Support Where Applicable", desc: "Provide agreed advisory, submission-support, monitoring-plan, or follow-up support without guaranteeing an authority outcome." },
+                      ].map((step, index) => (
+                        <div key={`${step.title}-${index}`} className={styles.processStep}>
+                          <span className={styles.processNumber}>{index + 1}</span>
+                          <div><h3>{step.title}</h3><p>{step.desc}</p></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Much Does an Environmental Impact Assessment Cost in Lagos?</h2>
+                    <p className={styles.bodyText}>
+                      Fees depend on project type, size, location, environmental sensitivity, assessment scope,
+                      fieldwork, specialist inputs, reporting, applicable requirements, and overall complexity.
+                      Laboratory testing, where needed, should be scoped appropriately. Request a project-specific
+                      quotation rather than relying on a generic price range.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>How Long Does an Environmental Impact Assessment Take?</h2>
+                    <p className={styles.bodyText}>
+                      Duration depends on project size, environmental complexity, scope, field studies,
+                      documentation, stakeholder consultation, specialist input, and applicable processes.
+                      Assessment preparation time is separate from any authority review, which is not guaranteed.
+                    </p>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Frequently Asked Questions</h2>
+                    <div className={styles.faqList}>
+                      {environmentalImpactFaq.map((item, index) => (
+                        <details key={`${item.q}-${index}`} className={styles.faqItem}>
+                          <summary>{item.q}</summary>
+                          <div>{item.a}</div>
+                        </details>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className={styles.block}>
+                    <h2>Discuss Your Environmental Assessment Requirements</h2>
+                    <p className={styles.bodyText}>
+                      Share your project type, site location, intended development, available information, and current
+                      stage. Our team will review the appropriate environmental-assessment scope and next steps.
+                    </p>
+                    <div className={styles.linkRow}>
+                      <Link href="/contact">Request an environmental assessment consultation</Link>
+                      <Link href="/projects">View our project portfolio</Link>
+                    </div>
+                  </div>
+                </>
+              ) : isLandSurveyingPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Land Surveying Services by Building Practice Ltd</h2>
@@ -6772,7 +7068,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isLandSurveyingPage && !isFeasibilityStudiesPage && !isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isEnvironmentalImpactPage && !isLandSurveyingPage && !isFeasibilityStudiesPage && !isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -7058,7 +7354,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               <div className={styles.ctaCard}>
                 <h3>
-                  {isLandSurveyingPage
+                  {isEnvironmentalImpactPage
+                    ? "Discuss Your Environmental Assessment Requirements"
+                    : isLandSurveyingPage
                     ? "Discuss Your Land Surveying Requirements"
                     : isFeasibilityStudiesPage
                     ? "Discuss Your Feasibility Study Requirements"
@@ -7099,7 +7397,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isLandSurveyingPage
+                  {isEnvironmentalImpactPage
+                    ? "Tell us about your project type, site location, intended development, available information, and current stage, and our team will guide you on the appropriate assessment scope."
+                    : isLandSurveyingPage
                     ? "Tell us about your site location, intended use, available information, survey purpose, and project stage, and our team will guide you on the appropriate scope."
                     : isFeasibilityStudiesPage
                     ? "Tell us about your proposed site or project, objectives, available information, and project stage, and our team will guide you on the appropriate feasibility scope."
@@ -7141,7 +7441,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isEnvironmentalImpactPage || isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
@@ -7229,7 +7529,37 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               {service.tags.length > 0 && (
                 <div className={styles.tagsCard}>
-                  {isLandSurveyingPage ? (
+                  {isEnvironmentalImpactPage ? (
+                    <>
+                      <Link href="/services" className="tag tag--outline tag--sm">
+                        <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
+                      </Link>
+                      <Link href="/services/green-building-advisory" className="tag tag--outline tag--sm">
+                        <i className="bx bx-leaf" aria-hidden="true" /> Green Building Advisory
+                      </Link>
+                      <Link href="/services/feasibility-studies" className="tag tag--outline tag--sm">
+                        <i className="bx bx-analyse" aria-hidden="true" /> Feasibility Studies
+                      </Link>
+                      <Link href="/services/building-permits" className="tag tag--outline tag--sm">
+                        <i className="bx bx-file-find" aria-hidden="true" /> Building Permits &amp; Compliance
+                      </Link>
+                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
+                      </Link>
+                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                        <i className="bx bx-city" aria-hidden="true" /> Urban Development
+                      </Link>
+                      <Link href="/services/site-planning-landscape" className="tag tag--outline tag--sm">
+                        <i className="bx bx-leaf" aria-hidden="true" /> Site Planning &amp; Landscape Design
+                      </Link>
+                      <Link href="/projects" className="tag tag--outline tag--sm">
+                        <i className="bx bx-image" aria-hidden="true" /> Project Portfolio
+                      </Link>
+                      <Link href="/contact" className="tag tag--outline tag--sm">
+                        <i className="bx bx-envelope" aria-hidden="true" /> Contact Our Team
+                      </Link>
+                    </>
+                  ) : isLandSurveyingPage ? (
                     <>
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
