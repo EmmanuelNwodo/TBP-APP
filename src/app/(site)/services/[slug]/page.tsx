@@ -91,6 +91,10 @@ const ENVIRONMENTAL_IMPACT_SLUG = "environmental-impact";
 const ENVIRONMENTAL_IMPACT_TITLE = "Environmental Impact Assessment Services in Lagos, Nigeria";
 const ENVIRONMENTAL_IMPACT_DESCRIPTION =
   "Need an Environmental Impact Assessment in Lagos? Building Practice Ltd provides environmental assessment and development advisory to help suitable projects identify risks and plan responsibly.";
+const BUILDING_CERTIFICATION_SLUG = "building-certification";
+const BUILDING_CERTIFICATION_TITLE = "Building Certification Services in Lagos, Nigeria";
+const BUILDING_CERTIFICATION_DESCRIPTION =
+  "Need building certification support in Lagos? Building Practice Ltd provides documentation, compliance, and certification advisory for suitable property and construction projects.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -104,6 +108,28 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === BUILDING_CERTIFICATION_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: BUILDING_CERTIFICATION_TITLE,
+      description: BUILDING_CERTIFICATION_DESCRIPTION,
+      keywords: [
+        "Building Certification Services in Lagos",
+        "Building Certification Firms in Lagos",
+        "Building Certification Consultants in Lagos",
+        "Building Certification Company in Lagos",
+        "building compliance Lagos",
+        "building documentation services Lagos",
+        "construction certification Lagos",
+        "building certification Nigeria",
+      ],
+      alternates: { canonical: url },
+      robots: { index: true, follow: true },
+      openGraph: { title: BUILDING_CERTIFICATION_TITLE, description: BUILDING_CERTIFICATION_DESCRIPTION, url, siteName: SITE_NAME, locale: "en_NG", type: "website", images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }] },
+      twitter: { card: "summary_large_image", title: BUILDING_CERTIFICATION_TITLE, description: BUILDING_CERTIFICATION_DESCRIPTION, images: [service.heroImage || DEFAULT_OG_IMAGE] },
+    };
+  }
 
   if (slug === ENVIRONMENTAL_IMPACT_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);
@@ -909,6 +935,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const isFeasibilityStudiesPage = slug === FEASIBILITY_STUDIES_SLUG;
   const isLandSurveyingPage = slug === LAND_SURVEYING_SLUG;
   const isEnvironmentalImpactPage = slug === ENVIRONMENTAL_IMPACT_SLUG;
+  const isBuildingCertificationPage = slug === BUILDING_CERTIFICATION_SLUG;
 
   const architecturalDesignProjects = isArchitecturalDesignPage
     ? getAllProjects().filter((project) =>
@@ -1515,7 +1542,21 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     },
   ];
 
-  const servicePageJsonLd = isEnvironmentalImpactPage
+  const buildingCertificationFaq = [
+    { q: "What is building certification?", a: "Building certification can involve documentation, assessment, inspection, verification, or formal certification associated with a building, depending on the applicable project and regulatory process." },
+    { q: "Can Building Practice Ltd help with certification documentation?", a: "The documented service scope includes certification-requirements review, documentation preparation, building-plan approval processing, and coordination for suitable project briefs. The applicable authority determines any statutory outcome." },
+    { q: "How much does building certification cost in Lagos?", a: "Costs can depend on building type, size, complexity, available documentation, technical assessments, inspection needs, professional services, and any applicable statutory charges. A project-specific quotation is required." },
+    { q: "How long does building certification take?", a: "Duration depends on documentation completeness, property type, technical reviews, corrections, inspection requirements, and applicable authority or third-party processes. No universal timeline or outcome is guaranteed." },
+    { q: "Does certification mean a building is fully compliant?", a: "Certification can be one part of a broader compliance process. It does not automatically establish complete compliance with every applicable planning, safety, environmental, documentation, or approval requirement." },
+  ];
+
+  const servicePageJsonLd = isBuildingCertificationPage
+    ? { "@context": "https://schema.org", "@graph": [
+        { "@type": "WebPage", "@id": absoluteUrl(`/services/${slug}#webpage`), url: absoluteUrl(`/services/${slug}`), name: BUILDING_CERTIFICATION_TITLE, description: BUILDING_CERTIFICATION_DESCRIPTION, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-NG" },
+        { "@type": "Service", "@id": absoluteUrl(`/services/${slug}#service`), name: "Building Certification Services", description: BUILDING_CERTIFICATION_DESCRIPTION, provider: { "@id": `${SITE_URL}/#organization` }, areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }], serviceType: ["Certification Requirements Review", "Building Documentation Preparation", "Building Plan Approval Processing", "Documentation Coordination"], url: absoluteUrl(`/services/${slug}`) },
+        { "@type": "BreadcrumbList", "@id": absoluteUrl(`/services/${slug}#breadcrumb`), itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") }, { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") }, { "@type": "ListItem", position: 3, name: "Building Certification", item: absoluteUrl(`/services/${slug}`) }] },
+      ] }
+    : isEnvironmentalImpactPage
     ? {
         "@context": "https://schema.org",
         "@graph": [
@@ -2567,7 +2608,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           <LazyImage
             src={service.heroImage}
             alt={
-              isEnvironmentalImpactPage
+              isBuildingCertificationPage
+                ? "Building documentation under review for a property project"
+                : isEnvironmentalImpactPage
                 ? "Sustainable development planning for a building project"
                 : isLandSurveyingPage
                 ? "Site information review for a property development project"
@@ -2616,14 +2659,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
-          {(isEnvironmentalImpactPage || isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
+          {(isBuildingCertificationPage || isEnvironmentalImpactPage || isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isProjectManagementPage || isBuildingConstructionPage) && (
             <nav aria-label="Breadcrumb" className={styles.breadcrumbs}>
               <Link href="/">Home</Link>
               <span>/</span>
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isEnvironmentalImpactPage
+                {isBuildingCertificationPage
+                  ? "Building Certification"
+                  : isEnvironmentalImpactPage
                   ? "Environmental Impact Assessment"
                   : isLandSurveyingPage
                   ? "Land Surveying"
@@ -2673,7 +2718,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isEnvironmentalImpactPage
+            {isBuildingCertificationPage
+              ? "Building Certification Services in Lagos, Nigeria"
+              : isEnvironmentalImpactPage
               ? "Environmental Impact Assessment Services in Lagos, Nigeria"
               : isLandSurveyingPage
               ? "Land Surveying Services in Lagos, Nigeria"
@@ -2718,7 +2765,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               : service.title}
           </h1>
           <p>
-            {isEnvironmentalImpactPage
+            {isBuildingCertificationPage
+              ? "We provide building documentation, compliance, and certification advisory for suitable property and construction projects in Lagos."
+              : isEnvironmentalImpactPage
               ? "We provide environmental assessment, impact evaluation, mitigation planning, and development advisory for suitable projects in Lagos."
               : isLandSurveyingPage
               ? "We provide site, topographic, boundary-related, and construction survey support for suitable property and development projects in Lagos."
@@ -2769,7 +2818,70 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <div className="container">
           <div className={styles.grid}>
             <div className={styles.main}>
-              {isEnvironmentalImpactPage ? (
+              {isBuildingCertificationPage ? (
+                <>
+                  <div className={styles.block}>
+                    <h2>Building Certification Support by Building Practice Ltd</h2>
+                    <p className={styles.bodyText}>Building Practice Ltd supports property owners, homeowners, developers, businesses, institutions, and project teams with building certification documentation, requirements review, and coordination for suitable projects in Lagos.</p>
+                    <p className={styles.bodyText}>Our documented scope includes certification-requirements review, building-plan approval processing, documentation preparation, and coordination. Any statutory certificate, approval, or authority decision remains with the applicable body; this service does not claim to issue certificates independently.</p>
+                    <div className={styles.linkRow}><Link href="/contact">Discuss your building certification needs</Link><Link href="/services/building-permits">Explore building permits and regulatory compliance</Link><Link href="/projects">View our project portfolio</Link></div>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>What Is Building Certification?</h2>
+                    <p className={styles.bodyText}>Building certification can involve documentation, assessment, inspection, verification, or formal certification associated with a building, depending on the relevant project and process. It is not interchangeable with planning approval, building permits, completion documentation, or wider regulatory compliance.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Our Building Certification Services in Lagos</h2>
+                    <h3>Documentation and Requirements Review</h3><p className={styles.bodyText}>We review available project documentation and help identify information gaps, inconsistencies, or certification-related questions that should be clarified for the agreed scope.</p>
+                    <h3>Building Compliance and Technical Coordination</h3><p className={styles.bodyText}>The service can coordinate relevant architectural, structural, MEP, site, project, and construction information where those inputs are part of the project brief.</p>
+                    <h3>Certification Documentation Support</h3><p className={styles.bodyText}>We support documentation preparation and agreed coordination tasks without representing an approval authority or guaranteeing certification.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Building Documentation Review in Lagos</h2>
+                    <p className={styles.bodyText}>Available architectural drawings, structural information, MEP information, site plans, construction records, and relevant approvals can be reviewed where applicable to identify documentation gaps and support better preparation. Review alone does not result in certification.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Certification Support for Existing Buildings and New Projects</h2>
+                    <p className={styles.bodyText}>Existing properties may need documentation support for transactions, renovations, changes, or due diligence; new projects can consider certification-related documentation from early design through completion. Requirements depend on property type, location, size, use, construction stage, documentation, and applicable processes.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Building Certification for Property Developers</h2>
+                    <p className={styles.bodyText}>Developers can benefit from organized documentation management, technical coordination, construction records, inspection coordination, and handover information. Related services include <Link href="/services/real-estate-development">real estate development</Link>, <Link href="/services/urban-development">urban development</Link>, <Link href="/services/project-management">project management</Link>, and <Link href="/services/construction-management">construction management</Link>.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Building Certification and Building Permits</h2>
+                    <p className={styles.bodyText}>A building permit or approval generally relates to permission for a proposed development or construction process. Building certification may relate to verification, documentation, inspection, completion, or a formal process associated with a building. The exact distinction depends on the applicable requirements and authority. See our <Link href="/services/building-permits">building permits and regulatory compliance service</Link> for related support.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Building Certification and Regulatory Compliance</h2>
+                    <p className={styles.bodyText}>Certification can be one component of a broader compliance process that may involve documentation, inspections, planning, safety, environmental requirements, and approvals. It does not automatically establish complete compliance. Related services include <Link href="/services/environmental-impact">environmental impact assessment</Link> and <Link href="/services/green-building-advisory">green building advisory</Link>.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Why Building Certification Matters in Lagos</h2>
+                    <p className={styles.bodyText}>Organized documentation and early requirements review can support clearer coordination, reduce administrative errors, identify gaps, and improve project transparency in an active property-development environment. They cannot guarantee a statutory outcome.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Our Building Certification Process</h2>
+                    <div className={styles.processList}>{[
+                      { title: "Property and Documentation Review", desc: "Review the project, available records, objectives, and agreed certification-support scope." },
+                      { title: "Requirements Identification", desc: "Identify documentation and technical coordination questions that should be clarified for the project." },
+                      { title: "Preparation and Coordination", desc: "Prepare or coordinate agreed documentation and project-team inputs." },
+                      { title: "Support Where Applicable", desc: "Provide agreed inspection, submission, or follow-up support without guaranteeing an authority decision." },
+                    ].map((step, index) => <div key={step.title} className={styles.processStep}><span className={styles.processNumber}>{index + 1}</span><div><h3>{step.title}</h3><p>{step.desc}</p></div></div>)}</div>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>How Much Does Building Certification Cost in Lagos?</h2><p className={styles.bodyText}>Costs depend on building type, size, complexity, available documentation, condition, technical assessments, inspection requirements, professional services, and any applicable statutory charges. Request a project-specific quotation; professional fees and authority charges, where applicable, are distinct.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>How Long Does Building Certification Take in Lagos?</h2><p className={styles.bodyText}>Duration depends on documentation completeness, building type, technical reviews, corrections, inspections, and applicable authority or third-party processes. No universal timeline or certification date is guaranteed.</p>
+                  </div>
+                  <div className={styles.block}>
+                    <h2>Related Design and Construction Services</h2><p className={styles.bodyText}>Certification documentation may connect to <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination</Link>, <Link href="/services/building-construction">building construction</Link>, <Link href="/services/construction-supervision">construction supervision</Link>, <Link href="/services/renovation-remodeling">renovation and remodelling</Link>, <Link href="/services/feasibility-studies">feasibility studies</Link>, and <Link href="/services/site-planning-landscape">site planning and landscape design</Link>.</p>
+                  </div>
+                  <div className={styles.block}><h2>Frequently Asked Questions</h2><div className={styles.faqList}>{buildingCertificationFaq.map((item, index) => <details key={`${item.q}-${index}`} className={styles.faqItem}><summary>{item.q}</summary><div>{item.a}</div></details>)}</div></div>
+                  <div className={styles.block}><h2>Discuss Your Building Certification Needs</h2><p className={styles.bodyText}>Share your property type, location, available documentation, current project stage, and the support you need. Our team will review the appropriate scope and next steps.</p><div className={styles.linkRow}><Link href="/contact">Request a building certification consultation</Link><Link href="/projects">View our project portfolio</Link></div></div>
+                </>
+              ) : isEnvironmentalImpactPage ? (
                 <>
                   <div className={styles.block}>
                     <h2>Environmental Impact Assessment Services by Building Practice Ltd</h2>
@@ -7068,7 +7180,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <aside className={styles.sidebar}>
-              {!isEnvironmentalImpactPage && !isLandSurveyingPage && !isFeasibilityStudiesPage && !isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
+              {!isBuildingCertificationPage && !isEnvironmentalImpactPage && !isLandSurveyingPage && !isFeasibilityStudiesPage && !isConstructionSupervisionPage && !isBuildingPermitsPage && !isSitePlanningLandscapePage && !isFacilityManagementPage && !isRenovationRemodelingPage && !isConstructionCostEstimationPage && !isMepCoordinationPage && !isStructuralEngineeringPage && !isThreeDVisualizationPage && !isRealEstateDevelopmentPage && !isGreenBuildingAdvisoryPage && !isUrbanDevelopmentPage && !isArchitecturalDesignPage && !isInteriorDesignPage && !isConstructionManagementPage && !isConstructionConsultationPage && !isBuildingConstructionPage && service.stats.length > 0 && (
                 <div className={styles.statsCard}>
                   {service.stats.map((stat, i) => (
                     <div key={`${stat.label}-${i}`} className={styles.statItem}>
@@ -7354,7 +7466,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
               <div className={styles.ctaCard}>
                 <h3>
-                  {isEnvironmentalImpactPage
+                  {isBuildingCertificationPage
+                    ? "Discuss Your Building Certification Needs"
+                    : isEnvironmentalImpactPage
                     ? "Discuss Your Environmental Assessment Requirements"
                     : isLandSurveyingPage
                     ? "Discuss Your Land Surveying Requirements"
@@ -7397,7 +7511,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     : "Ready to start?"}
                 </h3>
                 <p>
-                  {isEnvironmentalImpactPage
+                  {isBuildingCertificationPage
+                    ? "Tell us about your property type, location, available documentation, current project stage, and the support you need, and our team will guide you on the appropriate scope."
+                    : isEnvironmentalImpactPage
                     ? "Tell us about your project type, site location, intended development, available information, and current stage, and our team will guide you on the appropriate assessment scope."
                     : isLandSurveyingPage
                     ? "Tell us about your site location, intended use, available information, survey purpose, and project stage, and our team will guide you on the appropriate scope."
@@ -7441,7 +7557,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </p>
                 <Link href="/contact" className="btn btn--primary btn--full">
                   <span>
-                    {isEnvironmentalImpactPage || isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
+                    {isBuildingCertificationPage || isEnvironmentalImpactPage || isLandSurveyingPage || isFeasibilityStudiesPage || isConstructionSupervisionPage || isBuildingPermitsPage || isSitePlanningLandscapePage || isFacilityManagementPage || isRenovationRemodelingPage || isConstructionCostEstimationPage || isMepCoordinationPage || isStructuralEngineeringPage || isThreeDVisualizationPage || isRealEstateDevelopmentPage || isGreenBuildingAdvisoryPage || isUrbanDevelopmentPage || isArchitecturalDesignPage || isInteriorDesignPage || isConstructionManagementPage || isConstructionConsultationPage || isBuildingConstructionPage
                       ? "Request a Consultation"
                       : "Get a Quote"}
                   </span>
