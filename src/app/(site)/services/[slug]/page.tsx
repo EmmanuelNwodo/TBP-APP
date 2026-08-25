@@ -95,6 +95,10 @@ const BUILDING_CERTIFICATION_SLUG = "building-certification";
 const BUILDING_CERTIFICATION_TITLE = "Building Certification Services in Lagos, Nigeria";
 const BUILDING_CERTIFICATION_DESCRIPTION =
   "Need building certification support in Lagos? Building Practice Ltd provides documentation, compliance, and certification advisory for suitable property and construction projects.";
+const SPACE_PLANNING_SLUG = "space-planning";
+const SPACE_PLANNING_TITLE = "Space Planning Services in Lagos, Nigeria";
+const SPACE_PLANNING_DESCRIPTION =
+  "Looking for space planning services in Lagos? Building Practice Ltd creates functional layouts, circulation, zoning, and furniture plans for suitable residential, commercial, and workplace projects.";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
@@ -108,6 +112,18 @@ export async function generateMetadata({
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
+
+  if (slug === SPACE_PLANNING_SLUG) {
+    const url = absoluteUrl(`/services/${slug}`);
+    return {
+      title: SPACE_PLANNING_TITLE,
+      description: SPACE_PLANNING_DESCRIPTION,
+      keywords: ["Space Planning Services in Lagos", "Space Planning Firms in Lagos", "Space Planning Consultants in Lagos", "Office Space Planning Lagos", "Workplace Space Planning Lagos", "Commercial Space Planning Lagos", "Space Planning Nigeria"],
+      alternates: { canonical: url }, robots: { index: true, follow: true },
+      openGraph: { title: SPACE_PLANNING_TITLE, description: SPACE_PLANNING_DESCRIPTION, url, siteName: SITE_NAME, locale: "en_NG", type: "website", images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }] },
+      twitter: { card: "summary_large_image", title: SPACE_PLANNING_TITLE, description: SPACE_PLANNING_DESCRIPTION, images: [service.heroImage || DEFAULT_OG_IMAGE] },
+    };
+  }
 
   if (slug === BUILDING_CERTIFICATION_SLUG) {
     const url = absoluteUrl(`/services/${slug}`);

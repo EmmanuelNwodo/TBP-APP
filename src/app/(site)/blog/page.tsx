@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   openGraph: { title: TITLE, description: DESCRIPTION, url: absoluteUrl("/blog") },
 };
 
-export default function BlogPage() {
-  const posts = getAllPosts();
-  const categories = getAllCategories();
+export default async function BlogPage() {
+  const posts = await getAllPosts();
+  const categories = await getAllCategories();
 
   return (
     <main>

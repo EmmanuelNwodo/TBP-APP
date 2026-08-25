@@ -19,7 +19,8 @@ const STATIC_ROUTES: { path: string; priority: number; changeFrequency: Metadata
   { path: "/privacy", priority: 0.3, changeFrequency: "yearly" },
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await getAllPosts();
   const now = new Date();
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_ROUTES.map((route) => ({
@@ -29,28 +30,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.priority,
   }));
 
-  const teamEntries: MetadataRoute.Sitemap = getAllTeamMembers().map((member) => ({
+  const teamEntries: MetadataRoute.Sitemap = (await getAllTeamMembers()).map((member) => ({
     url: `${SITE_URL}/team/${member.id}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.5,
   }));
 
-  const serviceEntries: MetadataRoute.Sitemap = getAllServices().map((service) => ({
+  const serviceEntries: MetadataRoute.Sitemap = (await getAllServices()).map((service) => ({
     url: `${SITE_URL}/services/${service.slug}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.6,
   }));
 
-  const projectEntries: MetadataRoute.Sitemap = getAllProjects().map((project) => ({
+  const projectEntries: MetadataRoute.Sitemap = (await getAllProjects()).map((project) => ({
     url: `${SITE_URL}/projects/${project.slug}`,
     lastModified: now,
     changeFrequency: "monthly",
     priority: 0.6,
   }));
 
-  const blogEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+  const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${SITE_URL}/blog/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly",

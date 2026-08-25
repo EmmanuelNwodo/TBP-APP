@@ -8,8 +8,8 @@ function formatDate(date: string) {
   return new Date(date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
-export function BlogPreview() {
-  const posts = getLatestPosts(3);
+export async function BlogPreview() {
+  const posts =  await getLatestPosts(3);
 
   return (
     <section className={`${styles.section} section--alt`} id="blog">
