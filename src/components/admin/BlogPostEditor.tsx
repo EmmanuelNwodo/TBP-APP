@@ -13,6 +13,7 @@ const BLANK: EditablePost = {
   category: "architecture",
   image: "/images/projects/24 AWOLOWO ROAD/24 AWOLOWO RD 1A copy.jpg",
   date: new Date().toISOString().slice(0, 10),
+  modified: new Date().toISOString().slice(0, 10),
   readTime: "5",
   author: "The Building Practice Ltd",
   content: "",

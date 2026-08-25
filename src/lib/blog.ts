@@ -65,6 +65,26 @@ type WPPost = {
   featured_media: number;
   categories: number[];
 
+    yoast_head_json?: {
+    title?: string;
+    description?: string;
+    canonical?: string;
+    og_title?: string;
+    og_description?: string;
+    og_url?: string;
+    og_type?: string;
+    og_image?: Array<{
+      url?: string;
+      width?: number;
+      height?: number;
+      type?: string;
+    }>;
+    article_published_time?: string;
+    article_modified_time?: string;
+    author?: string;
+  };
+
+
   _embedded?: {
     "wp:featuredmedia"?: WPMedia[];
 
@@ -125,13 +145,19 @@ function mapPost(post: WPPost): BlogPost {
     excerpt: stripHtml(post.excerpt.rendered),
     content: post.content.rendered,
     date: post.date,
+    modified: post.modified,
     image,
     category,
     readTime: calculateReadTime(post.content.rendered),
 
     author: "The Building Practice Ltd",
-    seoTitle: stripHtml(post.title.rendered),
-    seoDescription: stripHtml(post.excerpt.rendered),
+    seoTitle:
+    post.yoast_head_json?.title ||
+    stripHtml(post.title.rendered),
+
+   seoDescription:
+    post.yoast_head_json?.description ||
+    stripHtml(post.excerpt.rendered),
     serviceTags: [],
   };
 }
@@ -237,6 +263,56 @@ export async function getAllPosts(): Promise<BlogPost[]> {
   }
 
   return allPosts.map(mapPost);
+}
+
+/**
+ * Get all published WordPress post slugs.
+ *
+ * This is used by generateStaticParams().
+ * It intentionally requests only the fields needed
+ * to generate the dynamic routes.
+ */
+export async function getAllPostSlugs(): Promise<string[]> {
+  const slugs: string[] = [];
+
+  let page = 1;
+  const postsPerPage = 100;
+
+  while (true) {
+    try {
+      const response = await fetchWordPressPosts({
+        per_page: postsPerPage,
+        page,
+        status: "publish",
+        _fields: "slug",
+      });
+
+      if (response.length === 0) {
+        break;
+      }
+
+      slugs.push(
+        ...response
+          .map((post) => post.slug)
+          .filter(Boolean)
+      );
+
+      if (response.length < postsPerPage) {
+        break;
+      }
+
+      page++;
+    } catch (error) {
+      console.error(
+        `WordPress API error while fetching post slugs page ${page}:`,
+        error
+      );
+
+      break;
+    }
+  }
+
+  return slugs;
 }
 
 /**

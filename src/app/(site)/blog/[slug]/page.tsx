@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LazyImage } from "@/components/ui/LazyImage";
-import { getAllPosts, getPostBySlug, getRelatedPosts } from "@/lib/blog";
+import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts();
+  const posts = await getAllPostSlugs();
 
-  return posts.map((post) => ({
-    slug: post.slug,
+  return posts.map((slug) => ({
+    slug,
   }));
 }
 
@@ -31,15 +31,44 @@ export async function generateMetadata({
   return {
     title,
     description,
-    alternates: { canonical: url },
+
+    alternates: {
+      canonical: url,
+    },
+
     openGraph: {
       title,
       description,
       url,
       type: "article",
+
       publishedTime: post.date,
+
       authors: [post.author],
-      images: post.image ? [{ url: post.image }] : undefined,
+
+      images: post.image
+        ? [
+            {
+              url: post.image,
+              alt: post.title,
+            },
+          ]
+        : undefined,
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+
+      images: post.image
+        ? [
+            {
+              url: post.image,
+              alt: post.title,
+            },
+          ]
+        : undefined,
     },
   };
 }
@@ -65,8 +94,72 @@ export default async function BlogPostPage({
 
   const related = await getRelatedPosts(post.slug, post.category, 3);
 
+  const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.title,
+  description: post.seoDescription || post.excerpt,
+  image: post.image ? [post.image] : undefined,
+  datePublished: post.date,
+  dateModified: post.modified,
+  author: {
+    "@type": "Organization",
+    name: "The Building Practice Ltd",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "The Building Practice Ltd",
+    url: absoluteUrl("/"),
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": absoluteUrl(`/blog/${post.slug}`),
+  },
+};
+
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: absoluteUrl("/"),
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: absoluteUrl("/blog"),
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: post.title,
+      item: absoluteUrl(`/blog/${post.slug}`),
+    },
+  ],
+};
+
   return (
     <main>
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(articleSchema),
+  }}
+/>
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(breadcrumbSchema),
+  }}
+/>
+
+
       <section className={styles.hero}>
         <div className={styles.heroMedia}>
           <LazyImage
