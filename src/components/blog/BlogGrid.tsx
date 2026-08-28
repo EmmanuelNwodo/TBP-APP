@@ -78,10 +78,10 @@ export function BlogGrid({ posts, categories }: { posts: BlogPost[]; categories:
                 <i className="bx bx-time" aria-hidden="true" /> {post.readTime} min read
               </p>
               <h3 className={styles.cardTitle}>
-                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                <Link href={`/${post.slug}`}>{post.title}</Link>
               </h3>
               <p className={styles.cardExcerpt}>{post.excerpt}</p>
-              <Link href={`/blog/${post.slug}`} className="btn btn--ghost btn--sm">
+              <Link href={`/${post.slug}`} className="btn btn--ghost btn--sm">
                 Read More <i className="bx bx-right-arrow-alt" aria-hidden="true" />
               </Link>
             </div>
