@@ -26,7 +26,7 @@ export async function generateMetadata({
 
   const title = post.seoTitle || post.title;
   const description = post.seoDescription || post.excerpt;
-  const url = absoluteUrl(`/blog/${slug}`);
+  const url = absoluteUrl(`/${slug}`);
 
   return {
     title,
@@ -113,7 +113,7 @@ export default async function BlogPostPage({
   },
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": absoluteUrl(`/blog/${post.slug}`),
+    "@id": absoluteUrl(`/${post.slug}`),
   },
 };
 
@@ -138,7 +138,7 @@ const breadcrumbSchema = {
       "@type": "ListItem",
       position: 3,
       name: post.title,
-      item: absoluteUrl(`/blog/${post.slug}`),
+      item: absoluteUrl(`/${post.slug}`),
     },
   ],
 };
@@ -246,7 +246,7 @@ const breadcrumbSchema = {
                 {related.map((r) => (
                   <Link
                     key={r.slug}
-                    href={`/blog/${r.slug}`}
+                    href={`/${r.slug}`}
                     className={styles.relatedItem}
                   >
                     <div className={styles.relatedImage}>
