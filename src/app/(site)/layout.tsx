@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { WhatsAppChatButton } from "@/components/contact/WhatsAppChatButton";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { ScrollRevealObserver } from "@/components/layout/ScrollRevealObserver";
@@ -22,6 +23,9 @@ export default function SiteLayout({
       {children}
       <Footer />
       <ThemeToggle />
+      {/* Mounted once here so it appears on every public page and on no
+          XML, XSL, robots, API or admin route. */}
+      <WhatsAppChatButton />
       <ScrollRevealObserver />
     </>
   );

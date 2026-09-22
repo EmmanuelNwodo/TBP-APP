@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { WhatsAppChatButton } from "@/components/contact/WhatsAppChatButton";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
@@ -65,6 +66,10 @@ export default function PrivacyPage() {
           </p>
         </article>
       </main>
+
+      {/* This page is outside the (site) route group, so it does not mount the
+          shared layout that renders the floating chat button. */}
+      <WhatsAppChatButton />
     </div>
   );
 }

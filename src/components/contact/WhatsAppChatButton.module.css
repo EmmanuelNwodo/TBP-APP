@@ -1,0 +1,163 @@
+/*
+ * Floating WhatsApp chat link.
+ *
+ * Positioning notes:
+ *  - It shares the bottom-right corner with the existing global ThemeToggle
+ *    (46px tall, 18px from the bottom; 44px / 14px below 640px), so it is
+ *    stacked directly above that control instead of on top of it.
+ *  - z-index sits below the header's 1000 on purpose. On mobile the nav menu
+ *    is a full-viewport fixed overlay inside the header, so a higher value
+ *    would float this button over the open menu.
+ *  - `position: fixed` keeps it out of flow, so it cannot cause layout shift.
+ */
+
+/* Height of the ThemeToggle this button stacks above, plus the gap. */
+.button {
+  --wa-size: 58px;
+  --wa-edge: 18px;
+  --wa-stack: 58px; /* 46px toggle + 12px gap */
+  --wa-green: #25d366;
+  --wa-green-dark: #1da851;
+
+  position: fixed;
+  right: max(var(--wa-edge), env(safe-area-inset-right));
+  bottom: calc(max(var(--wa-edge), env(safe-area-inset-bottom)) + var(--wa-stack));
+  z-index: 900;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  min-width: var(--wa-size);
+  height: var(--wa-size);
+  padding: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+
+  background: var(--wa-green);
+  color: var(--white);
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.34), var(--shadow-md);
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-decoration: none;
+
+  transition:
+    background-color var(--duration-fast, 150ms) var(--ease-out, ease),
+    box-shadow var(--duration-fast, 150ms) var(--ease-out, ease),
+    transform var(--duration-fast, 150ms) var(--ease-out, ease),
+    padding var(--duration-normal, 250ms) var(--ease-out, ease);
+
+  /* Subtle one-off entrance; never a loop. */
+  animation: whatsappIn 380ms var(--ease-out, ease) both;
+}
+
+.icon {
+  font-size: 30px;
+  line-height: 1;
+  flex: none;
+}
+
+/*
+ * The label is collapsed to zero width and revealed on hover/focus, so the
+ * resting state stays a compact circle. It is aria-hidden because the anchor
+ * carries the full accessible name.
+ */
+.label {
+  max-width: 0;
+  opacity: 0;
+  font-size: var(--text-sm, 14px);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition:
+    max-width var(--duration-normal, 250ms) var(--ease-out, ease),
+    opacity var(--duration-fast, 150ms) var(--ease-out, ease),
+    margin-left var(--duration-normal, 250ms) var(--ease-out, ease);
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--wa-green-dark);
+  box-shadow: 0 14px 34px rgba(37, 211, 102, 0.42), var(--shadow-lg);
+  transform: translateY(-2px);
+  padding: 0 20px 0 16px;
+}
+
+.button:hover .label,
+.button:focus-visible .label {
+  max-width: 160px;
+  opacity: 1;
+  margin-left: 10px;
+}
+
+.button:focus-visible {
+  outline: 3px solid rgba(37, 211, 102, 0.45);
+  outline-offset: 3px;
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+@keyframes whatsappIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Dark theme: soften the ring so the button does not glare. */
+:global([data-theme="dark"]) .button {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(37, 211, 102, 0.25);
+}
+
+@media (max-width: 640px) {
+  .button {
+    --wa-size: 54px;
+    --wa-edge: 14px;
+    --wa-stack: 54px; /* 44px toggle + 10px gap */
+  }
+
+  .icon {
+    font-size: 28px;
+  }
+
+  /* The expanding label would crowd a small screen, so the button stays a
+     plain circular target well above the 44px minimum. */
+  .label {
+    display: none;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    padding: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    animation: none;
+    transition: background-color 1ms linear, box-shadow 1ms linear;
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    transform: none;
+  }
+
+  .label {
+    transition: none;
+  }
+}
+
+@media print {
+  .button {
+    display: none;
+  }
+}
