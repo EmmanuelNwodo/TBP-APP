@@ -87,7 +87,7 @@ Referenced from article bodies, not present in the Next.js site.
 
 | Legacy URL | Note |
 | --- | --- |
-| `/projects/hospitality-real-estate-development-in-nigeria/` | Reads as a service/landing page, not a project. Possibly `/services/real-estate-development`. |
+| `/projects/hospitality-real-estate-development-in-nigeria/` | Reads as a service/landing page, not a project. Possibly `/services/leading-real-estate-development-firm-in-nigeria`. |
 | `/projects/retail-real-estate-development-in-nigeria/` | As above. |
 | `/projects/commercial-real-estate-development-in-nigeria/` | As above. |
 | `/projects/industrial-real-estate-development-in-nigeria/` | As above. |

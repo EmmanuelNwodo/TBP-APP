@@ -24,7 +24,7 @@ test("legacy WordPress paths are mapped through the central table", () => {
       "https://buildingpractice.biz/our-services/architectural-planning-design-documentation-firm-in-nigeria/",
       opts,
     ),
-    `${SITE}/services/architectural-design`,
+    `${SITE}/services/leading-architectural-design-firm-in-nigeria`,
   );
   assert.equal(normaliseHref("https://buildingpractice.biz/contact-us/", opts), `${SITE}/contact`);
 });

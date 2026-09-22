@@ -47,11 +47,11 @@ environment variable makes the intent explicit and survives future edits.
 
   ```bash
   curl -s -o /dev/null -w "%{http_code} -> %{redirect_url}\n" \
-    "http://buildingpractice.biz/services/architectural-design?utm_source=test"
+    "http://buildingpractice.biz/services/leading-architectural-design-firm-in-nigeria?utm_source=test"
   ```
 
   Expect a single hop directly to
-  `https://www.buildingpractice.biz/services/architectural-design?utm_source=test`.
+  `https://www.buildingpractice.biz/services/leading-architectural-design-firm-in-nigeria?utm_source=test`.
 
 ## 3. Review the code changes
 
@@ -128,7 +128,7 @@ Run each of these against production and confirm the expected value.
   ```
 
 - [ ] **Representative URL inspection** — for each of `/`, `/services`,
-      `/services/architectural-design`, `/blog`, `/blog/page/2`, and one
+      `/services/leading-architectural-design-firm-in-nigeria`, `/blog`, `/blog/page/2`, and one
       article: confirm `200`, one `<h1>`, a self-referencing canonical on the
       `www` host, and no `noindex`.
 

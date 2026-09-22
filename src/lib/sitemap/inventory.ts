@@ -73,6 +73,50 @@ const STATIC_PAGES: { path: string; priority: number; changeFrequency: SitemapUr
  */
 const EXCLUDED_PREFIXES = ["/admin", "/api/", "/test-wordpress", "/_next"];
 
+/**
+ * Root-level paths that belong to the application, not to WordPress.
+ *
+ * Articles are published at `/{slug}`, the same namespace as the site's own
+ * root routes, so a WordPress slug such as `services` would resolve to the
+ * services hub rather than the article. Next.js route precedence already makes
+ * the application route win; this set makes the sitemap agree with it, so a
+ * colliding article can never be advertised at a URL that renders a different
+ * page. It extends the existing duplicate detection below rather than adding a
+ * second, competing mechanism.
+ *
+ * Derived from the standalone page list plus the collection roots and the
+ * sitemap/robots files that are served from the root.
+ */
+const RESERVED_ROOT_PATHS: ReadonlySet<string> = new Set([
+  ...STATIC_PAGES.map((page) => page.path.replace(/^\//, "")).filter(Boolean),
+  // Collection roots and their nested routes.
+  "services",
+  "projects",
+  "team",
+  "locations",
+  "blog",
+  // Non-public application routes.
+  "admin",
+  "api",
+  // Files served from the root by route handlers.
+  "robots.txt",
+  "sitemap.xml",
+  "sitemap.xsl",
+  "page-sitemap.xml",
+  "service-sitemap.xml",
+  "project-sitemap.xml",
+  "team-sitemap.xml",
+  "article-sitemap.xml",
+]);
+
+/** True when an article slug would collide with an application route. */
+export function isReservedRootPath(slug: string): boolean {
+  return RESERVED_ROOT_PATHS.has(slug.toLowerCase());
+}
+
+/** Exposed so the documentation and tests read the same list. */
+export const reservedRootPaths = (): string[] => [...RESERVED_ROOT_PATHS].sort();
+
 export type SitemapArticle = {
   id: number;
   slug: string;
@@ -173,7 +217,12 @@ export function buildSitemapGroups(input: SitemapInput): SitemapGroup[] {
       id: "article",
       file: "article-sitemap.xml",
       title: "Articles",
-      urls: input.articles.map((article) =>
+      // An article whose slug collides with an application route is dropped:
+      // that URL renders the application page, so advertising it as an article
+      // would publish a URL the sitemap cannot honour.
+      urls: input.articles
+        .filter((article) => !isReservedRootPath(article.slug))
+        .map((article) =>
         url(siteUrl, `/${article.slug}`, {
           priority: 0.5,
           changeFrequency: "monthly",

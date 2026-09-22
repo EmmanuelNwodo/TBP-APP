@@ -40,7 +40,7 @@ export async function BlogArchive({ page }: { page: number }) {
           { href: "/projects", icon: "bx-images", label: "Project Portfolio" },
           { href: "/team", icon: "bx-group", label: "Expert Architects" },
           { href: "/about", icon: "bx-info-circle", label: "About TBP" },
-          { href: "/services/green-building-advisory", icon: "bx-leaf", label: "Sustainable Design" },
+          { href: "/services/leading-green-building-advisory-firm-in-nigeria", icon: "bx-leaf", label: "Sustainable Design" },
         ]}
       />
 

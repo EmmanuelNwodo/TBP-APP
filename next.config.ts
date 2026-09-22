@@ -2,7 +2,8 @@ import type { NextConfig } from "next";
 
 import path from "node:path";
 
-import { LEGACY_REDIRECTS } from "./src/lib/legacy-redirects";
+import servicesData from "./src/data/services.json";
+import { buildServiceMigrationRedirects, LEGACY_REDIRECTS } from "./src/lib/legacy-redirects";
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
@@ -53,6 +54,14 @@ const nextConfig: NextConfig = {
         destination: "/:slug",
         permanent: true,
       },
+      // Service-as-firm migration: every retired service URL goes straight to
+      // its final canonical URL. Generated from the service source of truth,
+      // so the two can never drift apart.
+      ...buildServiceMigrationRedirects(servicesData).map((entry) => ({
+        source: entry.source,
+        destination: entry.destination,
+        permanent: true,
+      })),
       ...LEGACY_REDIRECTS.map((entry) => ({
         source: entry.source,
         destination: entry.destination,

@@ -44,7 +44,7 @@ export function Testimonials() {
             { href: "/projects", icon: "bx-building", label: "View Completed Projects" },
             { href: "/services", icon: "bx-home", label: "Residential Services" },
             { href: "/services", icon: "bx-building", label: "Commercial Services" },
-            { href: "/services/interior-design", icon: "bx-palette", label: "Interior Design Services" },
+            { href: "/services/leading-interior-design-firm-in-nigeria", icon: "bx-palette", label: "Interior Design Services" },
             { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria Coverage" },
             { href: "/contact", icon: "bx-message-dots", label: "Start a Project Conversation", variant: "accent" },
           ]}

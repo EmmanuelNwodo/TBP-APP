@@ -20,7 +20,7 @@ const SERVICES = [
     desc: "From initial concepts to construction-ready drawings, we navigate Nigerian regulations to deliver designs that build beautifully.",
     tags: ["Concept", "Drawings", "Permits"],
     alt: "Architectural design presentation for a building project",
-    href: "/services/architectural-design",
+    href: "/services/leading-architectural-design-firm-in-nigeria",
   },
   {
     image: "/images/services/interiorDesign.jpg",
@@ -29,7 +29,7 @@ const SERVICES = [
     desc: "We design interiors that flow seamlessly with your architecture, selecting materials that endure while delivering elegance.",
     tags: ["Luxury", "Furniture", "Finishes"],
     alt: "Interior architecture and design concept",
-    href: "/services/interior-design",
+    href: "/services/leading-interior-design-firm-in-nigeria",
   },
   {
     image: "/images/services/projectManagement.jpg",
@@ -127,8 +127,8 @@ export function Services() {
             { href: "/services", icon: "bx-list-ul", label: "All Services", variant: "primary" },
             { href: "/contact", icon: "bx-phone-call", label: "Request Consultation", variant: "accent" },
             { href: "/projects", icon: "bx-image", label: "Our Completed Projects" },
-            { href: "/services/architectural-design", icon: "bx-buildings", label: "Architectural Design Services" },
-            { href: "/services/interior-design", icon: "bx-palette", label: "Interior Architecture" },
+            { href: "/services/leading-architectural-design-firm-in-nigeria", icon: "bx-buildings", label: "Architectural Design Services" },
+            { href: "/services/leading-interior-design-firm-in-nigeria", icon: "bx-palette", label: "Interior Architecture" },
             { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria Coverage" },
           ]}
         />

@@ -7,103 +7,45 @@ import { getAllServices, getServiceBySlug } from "@/lib/services";
 import { absoluteUrl, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const ARCHITECTURAL_DESIGN_SLUG = "architectural-design";
-const ARCHITECTURAL_DESIGN_TITLE = "Architectural Design Services in Lagos, Nigeria";
-const ARCHITECTURAL_DESIGN_DESCRIPTION =
-  "Architectural design services in Lagos, Nigeria for residential, commercial, hospitality, and institutional projects. Discuss your project with The Building Practice.";
-const INTERIOR_DESIGN_SLUG = "interior-design";
-const INTERIOR_DESIGN_TITLE = "Interior Design Services in Lagos, Nigeria";
-const INTERIOR_DESIGN_DESCRIPTION =
-  "Interior design services in Lagos, Nigeria for residential, office, hospitality, and commercial interiors. Discuss your project with The Building Practice.";
-const CONSTRUCTION_MANAGEMENT_SLUG = "construction-management";
-const CONSTRUCTION_MANAGEMENT_TITLE = "Construction Management Services in Lagos, Nigeria";
-const CONSTRUCTION_MANAGEMENT_DESCRIPTION =
-  "Construction management services in Lagos, Nigeria for residential, commercial, institutional, and mixed-use projects. Coordinate delivery, quality, and progress with The Building Practice.";
-const BUILDING_CONSTRUCTION_SLUG = "building-construction";
-const BUILDING_CONSTRUCTION_TITLE = "Building Construction Services in Lagos, Nigeria";
-const BUILDING_CONSTRUCTION_DESCRIPTION =
-  "Building construction services in Lagos, Nigeria for residential, commercial, and institutional projects. Building Practice Ltd supports site preparation, construction execution, finishing, and handover.";
-const PROJECT_MANAGEMENT_SLUG = "project-management";
-const PROJECT_MANAGEMENT_TITLE = "Project Management Services in Lagos, Nigeria";
-const PROJECT_MANAGEMENT_DESCRIPTION =
-  "Project management services in Lagos, Nigeria for construction and building projects. Building Practice Ltd provides planning, budgeting, coordination, reporting, and delivery support.";
-const CONSTRUCTION_CONSULTATION_SLUG = "construction-consultation";
-const CONSTRUCTION_CONSULTATION_TITLE = "Construction Consultation Services in Lagos, Nigeria";
-const CONSTRUCTION_CONSULTATION_DESCRIPTION =
-  "Construction consultation services in Lagos, Nigeria for planning, cost, contractor, material, and buildability decisions. Get practical advisory support from Building Practice Ltd.";
-const URBAN_DEVELOPMENT_SLUG = "urban-development";
-const URBAN_DEVELOPMENT_TITLE = "Urban Development Services in Lagos, Nigeria";
-const URBAN_DEVELOPMENT_DESCRIPTION =
-  "Building Practice Ltd provides urban development, master planning, urban design, and infrastructure planning services for Lagos and projects across Nigeria.";
-const GREEN_BUILDING_ADVISORY_SLUG = "green-building-advisory";
-const GREEN_BUILDING_ADVISORY_TITLE = "Green Building Advisory Services in Lagos, Nigeria";
-const GREEN_BUILDING_ADVISORY_DESCRIPTION =
-  "Building Practice Ltd provides green building advisory in Lagos, including sustainable design, energy efficiency, resource planning, and LEED or EDGE documentation support.";
-const REAL_ESTATE_DEVELOPMENT_SLUG = "real-estate-development";
-const REAL_ESTATE_DEVELOPMENT_TITLE = "Real Estate Development Services in Lagos, Nigeria";
-const REAL_ESTATE_DEVELOPMENT_DESCRIPTION =
-  "Building Practice Ltd supports real estate development in Lagos through feasibility, property planning, architectural design, construction, project management, and development coordination.";
-const THREE_D_VISUALIZATION_SLUG = "3d-visualization";
-const THREE_D_VISUALIZATION_TITLE = "3D Visualisation Services in Lagos, Nigeria";
-const THREE_D_VISUALIZATION_DESCRIPTION =
-  "Building Practice Ltd provides 3D visualisation services in Lagos, including architectural rendering, interior and exterior visuals, walkthroughs, animation, and design presentation support.";
-const STRUCTURAL_ENGINEERING_SLUG = "structural-engineering";
-const STRUCTURAL_ENGINEERING_TITLE = "Structural Engineering Services in Lagos, Nigeria";
-const STRUCTURAL_ENGINEERING_DESCRIPTION =
-  "Building Practice Ltd provides structural engineering and design services in Lagos for building analysis, foundations, structural calculations, drawings, reinforced concrete, steel, and construction coordination.";
-const MEP_COORDINATION_SLUG = "mep-coordination";
-const MEP_COORDINATION_TITLE = "MEP Coordination Services in Lagos, Nigeria";
-const MEP_COORDINATION_DESCRIPTION =
-  "Building Practice Ltd provides mechanical, electrical and plumbing coordination services in Lagos for building systems integration, clash coordination, drawings, routing, and construction support.";
-const CONSTRUCTION_COST_ESTIMATION_SLUG = "construction-cost-estimation";
-const CONSTRUCTION_COST_ESTIMATION_TITLE = "Construction Cost Estimation Services in Lagos, Nigeria";
-const CONSTRUCTION_COST_ESTIMATION_DESCRIPTION =
-  "Building Practice Ltd provides construction cost estimation, budgeting, cost planning, quantity take-offs, and cost analysis for residential, commercial, institutional, and development projects in Lagos.";
-const RENOVATION_REMODELING_SLUG = "renovation-remodeling";
-const RENOVATION_REMODELING_TITLE = "Renovation & Remodelling Services in Lagos, Nigeria";
-const RENOVATION_REMODELING_DESCRIPTION =
-  "Building Practice Ltd provides renovation and remodelling services in Lagos for homes, offices, commercial properties, hospitality, and institutional buildings, from planning through execution.";
-const FACILITY_MANAGEMENT_SLUG = "facility-management";
-const FACILITY_MANAGEMENT_TITLE = "Facility Management Services in Lagos, Nigeria";
-const FACILITY_MANAGEMENT_DESCRIPTION =
-  "Looking for facility management services in Lagos? Building Practice Ltd coordinates building maintenance, operations, inspections, and essential facility services for suitable properties.";
-const SITE_PLANNING_LANDSCAPE_SLUG = "site-planning-landscape";
-const SITE_PLANNING_LANDSCAPE_TITLE = "Site Planning & Landscape Design in Lagos, Nigeria";
-const SITE_PLANNING_LANDSCAPE_DESCRIPTION =
-  "Looking for site planning and landscape design services in Lagos? Building Practice Ltd plans functional site layouts, access, outdoor spaces, planting, and hardscape for suitable developments.";
-const BUILDING_PERMITS_SLUG = "building-permits";
-const BUILDING_PERMITS_TITLE = "Building Permit & Regulatory Compliance Services in Lagos, Nigeria";
-const BUILDING_PERMITS_DESCRIPTION =
-  "Need building approval in Lagos? Building Practice Ltd supports permit preparation, planning approval documentation, and regulatory compliance coordination for suitable projects.";
-const CONSTRUCTION_SUPERVISION_SLUG = "construction-supervision";
-const CONSTRUCTION_SUPERVISION_TITLE = "Construction Supervision Services in Lagos, Nigeria";
-const CONSTRUCTION_SUPERVISION_DESCRIPTION =
-  "Need construction supervision in Lagos? Building Practice Ltd provides site monitoring, workmanship checks, progress tracking, and construction oversight for suitable projects.";
-const FEASIBILITY_STUDIES_SLUG = "feasibility-studies";
-const FEASIBILITY_STUDIES_TITLE = "Feasibility Study Services in Lagos, Nigeria";
-const FEASIBILITY_STUDIES_DESCRIPTION =
-  "Need a feasibility study in Lagos? Building Practice Ltd provides property, real estate, and construction feasibility analysis to assess project costs, risks, and implementation considerations.";
-const LAND_SURVEYING_SLUG = "land-surveying";
-const LAND_SURVEYING_TITLE = "Land Surveying Services in Lagos, Nigeria";
-const LAND_SURVEYING_DESCRIPTION =
-  "Need land surveying in Lagos? Building Practice Ltd provides site, topographic, boundary-related, and construction survey support for suitable property and development projects.";
-const ENVIRONMENTAL_IMPACT_SLUG = "environmental-impact";
-const ENVIRONMENTAL_IMPACT_TITLE = "Environmental Impact Assessment Services in Lagos, Nigeria";
-const ENVIRONMENTAL_IMPACT_DESCRIPTION =
-  "Need an Environmental Impact Assessment in Lagos? Building Practice Ltd provides environmental assessment and development advisory to help suitable projects identify risks and plan responsibly.";
-const BUILDING_CERTIFICATION_SLUG = "building-certification";
-const BUILDING_CERTIFICATION_TITLE = "Building Certification Services in Lagos, Nigeria";
-const BUILDING_CERTIFICATION_DESCRIPTION =
-  "Need building certification support in Lagos? Building Practice Ltd provides documentation, compliance, and certification advisory for suitable property and construction projects.";
-const SPACE_PLANNING_SLUG = "space-planning";
-const SPACE_PLANNING_TITLE = "Space Planning Services in Lagos, Nigeria";
-const SPACE_PLANNING_DESCRIPTION =
-  "Looking for space planning services in Lagos? Building Practice Ltd creates functional layouts, circulation, zoning, and furniture plans for suitable residential, commercial, and workplace projects.";
+const ARCHITECTURAL_DESIGN_SLUG = "leading-architectural-design-firm-in-nigeria";
+const INTERIOR_DESIGN_SLUG = "leading-interior-design-firm-in-nigeria";
+const CONSTRUCTION_MANAGEMENT_SLUG = "leading-construction-management-firm-in-nigeria";
+const BUILDING_CONSTRUCTION_SLUG = "leading-building-construction-firm-in-nigeria";
+const PROJECT_MANAGEMENT_SLUG = "leading-project-management-firm-in-nigeria";
+const CONSTRUCTION_CONSULTATION_SLUG = "leading-construction-consultation-firm-in-nigeria";
+const URBAN_DEVELOPMENT_SLUG = "leading-urban-development-firm-in-nigeria";
+const GREEN_BUILDING_ADVISORY_SLUG = "leading-green-building-advisory-firm-in-nigeria";
+const REAL_ESTATE_DEVELOPMENT_SLUG = "leading-real-estate-development-firm-in-nigeria";
+const THREE_D_VISUALIZATION_SLUG = "leading-3d-visualisation-firm-in-nigeria";
+const STRUCTURAL_ENGINEERING_SLUG = "leading-structural-engineering-and-design-firm-in-nigeria";
+const MEP_COORDINATION_SLUG = "leading-mep-coordination-firm-in-nigeria";
+const CONSTRUCTION_COST_ESTIMATION_SLUG = "leading-construction-cost-estimation-firm-in-nigeria";
+const RENOVATION_REMODELING_SLUG = "leading-renovation-and-remodelling-firm-in-nigeria";
+const FACILITY_MANAGEMENT_SLUG = "leading-facility-management-firm-in-nigeria";
+const SITE_PLANNING_LANDSCAPE_SLUG = "leading-site-planning-and-landscape-design-firm-in-nigeria";
+const BUILDING_PERMITS_SLUG = "leading-building-permits-and-regulatory-compliance-firm-in-nigeria";
+const CONSTRUCTION_SUPERVISION_SLUG = "leading-construction-supervision-firm-in-nigeria";
+const FEASIBILITY_STUDIES_SLUG = "leading-feasibility-studies-firm-in-nigeria";
+const LAND_SURVEYING_SLUG = "leading-land-surveying-firm-in-nigeria";
+const ENVIRONMENTAL_IMPACT_SLUG = "leading-environmental-impact-assessment-firm-in-nigeria";
+const BUILDING_CERTIFICATION_SLUG = "leading-building-certification-firm-in-nigeria";
 
 export function generateStaticParams() {
   return getAllServices().map((service) => ({ slug: service.slug }));
 }
 
+/** Appended to every page title by the root layout metadata template. */
+const BRAND_SUFFIX_LENGTH = " | The Building Practice Ltd.".length;
+
+/** Beyond this, the brand is dropped so the service name survives truncation. */
+const MAX_RENDERED_TITLE_LENGTH = 90;
+
+/**
+ * Service metadata comes entirely from the matching record in
+ * `src/data/services.json`. That file is the single authoritative definition
+ * per service: title, description, keywords and image alt text all live there,
+ * so the rendered H1, the canonical URL and the metadata can never disagree.
+ */
 export async function generateMetadata({
   params,
 }: {
@@ -113,814 +55,42 @@ export async function generateMetadata({
   const service = getServiceBySlug(slug);
   if (!service) return {};
 
-  if (slug === SPACE_PLANNING_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: SPACE_PLANNING_TITLE,
-      description: SPACE_PLANNING_DESCRIPTION,
-      keywords: ["Space Planning Services in Lagos", "Space Planning Firms in Lagos", "Space Planning Consultants in Lagos", "Office Space Planning Lagos", "Workplace Space Planning Lagos", "Commercial Space Planning Lagos", "Space Planning Nigeria"],
-      alternates: { canonical: url }, robots: { index: true, follow: true },
-      openGraph: { title: SPACE_PLANNING_TITLE, description: SPACE_PLANNING_DESCRIPTION, url, siteName: SITE_NAME, locale: "en_NG", type: "website", images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }] },
-      twitter: { card: "summary_large_image", title: SPACE_PLANNING_TITLE, description: SPACE_PLANNING_DESCRIPTION, images: [service.heroImage || DEFAULT_OG_IMAGE] },
-    };
-  }
-
-  if (slug === BUILDING_CERTIFICATION_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: BUILDING_CERTIFICATION_TITLE,
-      description: BUILDING_CERTIFICATION_DESCRIPTION,
-      keywords: [
-        "Building Certification Services in Lagos",
-        "Building Certification Firms in Lagos",
-        "Building Certification Consultants in Lagos",
-        "Building Certification Company in Lagos",
-        "building compliance Lagos",
-        "building documentation services Lagos",
-        "construction certification Lagos",
-        "building certification Nigeria",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: { title: BUILDING_CERTIFICATION_TITLE, description: BUILDING_CERTIFICATION_DESCRIPTION, url, siteName: SITE_NAME, locale: "en_NG", type: "website", images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }] },
-      twitter: { card: "summary_large_image", title: BUILDING_CERTIFICATION_TITLE, description: BUILDING_CERTIFICATION_DESCRIPTION, images: [service.heroImage || DEFAULT_OG_IMAGE] },
-    };
-  }
-
-  if (slug === ENVIRONMENTAL_IMPACT_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: ENVIRONMENTAL_IMPACT_TITLE,
-      description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
-      keywords: [
-        "Environmental Impact Assessment Services in Lagos",
-        "Environmental Impact Assessment Firms in Lagos",
-        "Environmental Impact Assessment Consultants in Lagos",
-        "Environmental Consultants in Lagos",
-        "EIA Consultants in Lagos",
-        "environmental assessment Lagos",
-        "environmental compliance services Lagos",
-        "Environmental Impact Assessment Nigeria",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: ENVIRONMENTAL_IMPACT_TITLE,
-        description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: ENVIRONMENTAL_IMPACT_TITLE,
-        description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === LAND_SURVEYING_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: LAND_SURVEYING_TITLE,
-      description: LAND_SURVEYING_DESCRIPTION,
-      keywords: [
-        "Land Surveying Services in Lagos",
-        "Land Surveying Firms in Lagos",
-        "Land Surveyors in Lagos",
-        "Land Surveying Company in Lagos",
-        "Property Survey Lagos",
-        "Topographic Survey Lagos",
-        "Boundary Survey Lagos",
-        "Construction Survey Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: LAND_SURVEYING_TITLE,
-        description: LAND_SURVEYING_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: LAND_SURVEYING_TITLE,
-        description: LAND_SURVEYING_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === FEASIBILITY_STUDIES_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: FEASIBILITY_STUDIES_TITLE,
-      description: FEASIBILITY_STUDIES_DESCRIPTION,
-      keywords: [
-        "Feasibility Study Services in Lagos",
-        "Feasibility Study Company in Lagos",
-        "Feasibility Study Firms in Lagos",
-        "Feasibility Study Consultants in Lagos",
-        "Property Feasibility Study Lagos",
-        "Real Estate Feasibility Study Lagos",
-        "Construction Feasibility Study Lagos",
-        "Development Feasibility Study Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: FEASIBILITY_STUDIES_TITLE,
-        description: FEASIBILITY_STUDIES_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: FEASIBILITY_STUDIES_TITLE,
-        description: FEASIBILITY_STUDIES_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === CONSTRUCTION_SUPERVISION_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: CONSTRUCTION_SUPERVISION_TITLE,
-      description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
-      keywords: [
-        "Construction Supervision Services in Lagos",
-        "Construction Supervision Companies in Lagos",
-        "Construction Site Supervision Lagos",
-        "Building Supervision Services Lagos",
-        "Construction Monitoring Services Lagos",
-        "Construction Inspection Services Lagos",
-        "construction quality control Lagos",
-        "construction supervision Nigeria",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: CONSTRUCTION_SUPERVISION_TITLE,
-        description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: CONSTRUCTION_SUPERVISION_TITLE,
-        description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === BUILDING_PERMITS_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: BUILDING_PERMITS_TITLE,
-      description: BUILDING_PERMITS_DESCRIPTION,
-      keywords: [
-        "Building Permit and Regulatory Compliance Services in Lagos",
-        "Building Permit Services in Lagos",
-        "Building Permit Consultants in Lagos",
-        "Building Approval Services in Lagos",
-        "Planning Approval Services in Lagos",
-        "Building Regulatory Compliance Services in Lagos",
-        "building approval Lagos",
-        "building documentation Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: BUILDING_PERMITS_TITLE,
-        description: BUILDING_PERMITS_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: BUILDING_PERMITS_TITLE,
-        description: BUILDING_PERMITS_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === SITE_PLANNING_LANDSCAPE_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: SITE_PLANNING_LANDSCAPE_TITLE,
-      description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
-      keywords: [
-        "Site Planning and Landscape Design Services in Lagos",
-        "Site Planning and Landscape Design Company in Lagos",
-        "Site Planning and Landscape Design Firms in Lagos, Nigeria",
-        "site planning services Lagos",
-        "landscape design services Lagos",
-        "site layout planning Lagos",
-        "landscape planning Lagos",
-        "residential landscape design Lagos",
-        "commercial landscape design Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: SITE_PLANNING_LANDSCAPE_TITLE,
-        description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: SITE_PLANNING_LANDSCAPE_TITLE,
-        description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === FACILITY_MANAGEMENT_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: FACILITY_MANAGEMENT_TITLE,
-      description: FACILITY_MANAGEMENT_DESCRIPTION,
-      keywords: [
-        "Facility Management Services in Lagos",
-        "Facility Management Company in Lagos",
-        "Facility Management Services in Lagos, Nigeria",
-        "facility maintenance services Lagos",
-        "building maintenance services Lagos",
-        "property maintenance Lagos",
-        "preventive maintenance Lagos",
-        "MEP maintenance Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: FACILITY_MANAGEMENT_TITLE,
-        description: FACILITY_MANAGEMENT_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: FACILITY_MANAGEMENT_TITLE,
-        description: FACILITY_MANAGEMENT_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === RENOVATION_REMODELING_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: RENOVATION_REMODELING_TITLE,
-      description: RENOVATION_REMODELING_DESCRIPTION,
-      keywords: [
-        "Renovation and Remodelling Services in Lagos",
-        "Renovation and Remodeling Services in Lagos",
-        "Renovation and Remodelling Companies in Lagos, Nigeria",
-        "renovation services Lagos",
-        "remodelling services Lagos",
-        "remodeling services Lagos",
-        "renovation company Lagos",
-        "renovation contractors Lagos",
-        "building renovation Lagos",
-        "house renovation Lagos",
-        "home renovation Lagos",
-        "residential renovation Lagos",
-        "commercial renovation Lagos",
-        "office renovation Lagos",
-        "property refurbishment Lagos",
-        "building refurbishment Lagos",
-        "renovation services Nigeria",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: RENOVATION_REMODELING_TITLE,
-        description: RENOVATION_REMODELING_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: RENOVATION_REMODELING_TITLE,
-        description: RENOVATION_REMODELING_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === CONSTRUCTION_COST_ESTIMATION_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: CONSTRUCTION_COST_ESTIMATION_TITLE,
-      description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
-      keywords: [
-        "Construction Cost Estimation Services in Lagos",
-        "Construction Cost Estimation Firms in Lagos, Nigeria",
-        "construction cost estimation Lagos",
-        "construction cost estimator Lagos",
-        "construction cost estimation company Lagos",
-        "construction cost estimation consultants Lagos",
-        "building cost estimation Lagos",
-        "construction cost planning Lagos",
-        "construction budgeting services Lagos",
-        "construction cost consultancy Lagos",
-        "preliminary construction cost estimate Lagos",
-        "construction cost analysis Lagos",
-        "construction cost advisory Lagos",
-        "residential construction cost estimation Lagos",
-        "commercial construction cost estimation Lagos",
-        "construction cost estimation Nigeria",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: CONSTRUCTION_COST_ESTIMATION_TITLE,
-        description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: CONSTRUCTION_COST_ESTIMATION_TITLE,
-        description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === MEP_COORDINATION_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: MEP_COORDINATION_TITLE,
-      description: MEP_COORDINATION_DESCRIPTION,
-      keywords: [
-        "MEP Coordination Services in Lagos",
-        "MEP Coordination Service Firms in Lagos, Nigeria",
-        "MEP coordination services Lagos",
-        "MEP coordination company Lagos",
-        "MEP coordination firms Lagos",
-        "MEP coordination consultants Lagos",
-        "MEP engineering coordination Lagos",
-        "mechanical electrical plumbing coordination Lagos",
-        "MEP design coordination Lagos",
-        "building services coordination Lagos",
-        "MEP coordination services Nigeria",
-        "MEP clash detection Lagos",
-        "MEP drawing coordination Lagos",
-        "multidisciplinary design coordination Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: MEP_COORDINATION_TITLE,
-        description: MEP_COORDINATION_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: MEP_COORDINATION_TITLE,
-        description: MEP_COORDINATION_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === STRUCTURAL_ENGINEERING_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: STRUCTURAL_ENGINEERING_TITLE,
-      description: STRUCTURAL_ENGINEERING_DESCRIPTION,
-      keywords: [
-        "Structural Engineering Services in Lagos",
-        "Structural Engineering & Design firms in Lagos, Nigeria",
-        "structural engineering company Lagos",
-        "structural engineering firms Lagos",
-        "structural engineers Lagos",
-        "structural design services Lagos",
-        "structural analysis Lagos",
-        "structural calculations Lagos",
-        "structural assessment Lagos",
-        "building structural design Lagos",
-        "structural engineering services Nigeria",
-        "structural engineering consultants Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: STRUCTURAL_ENGINEERING_TITLE,
-        description: STRUCTURAL_ENGINEERING_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: STRUCTURAL_ENGINEERING_TITLE,
-        description: STRUCTURAL_ENGINEERING_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === THREE_D_VISUALIZATION_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: THREE_D_VISUALIZATION_TITLE,
-      description: THREE_D_VISUALIZATION_DESCRIPTION,
-      keywords: [
-        "3D visualisation services in Lagos",
-        "3D visualisation service firms in Lagos, Nigeria",
-        "3D visualization company Lagos",
-        "3D rendering services Lagos",
-        "architectural 3D visualisation Lagos",
-        "architectural 3D rendering Lagos",
-        "architectural rendering services Lagos",
-        "3D building visualization Lagos",
-        "exterior 3D rendering Lagos",
-        "interior 3D rendering Lagos",
-        "architectural walkthrough services Lagos",
-        "architectural visualization Nigeria",
-        "3D visualization services Nigeria",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: THREE_D_VISUALIZATION_TITLE,
-        description: THREE_D_VISUALIZATION_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: THREE_D_VISUALIZATION_TITLE,
-        description: THREE_D_VISUALIZATION_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === REAL_ESTATE_DEVELOPMENT_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: REAL_ESTATE_DEVELOPMENT_TITLE,
-      description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
-      keywords: [
-        "real estate development service firms in Lagos, Nigeria",
-        "real estate development firms in Lagos",
-        "real estate development companies in Lagos",
-        "real estate developers in Lagos",
-        "property development services in Lagos",
-        "real estate development consultants Lagos",
-        "property development consultants Lagos",
-        "residential property development Lagos",
-        "commercial property development Lagos",
-        "mixed-use development Lagos",
-        "real estate development Nigeria",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: REAL_ESTATE_DEVELOPMENT_TITLE,
-        description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: REAL_ESTATE_DEVELOPMENT_TITLE,
-        description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === GREEN_BUILDING_ADVISORY_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: GREEN_BUILDING_ADVISORY_TITLE,
-      description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
-      keywords: [
-        "green building advisory service firms in Lagos, Nigeria",
-        "green building advisory firms in Lagos",
-        "green building advisory services in Lagos",
-        "green building consultants in Lagos",
-        "sustainable building consultants Lagos",
-        "energy efficiency consultants Lagos",
-        "sustainable building design Lagos",
-        "LEED consulting Lagos",
-        "EDGE certification consulting Lagos",
-        "sustainable building materials Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: GREEN_BUILDING_ADVISORY_TITLE,
-        description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: GREEN_BUILDING_ADVISORY_TITLE,
-        description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === URBAN_DEVELOPMENT_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: URBAN_DEVELOPMENT_TITLE,
-      description: URBAN_DEVELOPMENT_DESCRIPTION,
-      keywords: [
-        "urban development service firms in Lagos, Nigeria",
-        "urban development firms in Lagos",
-        "urban development services in Lagos",
-        "urban planning firms Lagos",
-        "master planning services Lagos",
-        "mixed-use development planning Lagos",
-        "infrastructure planning Lagos",
-        "urban redevelopment Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: URBAN_DEVELOPMENT_TITLE,
-        description: URBAN_DEVELOPMENT_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: URBAN_DEVELOPMENT_TITLE,
-        description: URBAN_DEVELOPMENT_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === CONSTRUCTION_CONSULTATION_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: CONSTRUCTION_CONSULTATION_TITLE,
-      description: CONSTRUCTION_CONSULTATION_DESCRIPTION,
-      keywords: [
-        "construction consultation firms in Lagos, Nigeria",
-        "construction consultation services in Lagos",
-        "construction consultants in Lagos",
-        "construction advisory services in Lagos",
-        "construction consultancy services in Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: CONSTRUCTION_CONSULTATION_TITLE,
-        description: CONSTRUCTION_CONSULTATION_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: CONSTRUCTION_CONSULTATION_TITLE,
-        description: CONSTRUCTION_CONSULTATION_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === CONSTRUCTION_MANAGEMENT_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: CONSTRUCTION_MANAGEMENT_TITLE,
-      description: CONSTRUCTION_MANAGEMENT_DESCRIPTION,
-      keywords: [
-        "construction management firms in Lagos, Nigeria",
-        "construction management services in Lagos",
-        "construction project management Lagos",
-        "building project management Lagos",
-        "construction management company in Nigeria",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: CONSTRUCTION_MANAGEMENT_TITLE,
-        description: CONSTRUCTION_MANAGEMENT_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: CONSTRUCTION_MANAGEMENT_TITLE,
-        description: CONSTRUCTION_MANAGEMENT_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === BUILDING_CONSTRUCTION_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: BUILDING_CONSTRUCTION_TITLE,
-      description: BUILDING_CONSTRUCTION_DESCRIPTION,
-      keywords: [
-        "building construction service firms in Lagos, Nigeria",
-        "building construction services in Lagos",
-        "building construction firms in Lagos",
-        "building construction companies in Lagos",
-        "building contractors in Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: BUILDING_CONSTRUCTION_TITLE,
-        description: BUILDING_CONSTRUCTION_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: BUILDING_CONSTRUCTION_TITLE,
-        description: BUILDING_CONSTRUCTION_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === PROJECT_MANAGEMENT_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: PROJECT_MANAGEMENT_TITLE,
-      description: PROJECT_MANAGEMENT_DESCRIPTION,
-      keywords: [
-        "project management service firms in Lagos, Nigeria",
-        "project management services in Lagos",
-        "project management firms in Lagos",
-        "construction project management Lagos",
-        "building project management Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: PROJECT_MANAGEMENT_TITLE,
-        description: PROJECT_MANAGEMENT_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: PROJECT_MANAGEMENT_TITLE,
-        description: PROJECT_MANAGEMENT_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === INTERIOR_DESIGN_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: INTERIOR_DESIGN_TITLE,
-      description: INTERIOR_DESIGN_DESCRIPTION,
-      keywords: [
-        "interior design firms in Lagos, Nigeria",
-        "interior design services in Lagos",
-        "interior designers in Lagos",
-        "commercial interior design Lagos",
-        "residential interior design Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: INTERIOR_DESIGN_TITLE,
-        description: INTERIOR_DESIGN_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: INTERIOR_DESIGN_TITLE,
-        description: INTERIOR_DESIGN_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  if (slug === ARCHITECTURAL_DESIGN_SLUG) {
-    const url = absoluteUrl(`/services/${slug}`);
-    return {
-      title: ARCHITECTURAL_DESIGN_TITLE,
-      description: ARCHITECTURAL_DESIGN_DESCRIPTION,
-      keywords: [
-        "architectural design firms in Lagos, Nigeria",
-        "architectural design services in Lagos",
-        "architectural services in Lagos",
-        "architectural consultants in Lagos",
-        "building design architects in Lagos",
-      ],
-      alternates: { canonical: url },
-      robots: { index: true, follow: true },
-      openGraph: {
-        title: ARCHITECTURAL_DESIGN_TITLE,
-        description: ARCHITECTURAL_DESIGN_DESCRIPTION,
-        url,
-        siteName: SITE_NAME,
-        locale: "en_NG",
-        type: "website",
-        images: [{ url: service.heroImage || DEFAULT_OG_IMAGE }],
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: ARCHITECTURAL_DESIGN_TITLE,
-        description: ARCHITECTURAL_DESIGN_DESCRIPTION,
-        images: [service.heroImage || DEFAULT_OG_IMAGE],
-      },
-    };
-  }
-
-  const title = service.seoTitle || service.title;
-  const description = service.seoDescription || service.subtitle;
   const url = absoluteUrl(`/services/${slug}`);
+  const description = service.seoDescription;
+  const image = service.heroImage || DEFAULT_OG_IMAGE;
+
+  // The root layout appends " | The Building Practice Ltd." to every title.
+  // Where an unusually long service name pushes the rendered title well past
+  // the point search engines truncate, the brand is dropped rather than the
+  // service name or "Firm in Nigeria", both of which carry the intent.
+  const renderedLength = service.seoTitle.length + BRAND_SUFFIX_LENGTH;
+  const title =
+    renderedLength > MAX_RENDERED_TITLE_LENGTH ? { absolute: service.seoTitle } : service.seoTitle;
+
+  // Social titles always carry the full H1 text, which is never truncated the
+  // way a search result is.
+  const socialTitle = service.seoTitle;
+
   return {
     title,
     description,
+    keywords: service.keywords,
     alternates: { canonical: url },
+    robots: { index: true, follow: true },
     openGraph: {
-      title,
+      title: socialTitle,
       description,
       url,
+      siteName: SITE_NAME,
+      locale: "en_NG",
       type: "website",
-      images: service.heroImage ? [{ url: service.heroImage }] : undefined,
+      images: [{ url: image, alt: service.heroImageAlt }],
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: socialTitle,
       description,
-      images: service.heroImage ? [service.heroImage] : undefined,
+      images: [image],
     },
   };
 }
@@ -1566,1049 +736,46 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     { q: "Does certification mean a building is fully compliant?", a: "Certification can be one part of a broader compliance process. It does not automatically establish complete compliance with every applicable planning, safety, environmental, documentation, or approval requirement." },
   ];
 
-  const servicePageJsonLd = isBuildingCertificationPage
-    ? { "@context": "https://schema.org", "@graph": [
-        { "@type": "WebPage", "@id": absoluteUrl(`/services/${slug}#webpage`), url: absoluteUrl(`/services/${slug}`), name: BUILDING_CERTIFICATION_TITLE, description: BUILDING_CERTIFICATION_DESCRIPTION, isPartOf: { "@id": `${SITE_URL}/#website` }, about: { "@id": `${SITE_URL}/#organization` }, inLanguage: "en-NG" },
-        { "@type": "Service", "@id": absoluteUrl(`/services/${slug}#service`), name: "Building Certification Services", description: BUILDING_CERTIFICATION_DESCRIPTION, provider: { "@id": `${SITE_URL}/#organization` }, areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }], serviceType: ["Certification Requirements Review", "Building Documentation Preparation", "Building Plan Approval Processing", "Documentation Coordination"], url: absoluteUrl(`/services/${slug}`) },
-        { "@type": "BreadcrumbList", "@id": absoluteUrl(`/services/${slug}#breadcrumb`), itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") }, { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") }, { "@type": "ListItem", position: 3, name: "Building Certification", item: absoluteUrl(`/services/${slug}`) }] },
-      ] }
-    : isEnvironmentalImpactPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: ENVIRONMENTAL_IMPACT_TITLE,
-            description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Environmental Impact Assessment Services",
-            description: ENVIRONMENTAL_IMPACT_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
-            serviceType: [
-              "Environmental Screening and Scoping",
-              "Baseline Environmental Data Collection",
-              "Environmental Impact Evaluation",
-              "Mitigation Measure Development",
-              "Environmental Management Planning",
-              "Environmental Assessment Report Preparation",
-              "Monitoring Plan Development",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Environmental Impact Assessment", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
+  // Structured data is derived from the service record so the schema name
+  // always equals the rendered H1 and every URL equals the canonical URL.
+  const serviceUrl = absoluteUrl(`/services/${slug}`);
+  const servicePageJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${serviceUrl}#webpage`,
+        url: serviceUrl,
+        name: service.h1,
+        description: service.seoDescription,
+        isPartOf: { "@id": `${SITE_URL}/#website` },
+        about: { "@id": `${SITE_URL}/#organization` },
+        inLanguage: "en-NG",
+      },
+      {
+        "@type": "Service",
+        "@id": `${serviceUrl}#service`,
+        name: service.schemaName,
+        description: service.seoDescription,
+        provider: { "@id": `${SITE_URL}/#organization` },
+        areaServed: [
+          { "@type": "City", name: "Lagos" },
+          { "@type": "Country", name: "Nigeria" },
         ],
-      }
-    : isLandSurveyingPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: LAND_SURVEYING_TITLE,
-            description: LAND_SURVEYING_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Land Surveying Services",
-            description: LAND_SURVEYING_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
-            serviceType: [
-              "Topographic Surveys and Mapping",
-              "Boundary Surveys and Demarcation",
-              "Construction Staking and Layout",
-              "As-Built Surveys and Documentation",
-              "Site Leveling and Grading Surveys",
-              "Utility Location Surveys",
-              "Survey Report Preparation",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Land Surveying", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
+        ...(service.schemaServiceTypes ? { serviceType: service.schemaServiceTypes } : {}),
+        url: serviceUrl,
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${serviceUrl}#breadcrumb`,
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
+          { "@type": "ListItem", position: 3, name: service.breadcrumbLabel, item: serviceUrl },
         ],
-      }
-    : isFeasibilityStudiesPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: FEASIBILITY_STUDIES_TITLE,
-            description: FEASIBILITY_STUDIES_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Feasibility Study Services",
-            description: FEASIBILITY_STUDIES_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
-            serviceType: [
-              "Technical Feasibility Assessment",
-              "Financial Viability Analysis",
-              "Market Demand Research",
-              "Site Evaluation",
-              "Regulatory Compliance Review",
-              "Risk Assessment",
-              "Construction Cost Estimation",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Feasibility Studies", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isConstructionSupervisionPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: CONSTRUCTION_SUPERVISION_TITLE,
-            description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Construction Supervision Services",
-            description: CONSTRUCTION_SUPERVISION_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
-            serviceType: [
-              "Construction Site Supervision",
-              "Construction Progress Monitoring",
-              "Workmanship Verification",
-              "Material Inspection",
-              "Contractor Performance Evaluation",
-              "Construction Reporting",
-              "Handover Coordination",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Construction Supervision", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isBuildingPermitsPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: BUILDING_PERMITS_TITLE,
-            description: BUILDING_PERMITS_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Building Permit & Regulatory Compliance Services",
-            description: BUILDING_PERMITS_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
-            serviceType: [
-              "Building Permit Application Preparation",
-              "Planning Approval Support",
-              "Regulatory Requirement Analysis",
-              "Building Approval Documentation",
-              "Documentation and Filing Management",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Building Permits & Regulatory Compliance", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isSitePlanningLandscapePage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: SITE_PLANNING_LANDSCAPE_TITLE,
-            description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Site Planning & Landscape Design Services",
-            description: SITE_PLANNING_LANDSCAPE_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
-            serviceType: [
-              "Site Analysis",
-              "Landscape Master Planning",
-              "Planting Design",
-              "Hardscape Design and Paving",
-              "Drainage and Water Management",
-              "Site Access and Circulation Planning",
-              "Landscape Lighting Design",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Site Planning & Landscape Design", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isFacilityManagementPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: FACILITY_MANAGEMENT_TITLE,
-            description: FACILITY_MANAGEMENT_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Facility Management Services",
-            description: FACILITY_MANAGEMENT_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [{ "@type": "City", name: "Lagos" }, { "@type": "Country", name: "Nigeria" }],
-            serviceType: [
-              "Facility Management",
-              "Building Maintenance Planning",
-              "Preventive Maintenance",
-              "Building Inspection",
-              "Building Systems Maintenance Coordination",
-              "Vendor and Contractor Management",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Facility Management", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isRenovationRemodelingPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: RENOVATION_REMODELING_TITLE,
-            description: RENOVATION_REMODELING_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Renovation & Remodelling Services",
-            description: RENOVATION_REMODELING_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Building Renovation",
-              "Building Remodelling",
-              "Residential Renovation",
-              "Commercial Renovation",
-              "Office Renovation",
-              "Interior Renovation",
-              "Building Refurbishment",
-              "Adaptive Reuse",
-              "Renovation Design and Planning",
-              "Renovation Construction",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Renovation & Remodelling", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isConstructionCostEstimationPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: CONSTRUCTION_COST_ESTIMATION_TITLE,
-            description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Construction Cost Estimation Services",
-            description: CONSTRUCTION_COST_ESTIMATION_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Construction Cost Estimation",
-              "Building Cost Estimation",
-              "Construction Budget Planning",
-              "Construction Cost Analysis",
-              "Quantity Take-offs",
-              "Material and Labour Cost Assessment",
-              "Value Engineering",
-              "Cost Monitoring and Forecasting",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Construction Cost Estimation", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isMepCoordinationPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: MEP_COORDINATION_TITLE,
-            description: MEP_COORDINATION_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "MEP Coordination Services",
-            description: MEP_COORDINATION_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "MEP Coordination",
-              "Mechanical Services Coordination",
-              "Electrical Services Coordination",
-              "Plumbing Services Coordination",
-              "MEP Drawing Coordination",
-              "MEP Clash Detection",
-              "Building Services Coordination",
-              "Construction MEP Coordination",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "MEP Coordination", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isStructuralEngineeringPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: STRUCTURAL_ENGINEERING_TITLE,
-            description: STRUCTURAL_ENGINEERING_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Structural Engineering & Design Services",
-            description: STRUCTURAL_ENGINEERING_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Structural Engineering",
-              "Structural Design",
-              "Structural Analysis",
-              "Structural Calculations",
-              "Foundation Design",
-              "Reinforced Concrete Design",
-              "Steel Structural Design",
-              "Structural Rehabilitation",
-              "Structural Construction Coordination",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Structural Engineering & Design", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isThreeDVisualizationPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: THREE_D_VISUALIZATION_TITLE,
-            description: THREE_D_VISUALIZATION_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "3D Visualisation Services",
-            description: THREE_D_VISUALIZATION_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "3D Visualisation",
-              "Architectural 3D Visualisation",
-              "Exterior 3D Rendering",
-              "Interior 3D Rendering",
-              "360-Degree Virtual Tours",
-              "Architectural Flythrough Animation",
-              "Material and Finish Visualisation",
-              "Landscape Visualisation",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "3D Visualisation", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isRealEstateDevelopmentPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: REAL_ESTATE_DEVELOPMENT_TITLE,
-            description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Real Estate Development Services",
-            description: REAL_ESTATE_DEVELOPMENT_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Real Estate Development",
-              "Property Development Planning",
-              "Development Feasibility",
-              "Architectural Design Coordination",
-              "Building Construction",
-              "Construction Management",
-              "Project Management",
-              "Development Coordination",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Real Estate Development", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isGreenBuildingAdvisoryPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: GREEN_BUILDING_ADVISORY_TITLE,
-            description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Green Building Advisory Services",
-            description: GREEN_BUILDING_ADVISORY_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Green Building Advisory",
-              "Sustainable Building Design Consultation",
-              "Energy Efficiency Planning",
-              "Green Building Certification Support",
-              "Sustainable Materials Advisory",
-              "Water Efficiency Planning",
-              "Construction Waste Management Advisory",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Green Building Advisory", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isUrbanDevelopmentPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: URBAN_DEVELOPMENT_TITLE,
-            description: URBAN_DEVELOPMENT_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Urban Development Services",
-            description: URBAN_DEVELOPMENT_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Urban Development",
-              "Master Planning",
-              "Urban Design",
-              "Land Use Planning",
-              "Infrastructure Planning",
-              "Mixed-Use Development Planning",
-              "Urban Renewal",
-              "Urban Redevelopment",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
-              { "@type": "ListItem", position: 2, name: "Services", item: absoluteUrl("/services") },
-              { "@type": "ListItem", position: 3, name: "Urban Development", item: absoluteUrl(`/services/${slug}`) },
-            ],
-          },
-        ],
-      }
-    : isArchitecturalDesignPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: ARCHITECTURAL_DESIGN_TITLE,
-            description: ARCHITECTURAL_DESIGN_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Architectural Design Services",
-            description: ARCHITECTURAL_DESIGN_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Architectural Design",
-              "Building Design",
-              "Residential Architectural Design",
-              "Commercial Architectural Design",
-              "Architectural Planning",
-              "Construction Documentation",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: absoluteUrl("/"),
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Services",
-                item: absoluteUrl("/services"),
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Architectural Design",
-                item: absoluteUrl(`/services/${slug}`),
-              },
-            ],
-          },
-        ],
-      }
-    : isConstructionManagementPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: CONSTRUCTION_MANAGEMENT_TITLE,
-            description: CONSTRUCTION_MANAGEMENT_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Construction Management Services",
-            description: CONSTRUCTION_MANAGEMENT_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Construction Management",
-              "Construction Project Management",
-              "Construction Supervision",
-              "Contractor Coordination",
-              "Construction Quality Control",
-              "Construction Progress Reporting",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: absoluteUrl("/"),
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Services",
-                item: absoluteUrl("/services"),
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Construction Management",
-                item: absoluteUrl(`/services/${slug}`),
-              },
-            ],
-          },
-        ],
-      }
-    : isConstructionConsultationPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: CONSTRUCTION_CONSULTATION_TITLE,
-            description: CONSTRUCTION_CONSULTATION_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Construction Consultation",
-            description: CONSTRUCTION_CONSULTATION_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Construction Consultation",
-              "Construction Advisory",
-              "Building Consultation",
-              "Project Consultation",
-              "Construction Planning Advisory",
-              "Construction Cost Advisory",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: absoluteUrl("/"),
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Services",
-                item: absoluteUrl("/services"),
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Construction Consultation",
-                item: absoluteUrl(`/services/${slug}`),
-              },
-            ],
-          },
-        ],
-      }
-    : isProjectManagementPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: PROJECT_MANAGEMENT_TITLE,
-            description: PROJECT_MANAGEMENT_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Project Management Services",
-            description: PROJECT_MANAGEMENT_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Project Management",
-              "Construction Project Management",
-              "Project Planning",
-              "Cost Control",
-              "Procurement Coordination",
-              "Project Reporting",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: absoluteUrl("/"),
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Services",
-                item: absoluteUrl("/services"),
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Project Management",
-                item: absoluteUrl(`/services/${slug}`),
-              },
-            ],
-          },
-        ],
-      }
-    : isBuildingConstructionPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: BUILDING_CONSTRUCTION_TITLE,
-            description: BUILDING_CONSTRUCTION_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Building Construction Services",
-            description: BUILDING_CONSTRUCTION_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Building Construction",
-              "Residential Building Construction",
-              "Commercial Building Construction",
-              "Construction Execution",
-              "Construction Finishing",
-              "Building Project Handover",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: absoluteUrl("/"),
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Services",
-                item: absoluteUrl("/services"),
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Building Construction",
-                item: absoluteUrl(`/services/${slug}`),
-              },
-            ],
-          },
-        ],
-      }
-    : isInteriorDesignPage
-    ? {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/services/${slug}#webpage`),
-            url: absoluteUrl(`/services/${slug}`),
-            name: INTERIOR_DESIGN_TITLE,
-            description: INTERIOR_DESIGN_DESCRIPTION,
-            isPartOf: { "@id": `${SITE_URL}/#website` },
-            about: { "@id": `${SITE_URL}/#organization` },
-            inLanguage: "en-NG",
-          },
-          {
-            "@type": "Service",
-            "@id": absoluteUrl(`/services/${slug}#service`),
-            name: "Interior Design Services",
-            description: INTERIOR_DESIGN_DESCRIPTION,
-            provider: { "@id": `${SITE_URL}/#organization` },
-            areaServed: [
-              { "@type": "City", name: "Lagos" },
-              { "@type": "Country", name: "Nigeria" },
-            ],
-            serviceType: [
-              "Interior Design",
-              "Interior Architecture",
-              "Space Planning",
-              "Residential Interior Design",
-              "Commercial Interior Design",
-              "Interior Visualization",
-            ],
-            url: absoluteUrl(`/services/${slug}`),
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": absoluteUrl(`/services/${slug}#breadcrumb`),
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: absoluteUrl("/"),
-              },
-              {
-                "@type": "ListItem",
-                position: 2,
-                name: "Services",
-                item: absoluteUrl("/services"),
-              },
-              {
-                "@type": "ListItem",
-                position: 3,
-                name: "Interior Design",
-                item: absoluteUrl(`/services/${slug}`),
-              },
-            ],
-          },
-        ],
-      }
-    : null;
+      },
+    ],
+  };
 
   return (
     <main>
@@ -2682,49 +849,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               <Link href="/services">Services</Link>
               <span>/</span>
               <span aria-current="page">
-                {isBuildingCertificationPage
-                  ? "Building Certification"
-                  : isEnvironmentalImpactPage
-                  ? "Environmental Impact Assessment"
-                  : isLandSurveyingPage
-                  ? "Land Surveying"
-                  : isFeasibilityStudiesPage
-                  ? "Feasibility Studies"
-                  : isConstructionSupervisionPage
-                  ? "Construction Supervision"
-                  : isBuildingPermitsPage
-                  ? "Building Permits & Regulatory Compliance"
-                  : isSitePlanningLandscapePage
-                  ? "Site Planning & Landscape Design"
-                  : isFacilityManagementPage
-                  ? "Facility Management"
-                  : isRenovationRemodelingPage
-                  ? "Renovation & Remodelling"
-                  : isConstructionCostEstimationPage
-                  ? "Construction Cost Estimation"
-                  : isMepCoordinationPage
-                  ? "MEP Coordination"
-                  : isStructuralEngineeringPage
-                  ? "Structural Engineering & Design"
-                  : isThreeDVisualizationPage
-                  ? "3D Visualisation"
-                  : isRealEstateDevelopmentPage
-                  ? "Real Estate Development"
-                  : isGreenBuildingAdvisoryPage
-                  ? "Green Building Advisory"
-                  : isUrbanDevelopmentPage
-                  ? "Urban Development"
-                  : isArchitecturalDesignPage
-                  ? "Architectural Design"
-                  : isInteriorDesignPage
-                  ? "Interior Design"
-                  : isConstructionManagementPage
-                  ? "Construction Management"
-                  : isBuildingConstructionPage
-                  ? "Building Construction"
-                  : isProjectManagementPage
-                  ? "Project Management"
-                  : "Construction Consultation"}
+                {service.breadcrumbLabel}
               </span>
             </nav>
           )}
@@ -2734,51 +859,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
           <span className={styles.category}>{service.category}</span>
           <h1>
-            {isBuildingCertificationPage
-              ? "Building Certification Services in Lagos, Nigeria"
-              : isEnvironmentalImpactPage
-              ? "Environmental Impact Assessment Services in Lagos, Nigeria"
-              : isLandSurveyingPage
-              ? "Land Surveying Services in Lagos, Nigeria"
-              : isFeasibilityStudiesPage
-              ? "Feasibility Study Services in Lagos, Nigeria"
-              : isConstructionSupervisionPage
-              ? "Construction Supervision Services in Lagos, Nigeria"
-              : isBuildingPermitsPage
-              ? "Building Permit & Regulatory Compliance Services in Lagos, Nigeria"
-              : isSitePlanningLandscapePage
-              ? "Site Planning & Landscape Design Services in Lagos, Nigeria"
-              : isFacilityManagementPage
-              ? "Facility Management Services in Lagos, Nigeria"
-              : isRenovationRemodelingPage
-              ? "Renovation & Remodelling Services in Lagos, Nigeria"
-              : isConstructionCostEstimationPage
-              ? "Construction Cost Estimation Services in Lagos, Nigeria"
-              : isMepCoordinationPage
-              ? "MEP Coordination Services in Lagos, Nigeria"
-              : isStructuralEngineeringPage
-              ? "Structural Engineering & Design Services in Lagos, Nigeria"
-              : isThreeDVisualizationPage
-              ? "3D Visualisation Services in Lagos, Nigeria"
-              : isRealEstateDevelopmentPage
-              ? "Real Estate Development Services in Lagos, Nigeria"
-              : isGreenBuildingAdvisoryPage
-              ? "Green Building Advisory Services in Lagos, Nigeria"
-              : isUrbanDevelopmentPage
-              ? "Urban Development Services in Lagos, Nigeria"
-              : isArchitecturalDesignPage
-              ? "Architectural Design Services in Lagos, Nigeria"
-              : isConstructionManagementPage
-              ? "Construction Management Services in Lagos, Nigeria"
-              : isBuildingConstructionPage
-              ? "Building Construction Services in Lagos, Nigeria"
-              : isInteriorDesignPage
-              ? "Interior Design Services in Lagos, Nigeria"
-              : isProjectManagementPage
-              ? "Project Management Services in Lagos, Nigeria"
-              : isConstructionConsultationPage
-              ? "Construction Consultation Services in Lagos, Nigeria"
-              : service.title}
+            {service.h1}
           </h1>
           <p>
             {isBuildingCertificationPage
@@ -2840,7 +921,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>Building Certification Support by Building Practice Ltd</h2>
                     <p className={styles.bodyText}>Building Practice Ltd supports property owners, homeowners, developers, businesses, institutions, and project teams with building certification documentation, requirements review, and coordination for suitable projects in Lagos.</p>
                     <p className={styles.bodyText}>Our documented scope includes certification-requirements review, building-plan approval processing, documentation preparation, and coordination. Any statutory certificate, approval, or authority decision remains with the applicable body; this service does not claim to issue certificates independently.</p>
-                    <div className={styles.linkRow}><Link href="/contact">Discuss your building certification needs</Link><Link href="/services/building-permits">Explore building permits and regulatory compliance</Link><Link href="/projects">View our project portfolio</Link></div>
+                    <div className={styles.linkRow}><Link href="/contact">Discuss your building certification needs</Link><Link href="/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria">Explore building permits and regulatory compliance</Link><Link href="/projects">View our project portfolio</Link></div>
                   </div>
                   <div className={styles.block}>
                     <h2>What Is Building Certification?</h2>
@@ -2862,15 +943,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   </div>
                   <div className={styles.block}>
                     <h2>Building Certification for Property Developers</h2>
-                    <p className={styles.bodyText}>Developers can benefit from organized documentation management, technical coordination, construction records, inspection coordination, and handover information. Related services include <Link href="/services/real-estate-development">real estate development</Link>, <Link href="/services/urban-development">urban development</Link>, <Link href="/services/project-management">project management</Link>, and <Link href="/services/construction-management">construction management</Link>.</p>
+                    <p className={styles.bodyText}>Developers can benefit from organized documentation management, technical coordination, construction records, inspection coordination, and handover information. Related services include <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development</Link>, <Link href="/services/leading-urban-development-firm-in-nigeria">urban development</Link>, <Link href="/services/leading-project-management-firm-in-nigeria">project management</Link>, and <Link href="/services/leading-construction-management-firm-in-nigeria">construction management</Link>.</p>
                   </div>
                   <div className={styles.block}>
                     <h2>Building Certification and Building Permits</h2>
-                    <p className={styles.bodyText}>A building permit or approval generally relates to permission for a proposed development or construction process. Building certification may relate to verification, documentation, inspection, completion, or a formal process associated with a building. The exact distinction depends on the applicable requirements and authority. See our <Link href="/services/building-permits">building permits and regulatory compliance service</Link> for related support.</p>
+                    <p className={styles.bodyText}>A building permit or approval generally relates to permission for a proposed development or construction process. Building certification may relate to verification, documentation, inspection, completion, or a formal process associated with a building. The exact distinction depends on the applicable requirements and authority. See our <Link href="/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria">building permits and regulatory compliance service</Link> for related support.</p>
                   </div>
                   <div className={styles.block}>
                     <h2>Building Certification and Regulatory Compliance</h2>
-                    <p className={styles.bodyText}>Certification can be one component of a broader compliance process that may involve documentation, inspections, planning, safety, environmental requirements, and approvals. It does not automatically establish complete compliance. Related services include <Link href="/services/environmental-impact">environmental impact assessment</Link> and <Link href="/services/green-building-advisory">green building advisory</Link>.</p>
+                    <p className={styles.bodyText}>Certification can be one component of a broader compliance process that may involve documentation, inspections, planning, safety, environmental requirements, and approvals. It does not automatically establish complete compliance. Related services include <Link href="/services/leading-environmental-impact-assessment-firm-in-nigeria">environmental impact assessment</Link> and <Link href="/services/leading-green-building-advisory-firm-in-nigeria">green building advisory</Link>.</p>
                   </div>
                   <div className={styles.block}>
                     <h2>Why Building Certification Matters in Lagos</h2>
@@ -2892,7 +973,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>How Long Does Building Certification Take in Lagos?</h2><p className={styles.bodyText}>Duration depends on documentation completeness, building type, technical reviews, corrections, inspections, and applicable authority or third-party processes. No universal timeline or certification date is guaranteed.</p>
                   </div>
                   <div className={styles.block}>
-                    <h2>Related Design and Construction Services</h2><p className={styles.bodyText}>Certification documentation may connect to <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination</Link>, <Link href="/services/building-construction">building construction</Link>, <Link href="/services/construction-supervision">construction supervision</Link>, <Link href="/services/renovation-remodeling">renovation and remodelling</Link>, <Link href="/services/feasibility-studies">feasibility studies</Link>, and <Link href="/services/site-planning-landscape">site planning and landscape design</Link>.</p>
+                    <h2>Related Design and Construction Services</h2><p className={styles.bodyText}>Certification documentation may connect to <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design</Link>, <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link>, <Link href="/services/leading-mep-coordination-firm-in-nigeria">MEP coordination</Link>, <Link href="/services/leading-building-construction-firm-in-nigeria">building construction</Link>, <Link href="/services/leading-construction-supervision-firm-in-nigeria">construction supervision</Link>, <Link href="/services/leading-renovation-and-remodelling-firm-in-nigeria">renovation and remodelling</Link>, <Link href="/services/leading-feasibility-studies-firm-in-nigeria">feasibility studies</Link>, and <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria">site planning and landscape design</Link>.</p>
                   </div>
                   <div className={styles.block}><h2>Frequently Asked Questions</h2><div className={styles.faqList}>{buildingCertificationFaq.map((item, index) => <details key={`${item.q}-${index}`} className={styles.faqItem}><summary>{item.q}</summary><div>{item.a}</div></details>)}</div></div>
                   <div className={styles.block}><h2>Discuss Your Building Certification Needs</h2><p className={styles.bodyText}>Share your property type, location, available documentation, current project stage, and the support you need. Our team will review the appropriate scope and next steps.</p><div className={styles.linkRow}><Link href="/contact">Request a building certification consultation</Link><Link href="/projects">View our project portfolio</Link></div></div>
@@ -2915,7 +996,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/contact">Request an environmental assessment consultation</Link>
-                      <Link href="/services/green-building-advisory">Explore green building advisory</Link>
+                      <Link href="/services/leading-green-building-advisory-firm-in-nigeria">Explore green building advisory</Link>
                       <Link href="/projects">View our project portfolio</Link>
                     </div>
                   </div>
@@ -2982,7 +1063,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Environmental assessment can support suitable residential, commercial, mixed-use, industrial,
                       infrastructure, redevelopment, and construction project briefs by identifying potential impacts
-                      before and during planning. Related services include <Link href="/services/real-estate-development">real estate development</Link>, <Link href="/services/urban-development">urban development</Link>, <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/building-construction">building construction</Link>, <Link href="/services/construction-management">construction management</Link>, and <Link href="/services/construction-supervision">construction supervision</Link>.
+                      before and during planning. Related services include <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development</Link>, <Link href="/services/leading-urban-development-firm-in-nigeria">urban development</Link>, <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design</Link>, <Link href="/services/leading-building-construction-firm-in-nigeria">building construction</Link>, <Link href="/services/leading-construction-management-firm-in-nigeria">construction management</Link>, and <Link href="/services/leading-construction-supervision-firm-in-nigeria">construction supervision</Link>.
                     </p>
                   </div>
 
@@ -2990,7 +1071,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>Environmental Assessment for Feasibility Studies</h2>
                     <p className={styles.bodyText}>
                       Environmental assessment evaluates potential environmental effects and mitigation measures.
-                      <Link href="/services/feasibility-studies"> Feasibility studies</Link> evaluate wider project viability, including technical, financial, market, environmental, and risk considerations. They are related but distinct early-stage services.
+                      <Link href="/services/leading-feasibility-studies-firm-in-nigeria"> Feasibility studies</Link> evaluate wider project viability, including technical, financial, market, environmental, and risk considerations. They are related but distinct early-stage services.
                     </p>
                   </div>
 
@@ -3092,7 +1173,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your surveying requirements</Link>
-                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Explore architectural design services</Link>
                       <Link href="/projects">View our project portfolio</Link>
                     </div>
                   </div>
@@ -3149,7 +1230,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <div className={styles.block}>
                     <h2>Site Survey Services for Construction and Development</h2>
                     <p className={styles.bodyText}>
-                      Site survey information can provide a useful basis for <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/site-planning-landscape">site planning and landscape design</Link>, and <Link href="/services/feasibility-studies">feasibility studies</Link>. It helps project teams understand the physical site before detailed design or construction decisions are made.
+                      Site survey information can provide a useful basis for <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design</Link>, <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link>, <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria">site planning and landscape design</Link>, and <Link href="/services/leading-feasibility-studies-firm-in-nigeria">feasibility studies</Link>. It helps project teams understand the physical site before detailed design or construction decisions are made.
                     </p>
                   </div>
 
@@ -3162,7 +1243,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       requirements depend on the project and technical professionals involved.
                     </p>
                     <p className={styles.bodyText}>
-                      Related delivery support includes <Link href="/services/building-construction">building construction</Link>, <Link href="/services/construction-supervision">construction supervision</Link>, <Link href="/services/construction-management">construction management</Link>, and <Link href="/services/project-management">project management</Link>.
+                      Related delivery support includes <Link href="/services/leading-building-construction-firm-in-nigeria">building construction</Link>, <Link href="/services/leading-construction-supervision-firm-in-nigeria">construction supervision</Link>, <Link href="/services/leading-construction-management-firm-in-nigeria">construction management</Link>, and <Link href="/services/leading-project-management-firm-in-nigeria">project management</Link>.
                     </p>
                   </div>
 
@@ -3180,7 +1261,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>Land Surveying for Property Development in Lagos</h2>
                     <p className={styles.bodyText}>
                       Survey information can support land-development planning for suitable residential, commercial,
-                      mixed-use, estate, redevelopment, and related project briefs. Explore our <Link href="/services/real-estate-development">real estate development</Link> and <Link href="/services/urban-development">urban development services</Link> for broader development planning requirements.
+                      mixed-use, estate, redevelopment, and related project briefs. Explore our <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development</Link> and <Link href="/services/leading-urban-development-firm-in-nigeria">urban development services</Link> for broader development planning requirements.
                     </p>
                   </div>
 
@@ -3228,7 +1309,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Survey and site information can contribute to a feasibility study by clarifying site
                       characteristics, dimensions, levels, access, existing features, apparent constraints, and
-                      development options. Land surveying collects relevant physical site information; <Link href="/services/feasibility-studies">feasibility studies</Link> assess wider project viability, risks, costs, and assumptions.
+                      development options. Land surveying collects relevant physical site information; <Link href="/services/leading-feasibility-studies-firm-in-nigeria">feasibility studies</Link> assess wider project viability, risks, costs, and assumptions.
                     </p>
                   </div>
 
@@ -3313,7 +1394,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/contact">Request a feasibility study</Link>
-                      <Link href="/services/real-estate-development">Explore real estate development services</Link>
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria">Explore real estate development services</Link>
                       <Link href="/projects">View our project portfolio</Link>
                     </div>
                   </div>
@@ -3360,7 +1441,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Developers can use feasibility analysis to review land-development opportunities, proposed
                       development type, target market, scale, costs, revenue assumptions, planning considerations,
-                      and delivery risks before a development proceeds. See our <Link href="/services/real-estate-development">real estate development service</Link> for broader planning and delivery support.
+                      and delivery risks before a development proceeds. See our <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development service</Link> for broader planning and delivery support.
                     </p>
                   </div>
 
@@ -3374,7 +1455,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       required.
                     </p>
                     <p className={styles.bodyText}>
-                      Our <Link href="/services/site-planning-landscape">site planning and landscape design service</Link> addresses the detailed organization of a specific site and its external spaces.
+                      Our <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria">site planning and landscape design service</Link> addresses the detailed organization of a specific site and its external spaces.
                     </p>
                   </div>
 
@@ -3403,7 +1484,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Early feasibility analysis can help identify approximate cost drivers, scope implications,
                       materials, labour, professional inputs, infrastructure needs, and potential cost risks. For a
-                      more focused cost scope, see our <Link href="/services/construction-cost-estimation">construction cost estimation services</Link>.
+                      more focused cost scope, see our <Link href="/services/leading-construction-cost-estimation-firm-in-nigeria">construction cost estimation services</Link>.
                     </p>
                   </div>
 
@@ -3412,7 +1493,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Feasibility can be affected by planning requirements, land-use considerations, building
                       regulations, environmental considerations, permits, approvals, and development restrictions.
-                      Our <Link href="/services/building-permits">building permit and regulatory compliance service</Link> provides related documentation and approval support. Approval decisions remain with the applicable authorities.
+                      Our <Link href="/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria">building permit and regulatory compliance service</Link> provides related documentation and approval support. Approval decisions remain with the applicable authorities.
                     </p>
                   </div>
 
@@ -3421,7 +1502,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Technical feasibility may consider apparent site constraints, access, infrastructure, utilities,
                       drainage, construction methods, and engineering requirements. This work can be coordinated with
-                      <Link href="/services/architectural-design"> architectural design</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, and <Link href="/services/mep-coordination">MEP coordination</Link> where those inputs are required.
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria"> architectural design</Link>, <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link>, and <Link href="/services/leading-mep-coordination-firm-in-nigeria">MEP coordination</Link> where those inputs are required.
                     </p>
                   </div>
 
@@ -3478,7 +1559,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <div className={styles.block}>
                     <h2>Feasibility Study vs Other Development Services</h2>
                     <p className={styles.bodyText}>
-                      Feasibility studies assess whether and how a proposal may be viable. <Link href="/services/architectural-design">Architectural design</Link> develops the building solution; <Link href="/services/project-management">project management</Link> supports project delivery; <Link href="/services/construction-management">construction management</Link> coordinates construction execution; and <Link href="/services/building-construction">building construction</Link> delivers the physical work. These services can connect, but they have different primary roles.
+                      Feasibility studies assess whether and how a proposal may be viable. <Link href="/services/leading-architectural-design-firm-in-nigeria">Architectural design</Link> develops the building solution; <Link href="/services/leading-project-management-firm-in-nigeria">project management</Link> supports project delivery; <Link href="/services/leading-construction-management-firm-in-nigeria">construction management</Link> coordinates construction execution; and <Link href="/services/leading-building-construction-firm-in-nigeria">building construction</Link> delivers the physical work. These services can connect, but they have different primary roles.
                     </p>
                   </div>
 
@@ -3544,7 +1625,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Request construction supervision</Link>
                       <Link href="/projects">View our project portfolio</Link>
-                      <Link href="/services/building-construction">Explore building construction services</Link>
+                      <Link href="/services/leading-building-construction-firm-in-nigeria">Explore building construction services</Link>
                     </div>
                   </div>
 
@@ -3557,7 +1638,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       every construction issue can be eliminated.
                     </p>
                     <p className={styles.bodyText}>
-                      It differs from <Link href="/services/project-management">project management</Link>, which has a broader role across planning, budget, schedule, and delivery, and from <Link href="/services/construction-management">construction management</Link>, which addresses broader execution coordination. Construction consultation provides advice; supervision concerns actual work on site.
+                      It differs from <Link href="/services/leading-project-management-firm-in-nigeria">project management</Link>, which has a broader role across planning, budget, schedule, and delivery, and from <Link href="/services/leading-construction-management-firm-in-nigeria">construction management</Link>, which addresses broader execution coordination. Construction consultation provides advice; supervision concerns actual work on site.
                     </p>
                   </div>
 
@@ -3600,7 +1681,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Site supervision can review construction against the project information available for the
                       engagement, such as architectural drawings, structural information, MEP information, and
-                      specifications where applicable. Explore our <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination</Link>, and <Link href="/services/building-permits">building permit and regulatory compliance services</Link> for connected requirements.
+                      specifications where applicable. Explore our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design</Link>, <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link>, <Link href="/services/leading-mep-coordination-firm-in-nigeria">MEP coordination</Link>, and <Link href="/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria">building permit and regulatory compliance services</Link> for connected requirements.
                     </p>
                   </div>
 
@@ -3648,7 +1729,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       Homeowners may use professional supervision when they want clearer visibility into contractor
                       work or cannot visit a site regularly. Developers and commercial project teams may need support
                       coordinating several contractors, monitoring milestones, and documenting site issues. Related
-                      services include <Link href="/services/real-estate-development">real estate development</Link>, <Link href="/services/construction-management">construction management</Link>, and <Link href="/services/project-management">project management</Link>.
+                      services include <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development</Link>, <Link href="/services/leading-construction-management-firm-in-nigeria">construction management</Link>, and <Link href="/services/leading-project-management-firm-in-nigeria">project management</Link>.
                     </p>
                   </div>
 
@@ -3682,7 +1763,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <div className={styles.block}>
                     <h2>Related Construction and Design Services</h2>
                     <p className={styles.bodyText}>
-                      Construction supervision may connect to <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/building-construction">building construction</Link>, <Link href="/services/site-planning-landscape">site planning and landscape design</Link>, <Link href="/services/green-building-advisory">green building advisory</Link>, <Link href="/services/urban-development">urban development</Link>, <Link href="/services/renovation-remodeling">renovation and remodelling</Link>, <Link href="/services/facility-management">facility management</Link>, <Link href="/services/interior-design">interior design</Link>, and <Link href="/services/3d-visualization">3D visualisation</Link> where relevant to the project.
+                      Construction supervision may connect to <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link>, <Link href="/services/leading-building-construction-firm-in-nigeria">building construction</Link>, <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria">site planning and landscape design</Link>, <Link href="/services/leading-green-building-advisory-firm-in-nigeria">green building advisory</Link>, <Link href="/services/leading-urban-development-firm-in-nigeria">urban development</Link>, <Link href="/services/leading-renovation-and-remodelling-firm-in-nigeria">renovation and remodelling</Link>, <Link href="/services/leading-facility-management-firm-in-nigeria">facility management</Link>, <Link href="/services/leading-interior-design-firm-in-nigeria">interior design</Link>, and <Link href="/services/leading-3d-visualisation-firm-in-nigeria">3D visualisation</Link> where relevant to the project.
                     </p>
                   </div>
 
@@ -3728,7 +1809,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your building approval requirements</Link>
-                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Explore architectural design services</Link>
                       <Link href="/projects">View our project portfolio</Link>
                     </div>
                   </div>
@@ -3780,7 +1861,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Planning approval support can connect the development proposal, site planning, land-use
                       considerations, building design, and supporting documentation. For site-specific layout and
-                      external-space planning, see our <Link href="/services/site-planning-landscape">site planning and landscape design service</Link>.
+                      external-space planning, see our <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria">site planning and landscape design service</Link>.
                     </p>
                   </div>
 
@@ -3846,7 +1927,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>Pre-Construction Compliance and Design Coordination</h2>
                     <p className={styles.bodyText}>
                       Addressing approval and compliance considerations before construction helps connect design,
-                      documentation, consultant coordination, and construction readiness. Explore our <Link href="/services/architectural-design">architectural design</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/project-management">project management</Link>, and <Link href="/services/construction-management">construction management services</Link> for related support.
+                      documentation, consultant coordination, and construction readiness. Explore our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design</Link>, <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link>, <Link href="/services/leading-project-management-firm-in-nigeria">project management</Link>, and <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link> for related support.
                     </p>
                   </div>
 
@@ -3854,7 +1935,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>Coordinating Building Approvals with Engineering Design</h2>
                     <p className={styles.bodyText}>
                       Building approval documentation may need coordinated inputs from the project disciplines involved.
-                      Our <Link href="/services/structural-engineering">structural engineering and design</Link> and <Link href="/services/mep-coordination">MEP coordination</Link> services address related engineering and building-services coordination; neither this page nor those services claim approval authority.
+                      Our <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link> and <Link href="/services/leading-mep-coordination-firm-in-nigeria">MEP coordination</Link> services address related engineering and building-services coordination; neither this page nor those services claim approval authority.
                     </p>
                   </div>
 
@@ -3863,7 +1944,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       The wider documented service context supports suitable residential, commercial, hospitality,
                       institutional, and development projects where the brief and available information align. Estate
-                      and larger development briefs may also involve <Link href="/services/real-estate-development">real estate development</Link> or <Link href="/services/urban-development">urban development</Link> planning.
+                      and larger development briefs may also involve <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development</Link> or <Link href="/services/leading-urban-development-firm-in-nigeria">urban development</Link> planning.
                     </p>
                   </div>
 
@@ -3938,7 +2019,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Good site planning can support more functional movement, clearer building-to-site relationships,
                       and better coordination with the wider project team. It complements rather than replaces our
-                      <Link href="/services/architectural-design"> architectural design services</Link>.
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria"> architectural design services</Link>.
                     </p>
                   </div>
 
@@ -3947,7 +2028,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Landscape design plans the outdoor spaces around a building or development, including green
                       areas, planting, paving, walkways, water features, lighting, and the relationship between built
-                      elements and the site. It focuses on external environments, unlike <Link href="/services/interior-design">interior design</Link>, which addresses internal spaces, finishes, and furnishings.
+                      elements and the site. It focuses on external environments, unlike <Link href="/services/leading-interior-design-firm-in-nigeria">interior design</Link>, which addresses internal spaces, finishes, and furnishings.
                     </p>
                   </div>
 
@@ -3992,7 +2073,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       practice&apos;s documented design and planning capabilities.
                     </p>
                     <p className={styles.bodyText}>
-                      For project-wide development planning, see our <Link href="/services/real-estate-development">real estate development services</Link>. For larger districts, infrastructure, and urban systems, see our <Link href="/services/urban-development">urban development services</Link>.
+                      For project-wide development planning, see our <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development services</Link>. For larger districts, infrastructure, and urban systems, see our <Link href="/services/leading-urban-development-firm-in-nigeria">urban development services</Link>.
                     </p>
                   </div>
 
@@ -4012,7 +2093,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       Appropriate plant selection, shade, vegetation, water-conscious planning, and the relationship
                       between landscape and drainage can be considered as part of a landscape brief. These are
                       project-specific design decisions, not fixed environmental-performance guarantees. Explore our
-                      <Link href="/services/green-building-advisory"> green building advisory</Link> for related sustainable building guidance.
+                      <Link href="/services/leading-green-building-advisory-firm-in-nigeria"> green building advisory</Link> for related sustainable building guidance.
                     </p>
                   </div>
 
@@ -4040,7 +2121,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       Site planning focuses on the organization of a particular development site, including its
                       buildings, access, circulation, open spaces, and landscape. Urban development addresses the
                       larger-scale relationships between land use, infrastructure, districts, communities, and urban
-                      systems. Read more about our <Link href="/services/urban-development">urban development service</Link> where that broader scale is required.
+                      systems. Read more about our <Link href="/services/leading-urban-development-firm-in-nigeria">urban development service</Link> where that broader scale is required.
                     </p>
                   </div>
 
@@ -4057,7 +2138,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <div className={styles.block}>
                     <h2>Related Design, Engineering, and Delivery Services</h2>
                     <p className={styles.bodyText}>
-                      A site-planning brief may connect to <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination</Link>, <Link href="/services/building-construction">building construction</Link>, <Link href="/services/construction-management">construction management</Link>, <Link href="/services/project-management">project management</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/renovation-remodeling">renovation and remodelling</Link>, <Link href="/services/facility-management">facility management</Link>, and <Link href="/services/3d-visualization">3D visualisation</Link> where relevant to the project.
+                      A site-planning brief may connect to <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link>, <Link href="/services/leading-mep-coordination-firm-in-nigeria">MEP coordination</Link>, <Link href="/services/leading-building-construction-firm-in-nigeria">building construction</Link>, <Link href="/services/leading-construction-management-firm-in-nigeria">construction management</Link>, <Link href="/services/leading-project-management-firm-in-nigeria">project management</Link>, <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link>, <Link href="/services/leading-renovation-and-remodelling-firm-in-nigeria">renovation and remodelling</Link>, <Link href="/services/leading-facility-management-firm-in-nigeria">facility management</Link>, and <Link href="/services/leading-3d-visualisation-firm-in-nigeria">3D visualisation</Link> where relevant to the project.
                     </p>
                   </div>
 
@@ -4130,7 +2211,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       appropriately maintained throughout its operational life.
                     </p>
                     <p className={styles.bodyText}>
-                      It is distinct from the design and construction of a new building. Our <Link href="/services/building-construction">building construction services</Link> focus on delivery of new works, while facility management focuses on the ongoing operation and maintenance of an existing property.
+                      It is distinct from the design and construction of a new building. Our <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link> focus on delivery of new works, while facility management focuses on the ongoing operation and maintenance of an existing property.
                     </p>
                   </div>
 
@@ -4162,7 +2243,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>MEP Systems Maintenance and Coordination</h2>
                     <p className={styles.bodyText}>
                       Facility management addresses the operation and ongoing maintenance of relevant mechanical,
-                      electrical, plumbing, HVAC, and water systems. This differs from our <Link href="/services/mep-coordination">MEP coordination services</Link>, which focus on coordinating building-services information during design and construction.
+                      electrical, plumbing, HVAC, and water systems. This differs from our <Link href="/services/leading-mep-coordination-firm-in-nigeria">MEP coordination services</Link>, which focus on coordinating building-services information during design and construction.
                     </p>
                   </div>
 
@@ -4174,7 +2255,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       consider facility-management requirements as a project moves from construction into operation.
                     </p>
                     <p className={styles.bodyText}>
-                      For the earlier project stages, explore our <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/project-management">project management services</Link>, and <Link href="/services/real-estate-development">real estate development services</Link>.
+                      For the earlier project stages, explore our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link>, <Link href="/services/leading-project-management-firm-in-nigeria">project management services</Link>, and <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development services</Link>.
                     </p>
                   </div>
 
@@ -4210,7 +2291,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <div className={styles.block}>
                     <h2>Related Building Services</h2>
                     <p className={styles.bodyText}>
-                      Facility needs can overlap with <Link href="/services/renovation-remodeling">renovation and remodelling</Link> for physical upgrades, <Link href="/services/structural-engineering">structural engineering and design</Link> for appropriate structural assessment, <Link href="/services/interior-design">interior design services</Link>, <Link href="/services/green-building-advisory">green building advisory</Link>, and <Link href="/services/construction-consultation">construction consultation</Link> where a building issue requires a different specialist scope.
+                      Facility needs can overlap with <Link href="/services/leading-renovation-and-remodelling-firm-in-nigeria">renovation and remodelling</Link> for physical upgrades, <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link> for appropriate structural assessment, <Link href="/services/leading-interior-design-firm-in-nigeria">interior design services</Link>, <Link href="/services/leading-green-building-advisory-firm-in-nigeria">green building advisory</Link>, and <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link> where a building issue requires a different specialist scope.
                     </p>
                   </div>
 
@@ -4256,7 +2337,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your renovation project</Link>
                       <Link href="/projects">View our projects</Link>
-                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Explore architectural design services</Link>
                     </div>
                   </div>
 
@@ -4403,7 +2484,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Renovation planning may include existing-condition review, client requirements, design development,
                       layout planning, material and finish selection, coordination with engineering disciplines where
-                      necessary, drawings, and construction planning. See our <Link href="/services/architectural-design">architectural design services</Link> for the related design scope.
+                      necessary, drawings, and construction planning. See our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link> for the related design scope.
                     </p>
                   </div>
 
@@ -4411,7 +2492,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>Renovation Project Management and Coordination</h2>
                     <p className={styles.bodyText}>
                       Renovation work often requires coordination between contractors, consultants, suppliers, materials,
-                      schedules, quality checks, and changing existing conditions. Our <Link href="/services/project-management">project management services</Link> and <Link href="/services/construction-management">construction management services</Link> provide related support without making this page a duplicate of those services.
+                      schedules, quality checks, and changing existing conditions. Our <Link href="/services/leading-project-management-firm-in-nigeria">project management services</Link> and <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link> provide related support without making this page a duplicate of those services.
                     </p>
                   </div>
 
@@ -4439,7 +2520,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Whether renovation or new construction is more suitable depends on the existing building condition,
                       project objectives, required changes, structural feasibility, budget, location, planning
-                      requirements, and intended use. Where a new build is more appropriate, review our <Link href="/services/building-construction">building construction services</Link>.
+                      requirements, and intended use. Where a new build is more appropriate, review our <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link>.
                     </p>
                   </div>
 
@@ -4456,11 +2537,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <div className={styles.block}>
                     <h2>Related Design, Engineering, and Delivery Services</h2>
                     <p className={styles.bodyText}>
-                      Renovation may connect to <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination services</Link>, <Link href="/services/interior-design">interior design services</Link>, <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/green-building-advisory">green building advisory</Link>, and <Link href="/services/3d-visualization">3D visualisation</Link> where relevant to the project.
+                      Renovation may connect to <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link>, <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link>, <Link href="/services/leading-mep-coordination-firm-in-nigeria">MEP coordination services</Link>, <Link href="/services/leading-interior-design-firm-in-nigeria">interior design services</Link>, <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link>, <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link>, <Link href="/services/leading-green-building-advisory-firm-in-nigeria">green building advisory</Link>, and <Link href="/services/leading-3d-visualisation-firm-in-nigeria">3D visualisation</Link> where relevant to the project.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/real-estate-development">Explore real estate development</Link>
-                      <Link href="/services/urban-development">Explore urban development</Link>
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria">Explore real estate development</Link>
+                      <Link href="/services/leading-urban-development-firm-in-nigeria">Explore urban development</Link>
                       <Link href="/projects">View our project portfolio</Link>
                     </div>
                   </div>
@@ -4508,7 +2589,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your project budget</Link>
                       <Link href="/projects">View our projects</Link>
-                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria">Explore construction consultation</Link>
                     </div>
                   </div>
 
@@ -4691,8 +2772,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       evaluate design choices, and prepare a realistic construction budget before committing to work.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/real-estate-development">Explore real estate development services</Link>
-                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria">Explore real estate development services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Explore architectural design services</Link>
                     </div>
                   </div>
 
@@ -4715,14 +2796,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       but they have different primary responsibilities.
                     </p>
                     <p className={styles.bodyText}>
-                      Explore our <Link href="/services/construction-management">construction management services</Link>, <Link href="/services/project-management">project management services</Link>, and <Link href="/services/construction-consultation">construction consultation</Link> for related support.
+                      Explore our <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link>, <Link href="/services/leading-project-management-firm-in-nigeria">project management services</Link>, and <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link> for related support.
                     </p>
                   </div>
 
                   <div className={styles.block}>
                     <h2>Related Design and Engineering Services</h2>
                     <p className={styles.bodyText}>
-                      Cost assessment depends on project information. Related services include <Link href="/services/structural-engineering">structural engineering and design</Link>, <Link href="/services/mep-coordination">MEP coordination services</Link>, <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/urban-development">urban development services</Link>, <Link href="/services/green-building-advisory">green building advisory</Link>, <Link href="/services/interior-design">interior design</Link>, and <Link href="/services/3d-visualization">3D visualisation</Link> where relevant to the brief.
+                      Cost assessment depends on project information. Related services include <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design</Link>, <Link href="/services/leading-mep-coordination-firm-in-nigeria">MEP coordination services</Link>, <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link>, <Link href="/services/leading-urban-development-firm-in-nigeria">urban development services</Link>, <Link href="/services/leading-green-building-advisory-firm-in-nigeria">green building advisory</Link>, <Link href="/services/leading-interior-design-firm-in-nigeria">interior design</Link>, and <Link href="/services/leading-3d-visualisation-firm-in-nigeria">3D visualisation</Link> where relevant to the brief.
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/projects">View our project portfolio</Link>
@@ -4773,7 +2854,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your MEP coordination project</Link>
                       <Link href="/projects">View our projects</Link>
-                      <Link href="/services/architectural-design">Coordinate with architectural design</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Coordinate with architectural design</Link>
                     </div>
                   </div>
 
@@ -4938,7 +3019,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       construction where possible can support clearer decisions and better constructability.
                     </p>
                     <p className={styles.bodyText}>
-                      Explore our <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/structural-engineering">structural engineering and design services</Link>, and <Link href="/services/building-construction">building construction services</Link> for connected project requirements.
+                      Explore our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link>, <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria">structural engineering and design services</Link>, and <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link> for connected project requirements.
                     </p>
                   </div>
 
@@ -4959,7 +3040,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <div className={styles.block}>
                     <h2>Related Engineering and Delivery Services</h2>
                     <p className={styles.bodyText}>
-                      MEP coordination can be connected to <Link href="/services/construction-management">construction management services</Link>, <Link href="/services/project-management">project management services</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, <Link href="/services/3d-visualization">3D visualisation services</Link>, <Link href="/services/real-estate-development">real estate development services</Link>, <Link href="/services/urban-development">urban development services</Link>, and <Link href="/services/green-building-advisory">green building advisory</Link> where relevant to the project.
+                      MEP coordination can be connected to <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link>, <Link href="/services/leading-project-management-firm-in-nigeria">project management services</Link>, <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link>, <Link href="/services/leading-3d-visualisation-firm-in-nigeria">3D visualisation services</Link>, <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development services</Link>, <Link href="/services/leading-urban-development-firm-in-nigeria">urban development services</Link>, and <Link href="/services/leading-green-building-advisory-firm-in-nigeria">green building advisory</Link> where relevant to the project.
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/projects">View our project portfolio</Link>
@@ -5010,7 +3091,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your structural design project</Link>
                       <Link href="/projects">View our projects</Link>
-                      <Link href="/services/architectural-design">Coordinate with architectural design</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Coordinate with architectural design</Link>
                     </div>
                   </div>
 
@@ -5174,7 +3255,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       clearer decisions and better constructability.
                     </p>
                     <p className={styles.bodyText}>
-                      Review our <Link href="/services/architectural-design">architectural design services</Link> for the building-design scope and our <Link href="/services/building-construction">building construction services</Link> for physical execution.
+                      Review our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link> for the building-design scope and our <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link> for physical execution.
                     </p>
                   </div>
 
@@ -5187,7 +3268,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       to structural and foundation design; conditions should not be assumed across every Lagos site.
                     </p>
                     <p className={styles.bodyText}>
-                      Where a project also involves construction execution, our <Link href="/services/construction-management">construction management services</Link> and <Link href="/services/project-management">project management services</Link> provide related delivery support.
+                      Where a project also involves construction execution, our <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link> and <Link href="/services/leading-project-management-firm-in-nigeria">project management services</Link> provide related delivery support.
                     </p>
                   </div>
 
@@ -5200,9 +3281,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       applicable approvals and compliance requirements for each project.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
-                      <Link href="/services/3d-visualization">Explore 3D visualisation services</Link>
-                      <Link href="/services/real-estate-development">Explore real estate development services</Link>
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria">Explore construction consultation</Link>
+                      <Link href="/services/leading-3d-visualisation-firm-in-nigeria">Explore 3D visualisation services</Link>
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria">Explore real estate development services</Link>
                     </div>
                   </div>
 
@@ -5248,7 +3329,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your 3D visualisation project</Link>
                       <Link href="/projects">View our projects</Link>
-                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Explore architectural design services</Link>
                     </div>
                   </div>
 
@@ -5410,12 +3491,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <p className={styles.bodyText}>
                       Architectural drawings inform the 3D model, the visualisation supports client review and design
                       refinement, and the approved direction can continue into architectural documentation, construction,
-                      or development coordination. Explore our <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/real-estate-development">real estate development services</Link>, and <Link href="/services/urban-development">urban development services</Link> for connected project needs.
+                      or development coordination. Explore our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link>, <Link href="/services/leading-real-estate-development-firm-in-nigeria">real estate development services</Link>, and <Link href="/services/leading-urban-development-firm-in-nigeria">urban development services</Link> for connected project needs.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/interior-design">Explore interior design services</Link>
-                      <Link href="/services/building-construction">Explore building construction</Link>
-                      <Link href="/services/green-building-advisory">Explore green building advisory</Link>
+                      <Link href="/services/leading-interior-design-firm-in-nigeria">Explore interior design services</Link>
+                      <Link href="/services/leading-building-construction-firm-in-nigeria">Explore building construction</Link>
+                      <Link href="/services/leading-green-building-advisory-firm-in-nigeria">Explore green building advisory</Link>
                     </div>
                   </div>
 
@@ -5515,11 +3596,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h3>Architectural Design and Development Planning</h3>
                     <p className={styles.bodyText}>
                       Architectural concepts, building layouts, design coordination, and technical documentation form the
-                      building-level part of a development. See our <Link href="/services/architectural-design">architectural design services</Link> for the detailed design scope.
+                      building-level part of a development. See our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link> for the detailed design scope.
                     </p>
                     <h3>Construction and Project Delivery</h3>
                     <p className={styles.bodyText}>
-                      Once a development is planned and documented, our <Link href="/services/building-construction">building construction services</Link> can support physical execution. <Link href="/services/construction-management">Construction management</Link> and <Link href="/services/project-management">project management</Link> provide related coordination, oversight, scheduling, reporting, and delivery controls.
+                      Once a development is planned and documented, our <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link> can support physical execution. <Link href="/services/leading-construction-management-firm-in-nigeria">Construction management</Link> and <Link href="/services/leading-project-management-firm-in-nigeria">project management</Link> provide related coordination, oversight, scheduling, reporting, and delivery controls.
                     </p>
                     <h3>Regulatory and Approval Coordination</h3>
                     <p className={styles.bodyText}>
@@ -5594,7 +3675,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       visible from feasibility through delivery coordination.
                     </p>
                     <p className={styles.bodyText}>
-                      For larger land-use and infrastructure questions, our <Link href="/services/urban-development">urban development services</Link> address the master-planning context. For sustainability objectives, see our <Link href="/services/green-building-advisory">green building advisory</Link> service.
+                      For larger land-use and infrastructure questions, our <Link href="/services/leading-urban-development-firm-in-nigeria">urban development services</Link> address the master-planning context. For sustainability objectives, see our <Link href="/services/leading-green-building-advisory-firm-in-nigeria">green building advisory</Link> service.
                     </p>
                   </div>
 
@@ -5633,7 +3714,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   <div className={styles.block}>
                     <h2>Related Real Estate and Construction Services</h2>
                     <p className={styles.bodyText}>
-                      Explore our <Link href="/services/architectural-design">architectural design services</Link>, <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/construction-management">construction management services</Link>, <Link href="/services/project-management">project management services</Link>, <Link href="/services/construction-consultation">construction consultation</Link>, and <Link href="/services/interior-design">interior design services</Link> for connected development requirements.
+                      Explore our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link>, <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link>, <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link>, <Link href="/services/leading-project-management-firm-in-nigeria">project management services</Link>, <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link>, and <Link href="/services/leading-interior-design-firm-in-nigeria">interior design services</Link> for connected development requirements.
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/projects">View our project portfolio</Link>
@@ -5794,7 +3875,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       and delivery decisions.
                     </p>
                     <p className={styles.bodyText}>
-                      When sustainability advice forms part of a wider development, our <Link href="/services/urban-development">urban development services</Link> address the larger land-use, infrastructure, and planning context. For building-level design, see our <Link href="/services/architectural-design">architectural design services</Link>.
+                      When sustainability advice forms part of a wider development, our <Link href="/services/leading-urban-development-firm-in-nigeria">urban development services</Link> address the larger land-use, infrastructure, and planning context. For building-level design, see our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link>.
                     </p>
                   </div>
 
@@ -5812,10 +3893,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h2>Related Design and Delivery Services</h2>
                     <p className={styles.bodyText}>
                       Green building advisory can complement architectural design, construction planning, and delivery
-                      services without replacing them. Explore our <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/construction-management">construction management services</Link>, <Link href="/services/project-management">project management services</Link>, and <Link href="/services/construction-consultation">construction consultation</Link> for related project needs.
+                      services without replacing them. Explore our <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link>, <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link>, <Link href="/services/leading-project-management-firm-in-nigeria">project management services</Link>, and <Link href="/services/leading-construction-consultation-firm-in-nigeria">construction consultation</Link> for related project needs.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/interior-design">Explore interior design services</Link>
+                      <Link href="/services/leading-interior-design-firm-in-nigeria">Explore interior design services</Link>
                       <Link href="/projects">View our project portfolio</Link>
                       <Link href="/blog">Read sustainability insights</Link>
                     </div>
@@ -5966,7 +4047,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       Our approach keeps those dependencies visible from feasibility through implementation planning.
                     </p>
                     <p className={styles.bodyText}>
-                      Where individual buildings form part of a larger development, our <Link href="/services/architectural-design">architectural design services</Link> can support the building-level design and documentation. For physical execution and delivery coordination, review our <Link href="/services/building-construction">building construction services</Link>, <Link href="/services/construction-management">construction management services</Link>, and <Link href="/services/project-management">project management services</Link>.
+                      Where individual buildings form part of a larger development, our <Link href="/services/leading-architectural-design-firm-in-nigeria">architectural design services</Link> can support the building-level design and documentation. For physical execution and delivery coordination, review our <Link href="/services/leading-building-construction-firm-in-nigeria">building construction services</Link>, <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link>, and <Link href="/services/leading-project-management-firm-in-nigeria">project management services</Link>.
                     </p>
                   </div>
 
@@ -5978,7 +4059,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       authorities; our role is to help clients prepare and navigate the development process.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria">Explore construction consultation</Link>
                       <Link href="/services">Explore all services</Link>
                       <Link href="/blog">Read development insights</Link>
                     </div>
@@ -6192,9 +4273,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/projects">View projects in our portfolio</Link>
-                      <Link href="/services/building-construction">Explore building construction services</Link>
-                      <Link href="/services/architectural-design">Explore architectural design services</Link>
-                      <Link href="/services/interior-design">Explore interior design services</Link>
+                      <Link href="/services/leading-building-construction-firm-in-nigeria">Explore building construction services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Explore architectural design services</Link>
+                      <Link href="/services/leading-interior-design-firm-in-nigeria">Explore interior design services</Link>
                     </div>
                   </div>
 
@@ -6281,8 +4362,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       architectural and interior decisions need to be aligned with construction activities.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/architectural-design">Architectural design service</Link>
-                      <Link href="/services/interior-design">Interior design service</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Architectural design service</Link>
+                      <Link href="/services/leading-interior-design-firm-in-nigeria">Interior design service</Link>
                       <Link href="/team">Meet our project delivery team</Link>
                     </div>
                   </div>
@@ -6358,7 +4439,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Request a consultation</Link>
                       <Link href="/projects">View project portfolio</Link>
-                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria">Explore construction consultation</Link>
                     </div>
                   </div>
                 </>
@@ -6379,7 +4460,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/contact">Book a construction consultation</Link>
-                      <Link href="/services/construction-management">Explore construction management</Link>
+                      <Link href="/services/leading-construction-management-firm-in-nigeria">Explore construction management</Link>
                       <Link href="/projects">View our project portfolio</Link>
                     </div>
                   </div>
@@ -6474,13 +4555,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       with construction reality, consultation is the better starting point.
                     </p>
                     <p className={styles.bodyText}>
-                      When you need broader coordination during execution, our <Link href="/services/construction-management">construction management services</Link> are available as a related
+                      When you need broader coordination during execution, our <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link> are available as a related
                       offering.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/architectural-design">Architectural design services</Link>
-                      <Link href="/services/interior-design">Interior design services</Link>
-                      <Link href="/services/construction-management">Construction management services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Architectural design services</Link>
+                      <Link href="/services/leading-interior-design-firm-in-nigeria">Interior design services</Link>
+                      <Link href="/services/leading-construction-management-firm-in-nigeria">Construction management services</Link>
                     </div>
                   </div>
 
@@ -6562,7 +4643,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/contact">Request a construction consultation</Link>
-                      <Link href="/services/construction-management">Explore construction management</Link>
+                      <Link href="/services/leading-construction-management-firm-in-nigeria">Explore construction management</Link>
                       <Link href="/projects">View project portfolio</Link>
                     </div>
                   </div>
@@ -6584,9 +4665,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your project</Link>
-                      <Link href="/services/building-construction">Explore building construction services</Link>
-                      <Link href="/services/construction-management">Explore construction management</Link>
-                      <Link href="/services/construction-consultation">Explore construction consultation</Link>
+                      <Link href="/services/leading-building-construction-firm-in-nigeria">Explore building construction services</Link>
+                      <Link href="/services/leading-construction-management-firm-in-nigeria">Explore construction management</Link>
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria">Explore construction consultation</Link>
                     </div>
                   </div>
 
@@ -6682,13 +4763,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       tied to site execution, delivery coordination, and managing construction activities on the ground.
                     </p>
                     <p className={styles.bodyText}>
-                      If you need the execution-focused side of delivery, our <Link href="/services/construction-management">construction management services</Link> are a related
+                      If you need the execution-focused side of delivery, our <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link> are a related
                       option.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/architectural-design">Architectural design services</Link>
-                      <Link href="/services/interior-design">Interior design services</Link>
-                      <Link href="/services/construction-consultation">Construction consultation services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Architectural design services</Link>
+                      <Link href="/services/leading-interior-design-firm-in-nigeria">Interior design services</Link>
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria">Construction consultation services</Link>
                     </div>
                   </div>
 
@@ -6767,7 +4848,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your project</Link>
                       <Link href="/projects">View project portfolio</Link>
-                      <Link href="/services/construction-management">Explore construction management</Link>
+                      <Link href="/services/leading-construction-management-firm-in-nigeria">Explore construction management</Link>
                     </div>
                   </div>
                 </>
@@ -6789,7 +4870,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Start your building project</Link>
                       <Link href="/projects">View our project portfolio</Link>
-                      <Link href="/services/construction-management">Explore construction management services</Link>
+                      <Link href="/services/leading-construction-management-firm-in-nigeria">Explore construction management services</Link>
                     </div>
                   </div>
 
@@ -6853,8 +4934,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       coordination across those activities to reduce avoidable rework and communication gaps.
                     </p>
                     <p className={styles.bodyText}>
-                      For broader execution oversight and project controls, you can also review our <Link href="/services/construction-management">construction management services</Link> and
-                      <Link href="/services/project-management"> project management services</Link>.
+                      For broader execution oversight and project controls, you can also review our <Link href="/services/leading-construction-management-firm-in-nigeria">construction management services</Link> and
+                      <Link href="/services/leading-project-management-firm-in-nigeria"> project management services</Link>.
                     </p>
                   </div>
 
@@ -6905,9 +4986,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       external landscaping where these are part of the project brief.
                     </p>
                     <div className={styles.linkRow}>
-                      <Link href="/services/architectural-design">Architectural design services</Link>
-                      <Link href="/services/interior-design">Interior design services</Link>
-                      <Link href="/services/construction-consultation">Construction consultation services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Architectural design services</Link>
+                      <Link href="/services/leading-interior-design-firm-in-nigeria">Interior design services</Link>
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria">Construction consultation services</Link>
                     </div>
                   </div>
 
@@ -6982,7 +5063,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Discuss your building project</Link>
                       <Link href="/projects">View completed projects</Link>
-                      <Link href="/services/project-management">Explore project management services</Link>
+                      <Link href="/services/leading-project-management-firm-in-nigeria">Explore project management services</Link>
                     </div>
                   </div>
                 </>
@@ -7001,7 +5082,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </p>
                     <div className={styles.linkRow}>
                       <Link href="/projects">View interior-related projects</Link>
-                      <Link href="/services/architectural-design">Explore architectural design services</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Explore architectural design services</Link>
                       <Link href="/team">Meet our team</Link>
                     </div>
                   </div>
@@ -7125,7 +5206,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className={styles.linkRow}>
                       <Link href="/contact">Request a consultation</Link>
                       <Link href="/projects">View project portfolio</Link>
-                      <Link href="/services/architectural-design">Pair with architectural design</Link>
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria">Pair with architectural design</Link>
                     </div>
                   </div>
                 </>
@@ -7598,7 +5679,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                   </Link>
                 )}
                 {isConstructionConsultationPage && (
-                  <Link href="/services/construction-management" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
+                  <Link href="/services/leading-construction-management-firm-in-nigeria" className="btn btn--outline btn--full" style={{ marginTop: 10 }}>
                     <span>Explore Construction Management</span>
                     <i className="bx bx-hard-hat" aria-hidden="true" />
                   </Link>
@@ -7666,22 +5747,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/green-building-advisory" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-green-building-advisory-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-leaf" aria-hidden="true" /> Green Building Advisory
                       </Link>
-                      <Link href="/services/feasibility-studies" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-feasibility-studies-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-analyse" aria-hidden="true" /> Feasibility Studies
                       </Link>
-                      <Link href="/services/building-permits" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-file-find" aria-hidden="true" /> Building Permits &amp; Compliance
                       </Link>
-                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
                       </Link>
-                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-urban-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-city" aria-hidden="true" /> Urban Development
                       </Link>
-                      <Link href="/services/site-planning-landscape" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-leaf" aria-hidden="true" /> Site Planning &amp; Landscape Design
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7696,22 +5777,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/site-planning-landscape" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-leaf" aria-hidden="true" /> Site Planning &amp; Landscape Design
                       </Link>
-                      <Link href="/services/feasibility-studies" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-feasibility-studies-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-analyse" aria-hidden="true" /> Feasibility Studies
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-supervision" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-supervision-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-user-check" aria-hidden="true" /> Construction Supervision
                       </Link>
-                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7726,22 +5807,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
                       </Link>
-                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-urban-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-city" aria-hidden="true" /> Urban Development
                       </Link>
-                      <Link href="/services/construction-cost-estimation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-cost-estimation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-calculator" aria-hidden="true" /> Cost Estimation
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/site-planning-landscape" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-leaf" aria-hidden="true" /> Site Planning &amp; Landscape Design
                       </Link>
-                      <Link href="/services/building-permits" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-file-find" aria-hidden="true" /> Building Permits &amp; Compliance
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7756,22 +5837,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/building-permits" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-file-find" aria-hidden="true" /> Building Permits &amp; Compliance
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7786,22 +5867,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/structural-engineering" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-layer" aria-hidden="true" /> Structural Engineering
                       </Link>
-                      <Link href="/services/mep-coordination" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-mep-coordination-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-cog" aria-hidden="true" /> MEP Coordination
                       </Link>
-                      <Link href="/services/site-planning-landscape" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-site-planning-and-landscape-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-leaf" aria-hidden="true" /> Site Planning &amp; Landscape Design
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7816,22 +5897,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-urban-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-city" aria-hidden="true" /> Urban Development
                       </Link>
-                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
                       </Link>
-                      <Link href="/services/green-building-advisory" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-green-building-advisory-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-leaf" aria-hidden="true" /> Green Building Advisory
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/facility-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-facility-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-cog" aria-hidden="true" /> Facility Management
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7846,19 +5927,19 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/mep-coordination" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-mep-coordination-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-cog" aria-hidden="true" /> MEP Coordination
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/renovation-remodeling" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-renovation-and-remodelling-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-wrench" aria-hidden="true" /> Renovation &amp; Remodelling
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7873,28 +5954,28 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-interior-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-palette" aria-hidden="true" /> Interior Design
                       </Link>
-                      <Link href="/services/structural-engineering" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-layer" aria-hidden="true" /> Structural Engineering
                       </Link>
-                      <Link href="/services/mep-coordination" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-mep-coordination-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-cog" aria-hidden="true" /> MEP Coordination
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7909,28 +5990,28 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/structural-engineering" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-layer" aria-hidden="true" /> Structural Engineering
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
-                      <Link href="/services/mep-coordination" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-mep-coordination-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-cog" aria-hidden="true" /> MEP Coordination
                       </Link>
-                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7945,28 +6026,28 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/structural-engineering" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-structural-engineering-and-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-layer" aria-hidden="true" /> Structural Engineering
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
-                      <Link href="/services/3d-visualization" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-3d-visualisation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-cube-alt" aria-hidden="true" /> 3D Visualisation
                       </Link>
-                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -7981,25 +6062,25 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
-                      <Link href="/services/3d-visualization" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-3d-visualisation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-cube-alt" aria-hidden="true" /> 3D Visualisation
                       </Link>
-                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -8014,22 +6095,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-interior-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-palette" aria-hidden="true" /> Interior Design
                       </Link>
-                      <Link href="/services/real-estate-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-real-estate-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-landscape" aria-hidden="true" /> Real Estate Development
                       </Link>
-                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-urban-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-city" aria-hidden="true" /> Urban Development
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -8044,25 +6125,25 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-urban-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-city" aria-hidden="true" /> Urban Development
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/green-building-advisory" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-green-building-advisory-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-leaf" aria-hidden="true" /> Green Building Advisory
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -8077,22 +6158,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/urban-development" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-urban-development-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-city" aria-hidden="true" /> Urban Development
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -8107,19 +6188,19 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> All Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/building-construction" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-building-construction-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building" aria-hidden="true" /> Building Construction
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -8137,10 +6218,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> Architectural Services
                       </Link>
-                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-interior-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-palette" aria-hidden="true" /> Interior Design
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
                       <Link href="/about" className="tag tag--outline tag--sm">
@@ -8158,10 +6239,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <Link href="/services" className="tag tag--outline tag--sm">
                         <i className="bx bx-grid-alt" aria-hidden="true" /> Interior Services
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -8176,13 +6257,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </>
                   ) : isConstructionManagementPage ? (
                     <>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-interior-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-palette" aria-hidden="true" /> Interior Design
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -8197,13 +6278,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </>
                   ) : isConstructionConsultationPage ? (
                     <>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-interior-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-palette" aria-hidden="true" /> Interior Design
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">
@@ -8218,19 +6299,19 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </>
                   ) : isBuildingConstructionPage ? (
                     <>
-                      <Link href="/services/architectural-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-architectural-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-building-house" aria-hidden="true" /> Architectural Design
                       </Link>
-                      <Link href="/services/interior-design" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-interior-design-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-palette" aria-hidden="true" /> Interior Design
                       </Link>
-                      <Link href="/services/construction-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-hard-hat" aria-hidden="true" /> Construction Management
                       </Link>
-                      <Link href="/services/project-management" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-project-management-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-task" aria-hidden="true" /> Project Management
                       </Link>
-                      <Link href="/services/construction-consultation" className="tag tag--outline tag--sm">
+                      <Link href="/services/leading-construction-consultation-firm-in-nigeria" className="tag tag--outline tag--sm">
                         <i className="bx bx-comment-detail" aria-hidden="true" /> Construction Consultation
                       </Link>
                       <Link href="/projects" className="tag tag--outline tag--sm">

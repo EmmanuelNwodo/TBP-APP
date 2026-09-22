@@ -24,13 +24,13 @@ export async function BlogPreview() {
           // the real destinations they describe instead of a dead parameter.
           tags={[
             { href: "/blog", icon: "bx-news", label: "All Articles", variant: "primary" },
-            { href: "/services/architectural-design", icon: "bx-building", label: "Architecture" },
-            { href: "/services/green-building-advisory", icon: "bx-leaf", label: "Sustainability" },
+            { href: "/services/leading-architectural-design-firm-in-nigeria", icon: "bx-building", label: "Architecture" },
+            { href: "/services/leading-green-building-advisory-firm-in-nigeria", icon: "bx-leaf", label: "Sustainability" },
             { href: "/projects", icon: "bx-trending-up", label: "Projects", variant: "accent" },
-            { href: "/services/interior-design", icon: "bx-palette", label: "Interior Design" },
-            { href: "/services/building-construction", icon: "bx-hard-hat", label: "Construction" },
-            { href: "/services/real-estate-development", icon: "bx-line-chart", label: "Real Estate" },
-            { href: "/services/3d-visualization", icon: "bx-chip", label: "3D Visualisation" },
+            { href: "/services/leading-interior-design-firm-in-nigeria", icon: "bx-palette", label: "Interior Design" },
+            { href: "/services/leading-building-construction-firm-in-nigeria", icon: "bx-hard-hat", label: "Construction" },
+            { href: "/services/leading-real-estate-development-firm-in-nigeria", icon: "bx-line-chart", label: "Real Estate" },
+            { href: "/services/leading-3d-visualisation-firm-in-nigeria", icon: "bx-chip", label: "3D Visualisation" },
           ]}
         />
 

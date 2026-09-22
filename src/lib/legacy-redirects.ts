@@ -46,21 +46,21 @@ const PAGE_REDIRECTS: LegacyRedirect[] = [
  * equivalent and belong to the upcoming service-as-firm restructuring.
  */
 const SERVICE_REDIRECTS: LegacyRedirect[] = [
-  { source: "/our-services/3d-architectural-visualization-rendering-services", destination: "/services/3d-visualization" },
-  { source: "/our-services/architectural-planning-design-documentation-firm-in-nigeria", destination: "/services/architectural-design" },
-  { source: "/our-services/building-design-architect-nigeria", destination: "/services/architectural-design" },
-  { source: "/our-services/modern-design-architect-in-nigeria", destination: "/services/architectural-design" },
-  { source: "/our-services/construction-management-in-lagos-nigeria", destination: "/services/construction-management" },
-  { source: "/our-services/top-construction-project-management-firm-in-lagos-nigeria", destination: "/services/project-management" },
-  { source: "/our-services/top-building-construction-company-in-lagos-nigeria", destination: "/services/building-construction" },
-  { source: "/our-services/interior-design-company-in-nigeria", destination: "/services/interior-design" },
-  { source: "/our-services/interior-design-company-lagos-nigeria", destination: "/services/interior-design" },
-  { source: "/our-services/facility-management-and-maintenance", destination: "/services/facility-management" },
-  { source: "/our-services/facility-management-and-maintenance-company-in-nigeria", destination: "/services/facility-management" },
-  { source: "/our-services/green-building-and-sustainable-architecture-firm-in-lagos-nigeria", destination: "/services/green-building-advisory" },
-  { source: "/our-services/sustainable-architecture-firm-in-nigeria", destination: "/services/green-building-advisory" },
-  { source: "/our-services/sustainable-green-building-design-architect-in-nigeria", destination: "/services/green-building-advisory" },
-  { source: "/our-services/real-estate-development-company-in-lagos-nigeria", destination: "/services/real-estate-development" },
+  { source: "/our-services/3d-architectural-visualization-rendering-services", destination: "/services/leading-3d-visualisation-firm-in-nigeria" },
+  { source: "/our-services/architectural-planning-design-documentation-firm-in-nigeria", destination: "/services/leading-architectural-design-firm-in-nigeria" },
+  { source: "/our-services/building-design-architect-nigeria", destination: "/services/leading-architectural-design-firm-in-nigeria" },
+  { source: "/our-services/modern-design-architect-in-nigeria", destination: "/services/leading-architectural-design-firm-in-nigeria" },
+  { source: "/our-services/construction-management-in-lagos-nigeria", destination: "/services/leading-construction-management-firm-in-nigeria" },
+  { source: "/our-services/top-construction-project-management-firm-in-lagos-nigeria", destination: "/services/leading-project-management-firm-in-nigeria" },
+  { source: "/our-services/top-building-construction-company-in-lagos-nigeria", destination: "/services/leading-building-construction-firm-in-nigeria" },
+  { source: "/our-services/interior-design-company-in-nigeria", destination: "/services/leading-interior-design-firm-in-nigeria" },
+  { source: "/our-services/interior-design-company-lagos-nigeria", destination: "/services/leading-interior-design-firm-in-nigeria" },
+  { source: "/our-services/facility-management-and-maintenance", destination: "/services/leading-facility-management-firm-in-nigeria" },
+  { source: "/our-services/facility-management-and-maintenance-company-in-nigeria", destination: "/services/leading-facility-management-firm-in-nigeria" },
+  { source: "/our-services/green-building-and-sustainable-architecture-firm-in-lagos-nigeria", destination: "/services/leading-green-building-advisory-firm-in-nigeria" },
+  { source: "/our-services/sustainable-architecture-firm-in-nigeria", destination: "/services/leading-green-building-advisory-firm-in-nigeria" },
+  { source: "/our-services/sustainable-green-building-design-architect-in-nigeria", destination: "/services/leading-green-building-advisory-firm-in-nigeria" },
+  { source: "/our-services/real-estate-development-company-in-lagos-nigeria", destination: "/services/leading-real-estate-development-firm-in-nigeria" },
 ];
 
 /**
@@ -150,6 +150,25 @@ export const LEGACY_REDIRECTS: LegacyRedirect[] = [
   ...PROJECT_CATEGORY_REDIRECTS,
   ...TEAM_REDIRECTS,
 ];
+
+/** The minimum a service record must expose to generate its redirect. */
+export type ServiceSlugPair = { legacySlug: string; slug: string };
+
+/**
+ * Redirects from every retired service URL to its final canonical URL.
+ *
+ * Derived from the service source of truth rather than hand-listed, so a
+ * service can never be renamed without its redirect following automatically.
+ * Services whose slug did not change produce no redirect.
+ */
+export function buildServiceMigrationRedirects(services: ServiceSlugPair[]): LegacyRedirect[] {
+  return services
+    .filter((service) => service.legacySlug && service.legacySlug !== service.slug)
+    .map((service) => ({
+      source: `/services/${service.legacySlug}`,
+      destination: `/services/${service.slug}`,
+    }));
+}
 
 /** Fast lookup used by the article link-normalisation pipeline. */
 const LEGACY_REDIRECT_MAP: ReadonlyMap<string, string> = new Map(

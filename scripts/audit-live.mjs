@@ -20,9 +20,9 @@ const DEAD_HOST = "thebuildingpractice.com";
 const ROUTES = [
   "/",
   "/services",
-  "/services/architectural-design",
-  "/services/interior-design",
-  "/services/construction-management",
+  "/services/leading-architectural-design-firm-in-nigeria",
+  "/services/leading-interior-design-firm-in-nigeria",
+  "/services/leading-construction-management-firm-in-nigeria",
   "/blog",
   "/blog/page/2",
   "/robots.txt",

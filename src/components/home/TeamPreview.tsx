@@ -25,7 +25,7 @@ export function TeamPreview() {
             { href: "/about#who-we-are", icon: "bx-user-circle", label: "About the Studio" },
             { href: "/about#philosophy", icon: "bx-shape-polygon", label: "Design Philosophy" },
             { href: "/services", icon: "bx-buildings", label: "Architectural Services" },
-            { href: "/services/interior-design", icon: "bx-palette", label: "Interior Architecture" },
+            { href: "/services/leading-interior-design-firm-in-nigeria", icon: "bx-palette", label: "Interior Architecture" },
             { href: "/locations", icon: "bx-map", label: "Lagos and Nigeria Presence" },
             { href: "/projects", icon: "bx-image", label: "View Project Team Work" },
           ]}
