@@ -34,19 +34,11 @@ const HOME_PAGE_JSON_LD = {
       inLanguage: "en-NG",
     },
     {
-      "@type": "ProfessionalService",
-      "@id": `${SITE_URL}/#professional-service`,
-      name: "The Building Practice Ltd",
-      url: SITE_URL,
-      image: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
-      areaServed: ["Nigeria", "Lagos"],
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Plot 6, Remi Olowude Street",
-        addressLocality: "Lekki Phase 1",
-        addressRegion: "Lagos",
-        addressCountry: "NG",
-      },
+      // The company itself is declared once, in the root layout, under the
+      // stable `#organization` @id. This node only adds the service catalogue
+      // to that same entity instead of publishing a second, competing
+      // business identity for the same organisation.
+      "@id": `${SITE_URL}/#organization`,
       serviceType: [
         "Architectural Design",
         "Residential Architecture",
@@ -55,8 +47,6 @@ const HOME_PAGE_JSON_LD = {
         "Urban Planning and Master Planning",
         "Project and Construction Support",
       ],
-      telephone: "+2349049721840",
-      email: "info@thebuildingpractice.com",
     },
   ],
 };

@@ -5,7 +5,7 @@ import { getRoster } from "@/lib/team";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "Architecture Team Nigeria | Lagos Architects ARCON Registered | TBP Team";
+const TITLE = "Architecture Team Nigeria | Lagos Architects ARCON Registered";
 const DESCRIPTION =
   "ARCON-registered architects Nigeria team - Principal partners Lagos, senior architects Abuja, construction managers Port Harcourt. Meet TBP's award-winning Nigerian architecture professionals.";
 

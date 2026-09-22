@@ -6,7 +6,7 @@ import { LazyImage } from "@/components/ui/LazyImage";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "ARCON Registered Architects Nigeria | Lagos Abuja Architecture Firm | TBP";
+const TITLE = "ARCON Registered Architects Nigeria | Lagos Abuja Architecture Firm";
 const DESCRIPTION =
   "ARCON registered architects Nigeria since 2013 - Lagos architecture firm, Abuja Port Harcourt design studio. Modern sustainable architecture services Nigeria.";
 

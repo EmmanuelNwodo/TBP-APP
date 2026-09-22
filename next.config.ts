@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 import path from "node:path";
 
+import { LEGACY_REDIRECTS } from "./src/lib/legacy-redirects";
+
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
 
@@ -16,6 +18,47 @@ const nextConfig: NextConfig = {
         hostname: "blog.buildingpractice.biz",
       },
     ],
+  },
+
+  /**
+   * Single application redirect layer. Sources come from
+   * `src/lib/legacy-redirects.ts`, which is also used by the article
+   * link-normalisation pipeline so in-body links and HTTP redirects can never
+   * disagree.
+   *
+   * Trailing-slash variants are handled by the project's global convention
+   * (`trailingSlash` is left at its default `false`), so `/about-us/` is first
+   * normalised to `/about-us` by Next.js and then redirected here.
+   */
+  async redirects() {
+    return [
+      // `/blog/page` on its own is not an article; send it to the archive
+      // before the generic `/blog/:slug` article rule can claim it.
+      {
+        source: "/blog/page",
+        destination: "/blog",
+        permanent: true,
+      },
+      // Historic pagination. WordPress used a different page size, so page
+      // numbers are not equivalent; the archive itself is the only safe
+      // destination that is guaranteed to exist.
+      {
+        source: "/news/page/:page",
+        destination: "/blog",
+        permanent: true,
+      },
+      // Articles moved from /blog/<slug> to root-level /<slug>.
+      {
+        source: "/blog/:slug",
+        destination: "/:slug",
+        permanent: true,
+      },
+      ...LEGACY_REDIRECTS.map((entry) => ({
+        source: entry.source,
+        destination: entry.destination,
+        permanent: true,
+      })),
+    ];
   },
 };
 

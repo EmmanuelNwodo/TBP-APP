@@ -902,7 +902,7 @@ export async function generateMetadata({
     };
   }
 
-  const title = service.seoTitle || `${service.title} | The Building Practice`;
+  const title = service.seoTitle || service.title;
   const description = service.seoDescription || service.subtitle;
   const url = absoluteUrl(`/services/${slug}`);
   return {

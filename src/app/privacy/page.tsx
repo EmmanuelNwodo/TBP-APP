@@ -3,7 +3,7 @@ import Link from "next/link";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "Privacy Policy | The Building Practice Ltd";
+const TITLE = "Privacy Policy";
 const DESCRIPTION = "Privacy policy for The Building Practice Ltd.";
 
 export const metadata: Metadata = {

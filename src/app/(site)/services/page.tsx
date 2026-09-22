@@ -6,7 +6,7 @@ import { getAllServices } from "@/lib/services";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "Architecture, Project Management & Urban Development Services Nigeria | TBP";
+const TITLE = "Architecture, Project Management & Urban Development Services Nigeria";
 const DESCRIPTION =
   "Expert architecture, design consultation, construction consultation, project management, and urban development services in Nigeria. Building Practice Ltd delivers design advisory, cost control, contractor guidance, masterplanning, construction oversight, and sustainable development solutions across Lagos, Abuja, and Port Harcourt.";
 

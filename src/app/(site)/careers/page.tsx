@@ -5,7 +5,7 @@ import { JobsBoard } from "@/components/careers/JobsBoard";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "Careers | Architecture Jobs Nigeria | Architect Vacancies Lagos | TBP";
+const TITLE = "Careers | Architecture Jobs Nigeria | Architect Vacancies Lagos";
 const DESCRIPTION =
   "Architecture careers Nigeria - Architect jobs Lagos, interior designer vacancies Abuja, construction manager Port Harcourt. Join TBP's award-winning team.";
 

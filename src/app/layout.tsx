@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "next-themes";
-import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_CONTACT_EMAIL, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,7 +18,7 @@ const ORGANIZATION_JSON_LD = {
   name: "The Building Practice Ltd",
   url: SITE_URL,
   telephone: "+2349049721840",
-  email: "info@thebuildingpractice.com",
+  email: SITE_CONTACT_EMAIL,
   logo: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
   image: `${SITE_URL}${DEFAULT_OG_IMAGE}`,
   description: "Professional architectural design, construction management, and urban development services in Nigeria.",
@@ -74,7 +74,9 @@ export const metadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   authors: [{ name: SITE_NAME }],
-  robots: { index: true, follow: true },
+  // No site-wide robots directive: pages are indexable by default, and an
+  // explicit "index, follow" here contradicted the "noindex" Next.js adds to
+  // not-found responses.
   openGraph: {
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,

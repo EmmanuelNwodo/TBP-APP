@@ -2,16 +2,27 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LazyImage } from "@/components/ui/LazyImage";
-import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
-import { absoluteUrl } from "@/lib/seo";
+import { normaliseArticleLinks } from "@/lib/blog-content";
+import { getKnownPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/blog";
+import { absoluteUrl, SITE_URL } from "@/lib/seo";
 import styles from "./page.module.css";
 
-export async function generateStaticParams() {
-  const posts = await getAllPostSlugs();
+/**
+ * Articles are generated on demand and then cached, rather than pre-rendered
+ * in bulk at build time.
+ *
+ * Pre-rendering every article made each deployment depend on hundreds of
+ * sequential CMS requests; when some of those timed out, `notFound()` ran
+ * during the build and baked valid published articles as permanent
+ * `404 + noindex` pages. With on-demand generation a CMS outage can only ever
+ * delay an article, never bake a 404 for it, and a genuinely missing slug
+ * still returns a real 404.
+ */
+export const dynamicParams = true;
+export const revalidate = 300;
 
-  return posts.map((slug) => ({
-    slug,
-  }));
+export function generateStaticParams() {
+  return [];
 }
 
 export async function generateMetadata({
@@ -26,7 +37,7 @@ export async function generateMetadata({
 
   const title = post.seoTitle || post.title;
   const description = post.seoDescription || post.excerpt;
-  const url = absoluteUrl(`/${slug}`);
+  const url = absoluteUrl(`/${post.slug}`);
 
   return {
     title,
@@ -43,6 +54,7 @@ export async function generateMetadata({
       type: "article",
 
       publishedTime: post.date,
+      modifiedTime: post.modified,
 
       authors: [post.author],
 
@@ -88,77 +100,85 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
 
+  // A CMS failure throws out of here rather than returning null, so a
+  // temporarily unreachable CMS surfaces as an error the platform can retry -
+  // never as a 404 for an article that exists.
   const post = await getPostBySlug(slug);
 
   if (!post) notFound();
 
-  const related = await getRelatedPosts(post.slug, post.category, 3);
+  const [related, knownSlugs] = await Promise.all([
+    getRelatedPosts(post.slug, post.category, 3),
+    getKnownPostSlugs(),
+  ]);
+
+  const content = normaliseArticleLinks(post.content, {
+    siteUrl: SITE_URL,
+    knownSlugs,
+  });
 
   const articleSchema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: post.title,
-  description: post.seoDescription || post.excerpt,
-  image: post.image ? [post.image] : undefined,
-  datePublished: post.date,
-  dateModified: post.modified,
-  author: {
-    "@type": "Organization",
-    name: "The Building Practice Ltd",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "The Building Practice Ltd",
-    url: absoluteUrl("/"),
-  },
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": absoluteUrl(`/${post.slug}`),
-  },
-};
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.seoDescription || post.excerpt,
+    image: post.image ? [post.image] : undefined,
+    datePublished: post.date,
+    dateModified: post.modified,
+    author: {
+      "@type": "Organization",
+      name: "The Building Practice Ltd",
+      "@id": `${SITE_URL}/#organization`,
+    },
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": absoluteUrl(`/${post.slug}`),
+    },
+  };
 
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: absoluteUrl("/"),
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Blog",
-      item: absoluteUrl("/blog"),
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: post.title,
-      item: absoluteUrl(`/${post.slug}`),
-    },
-  ],
-};
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: absoluteUrl("/"),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: absoluteUrl("/blog"),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: absoluteUrl(`/${post.slug}`),
+      },
+    ],
+  };
 
   return (
     <main>
       <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify(articleSchema),
-  }}
-/>
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(articleSchema),
+        }}
+      />
 
-<script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify(breadcrumbSchema),
-  }}
-/>
-
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbSchema),
+        }}
+      />
 
       <section className={styles.hero}>
         <div className={styles.heroMedia}>
@@ -199,7 +219,7 @@ const breadcrumbSchema = {
         <div className={styles.grid}>
           <article
             className={styles.content}
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: content }}
           />
 
           <aside className={styles.sidebar}>

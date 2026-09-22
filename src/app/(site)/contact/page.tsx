@@ -4,7 +4,7 @@ import { ContactForm } from "@/components/sections/ContactForm";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "Contact Architecture Firm Nigeria | Architect Lagos | TBP Contact";
+const TITLE = "Contact Architecture Firm Nigeria | Architect Lagos";
 const DESCRIPTION =
   "Contact The Building Practice Ltd. - Architecture firm Lagos Nigeria. Architect consultations, project inquiries, office location Lekki Phase 1.";
 

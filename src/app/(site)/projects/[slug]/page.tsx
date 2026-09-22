@@ -18,7 +18,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProjectBySlug(slug);
   if (!project) return {};
-  const title = `${project.title} | The Building Practice`;
+  const title = project.title;
   const description = project.shortDescription;
   const url = absoluteUrl(`/projects/${slug}`);
   return {

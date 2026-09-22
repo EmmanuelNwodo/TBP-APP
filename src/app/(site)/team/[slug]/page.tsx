@@ -18,7 +18,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const member = getTeamMemberById(slug);
   if (!member) return {};
-  const title = `${member.name} | ${member.title} | The Building Practice`;
+  const title = `${member.name} | ${member.title}`;
   const description = member.leadQuote;
   const url = absoluteUrl(`/team/${slug}`);
   return {

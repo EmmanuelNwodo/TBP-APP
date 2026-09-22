@@ -10,6 +10,13 @@
   cursor: pointer;
 }
 
+.filterLabel {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+  align-self: center;
+  margin-right: var(--space-1);
+}
+
 .countLine {
   text-align: center;
   font-size: var(--text-sm);
@@ -142,9 +149,24 @@
   border-color: var(--primary);
 }
 
-.pageBtn:disabled {
+.pageBtn:disabled,
+.pageBtnDisabled {
   opacity: 0.4;
   cursor: default;
+}
+
+.pageBtnDisabled:hover {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-color: var(--border-primary);
+}
+
+.pageBtnActive {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
 }
 
 .pageInfo {

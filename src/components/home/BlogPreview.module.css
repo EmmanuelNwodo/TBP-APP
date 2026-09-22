@@ -98,7 +98,9 @@
 .cardFooter {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* Was space-between when a reading-time label shared this row; with a single
+     action left, flex-end keeps the button exactly where it has always sat. */
+  justify-content: flex-end;
   padding-top: var(--space-3);
   border-top: 1px solid var(--border-primary);
 }

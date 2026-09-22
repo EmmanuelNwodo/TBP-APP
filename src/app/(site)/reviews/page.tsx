@@ -4,7 +4,7 @@ import { ReviewsGrid } from "@/components/reviews/ReviewsGrid";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "Architecture Reviews Nigeria | Architect Client Testimonials Lagos | TBP";
+const TITLE = "Architecture Reviews Nigeria | Architect Client Testimonials Lagos";
 const DESCRIPTION =
   "TBP architecture reviews Nigeria - Client testimonials Lagos architects, construction feedback Abuja, interior design reviews Port Harcourt. 4.9⭐ average.";
 

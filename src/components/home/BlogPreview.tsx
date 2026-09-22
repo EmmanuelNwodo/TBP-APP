@@ -19,15 +19,18 @@ export async function BlogPreview() {
           label="Insights"
           title="Latest Articles"
           description="Stay updated with the latest trends in architecture, design innovations, and insights from our experts."
+          // The archive's category tabs are client-side filters, not routes:
+          // `/blog?category=x` was ignored by the grid, so these now point at
+          // the real destinations they describe instead of a dead parameter.
           tags={[
             { href: "/blog", icon: "bx-news", label: "All Articles", variant: "primary" },
-            { href: "/blog?category=architecture", icon: "bx-building", label: "Architecture" },
-            { href: "/blog?category=sustainability", icon: "bx-leaf", label: "Sustainability" },
-            { href: "/blog?category=design", icon: "bx-trending-up", label: "Trends", variant: "accent" },
-            { href: "/blog?category=interior-design", icon: "bx-palette", label: "Interior Design" },
-            { href: "/blog?category=construction", icon: "bx-hard-hat", label: "Construction" },
-            { href: "/blog?category=real-estate", icon: "bx-line-chart", label: "Real Estate" },
-            { href: "/blog?category=technology", icon: "bx-chip", label: "Technology" },
+            { href: "/services/architectural-design", icon: "bx-building", label: "Architecture" },
+            { href: "/services/green-building-advisory", icon: "bx-leaf", label: "Sustainability" },
+            { href: "/projects", icon: "bx-trending-up", label: "Projects", variant: "accent" },
+            { href: "/services/interior-design", icon: "bx-palette", label: "Interior Design" },
+            { href: "/services/building-construction", icon: "bx-hard-hat", label: "Construction" },
+            { href: "/services/real-estate-development", icon: "bx-line-chart", label: "Real Estate" },
+            { href: "/services/3d-visualization", icon: "bx-chip", label: "3D Visualisation" },
           ]}
         />
 
@@ -43,17 +46,12 @@ export async function BlogPreview() {
               <div className={styles.cardContent}>
                 <p className={styles.cardMeta}>
                   <i className="bx bx-calendar" aria-hidden="true" /> {formatDate(post.date)}
-                  <span>&bull;</span>
-                  <i className="bx bx-time" aria-hidden="true" /> {post.readTime} min read
                 </p>
                 <h3 className={styles.cardTitle}>
                   <Link href={`/${post.slug}`}>{post.title}</Link>
                 </h3>
                 <p className={styles.cardExcerpt}>{post.excerpt}</p>
                 <div className={styles.cardFooter}>
-                  <span className={styles.readTime}>
-                    <i className="bx bx-book-open" aria-hidden="true" /> {post.readTime} min read
-                  </span>
                   <Link href={`/${post.slug}`} className="btn btn--ghost btn--sm">
                     Read More <i className="bx bx-right-arrow-alt" aria-hidden="true" />
                   </Link>

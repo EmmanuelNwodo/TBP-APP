@@ -49,7 +49,10 @@ export function SplashScreen() {
         <Image src="/images/bp.png" alt="TBP Logo" width={70} height={70} className={styles.logo} priority />
       </div>
 
-      <h1 className={styles.title}>The Building Practice Ltd.</h1>
+      {/* Branding only - deliberately not a heading. The splash overlays every
+          page, so an <h1> here produced a second H1 on every route. The class,
+          styling and animation behaviour are unchanged. */}
+      <p className={styles.title}>The Building Practice Ltd.</p>
       <p className={styles.tagline}>...Building Spaces that Feel</p>
 
       <div className={styles.loader} aria-hidden="true">

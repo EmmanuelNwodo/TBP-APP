@@ -1,11 +1,57 @@
 // src/lib/blog.ts
 
-import type { BlogPost } from "@/types/blog";
+import { cache } from "react";
 
-const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL;
+import type { BlogPost, BlogPostIndexEntry, BlogPostSummary } from "@/types/blog";
 
-if (!WORDPRESS_API_URL) {
-  throw new Error("WORDPRESS_API_URL is not defined");
+/**
+ * WordPress data layer.
+ *
+ * The central rule here is that a *transport* failure and a *confirmed
+ * absence* are different things. A timeout, DNS failure, connection reset,
+ * 5xx or malformed JSON means "the CMS did not answer"; only a successful
+ * response that contains no matching post means "this post does not exist".
+ * Collapsing the two is what previously caused valid published articles to be
+ * pre-rendered as `404 + noindex`, so callers that can produce a 404 must
+ * distinguish them.
+ */
+
+/** Thrown whenever the CMS could not be reached or answered unusably. */
+export class CmsUnavailableError extends Error {
+  readonly cause?: unknown;
+
+  constructor(message: string, options?: { cause?: unknown }) {
+    super(message);
+    this.name = "CmsUnavailableError";
+    this.cause = options?.cause;
+  }
+}
+
+/**
+ * Request budget. The CMS host is measurably slow (collection responses that
+ * carry article bodies have been observed taking well over a minute from a
+ * poor network), so the timeouts are deliberately generous: waiting is always
+ * better than mis-reporting a live article as missing.
+ */
+const SINGLE_REQUEST_TIMEOUT_MS = 30_000;
+const COLLECTION_REQUEST_TIMEOUT_MS = 120_000;
+const LIGHT_REQUEST_ATTEMPTS = 3;
+const HEAVY_REQUEST_ATTEMPTS = 2;
+const RETRY_BASE_DELAY_MS = 500;
+
+/** Shared revalidation window for every CMS read. */
+const REVALIDATE_SECONDS = 300;
+
+const POSTS_PER_INDEX_PAGE = 100;
+
+function getApiBaseUrl(): string {
+  const configured = process.env.WORDPRESS_API_URL?.trim();
+  if (!configured) {
+    // A missing base URL is a deployment fault, not a missing article. Raising
+    // it as a CMS failure keeps it out of the 404 path.
+    throw new CmsUnavailableError("WORDPRESS_API_URL is not configured");
+  }
+  return configured.replace(/\/+$/, "");
 }
 
 type WPCategory = {
@@ -16,22 +62,13 @@ type WPCategory = {
 };
 
 type WPMedia = {
-  source_url: string;
+  source_url?: string;
   alt_text?: string;
-
   media_details?: {
     sizes?: {
-      medium?: {
-        source_url: string;
-      };
-
-      large?: {
-        source_url: string;
-      };
-
-      full?: {
-        source_url: string;
-      };
+      medium?: { source_url?: string };
+      large?: { source_url?: string };
+      full?: { source_url?: string };
     };
   };
 };
@@ -46,55 +83,24 @@ type WPTerm = {
 type WPPost = {
   id: number;
   date: string;
-  modified: string;
+  modified?: string;
+  modified_gmt?: string;
   slug: string;
-  status: string;
-
-  title: {
-    rendered: string;
-  };
-
-  excerpt: {
-    rendered: string;
-  };
-
-  content: {
-    rendered: string;
-  };
-
-  featured_media: number;
-  categories: number[];
-
-    yoast_head_json?: {
+  status?: string;
+  title?: { rendered?: string };
+  excerpt?: { rendered?: string };
+  content?: { rendered?: string };
+  yoast_head_json?: {
     title?: string;
     description?: string;
-    canonical?: string;
-    og_title?: string;
-    og_description?: string;
-    og_url?: string;
-    og_type?: string;
-    og_image?: Array<{
-      url?: string;
-      width?: number;
-      height?: number;
-      type?: string;
-    }>;
-    article_published_time?: string;
-    article_modified_time?: string;
-    author?: string;
   };
-
-
   _embedded?: {
     "wp:featuredmedia"?: WPMedia[];
-
     "wp:term"?: Array<WPTerm[]>;
   };
 };
 
-/**
- * Remove HTML tags and normalize whitespace.
- */
+/** Remove HTML tags and normalise whitespace. */
 function stripHtml(html: string): string {
   return html
     .replace(/<[^>]*>/g, "")
@@ -103,35 +109,151 @@ function stripHtml(html: string): string {
 }
 
 /**
- * Calculate estimated reading time.
- *
- * Returns only the number portion because the BlogPost
- * page already adds "min read".
+ * Estimated reading time. Returns only the number because every card and the
+ * article header already render the "min read" suffix.
  */
-function calculateReadTime(content: string): string {
-  const text = stripHtml(content);
-  const words = text.split(/\s+/).filter(Boolean).length;
+function calculateReadTime(contentHtml: string | undefined): string {
+  if (!contentHtml) return "1";
+  const words = stripHtml(contentHtml).split(/\s+/).filter(Boolean).length;
+  return `${Math.max(1, Math.ceil(words / 200))}`;
+}
 
-  const minutes = Math.max(1, Math.ceil(words / 200));
+/** Lowercase and trim a slug so duplicate casing cannot produce duplicate URLs. */
+export function normaliseSlug(slug: string): string {
+  return slug.trim().toLowerCase().replace(/^\/+|\/+$/g, "");
+}
 
-  return `${minutes}`;
+function delay(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 /**
- * Convert a WordPress post into the BlogPost
- * structure used by the Next.js application.
+ * A 4xx other than 408/429 is a permanent answer from the CMS: retrying will
+ * not change it, so it is surfaced immediately instead of burning the retry
+ * budget.
  */
-function mapPost(post: WPPost): BlogPost {
-  const featuredMedia =
-    post._embedded?.["wp:featuredmedia"]?.[0];
+function isPermanentStatus(status: number): boolean {
+  return status >= 400 && status < 500 && status !== 408 && status !== 429;
+}
 
-  const terms =
-    post._embedded?.["wp:term"]?.flat() ?? [];
+type WpResponse<T> = {
+  data: T;
+  status: number;
+  headers: Headers;
+};
 
-  const category =
-    terms.find(
-      (term) => term.taxonomy === "category"
-    )?.name ?? "Architecture";
+/**
+ * Perform a CMS request with a bounded retry budget.
+ *
+ * Retries transient faults (network errors, timeouts, 5xx, 408, 429 and
+ * malformed JSON) with linear backoff, and never retries a permanent 4xx.
+ * Exhausting the budget raises `CmsUnavailableError` - it never returns a
+ * partial or empty result that a caller could mistake for success.
+ */
+async function requestWordPress<T>(
+  path: string,
+  params: Record<string, string | number | boolean>,
+  options: { attempts?: number; timeoutMs?: number; allowStatuses?: number[] } = {},
+): Promise<WpResponse<T>> {
+  const attempts = options.attempts ?? LIGHT_REQUEST_ATTEMPTS;
+  const timeoutMs = options.timeoutMs ?? SINGLE_REQUEST_TIMEOUT_MS;
+  const allowStatuses = options.allowStatuses ?? [];
+
+  const searchParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(params)) {
+    searchParams.set(key, String(value));
+  }
+  const url = `${getApiBaseUrl()}${path}?${searchParams.toString()}`;
+
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        signal: AbortSignal.timeout(timeoutMs),
+        next: { revalidate: REVALIDATE_SECONDS },
+      });
+
+      if (!response.ok) {
+        if (allowStatuses.includes(response.status)) {
+          return { data: undefined as T, status: response.status, headers: response.headers };
+        }
+        if (isPermanentStatus(response.status)) {
+          throw new CmsUnavailableError(
+            `WordPress returned ${response.status} for ${path} (not retryable)`,
+          );
+        }
+        lastError = new Error(`WordPress returned ${response.status} for ${path}`);
+      } else {
+        try {
+          const data = (await response.json()) as T;
+          return { data, status: response.status, headers: response.headers };
+        } catch (parseError) {
+          // Truncated or malformed payloads have been observed under load and
+          // are transient, so they are retried rather than treated as empty.
+          lastError = parseError;
+        }
+      }
+    } catch (error) {
+      if (error instanceof CmsUnavailableError) throw error;
+      lastError = error;
+    }
+
+    if (attempt < attempts) {
+      await delay(RETRY_BASE_DELAY_MS * attempt);
+    }
+  }
+
+  throw new CmsUnavailableError(
+    `WordPress request failed after ${attempts} attempt(s): ${path}`,
+    { cause: lastError },
+  );
+}
+
+/** Log a CMS failure without leaking a stack trace or the request URL. */
+function logCmsFailure(context: string, error: unknown): void {
+  const reason = error instanceof Error ? error.message : "unknown error";
+  console.error(`[cms] ${context}: ${reason}`);
+}
+
+function readTotalPages(headers: Headers): number | null {
+  const raw = headers.get("x-wp-totalpages");
+  if (!raw) return null;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+}
+
+function readTotal(headers: Headers): number | null {
+  const raw = headers.get("x-wp-total");
+  if (!raw) return null;
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : null;
+}
+
+/**
+ * Fields needed to render an article card.
+ *
+ * `content` is deliberately absent. Article bodies are two thirds of the
+ * response weight, and downloading 12 of them just to derive a "N min read"
+ * label made the first uncached archive request take about a minute. Only the
+ * individual article route asks for a body.
+ *
+ * `_links` is required because `_embed` only populates `_embedded` when it is
+ * present in `_fields`.
+ */
+export const CARD_FIELDS = "id,slug,date,modified,title,excerpt,_links,_embedded";
+
+/** The article route additionally needs the body and the Yoast metadata. */
+export const ARTICLE_FIELDS = `${CARD_FIELDS},content,yoast_head_json`;
+
+/** Embeds required for the featured image and the category name. */
+const SUMMARY_EMBED = "wp:featuredmedia,wp:term";
+
+function mapSummary(post: WPPost): BlogPostSummary {
+  const featuredMedia = post._embedded?.["wp:featuredmedia"]?.[0];
+  const terms = post._embedded?.["wp:term"]?.flat() ?? [];
+
+  const category = terms.find((term) => term?.taxonomy === "category")?.name ?? "Architecture";
 
   const image =
     featuredMedia?.media_details?.sizes?.large?.source_url ??
@@ -140,365 +262,338 @@ function mapPost(post: WPPost): BlogPost {
     "/images/blog-placeholder.jpg";
 
   return {
-    slug: post.slug,
-    title: stripHtml(post.title.rendered),
-    excerpt: stripHtml(post.excerpt.rendered),
-    content: post.content.rendered,
-    date: post.date,
-    modified: post.modified,
-    image,
+    slug: normaliseSlug(post.slug),
+    title: stripHtml(post.title?.rendered ?? ""),
+    excerpt: stripHtml(post.excerpt?.rendered ?? ""),
     category,
-    readTime: calculateReadTime(post.content.rendered),
+    image,
+    date: post.date,
+    modified: post.modified ?? post.date,
+  };
+}
 
+function mapPost(post: WPPost): BlogPost {
+  const summary = mapSummary(post);
+
+  return {
+    ...summary,
     author: "The Building Practice Ltd",
-    seoTitle:
-    post.yoast_head_json?.title ||
-    stripHtml(post.title.rendered),
-
-   seoDescription:
-    post.yoast_head_json?.description ||
-    stripHtml(post.excerpt.rendered),
+    content: post.content?.rendered ?? "",
+    readTime: calculateReadTime(post.content?.rendered),
+    seoTitle: post.yoast_head_json?.title || summary.title,
+    seoDescription: post.yoast_head_json?.description || summary.excerpt,
     serviceTags: [],
   };
 }
 
-/**
- * Build a WordPress API URL.
- */
-function buildPostsUrl(
-  params: Record<string, string | number | boolean>
-): string {
-  const searchParams = new URLSearchParams();
+/** Drop repeated posts by stable id first, then by normalised slug. */
+function dedupePosts<T extends { id: number; slug: string }>(posts: T[]): T[] {
+  const seenIds = new Set<number>();
+  const seenSlugs = new Set<string>();
+  const unique: T[] = [];
 
-  Object.entries(params).forEach(([key, value]) => {
-    searchParams.set(key, String(value));
-  });
-
-  return `${WORDPRESS_API_URL}/posts?${searchParams.toString()}`;
-}
-
-/**
- * Fetch WordPress posts.
- *
- * IMPORTANT:
- * We intentionally do NOT use unstable_cache here.
- *
- * The previous implementation cached the complete WordPress
- * collection, including full post content and embedded media.
- * That produced a cache item of more than 15 MB and caused:
- *
- * "items over 2MB can not be cached"
- *
- * Instead, requests use Next.js's fetch cache with a small
- * revalidation period.
- */
-async function fetchWordPressPosts(
-  params: Record<string, string | number | boolean>
-): Promise<WPPost[]> {
-  const url = buildPostsUrl(params);
-
-  const response = await fetch(url, {
-    next: {
-      revalidate: 300,
-    },
-  });
-
-  if (!response.ok) {
-    throw new Error(
-      `WordPress API error while fetching posts: ${response.status}`
-    );
+  for (const post of posts) {
+    const slug = normaliseSlug(post.slug);
+    if (!slug) continue;
+    if (seenIds.has(post.id) || seenSlugs.has(slug)) continue;
+    seenIds.add(post.id);
+    seenSlugs.add(slug);
+    unique.push(post);
   }
 
-  return (await response.json()) as WPPost[];
+  return unique;
 }
 
-/**
- * Get all published WordPress posts.
- *
- * Posts are fetched in smaller pages instead of creating one
- * enormous cache item.
- *
- * This function is mainly used by:
- *
- * - the blog listing
- * - sitemap generation
- * - static params
- *
- * Individual post pages should use getPostBySlug().
- */
-export async function getAllPosts(): Promise<BlogPost[]> {
-  const allPosts: WPPost[] = [];
+/** Exported for the regression tests. */
+export const __dedupePostsForTests = dedupePosts;
 
+/**
+ * Walk every page of the published-post collection.
+ *
+ * Ordering is by WordPress id so that the window each page returns cannot
+ * shift between requests the way date ordering can. A failure on any page
+ * aborts the walk with `CmsUnavailableError` rather than returning the pages
+ * gathered so far, because a silently truncated collection is what previously
+ * dropped articles out of the sitemap.
+ */
+async function fetchAllPublishedPosts<T extends WPPost>(
+  fields: string,
+  options: { embed?: string; attempts?: number; timeoutMs?: number } = {},
+): Promise<T[]> {
+  const collected: T[] = [];
   let page = 1;
-  const postsPerPage = 20;
+  let knownTotalPages: number | null = null;
 
-  while (true) {
-    try {
-      const posts = await fetchWordPressPosts({
-        per_page: postsPerPage,
-        page,
-        status: "publish",
-        _embed: true,
-      });
+  for (;;) {
+    const params: Record<string, string | number | boolean> = {
+      per_page: POSTS_PER_INDEX_PAGE,
+      page,
+      status: "publish",
+      orderby: "id",
+      order: "asc",
+      _fields: fields,
+    };
+    if (options.embed) params._embed = options.embed;
 
-      if (posts.length === 0) {
-        break;
-      }
+    const response = await requestWordPress<T[]>("/posts", params, {
+      attempts: options.attempts ?? LIGHT_REQUEST_ATTEMPTS,
+      timeoutMs: options.timeoutMs ?? COLLECTION_REQUEST_TIMEOUT_MS,
+    });
 
-      allPosts.push(...posts);
+    const batch = Array.isArray(response.data) ? response.data : [];
+    knownTotalPages ??= readTotalPages(response.headers);
 
-      if (posts.length < postsPerPage) {
-        break;
-      }
+    collected.push(...batch);
 
-      page++;
-    } catch (error) {
-      console.error(
-        `WordPress API error while fetching posts page ${page}:`,
-        error
-      );
+    if (batch.length === 0) break;
+    if (knownTotalPages !== null && page >= knownTotalPages) break;
+    if (knownTotalPages === null && batch.length < POSTS_PER_INDEX_PAGE) break;
 
-      break;
-    }
+    page += 1;
+
+    // Hard stop against a CMS that keeps returning full pages.
+    if (page > 100) break;
   }
 
-  return allPosts.map(mapPost);
+  return dedupePosts(collected);
 }
 
 /**
- * Get all published WordPress post slugs.
- *
- * This is used by generateStaticParams().
- * It intentionally requests only the fields needed
- * to generate the dynamic routes.
+ * Every published article, reduced to the fields the sitemap needs.
+ * Throws `CmsUnavailableError` rather than returning an incomplete list.
  */
+export async function getPostIndex(): Promise<BlogPostIndexEntry[]> {
+  const posts = await fetchAllPublishedPosts<WPPost>("id,slug,modified,modified_gmt,date");
+
+  return posts.map((post) => {
+    const modifiedGmt = post.modified_gmt ? `${post.modified_gmt}Z` : null;
+    return {
+      id: post.id,
+      slug: normaliseSlug(post.slug),
+      modified: modifiedGmt ?? post.modified ?? post.date ?? null,
+    };
+  });
+}
+
+/** Every published slug. Throws on CMS failure. */
 export async function getAllPostSlugs(): Promise<string[]> {
-  const slugs: string[] = [];
-
-  let page = 1;
-  const postsPerPage = 100;
-
-  while (true) {
-    try {
-      const response = await fetchWordPressPosts({
-        per_page: postsPerPage,
-        page,
-        status: "publish",
-        _fields: "slug",
-      });
-
-      if (response.length === 0) {
-        break;
-      }
-
-      slugs.push(
-        ...response
-          .map((post) => post.slug)
-          .filter(Boolean)
-      );
-
-      if (response.length < postsPerPage) {
-        break;
-      }
-
-      page++;
-    } catch (error) {
-      console.error(
-        `WordPress API error while fetching post slugs page ${page}:`,
-        error
-      );
-
-      break;
-    }
-  }
-
-  return slugs;
+  const posts = await fetchAllPublishedPosts<WPPost>("id,slug");
+  return posts.map((post) => normaliseSlug(post.slug)).filter(Boolean);
 }
 
 /**
- * Get the latest published posts.
- *
- * Only requests the number of posts actually needed.
+ * Published slugs for best-effort callers (in-body link rewriting). Returns
+ * `null` when the CMS is unavailable so the caller can safely skip rewriting
+ * instead of producing links to pages it could not verify.
  */
-export async function getLatestPosts(
-  limit = 3
-): Promise<BlogPost[]> {
+export const getKnownPostSlugs = cache(async (): Promise<Set<string> | null> => {
   try {
-    const safeLimit = Math.max(
-      1,
-      Math.min(limit, 100)
-    );
+    return new Set(await getAllPostSlugs());
+  } catch (error) {
+    logCmsFailure("could not load published slugs for link rewriting", error);
+    return null;
+  }
+});
 
-    const posts = await fetchWordPressPosts({
-      per_page: safeLimit,
-      page: 1,
+export type ArchivePage = {
+  posts: BlogPostSummary[];
+  page: number;
+  perPage: number;
+  total: number;
+  totalPages: number;
+};
+
+/**
+ * One page of the archive, newest first.
+ *
+ * Only the requested window is fetched, so rendering page 1 no longer pulls
+ * every published article. Article bodies are requested solely to compute the
+ * reading time and are dropped before the summaries leave this function.
+ * Throws `CmsUnavailableError` so the archive can never render an empty grid
+ * as though it were a successful, genuinely empty result.
+ */
+export async function getArchivePage(page: number, perPage: number): Promise<ArchivePage> {
+  const safePage = Math.max(1, Math.floor(page));
+  const safePerPage = Math.min(100, Math.max(1, Math.floor(perPage)));
+
+  const response = await requestWordPress<WPPost[]>(
+    "/posts",
+    {
+      per_page: safePerPage,
+      page: safePage,
       status: "publish",
       orderby: "date",
       order: "desc",
-      _embed: true,
-    });
+      _embed: SUMMARY_EMBED,
+      _fields: CARD_FIELDS,
+    },
+    {
+      attempts: HEAVY_REQUEST_ATTEMPTS,
+      timeoutMs: COLLECTION_REQUEST_TIMEOUT_MS,
+      // A page number beyond the last page is a confirmed "no such page",
+      // not a transport failure.
+      allowStatuses: [400, 404],
+    },
+  );
 
-    return posts.map(mapPost);
-  } catch (error) {
-    console.error(
-      "WordPress API error while fetching latest posts:",
-      error
+  if (response.status === 400 || response.status === 404) {
+    return {
+      posts: [],
+      page: safePage,
+      perPage: safePerPage,
+      total: 0,
+      totalPages: 0,
+    };
+  }
+
+  const batch = Array.isArray(response.data) ? response.data : [];
+  const total = readTotal(response.headers) ?? batch.length;
+  const totalPages = readTotalPages(response.headers) ?? (batch.length > 0 ? safePage : 0);
+
+  return {
+    posts: dedupePosts(batch).map(mapSummary),
+    page: safePage,
+    perPage: safePerPage,
+    total,
+    totalPages,
+  };
+}
+
+/**
+ * The newest published articles, for the homepage preview.
+ *
+ * The homepage must survive a CMS outage, so this degrades to an empty list
+ * and logs rather than failing the whole page.
+ */
+export async function getLatestPosts(limit = 3): Promise<BlogPostSummary[]> {
+  const safeLimit = Math.max(1, Math.min(limit, 100));
+
+  try {
+    const response = await requestWordPress<WPPost[]>(
+      "/posts",
+      {
+        per_page: safeLimit,
+        page: 1,
+        status: "publish",
+        orderby: "date",
+        order: "desc",
+        _embed: SUMMARY_EMBED,
+        _fields: CARD_FIELDS,
+      },
+      { attempts: HEAVY_REQUEST_ATTEMPTS, timeoutMs: COLLECTION_REQUEST_TIMEOUT_MS },
     );
 
+    const batch = Array.isArray(response.data) ? response.data : [];
+    return dedupePosts(batch).map(mapSummary);
+  } catch (error) {
+    logCmsFailure("could not load latest posts", error);
     return [];
   }
 }
 
 /**
- * Get a single published post by slug.
+ * A single published article.
  *
- * This is much more efficient than downloading every post.
+ * Returns `null` only when the CMS positively confirmed that no published
+ * post matches the slug. Any transport or server fault raises
+ * `CmsUnavailableError`, so the article route can tell a genuinely missing
+ * article apart from a CMS that is momentarily down.
  */
-export async function getPostBySlug(
-  slug: string
-): Promise<BlogPost | null> {
-  try {
-    if (!slug) {
-      return null;
-    }
+export const getPostBySlug = cache(async (slug: string): Promise<BlogPost | null> => {
+  const normalised = normaliseSlug(slug);
+  if (!normalised) return null;
 
-    const posts = await fetchWordPressPosts({
-      slug,
+  const response = await requestWordPress<WPPost[]>(
+    "/posts",
+    {
+      slug: normalised,
       status: "publish",
       per_page: 1,
-      _embed: true,
-    });
+      _embed: SUMMARY_EMBED,
+      _fields: ARTICLE_FIELDS,
+    },
+    {
+      attempts: LIGHT_REQUEST_ATTEMPTS,
+      timeoutMs: SINGLE_REQUEST_TIMEOUT_MS,
+      allowStatuses: [404],
+    },
+  );
 
-    const post = posts[0];
+  // A confirmed 404, or a successful response with no matching post, both mean
+  // the article does not exist.
+  if (response.status === 404) return null;
 
-    if (!post) {
-      console.error(
-        `WordPress post not found: "${slug}"`
-      );
+  const posts = Array.isArray(response.data) ? response.data : [];
+  const post = posts[0];
+  if (!post) return null;
 
-      return null;
-    }
-
-    return mapPost(post);
-  } catch (error) {
-    console.error(
-      `WordPress API error while fetching post "${slug}":`,
-      error
-    );
-
-    return null;
-  }
-}
+  return mapPost(post);
+});
 
 /**
- * Get related posts based on category.
- *
- * This requests a limited number of posts instead of loading
- * the complete WordPress database.
+ * Related articles for the sidebar. Non-essential, so a CMS failure degrades
+ * to an empty list rather than taking down an article that already rendered.
  */
 export async function getRelatedPosts(
   currentSlug: string,
   category: string,
-  limit = 3
-): Promise<BlogPost[]> {
+  limit = 3,
+): Promise<BlogPostSummary[]> {
+  const safeLimit = Math.max(1, Math.min(limit, 20));
+
   try {
-    const safeLimit = Math.max(
-      1,
-      Math.min(limit, 20)
-    );
-
-    /*
-     * WordPress does not allow us to directly query posts by
-     * category name, so first find the category ID.
-     */
-    const categoryResponse = await fetch(
-      `${WORDPRESS_API_URL}/categories?search=${encodeURIComponent(
-        category
-      )}&per_page=10`,
-      {
-        next: {
-          revalidate: 300,
-        },
-      }
-    );
-
-    if (!categoryResponse.ok) {
-      return [];
-    }
-
-    const categories =
-      (await categoryResponse.json()) as WPCategory[];
-
-    const matchedCategory = categories.find(
-      (item) =>
-        item.name.toLowerCase() ===
-        category.toLowerCase()
-    );
-
-    if (!matchedCategory) {
-      return [];
-    }
-
-    const posts = await fetchWordPressPosts({
-      per_page: safeLimit + 1,
-      page: 1,
-      status: "publish",
-      categories: matchedCategory.id,
-      orderby: "date",
-      order: "desc",
-      _embed: true,
+    const categoryResponse = await requestWordPress<WPCategory[]>("/categories", {
+      search: category,
+      per_page: 10,
+      _fields: "id,name,slug,count",
     });
 
-    return posts
-      .filter(
-        (post) => post.slug !== currentSlug
-      )
-      .slice(0, safeLimit)
-      .map(mapPost);
-  } catch (error) {
-    console.error(
-      "Error fetching related WordPress posts:",
-      error
+    const categories = Array.isArray(categoryResponse.data) ? categoryResponse.data : [];
+    const matched = categories.find(
+      (item) => item.name.toLowerCase() === category.toLowerCase(),
+    );
+    if (!matched) return [];
+
+    const response = await requestWordPress<WPPost[]>(
+      "/posts",
+      {
+        per_page: safeLimit + 1,
+        page: 1,
+        status: "publish",
+        categories: matched.id,
+        orderby: "date",
+        order: "desc",
+        _embed: SUMMARY_EMBED,
+        _fields: CARD_FIELDS,
+      },
+      { attempts: HEAVY_REQUEST_ATTEMPTS, timeoutMs: COLLECTION_REQUEST_TIMEOUT_MS },
     );
 
+    const batch = Array.isArray(response.data) ? response.data : [];
+    const current = normaliseSlug(currentSlug);
+
+    return dedupePosts(batch)
+      .map(mapSummary)
+      .filter((post) => post.slug !== current)
+      .slice(0, safeLimit);
+  } catch (error) {
+    logCmsFailure(`could not load related posts for "${normaliseSlug(currentSlug)}"`, error);
     return [];
   }
 }
 
-/**
- * Get all WordPress categories.
- */
+/** Category names that have at least one published post. Degrades to []. */
 export async function getAllCategories(): Promise<string[]> {
   try {
-    const response = await fetch(
-      `${WORDPRESS_API_URL}/categories?per_page=100`,
-      {
-        next: {
-          revalidate: 300,
-        },
-      }
-    );
+    const response = await requestWordPress<WPCategory[]>("/categories", {
+      per_page: 100,
+      _fields: "id,name,slug,count",
+    });
 
-    if (!response.ok) {
-      console.error(
-        `WordPress API error while fetching categories: ${response.status}`
-      );
-
-      return [];
-    }
-
-    const categories =
-      (await response.json()) as WPCategory[];
-
-    return categories
-      .filter((category) => category.count > 0)
-      .map((category) => category.name);
+    const categories = Array.isArray(response.data) ? response.data : [];
+    return categories.filter((category) => category.count > 0).map((category) => category.name);
   } catch (error) {
-    console.error(
-      "Error fetching WordPress categories:",
-      error
-    );
-
+    logCmsFailure("could not load categories", error);
     return [];
   }
 }

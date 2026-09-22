@@ -5,7 +5,7 @@ import { PageHero } from "@/components/sections/PageHero";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "Our Locations | The Building Practice Ltd. - Lagos, Abuja, Port Harcourt";
+const TITLE = "Our Locations - Lagos, Abuja, Port Harcourt";
 const DESCRIPTION =
   "Find our architecture offices in Lekki Lagos, Abuja, and Port Harcourt. ARCON-registered architects serving Nigeria with residential, commercial designs. Contact for consultations.";
 

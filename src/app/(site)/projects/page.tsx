@@ -5,7 +5,7 @@ import { getAllProjects } from "@/lib/projects";
 import { absoluteUrl } from "@/lib/seo";
 import styles from "./page.module.css";
 
-const TITLE = "Architecture Projects Nigeria | Lagos Architects Portfolio ARCON | TBP";
+const TITLE = "Architecture Projects Nigeria | Lagos Architects Portfolio ARCON";
 const DESCRIPTION =
   "ARCON registered architects Nigeria portfolio - Lagos architecture projects, Abuja building design, Port Harcourt residential commercial developments. 320+ projects completed.";
 
