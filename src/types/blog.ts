@@ -38,4 +38,12 @@ export type BlogPostIndexEntry = {
   slug: string;
   /** ISO timestamp of the last genuine modification, or null when unknown. */
   modified: string | null;
+  /** WordPress attachment id of the featured image, or null when unset. */
+  featuredMediaId?: number | null;
+  /**
+   * Real public URL of the featured image, resolved from the media endpoint.
+   * Null whenever WordPress has no usable attachment, so the sitemap only ever
+   * advertises images that genuinely exist.
+   */
+  imageUrl?: string | null;
 };

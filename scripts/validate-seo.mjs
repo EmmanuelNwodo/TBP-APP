@@ -79,19 +79,48 @@ check("robots uses SITE_URL for the sitemap declaration", robots.includes("${SIT
 check("robots disallows /admin", robots.includes('"/admin"'));
 check("robots does not disallow the whole site", !/disallow:\s*"\/"/i.test(robots));
 check("robots allows crawling", robots.includes('allow: "/"'));
-
-// 4. Sitemap source.
-const sitemap = read("src/app/sitemap.ts");
-check("sitemap builds every URL from SITE_URL", !/https?:\/\//.test(sitemap.replace(/https?:\/\/[^\s]*schema\.org[^\s]*/g, "")));
 check(
-  "sitemap does not stamp static routes with a fabricated current time",
-  !/lastModified:\s*now/.test(sitemap) && !/const now = new Date\(\)/.test(sitemap),
+  "robots references only the primary sitemap index",
+  robots.includes("${SITE_URL}/sitemap.xml") &&
+    !/page-sitemap|service-sitemap|project-sitemap|team-sitemap|article-sitemap/.test(robots),
 );
-check("sitemap uses the CMS modification date for articles", sitemap.includes("post.modified"));
-check("sitemap deduplicates its output", sitemap.includes("seen.has(entry.url)"));
-for (const forbidden of ["/admin", "/api/", "test-wordpress"]) {
-  check(`sitemap excludes ${forbidden}`, !sitemap.includes(`"${forbidden}"`));
+
+// 4. Sitemap: a sitemap index plus grouped child sitemaps, all route handlers.
+const inventory = read("src/lib/sitemap/inventory.ts");
+const sitemapXml = read("src/lib/sitemap/xml.ts");
+
+check(
+  "the metadata-API sitemap was replaced by route handlers",
+  !existsSync(path.join(ROOT, "src/app/sitemap.ts")) &&
+    existsSync(path.join(ROOT, "src/app/sitemap.xml/route.ts")),
+);
+check("the sitemap index renders <sitemapindex>", sitemapXml.includes("<sitemapindex"));
+check("child sitemaps render <urlset>", sitemapXml.includes("<urlset "));
+check("every sitemap references the shared stylesheet", sitemapXml.includes("xml-stylesheet"));
+check("the stylesheet route exists", existsSync(path.join(ROOT, "src/app/sitemap.xsl/route.ts")));
+
+for (const child of ["page", "service", "project", "team", "article"]) {
+  check(
+    `${child}-sitemap.xml route exists`,
+    existsSync(path.join(ROOT, `src/app/${child}-sitemap.xml/route.ts`)),
+  );
 }
+
+check("sitemap URLs are built from the canonical origin", inventory.includes("siteUrl"));
+check(
+  "the inventory does not fabricate modification dates",
+  !/new Date\(\)/.test(inventory) && !/Date\.now\(\)/.test(inventory),
+);
+check("article lastmod comes from the CMS modification date", inventory.includes("article.modified"));
+check("duplicate URLs are rejected centrally", inventory.includes("appears in both"));
+check("empty child sitemaps are never published", inventory.includes("group.urls.length > 0"));
+for (const forbidden of ["/admin", "/api/", "/test-wordpress"]) {
+  check(`sitemap excludes ${forbidden}`, inventory.includes(`"${forbidden}"`));
+}
+check(
+  "sitemap rejects non-canonical hosts, query strings and fragments",
+  inventory.includes('parsed.protocol !== "https:"') && inventory.includes("parsed.search"),
+);
 
 // 5. Redirect table integrity (also covered by the unit tests).
 const redirects = read("src/lib/legacy-redirects.ts");

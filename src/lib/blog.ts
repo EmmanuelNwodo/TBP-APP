@@ -90,6 +90,7 @@ type WPPost = {
   title?: { rendered?: string };
   excerpt?: { rendered?: string };
   content?: { rendered?: string };
+  featured_media?: number;
   yoast_head_json?: {
     title?: string;
     description?: string;
@@ -363,7 +364,9 @@ async function fetchAllPublishedPosts<T extends WPPost>(
  * Throws `CmsUnavailableError` rather than returning an incomplete list.
  */
 export async function getPostIndex(): Promise<BlogPostIndexEntry[]> {
-  const posts = await fetchAllPublishedPosts<WPPost>("id,slug,modified,modified_gmt,date");
+  const posts = await fetchAllPublishedPosts<WPPost>(
+    "id,slug,modified,modified_gmt,date,featured_media",
+  );
 
   return posts.map((post) => {
     const modifiedGmt = post.modified_gmt ? `${post.modified_gmt}Z` : null;
@@ -371,8 +374,76 @@ export async function getPostIndex(): Promise<BlogPostIndexEntry[]> {
       id: post.id,
       slug: normaliseSlug(post.slug),
       modified: modifiedGmt ?? post.modified ?? post.date ?? null,
+      featuredMediaId: post.featured_media && post.featured_media > 0 ? post.featured_media : null,
     };
   });
+}
+
+/**
+ * Resolve WordPress attachment ids to their public URLs.
+ *
+ * Ids are looked up in batches against the media collection requesting only
+ * `id` and `source_url`, which keeps the whole lookup to a few kilobytes -
+ * embedding media in the post request would reintroduce the multi-megabyte
+ * payload the archive was deliberately moved away from.
+ *
+ * Attachments that no longer exist simply do not come back, so the caller gets
+ * a URL only when WordPress genuinely has one.
+ */
+export async function resolveMediaUrls(mediaIds: number[]): Promise<Map<number, string>> {
+  const resolved = new Map<number, string>();
+  const unique = [...new Set(mediaIds.filter((id) => Number.isInteger(id) && id > 0))];
+
+  for (let index = 0; index < unique.length; index += POSTS_PER_INDEX_PAGE) {
+    const batch = unique.slice(index, index + POSTS_PER_INDEX_PAGE);
+
+    const response = await requestWordPress<{ id: number; source_url?: string }[]>("/media", {
+      include: batch.join(","),
+      per_page: batch.length,
+      _fields: "id,source_url",
+    });
+
+    for (const item of Array.isArray(response.data) ? response.data : []) {
+      if (typeof item.source_url === "string" && item.source_url.startsWith("https://")) {
+        resolved.set(item.id, item.source_url);
+      }
+    }
+  }
+
+  return resolved;
+}
+
+/**
+ * The article inventory used to build `article-sitemap.xml`: every published
+ * article with its genuine modification date and, where one exists, a real
+ * public featured-image URL.
+ *
+ * Throws `CmsUnavailableError` if the article collection cannot be read in
+ * full, so a truncated read can never be published as a complete sitemap.
+ * Image resolution is best-effort: if the media lookup fails the articles are
+ * still returned, simply without image data.
+ */
+export async function getArticleSitemapIndex(): Promise<BlogPostIndexEntry[]> {
+  const posts = await getPostIndex();
+
+  const mediaIds = posts
+    .map((post) => post.featuredMediaId)
+    .filter((id): id is number => typeof id === "number" && id > 0);
+
+  if (mediaIds.length === 0) return posts;
+
+  let media: Map<number, string>;
+  try {
+    media = await resolveMediaUrls(mediaIds);
+  } catch (error) {
+    logCmsFailure("could not resolve featured images for the sitemap", error);
+    return posts;
+  }
+
+  return posts.map((post) => ({
+    ...post,
+    imageUrl: post.featuredMediaId ? media.get(post.featuredMediaId) ?? null : null,
+  }));
 }
 
 /** Every published slug. Throws on CMS failure. */

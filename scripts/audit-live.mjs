@@ -35,6 +35,29 @@ function countMatches(html, pattern) {
   return (html.match(pattern) ?? []).length;
 }
 
+/**
+ * /sitemap.xml is a sitemap index, so follow it into each child sitemap and
+ * return the real page URLs. Image locs are skipped: they are media on the CMS
+ * origin, not indexable pages.
+ */
+async function collectSitemapUrls() {
+  const indexBody = await (await fetch(`${BASE}/sitemap.xml`)).text();
+  const children = [...indexBody.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+
+  const urls = [];
+  for (const child of children) {
+    const childPath = child.replace(CANONICAL_ORIGIN, "");
+    const childBody = await (await fetch(BASE + childPath)).text();
+    urls.push(
+      ...[...childBody.matchAll(/<loc>([^<]+)<\/loc>/g)]
+        .map((m) => m[1])
+        .filter((u) => !u.includes("/wp-content/")),
+    );
+  }
+
+  return { children, urls, indexBody };
+}
+
 function firstMatch(html, pattern) {
   const match = pattern.exec(html);
   return match ? match[1] : null;
@@ -59,7 +82,8 @@ async function inspect(path) {
     row.bytes = body.length;
     if (path === "/robots.txt") row.body = body.trim();
     if (path === "/sitemap.xml") {
-      const locs = [...body.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+      const { children, urls: locs } = await collectSitemapUrls();
+      row.childSitemaps = children.length;
       row.sitemapUrls = locs.length;
       row.sitemapUnique = new Set(locs).size;
       row.sitemapDeadHost = locs.filter((u) => u.includes(DEAD_HOST)).length;
@@ -97,8 +121,7 @@ for (const route of ROUTES) {
 // A historic article URL and a live article, resolved from the sitemap.
 let sampleArticle = null;
 try {
-  const sitemapBody = await (await fetch(`${BASE}/sitemap.xml`)).text();
-  const locs = [...sitemapBody.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const { urls: locs } = await collectSitemapUrls();
   const known = new Set([
     "/", "/about", "/services", "/projects", "/reviews", "/team", "/contact",
     "/careers", "/blog", "/locations", "/privacy",
@@ -118,8 +141,7 @@ try {
 console.log(JSON.stringify({ base: BASE, sampleArticle, results }, null, 2));
 
 if (CRAWL_SITEMAP) {
-  const sitemapBody = await (await fetch(`${BASE}/sitemap.xml`)).text();
-  const locs = [...sitemapBody.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const { urls: locs } = await collectSitemapUrls();
   const unique = [...new Set(locs)];
   const statuses = new Map();
   const problems = [];
