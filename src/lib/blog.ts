@@ -2,6 +2,8 @@
 
 import { cache } from "react";
 
+import { decodeHtmlEntities, htmlToPlainText } from "./html-entities.ts";
+
 import type { BlogPost, BlogPostIndexEntry, BlogPostSummary } from "@/types/blog";
 
 /**
@@ -101,12 +103,20 @@ type WPPost = {
   };
 };
 
-/** Remove HTML tags and normalise whitespace. */
+/**
+ * Reduce a rendered WordPress field to the plain text an author typed.
+ *
+ * WordPress returns `title.rendered`, `excerpt.rendered` and the Yoast
+ * fields HTML-encoded, so an ampersand arrives as `&#038;` and a curly
+ * apostrophe as `&#8217;`. Every consumer of these fields renders them as
+ * text - JSX, `<title>`, Open Graph, JSON-LD - and escapes them again, which
+ * is what printed the raw entity on the page. Decoding happens here, at the
+ * single normalisation boundary, so no consumer has to know the field came
+ * from WordPress. Article bodies never pass through this: `mapPost` keeps
+ * `content.rendered` byte-for-byte.
+ */
 function stripHtml(html: string): string {
-  return html
-    .replace(/<[^>]*>/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
+  return htmlToPlainText(html);
 }
 
 /**
@@ -254,7 +264,10 @@ function mapSummary(post: WPPost): BlogPostSummary {
   const featuredMedia = post._embedded?.["wp:featuredmedia"]?.[0];
   const terms = post._embedded?.["wp:term"]?.flat() ?? [];
 
-  const category = terms.find((term) => term?.taxonomy === "category")?.name ?? "Architecture";
+  // Category names are plain text too, and WordPress encodes them the same
+  // way ("Design &amp; Build"), so they are decoded alongside the title.
+  const categoryName = terms.find((term) => term?.taxonomy === "category")?.name;
+  const category = categoryName ? decodeHtmlEntities(categoryName) : "Architecture";
 
   const image =
     featuredMedia?.media_details?.sizes?.large?.source_url ??
@@ -281,8 +294,10 @@ function mapPost(post: WPPost): BlogPost {
     author: "The Building Practice Ltd",
     content: post.content?.rendered ?? "",
     readTime: calculateReadTime(post.content?.rendered),
-    seoTitle: post.yoast_head_json?.title || summary.title,
-    seoDescription: post.yoast_head_json?.description || summary.excerpt,
+    // Yoast keeps its own encoded copies of the title and description.
+    seoTitle: decodeHtmlEntities(post.yoast_head_json?.title ?? "") || summary.title,
+    seoDescription:
+      decodeHtmlEntities(post.yoast_head_json?.description ?? "") || summary.excerpt,
     serviceTags: [],
   };
 }
@@ -307,6 +322,13 @@ function dedupePosts<T extends { id: number; slug: string }>(posts: T[]): T[] {
 
 /** Exported for the regression tests. */
 export const __dedupePostsForTests = dedupePosts;
+
+/**
+ * Exported for the regression tests so the WordPress-to-article mapping can be
+ * exercised without a live CMS.
+ */
+export const __mapSummaryForTests = mapSummary;
+export const __mapPostForTests = mapPost;
 
 /**
  * Walk every page of the published-post collection.
@@ -620,8 +642,11 @@ export async function getRelatedPosts(
     });
 
     const categories = Array.isArray(categoryResponse.data) ? categoryResponse.data : [];
+    // `category` arrives already decoded from `mapSummary`, so the CMS name
+    // is decoded before comparing - otherwise "Design & Build" would never
+    // match the "Design &amp; Build" the API returns.
     const matched = categories.find(
-      (item) => item.name.toLowerCase() === category.toLowerCase(),
+      (item) => decodeHtmlEntities(item.name).toLowerCase() === category.toLowerCase(),
     );
     if (!matched) return [];
 
@@ -662,7 +687,9 @@ export async function getAllCategories(): Promise<string[]> {
     });
 
     const categories = Array.isArray(response.data) ? response.data : [];
-    return categories.filter((category) => category.count > 0).map((category) => category.name);
+    return categories
+      .filter((category) => category.count > 0)
+      .map((category) => decodeHtmlEntities(category.name));
   } catch (error) {
     logCmsFailure("could not load categories", error);
     return [];
