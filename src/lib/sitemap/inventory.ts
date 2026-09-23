@@ -42,6 +42,45 @@ export type SitemapGroup = {
 };
 
 /**
+ * The public identity of every child sitemap, declared once.
+ *
+ * The routes, the index and the empty-group fallback all read these names from
+ * here, so a child sitemap's filename can never disagree with the `<loc>` the
+ * index advertises for it.
+ */
+export const SITEMAP_GROUP_META: Readonly<
+  Record<SitemapGroupId, { file: string; title: string }>
+> = {
+  page: { file: "page-sitemap.xml", title: "Pages" },
+  service: { file: "service-sitemap.xml", title: "Services" },
+  project: { file: "project-sitemap.xml", title: "Projects" },
+  team: { file: "team-sitemap.xml", title: "Team" },
+  article: { file: "article-sitemap.xml", title: "Articles" },
+};
+
+/** Every child sitemap id, in the order the index lists them. */
+export const SITEMAP_GROUP_IDS: readonly SitemapGroupId[] = [
+  "page",
+  "service",
+  "project",
+  "team",
+  "article",
+];
+
+/**
+ * A structurally valid group carrying no URLs.
+ *
+ * A sitemap route must always be able to answer with well-formed XML. Where a
+ * group cannot be built - the CMS is unreachable, or a collection is somehow
+ * empty - the route renders this instead of falling back to the application's
+ * HTML 404 page, which is not XML and is exactly what a crawler reports as an
+ * unreadable sitemap.
+ */
+export function emptyGroup(id: SitemapGroupId): SitemapGroup {
+  return { id, ...SITEMAP_GROUP_META[id], urls: [] };
+}
+
+/**
  * Blog pagination (`/blog/page/2` …) is reachable through crawlable links from
  * `/blog` and is indexable, but it is deliberately **not** listed in the XML
  * sitemap, because the audited production inventory does not contain it and
@@ -185,38 +224,33 @@ export function buildSitemapGroups(input: SitemapInput): SitemapGroup[] {
   const groups: SitemapGroup[] = [
     {
       id: "page",
-      file: "page-sitemap.xml",
-      title: "Pages",
+      ...SITEMAP_GROUP_META.page,
       urls: pageUrls,
     },
     {
       id: "service",
-      file: "service-sitemap.xml",
-      title: "Services",
+      ...SITEMAP_GROUP_META.service,
       urls: input.services.map((service) =>
         url(siteUrl, `/services/${service.slug}`, { priority: 0.6, changeFrequency: "monthly" }),
       ),
     },
     {
       id: "project",
-      file: "project-sitemap.xml",
-      title: "Projects",
+      ...SITEMAP_GROUP_META.project,
       urls: input.projects.map((project) =>
         url(siteUrl, `/projects/${project.slug}`, { priority: 0.6, changeFrequency: "monthly" }),
       ),
     },
     {
       id: "team",
-      file: "team-sitemap.xml",
-      title: "Team",
+      ...SITEMAP_GROUP_META.team,
       urls: input.team.map((member) =>
         url(siteUrl, `/team/${member.id}`, { priority: 0.5, changeFrequency: "monthly" }),
       ),
     },
     {
       id: "article",
-      file: "article-sitemap.xml",
-      title: "Articles",
+      ...SITEMAP_GROUP_META.article,
       // An article whose slug collides with an application route is dropped:
       // that URL renders the application page, so advertising it as an article
       // would publish a URL the sitemap cannot honour.

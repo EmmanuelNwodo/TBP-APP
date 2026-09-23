@@ -7,8 +7,9 @@ import { SITE_URL } from "@/lib/seo";
  *
  * Generated per request for the same reason the previous implementation was:
  * building it during `next build` made deployments depend on the CMS, and a
- * partial read produced a file that looked complete. A CMS failure throws here
- * and surfaces as an error the crawler retries.
+ * partial read produced a file that looked complete. A CMS failure no longer
+ * propagates out of here - the index still lists every child, so the crawler
+ * keeps its record of them and retries the one that is temporarily down.
  */
 export const dynamic = "force-dynamic";
 

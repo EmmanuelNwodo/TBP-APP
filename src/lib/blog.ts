@@ -46,6 +46,16 @@ const REVALIDATE_SECONDS = 300;
 
 const POSTS_PER_INDEX_PAGE = 100;
 
+/**
+ * How long the article sitemap will wait for featured-image URLs before
+ * publishing without them. The image data is optional and the article list is
+ * not, so the wait is capped - but generously enough that normal operation
+ * never trips it and the published sitemap does not gain and lose its image
+ * entries from one request to the next. Production serves the whole article
+ * sitemap in about a second; this is several times that.
+ */
+const MEDIA_BUDGET_MS = 5_000;
+
 function getApiBaseUrl(): string {
   const configured = process.env.WORDPRESS_API_URL?.trim();
   if (!configured) {
@@ -132,6 +142,34 @@ function calculateReadTime(contentHtml: string | undefined): string {
 /** Lowercase and trim a slug so duplicate casing cannot produce duplicate URLs. */
 export function normaliseSlug(slug: string): string {
   return slug.trim().toLowerCase().replace(/^\/+|\/+$/g, "");
+}
+
+/**
+ * Run a promise against a wall-clock budget.
+ *
+ * Used where CMS data is *optional* to the caller: the sitemap index wants an
+ * article modification date and the article sitemap wants featured images, and
+ * neither is worth holding a crawler's connection open for. The underlying
+ * request is left running so it still populates the fetch cache for the next
+ * caller; only the waiting stops.
+ */
+export async function withTimeBudget<T>(
+  work: Promise<T>,
+  budgetMs: number,
+): Promise<{ ok: true; value: T } | { ok: false; reason: "timeout" | "error"; error?: unknown }> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const expired = new Promise<"timeout">((resolve) => {
+    timer = setTimeout(() => resolve("timeout"), budgetMs);
+  });
+
+  try {
+    const outcome = await Promise.race([work.then((value) => ({ value }), (error) => ({ error })), expired]);
+    if (outcome === "timeout") return { ok: false, reason: "timeout" };
+    if ("error" in outcome) return { ok: false, reason: "error", error: outcome.error };
+    return { ok: true, value: outcome.value };
+  } finally {
+    if (timer) clearTimeout(timer);
+  }
 }
 
 function delay(ms: number): Promise<void> {
@@ -454,13 +492,21 @@ export async function getArticleSitemapIndex(): Promise<BlogPostIndexEntry[]> {
 
   if (mediaIds.length === 0) return posts;
 
-  let media: Map<number, string>;
-  try {
-    media = await resolveMediaUrls(mediaIds);
-  } catch (error) {
-    logCmsFailure("could not resolve featured images for the sitemap", error);
+  // Featured images are optional decoration on a sitemap entry, and resolving
+  // them has been measured at roughly a third of this function's total cost.
+  // They are therefore given a budget of their own: if the media endpoint is
+  // slow or down, the article list still ships on time, simply without images.
+  const resolved = await withTimeBudget(resolveMediaUrls(mediaIds), MEDIA_BUDGET_MS);
+
+  if (!resolved.ok) {
+    logCmsFailure(
+      "could not resolve featured images for the sitemap (" + resolved.reason + ")",
+      resolved.error,
+    );
     return posts;
   }
+
+  const media = resolved.value;
 
   return posts.map((post) => ({
     ...post,
