@@ -163,10 +163,25 @@ test("excluded and non-canonical URLs never validate", () => {
   }
 });
 
+test("sitemap locations use slashless canonical paths and exclude redirect sources", () => {
+  assert.equal(isCanonicalLoc(`${SITE}/`, SITE), true, "the homepage keeps its root slash");
+
+  for (const bad of [
+    `${SITE}/contact/`,
+    `${SITE}/top-richest-construction-companies-in-nigeria/`,
+    `${SITE}/contact-us`,
+    `${SITE}/blog/old-article`,
+  ]) {
+    assert.equal(isCanonicalLoc(bad, SITE), false, `${bad} must not appear as a sitemap location`);
+  }
+});
+
 test("no group contains an excluded, redirected or non-canonical URL", () => {
   const urls = allUrls(groups());
   for (const loc of urls) {
     assert.ok(loc.startsWith(`${SITE}/`) || loc === `${SITE}/`, `${loc} must use the canonical origin`);
+    const pathname = new URL(loc).pathname;
+    assert.ok(pathname === "/" || !pathname.endsWith("/"), `${loc} must use the slashless path format`);
     assert.ok(!loc.includes("thebuildingpractice.com"));
     assert.ok(!loc.includes("blog.buildingpractice.biz"));
     assert.ok(!loc.includes("?") && !loc.includes("#"));

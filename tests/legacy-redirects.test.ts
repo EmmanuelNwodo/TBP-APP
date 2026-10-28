@@ -19,8 +19,14 @@ test("the pagination path is never treated as an article slug", () => {
 test("the required minimum mappings all resolve", () => {
   assert.equal(resolveLegacyPath("/about-us"), "/about");
   assert.equal(resolveLegacyPath("/contact-us"), "/contact");
+  assert.equal(resolveLegacyPath("/contact-us/"), "/contact");
   assert.equal(resolveLegacyPath("/our-services"), "/services");
   assert.equal(resolveLegacyPath("/news"), "/blog");
+
+  assert.deepEqual(
+    LEGACY_REDIRECTS.find((entry) => entry.source === "/contact-us"),
+    { source: "/contact-us", destination: "/contact" },
+  );
 });
 
 test("trailing slashes resolve to the same destination", () => {

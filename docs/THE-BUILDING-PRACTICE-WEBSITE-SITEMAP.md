@@ -6,6 +6,11 @@ This document is the human-readable map of the **current Next.js frontend**. It
 records every public route, the H1 each route renders, its canonical URL, the
 data source behind it, its indexability and the child sitemap it belongs to.
 
+Non-homepage canonical URLs use slashless paths. The homepage remains the site
+root (`https://www.buildingpractice.biz/`). Sitemap validation rejects
+trailing-slash paths and known legacy redirect sources so child sitemaps only
+advertise final URLs.
+
 It describes the live Next.js application only. It is not a map of the former
 WordPress frontend, which is now a headless content source.
 

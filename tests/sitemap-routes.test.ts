@@ -30,7 +30,7 @@ process.env.WORDPRESS_API_URL = "https://cms.test.invalid/wp-json/wp/v2";
 
 const realFetch = globalThis.fetch;
 
-/** Two published posts, in the shape `getPostIndex` asks WordPress for. */
+/** Published posts, in the shape `getPostIndex` asks WordPress for. */
 const WP_POSTS = [
   {
     id: 1,
@@ -46,6 +46,30 @@ const WP_POSTS = [
     date: "2026-04-01T10:00:00",
     modified: "2026-04-02T10:00:00",
     modified_gmt: "2026-04-02T09:00:00",
+    featured_media: 0,
+  },
+  {
+    id: 3,
+    slug: "top-richest-construction-companies-in-nigeria",
+    date: "2026-03-01T10:00:00",
+    modified: "2026-03-02T10:00:00",
+    modified_gmt: "2026-03-02T09:00:00",
+    featured_media: 0,
+  },
+  {
+    id: 4,
+    slug: "high-rise-architecture-services-nigeria",
+    date: "2026-02-01T10:00:00",
+    modified: "2026-02-02T10:00:00",
+    modified_gmt: "2026-02-02T09:00:00",
+    featured_media: 0,
+  },
+  {
+    id: 5,
+    slug: "what-is-setting-out-in-building-construction",
+    date: "2026-01-01T10:00:00",
+    modified: "2026-01-02T10:00:00",
+    modified_gmt: "2026-01-02T09:00:00",
     featured_media: 0,
   },
 ];
@@ -157,6 +181,7 @@ function assertCanonicalLocs(locs: string[]): void {
     assert.equal(url.origin, SITE, `${loc} is not on the canonical origin`);
     assert.equal(url.search, "", `${loc} carries a query string`);
     assert.equal(url.hash, "", `${loc} carries a fragment`);
+    assert.ok(url.pathname === "/" || !url.pathname.endsWith("/"), `${loc} is not slashless`);
   }
 }
 

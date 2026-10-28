@@ -7,6 +7,7 @@ import { buildServiceMigrationRedirects, LEGACY_REDIRECTS } from "./src/lib/lega
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
+  skipTrailingSlashRedirect: true,
 
   images: {
     remotePatterns: [
@@ -27,12 +28,24 @@ const nextConfig: NextConfig = {
    * link-normalisation pipeline so in-body links and HTTP redirects can never
    * disagree.
    *
-   * Trailing-slash variants are handled by the project's global convention
-   * (`trailingSlash` is left at its default `false`), so `/about-us/` is first
-   * normalised to `/about-us` by Next.js and then redirected here.
+   * The trailing-slash redirect is declared explicitly below so the contact
+   * legacy URL can redirect straight to its canonical destination first.
    */
   async redirects() {
     return [
+      // This legacy URL must win before the general trailing-slash rule below.
+      {
+        source: "/contact-us/",
+        destination: "/contact",
+        permanent: true,
+      },
+      // Preserve Next.js's default slashless URL policy after the contact
+      // exception above.
+      {
+        source: "/:path+/",
+        destination: "/:path+",
+        permanent: true,
+      },
       // `/blog/page` on its own is not an article; send it to the archive
       // before the generic `/blog/:slug` article rule can claim it.
       {
