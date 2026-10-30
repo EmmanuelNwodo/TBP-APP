@@ -1,5 +1,3 @@
-import { resolveLegacyPath } from "../legacy-redirects.ts";
-
 /**
  * Central sitemap inventory.
  *
@@ -195,8 +193,6 @@ export function isCanonicalLoc(loc: string, siteUrl: string): boolean {
   if (parsed.protocol !== "https:") return false;
   if (parsed.origin !== new URL(siteUrl).origin) return false;
   if (parsed.search !== "" || parsed.hash !== "") return false;
-  if (parsed.pathname !== "/" && parsed.pathname.endsWith("/")) return false;
-  if (resolveLegacyPath(parsed.pathname) !== null) return false;
   return !isExcluded(parsed.pathname);
 }
 

@@ -109,6 +109,13 @@ export function BlogGrid({
         )}
       </p>
 
+      {filtered.length === 0 ? (
+        <div className={styles.emptyState} role="status">
+          <i className="bx bx-news" aria-hidden="true" />
+          <h2>No articles available yet</h2>
+          <p>Please check back soon for our latest architecture and construction insights.</p>
+        </div>
+      ) : (
       <div className={styles.grid}>
         {filtered.map((post) => (
           <article key={post.slug} className={styles.card}>
@@ -133,6 +140,7 @@ export function BlogGrid({
           </article>
         ))}
       </div>
+      )}
 
       {totalPages > 1 && (
         <nav className={styles.pagination} aria-label="Blog pagination">
