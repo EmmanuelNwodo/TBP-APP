@@ -17,18 +17,18 @@ export function Hero() {
       <div className={styles.heroOverlay} />
 
       <div className={styles.heroContainer}>
-        <div className={styles.heroContent} />
-      </div>
-
-      <div className={styles.heroImageCaption}>
-        <h1>An Architectural Firm in Nigeria for Thoughtful, Enduring Design</h1>
-        <p>
-          Based in Lagos, we design residential, commercial, and civic projects across Nigeria with a clear focus on
-          climate, context, and long-term performance.
-        </p>
-        <div className={styles.heroImageLinks}>
-          <Link href="/projects">View Our Completed Projects</Link>
-          <Link href="/contact">Discuss Your Project</Link>
+        <div className={styles.heroContent}>
+          <span className={styles.eyebrow}>Architecture · Interiors · Lagos, Nigeria</span>
+          <h1>Spaces that feel like somewhere.</h1>
+          <p>Thoughtful design, made for the way we live.</p>
+          <div className={styles.heroImageLinks}>
+            <Link href="/projects" className={styles.primaryLink}>
+              Explore our work <i className="bx bx-right-arrow-alt" aria-hidden="true" />
+            </Link>
+            <Link href="/contact" className={styles.secondaryLink}>
+              Start a project
+            </Link>
+          </div>
         </div>
       </div>
 

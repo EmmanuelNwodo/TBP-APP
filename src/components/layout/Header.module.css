@@ -4,16 +4,17 @@
   left: 0;
   right: 0;
   height: 70px;
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--border-primary);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
   z-index: 1000;
   transition: all var(--duration-normal) var(--ease-out);
 }
 
-:global([data-theme="dark"]) .header {
-  background: rgba(10, 10, 10, 0.85);
+:global([data-theme="dark"]) .homeHeader {
+  background: rgba(10, 10, 10, 0.97);
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 
 .header.scrolled {
@@ -75,8 +76,9 @@
   padding: var(--space-2) var(--space-3);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--text-secondary);
+  color: #172033;
   border-radius: var(--radius-md);
+  font-weight: 700;
   transition: all var(--duration-fast) var(--ease-out);
   position: relative;
 }
@@ -106,6 +108,19 @@
 .navLink.active {
   color: var(--primary);
   background: rgba(26, 95, 122, 0.08);
+}
+
+:global([data-theme="dark"]) .homeHeader .navLink {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+:global([data-theme="dark"]) .homeHeader .navLink:hover,
+:global([data-theme="dark"]) .homeHeader .navLink.active {
+  color: #78c1d4;
+}
+
+:global([data-theme="dark"]) .homeHeader .navToggle span {
+  background: #ffffff;
 }
 
 .navActions {
@@ -145,7 +160,7 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-@media (max-width: 968px) {
+@media (max-width: 760px) {
   .navMenu {
     position: fixed;
     top: 70px;
