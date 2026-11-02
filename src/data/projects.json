@@ -1051,9 +1051,14 @@
       }
     ],
     "images": {
-      "main": "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg",
+      "main": "/images/projects/NOUN4.png",
       "gallery": [
-        "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg"
+        "/images/projects/NOUN4.png",
+        "/images/projects/NOUN5.png",
+        "/images/projects/NOUNZONAL.png",
+        "/images/projects/noun1.png",
+        "/images/projects/noun2.png",
+        "/images/projects/noiun3.png"
       ]
     },
     "slug": "noun-model-study-centre-master-plan-abuja"
@@ -1176,9 +1181,13 @@
       }
     ],
     "images": {
-      "main": "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg",
+      "main": "/images/projects/NOUN4.png",
       "gallery": [
-        "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg"
+        "/images/projects/NOUN4.png",
+        "/images/projects/NOUN5.png",
+        "/images/projects/noun1.png",
+        "/images/projects/noun2.png",
+        "/images/projects/noiun3.png"
       ]
     },
     "slug": "noun-laboratory-building-abeokuta-study-centre"
@@ -1234,9 +1243,9 @@
       }
     ],
     "images": {
-      "main": "/images/projects/24 AWOLOWO ROAD/24 AWOLOWO RD 1A copy.jpg",
+      "main": "/images/projects/akpataHouse.png",
       "gallery": [
-        "/images/projects/24 AWOLOWO ROAD/24 AWOLOWO RD 1A copy.jpg"
+        "/images/projects/akpataHouse.png"
       ]
     },
     "slug": "akpata-house-benin-city-edo-state"
@@ -1292,9 +1301,11 @@
       }
     ],
     "images": {
-      "main": "/images/projects/PROMASIDOR/promasidor1.jpg",
+      "main": "/images/projects/IHS.png",
       "gallery": [
-        "/images/projects/PROMASIDOR/promasidor1.jpg"
+        "/images/projects/IHS.png",
+        "/images/projects/IHS2.png",
+        "/images/projects/IHS3.png"
       ]
     },
     "slug": "ihs-office-lagos"
@@ -1350,9 +1361,11 @@
       }
     ],
     "images": {
-      "main": "/images/projects/24 AWOLOWO ROAD/24 AWOLOWO RD 1A copy.jpg",
+      "main": "/images/projects/IHS.png",
       "gallery": [
-        "/images/projects/24 AWOLOWO ROAD/24 AWOLOWO RD 1A copy.jpg"
+        "/images/projects/IHS.png",
+        "/images/projects/IHS2.png",
+        "/images/projects/IHS3.png"
       ]
     },
     "slug": "ihs-warehouse-kaduna"
@@ -1702,9 +1715,13 @@
       }
     ],
     "images": {
-      "main": "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg",
+      "main": "/images/projects/NOUN4.png",
       "gallery": [
-        "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg"
+        "/images/projects/NOUN4.png",
+        "/images/projects/NOUN5.png",
+        "/images/projects/noun1.png",
+        "/images/projects/noun2.png",
+        "/images/projects/noiun3.png"
       ]
     },
     "slug": "noun-ikorodu-study-centre"
@@ -1876,9 +1893,10 @@
       }
     ],
     "images": {
-      "main": "/images/projects/PROMASIDOR/promasidor1.jpg",
+      "main": "/images/projects/OCULUS.png",
       "gallery": [
-        "/images/projects/PROMASIDOR/promasidor1.jpg"
+        "/images/projects/OCULUS.png",
+        "/images/projects/OCULUS2.png"
       ]
     },
     "slug": "the-oculus-grande"
@@ -1997,9 +2015,15 @@
       }
     ],
     "images": {
-      "main": "/images/projects/27 GLOVER/PANTHEON.jpg",
+      "main": "/images/projects/LFZ arc .png",
       "gallery": [
-        "/images/projects/27 GLOVER/PANTHEON.jpg"
+        "/images/projects/LFZ arc .png",
+        "/images/projects/LFZ arc2.png",
+        "/images/projects/LFZ3.png",
+        "/images/projects/lfzm.png",
+        "/images/projects/lfzm2.png",
+        "/images/projects/lfzm3.png",
+        "/images/projects/lfzm4.png"
       ]
     },
     "slug": "lekki-free-zone-welcome-centre-and-entrance-arch"
@@ -2055,9 +2079,11 @@
       }
     ],
     "images": {
-      "main": "/images/projects/PROMASIDOR/promasidor1.jpg",
+      "main": "/images/projects/LFZ%20arc%20.png",
       "gallery": [
-        "/images/projects/PROMASIDOR/promasidor1.jpg"
+        "/images/projects/LFZ%20arc%20.png",
+        "/images/projects/LFZ%20arc2.png",
+        "/images/projects/LFZ3.png"
       ]
     },
     "slug": "lekki-free-zone-cpc-building"
@@ -2113,9 +2139,10 @@
       }
     ],
     "images": {
-      "main": "/images/projects/24 AWOLOWO ROAD/24 AWOLOWO RD 1A copy.jpg",
+      "main": "/images/projects/ireletower.png",
       "gallery": [
-        "/images/projects/24 AWOLOWO ROAD/24 AWOLOWO RD 1A copy.jpg"
+        "/images/projects/ireletower.png",
+        "/images/projects/irele2.png"
       ]
     },
     "slug": "lekki-free-zone-irele-tower-reception"
@@ -2407,9 +2434,13 @@
       }
     ],
     "images": {
-      "main": "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg",
+      "main": "/images/projects/NOUN4.png",
       "gallery": [
-        "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg"
+        "/images/projects/NOUN4.png",
+        "/images/projects/NOUN5.png",
+        "/images/projects/noun1.png",
+        "/images/projects/noun2.png",
+        "/images/projects/noiun3.png"
       ]
     },
     "slug": "noun-laboratory-building-ikorodu-study-centre"
@@ -2465,9 +2496,13 @@
       }
     ],
     "images": {
-      "main": "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg",
+      "main": "/images/projects/NOUN4.png",
       "gallery": [
-        "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg"
+        "/images/projects/NOUN4.png",
+        "/images/projects/NOUN5.png",
+        "/images/projects/noun1.png",
+        "/images/projects/noun2.png",
+        "/images/projects/noiun3.png"
       ]
     },
     "slug": "noun-badagry-study-centre"
@@ -2523,11 +2558,10 @@
       }
     ],
     "images": {
-      "main": "/images/projects/BARNAWA HOTEL/NIGHT VIEW.jpg",
+      "main": "/images/projects/BARNAWA.png",
       "gallery": [
-        "/images/projects/BARNAWA HOTEL/NIGHT VIEW.jpg",
-        "/images/projects/BARNAWA HOTEL/1A copy.jpg",
-        "/images/projects/BARNAWA HOTEL/2A copy.jpg"
+        "/images/projects/BARNAWA.png",
+        "/images/projects/BARNAWA2.png"
       ]
     },
     "slug": "120-bed-hotel-development-barnawa-kaduna-state"
@@ -2702,9 +2736,14 @@
       }
     ],
     "images": {
-      "main": "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg",
+      "main": "/images/projects/NOUN4.png",
       "gallery": [
-        "/images/projects/FUPRE LIBRARY/FUPRE LIBRARY 1.jpg"
+        "/images/projects/NOUN4.png",
+        "/images/projects/NOUN5.png",
+        "/images/projects/NOUNZONAL.png",
+        "/images/projects/noun1.png",
+        "/images/projects/noun2.png",
+        "/images/projects/noiun3.png"
       ]
     },
     "slug": "noun-zonal-offices-abuja-ibadan-uyo-kaduna-bauchi-and-enugu"
@@ -2876,13 +2915,10 @@
       }
     ],
     "images": {
-      "main": "/images/projects/SHAMBALLA FZE/SHAMBALLA.jpg",
+      "main": "/images/projects/shambal.png",
       "gallery": [
-        "/images/projects/SHAMBALLA FZE/SHAMBALLA.jpg",
-        "/images/projects/SHAMBALLA FZE/SHAMBALLA01.jpg",
-        "/images/projects/SHAMBALLA FZE/SHAMBALLA2.jpg",
-        "/images/projects/SHAMBALLA FZE/SHAMBALLA3.jpg",
-        "/images/projects/SHAMBALLA FZE/SHAMBALLA4.jpg"
+        "/images/projects/shambal.png",
+        "/images/projects/shambala.png"
       ]
     },
     "slug": "shamballa-park-commercial-development-alaro-city-lagos"
@@ -3173,9 +3209,9 @@
       }
     ],
     "images": {
-      "main": "/images/projects/27 GLOVER/PANTHEON.jpg",
+      "main": "/images/projects/spine.png",
       "gallery": [
-        "/images/projects/27 GLOVER/PANTHEON.jpg"
+        "/images/projects/spine.png"
       ]
     },
     "slug": "the-spine-mixed-use-development-oniru-lagos"
@@ -3406,13 +3442,14 @@
       }
     ],
     "images": {
-      "main": "/images/projects/NOUN FACULTY OF ARTS/NOUNFOA.jpg",
+      "main": "/images/projects/NOUN4.png",
       "gallery": [
-        "/images/projects/NOUN FACULTY OF ARTS/NOUNFOA.jpg",
-        "/images/projects/NOUN FACULTY OF ARTS/NOUNFOA2.jpg",
-        "/images/projects/NOUN FACULTY OF ARTS/NOUNFOA2 (2).jpg",
-        "/images/projects/NOUN FACULTY OF ARTS/NOUNFOA3.jpg",
-        "/images/projects/NOUN FACULTY OF ARTS/NOUNFOA4.jpg"
+        "/images/projects/NOUN4.png",
+        "/images/projects/NOUN5.png",
+        "/images/projects/NOUNZONAL.png",
+        "/images/projects/noun1.png",
+        "/images/projects/noun2.png",
+        "/images/projects/noiun3.png"
       ]
     },
     "slug": "faculty-of-arts-national-open-university-of-nigeria-noun-abuja"
@@ -3706,5 +3743,54 @@
       ]
     },
     "slug": "residential-development-cameron-road-ikoyi-lagos"
+  },
+  {
+    "id": 64,
+    "title": "Ekwereazu Villa",
+    "slug": "ekwerazu-villa",
+    "category": "residential",
+    "categoryLabel": "Residential",
+    "categoryIcon": "bx-home-heart",
+    "location": "Nigeria",
+    "shortDescription": "Residential villa design by The Building Practice.",
+    "description": "Ekwereazu Villa is part of TBP's residential portfolio, presented through architectural exterior and interior visualisations.",
+    "description2": "The project showcases contemporary residential design, spatial planning and material expression.",
+    "features": [
+      "Residential",
+      "Architecture",
+      "Exterior Design",
+      "Portfolio Project"
+    ],
+    "details": [
+      {
+        "icon": "bx-category",
+        "label": "Category",
+        "value": "Residential"
+      },
+      {
+        "icon": "bx-check-circle",
+        "label": "Status",
+        "value": "Portfolio"
+      }
+    ],
+    "meta": [
+      {
+        "icon": "bx-category",
+        "text": "Residential"
+      }
+    ],
+    "images": {
+      "main": "/images/projects/EKWERAZU VILLA/ekwere.jpg",
+      "gallery": [
+        "/images/projects/EKWERAZU VILLA/ekwere.jpg",
+        "/images/projects/EKWERAZU VILLA/ekwere2.jpg",
+        "/images/projects/EKWERAZU VILLA/ekwere3.jpg",
+        "/images/projects/EKWEREAZU.png",
+        "/images/projects/EKWEREAZU2.png",
+        "/images/projects/EKWEREAZU3.png",
+        "/images/projects/EKWEREAZU4.png",
+        "/images/projects/EKWEREAZU5.png"
+      ]
+    }
   }
 ]

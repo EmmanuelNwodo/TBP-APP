@@ -28,6 +28,28 @@
   color: var(--primary);
 }
 
+.emptyState {
+  padding: var(--space-16) var(--space-5);
+  text-align: center;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-xl);
+  background: var(--bg-secondary);
+}
+
+.emptyState i {
+  font-size: 40px;
+  color: var(--primary);
+}
+
+.emptyState h2 {
+  margin: var(--space-3) 0 var(--space-2);
+  font-size: var(--text-2xl);
+}
+
+.emptyState p {
+  color: var(--text-secondary);
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

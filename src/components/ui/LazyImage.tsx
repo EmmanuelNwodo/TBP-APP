@@ -25,6 +25,7 @@ type LazyImageProps = {
   priority?: boolean;
   className?: string;
   objectFit?: CSSProperties["objectFit"];
+  unoptimized?: boolean;
 };
 
 /**
@@ -42,6 +43,7 @@ export function LazyImage({
   priority,
   className,
   objectFit = "cover",
+  unoptimized = false,
 }: LazyImageProps) {
   const [loaded, setLoaded] = useState(false);
   const showSkeleton = !loaded && !priority;
@@ -60,6 +62,7 @@ export function LazyImage({
         height={!fill ? height : undefined}
         sizes={sizes}
         priority={priority}
+        unoptimized={unoptimized}
         onLoad={() => setLoaded(true)}
         style={fluid ? { objectFit, width: "100%", height: "auto" } : { objectFit }}
         className={`${styles.image} ${loaded || priority ? styles.imageLoaded : styles.imageLoading}`}

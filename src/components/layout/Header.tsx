@@ -14,7 +14,7 @@ export function Header() {
   const mobileNav = useMobileNav();
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+    <header className={`${styles.header} ${pathname === "/" ? styles.homeHeader : ""} ${scrolled ? styles.scrolled : ""}`}>
       <div className="container">
         <nav className={styles.nav}>
           <Link href="/" className={styles.navBrand}>
