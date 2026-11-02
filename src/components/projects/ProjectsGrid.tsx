@@ -14,10 +14,7 @@ const ALBUM_SLIDES = [
   { category: "Commercial", image: image("shambala.png"), effect: "slideLeft", slug: "shamballa-park-commercial-development-alaro-city-lagos" },
   { category: "Commercial", image: image("SEPLAST3.png"), effect: "slideRight" },
   { category: "Residential", image: image("TOWER6.png"), effect: "bookTurn" },
-  { category: "Residential", image: image("TOWER13.png"), effect: "zoomOut" },
-  { category: "Residential", image: image("TOWER14.png"), effect: "reåveal" },
   { category: "Institutional", image: image("LFZ mosque.png"), effect: "blur" },
-  { category: "Institutional", image: image("lfzm2.png"), effect: "pan" },
 ];
 
 const EFFECT_CLASSES = {
@@ -69,7 +66,7 @@ export function ProjectsGrid({ projects, variant = "album" }: { projects: Projec
           <div className="container">
             <span className={styles.portfolioEyebrow}>Selected work</span>
             <h1>Our Projects</h1>
-            <p>Architecture across residential, commercial, hospitality, institutional, and mixed-use sectors.</p>
+            <p>{projects.length} documented projects across residential, commercial, hospitality, institutional, industrial, and mixed-use sectors.</p>
           </div>
         </header>
         <div className={styles.portfolioToolbar}>
