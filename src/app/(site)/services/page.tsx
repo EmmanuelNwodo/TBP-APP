@@ -26,7 +26,6 @@ const HERO_SLIDES = [
   { src: "/images/services/projectManagement.jpg", alt: "Project Management" },
   { src: "/images/services/urbanDev.jpg", alt: "Urban Development" },
   { src: "/images/services/constructionServices.jpg", alt: "Construction Management" },
-  { src: "/images/services/3dVisualization.jpg", alt: "3D Visualization" },
   { src: "/images/services/greenBuildingAdvisory.jpg", alt: "Green Building Advisory" },
 ];
 
@@ -58,7 +57,7 @@ export default function ServicesPage() {
           </p>
           <div className={styles.heroStats}>
             {[
-              { n: "25+", l: "Services" },
+              { n: "16", l: "Services" },
               { n: "350+", l: "Projects" },
               { n: "13+", l: "Years" },
               { n: "98%", l: "Satisfaction" },

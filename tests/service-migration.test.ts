@@ -5,6 +5,9 @@ import path from "node:path";
 
 import {
   buildServiceMigrationRedirects,
+  DISCONTINUED_SERVICE_PATHS,
+  DISCONTINUED_SERVICE_REDIRECTS,
+  isDiscontinuedServicePath,
   LEGACY_REDIRECTS,
   resolveLegacyPath,
 } from "../src/lib/legacy-redirects.ts";
@@ -50,19 +53,19 @@ const serviceRedirects = buildServiceMigrationRedirects(services);
 
 // --- Inventory --------------------------------------------------------------
 
-test("exactly 23 genuine service pages exist", () => {
-  assert.equal(services.length, 23);
+test("exactly 16 genuine service pages exist", () => {
+  assert.equal(services.length, 16);
 });
 
 test("every service has one unique final slug", () => {
   const slugs = services.map((s) => s.slug);
-  assert.equal(new Set(slugs).size, 23);
+  assert.equal(new Set(slugs).size, 16);
   for (const slug of slugs) assert.match(slug, /^[a-z0-9-]+$/);
 });
 
 test("every retired slug is unique and distinct from its final slug", () => {
   const legacy = services.map((s) => s.legacySlug);
-  assert.equal(new Set(legacy).size, 23);
+  assert.equal(new Set(legacy).size, 16);
   for (const service of services) assert.notEqual(service.slug, service.legacySlug);
 });
 
@@ -114,13 +117,13 @@ test("no location other than Nigeria is introduced into an H1", () => {
 
 test("every metadata title is unique and equals the H1", () => {
   const titles = services.map((s) => s.seoTitle);
-  assert.equal(new Set(titles).size, 23);
+  assert.equal(new Set(titles).size, 16);
   for (const service of services) assert.equal(service.seoTitle, service.h1);
 });
 
 test("every meta description is present, specific and unique", () => {
   const descriptions = services.map((s) => s.seoDescription);
-  assert.equal(new Set(descriptions).size, 23, "descriptions must not be duplicated");
+  assert.equal(new Set(descriptions).size, 16, "descriptions must not be duplicated");
   for (const service of services) {
     assert.ok(service.seoDescription.length > 80, service.slug);
     assert.ok(service.seoDescription.length < 320, `${service.slug} description too long`);
@@ -162,7 +165,7 @@ test("every service has documented schema service types", () => {
 
 test("hero image alt text is specific and never duplicated", () => {
   const alts = services.map((s) => s.heroImageAlt);
-  assert.equal(new Set(alts).size, 23);
+  assert.equal(new Set(alts).size, 16);
   for (const service of services) {
     assert.ok(service.heroImageAlt.includes(service.serviceName));
     assert.ok(!/leading .* firm/i.test(service.heroImageAlt), "alt text must not be keyword-stuffed");
@@ -172,7 +175,7 @@ test("hero image alt text is specific and never duplicated", () => {
 // --- Redirects --------------------------------------------------------------
 
 test("every retired service URL has a redirect to its final URL", () => {
-  assert.equal(serviceRedirects.length, 23);
+  assert.equal(serviceRedirects.length, 16);
   for (const service of services) {
     const entry = serviceRedirects.find((r) => r.source === `/services/${service.legacySlug}`);
     assert.ok(entry, `no redirect for /services/${service.legacySlug}`);
@@ -181,7 +184,7 @@ test("every retired service URL has a redirect to its final URL", () => {
 });
 
 test("no service redirect chains or loops", () => {
-  const all = [...serviceRedirects, ...LEGACY_REDIRECTS];
+  const all = [...serviceRedirects, ...LEGACY_REDIRECTS, ...DISCONTINUED_SERVICE_REDIRECTS];
   const sources = new Set(all.map((r) => r.source));
   for (const entry of all) {
     assert.notEqual(entry.source, entry.destination, `loop: ${entry.source}`);
@@ -238,12 +241,12 @@ function groups() {
   });
 }
 
-test("service-sitemap contains exactly the 23 final service URLs", () => {
+test("service-sitemap contains exactly the 16 final service URLs", () => {
   const group = groups().find((g) => g.id === "service");
   assert.ok(group);
   const locs = group.urls.map((u) => u.loc);
-  assert.equal(locs.length, 23);
-  assert.equal(new Set(locs).size, 23);
+  assert.equal(locs.length, 16);
+  assert.equal(new Set(locs).size, 16);
   for (const service of services) {
     assert.ok(locs.includes(`${SITE}/services/${service.slug}`), service.slug);
   }
@@ -263,10 +266,10 @@ test("no retired or redirecting service URL appears in any sitemap", () => {
   for (const loc of all) assert.ok(!redirectSources.has(loc), `redirect source in sitemap: ${loc}`);
 });
 
-test("the combined sitemap still holds 426 unique canonical URLs", () => {
+test("the combined sitemap still holds 419 unique canonical URLs", () => {
   const all = groups().flatMap((g) => g.urls.map((u) => u.loc));
-  assert.equal(all.length, 426);
-  assert.equal(new Set(all).size, 426);
+  assert.equal(all.length, 419);
+  assert.equal(new Set(all).size, 419);
   for (const loc of all) assert.ok(loc.startsWith(`${SITE}/`) || loc === SITE, loc);
 });
 
@@ -408,7 +411,7 @@ test("no hard-coded per-service metadata branch remains in the route", () => {
   }
 });
 
-test("all 23 services have complete required metadata", () => {
+test("all 16 services have complete required metadata", () => {
   for (const service of services) {
     for (const field of ["seoTitle", "seoDescription", "heroImage", "heroImageAlt", "slug"] as const) {
       const value = (service as unknown as Record<string, unknown>)[field];
@@ -440,13 +443,6 @@ test("no keyword still carries the pre-migration H1 phrasing", () => {
   }
 });
 
-test("the corrected facility-management keyword is firm-focused and national", () => {
-  const service = services.find((s) => s.slug === "leading-facility-management-firm-in-nigeria");
-  assert.ok(service);
-  assert.ok(service.keywords.includes("Facility Management Firm in Nigeria"));
-  assert.ok(!service.keywords.includes("Facility Management Services in Lagos, Nigeria"));
-});
-
 test("keywords are unique within each service", () => {
   for (const service of services) {
     assert.equal(
@@ -455,4 +451,98 @@ test("keywords are unique within each service", () => {
       `${service.slug} has duplicate keywords`,
     );
   }
+});
+
+// --- Discontinued services ---------------------------------------------------
+
+/** The seven services removed on 3 November 2026, by their former legacy slug. */
+const DISCONTINUED_LEGACY_SLUGS = [
+  "3d-visualization",
+  "structural-engineering",
+  "mep-coordination",
+  "construction-cost-estimation",
+  "renovation-remodeling",
+  "facility-management",
+  "site-planning-landscape",
+];
+
+const DISCONTINUED_FINAL_PATHS = [
+  "/services/leading-3d-visualisation-firm-in-nigeria",
+  "/services/leading-structural-engineering-and-design-firm-in-nigeria",
+  "/services/leading-mep-coordination-firm-in-nigeria",
+  "/services/leading-construction-cost-estimation-firm-in-nigeria",
+  "/services/leading-renovation-and-remodelling-firm-in-nigeria",
+  "/services/leading-facility-management-firm-in-nigeria",
+  "/services/leading-site-planning-and-landscape-design-firm-in-nigeria",
+];
+
+test("discontinued services no longer exist in the service source of truth", () => {
+  for (const legacySlug of DISCONTINUED_LEGACY_SLUGS) {
+    assert.ok(!services.some((s) => s.legacySlug === legacySlug), `still published: ${legacySlug}`);
+  }
+  for (const finalPath of DISCONTINUED_FINAL_PATHS) {
+    assert.ok(!services.some((s) => `/services/${s.slug}` === finalPath), `still published: ${finalPath}`);
+  }
+});
+
+test("discontinued service URLs are absent from every sitemap", () => {
+  const all = new Set(groups().flatMap((g) => g.urls.map((u) => u.loc)));
+  for (const finalPath of DISCONTINUED_FINAL_PATHS) {
+    assert.ok(!all.has(`${SITE}${finalPath}`), `discontinued URL in sitemap: ${finalPath}`);
+  }
+  for (const legacySlug of DISCONTINUED_LEGACY_SLUGS) {
+    assert.ok(!all.has(`${SITE}/services/${legacySlug}`), `discontinued URL in sitemap: ${legacySlug}`);
+  }
+});
+
+test("construction cost estimation redirects directly to an active service", () => {
+  const finalUrls = new Set(services.map((s) => `/services/${s.slug}`));
+  assert.equal(DISCONTINUED_SERVICE_REDIRECTS.length, 2);
+  for (const entry of DISCONTINUED_SERVICE_REDIRECTS) {
+    assert.equal(entry.destination, "/services/leading-feasibility-studies-firm-in-nigeria");
+    assert.ok(finalUrls.has(entry.destination), "destination must be a published service");
+    assert.equal(resolveLegacyPath(entry.source), entry.destination);
+  }
+});
+
+test("discontinued services without a successor are not redirected anywhere", () => {
+  const sources = new Set(
+    [...serviceRedirects, ...LEGACY_REDIRECTS, ...DISCONTINUED_SERVICE_REDIRECTS].map((r) => r.source),
+  );
+  for (const discontinuedPath of DISCONTINUED_SERVICE_PATHS) {
+    assert.ok(!sources.has(discontinuedPath), `unexpected redirect: ${discontinuedPath}`);
+    assert.equal(resolveLegacyPath(discontinuedPath), null, discontinuedPath);
+    assert.equal(isDiscontinuedServicePath(`${discontinuedPath}/`), true, `${discontinuedPath}/`);
+  }
+  // Every discontinued service except cost estimation is covered by the 404 list.
+  for (const finalPath of DISCONTINUED_FINAL_PATHS) {
+    if (finalPath.includes("construction-cost-estimation")) continue;
+    assert.ok(DISCONTINUED_SERVICE_PATHS.has(finalPath), finalPath);
+  }
+});
+
+test("no live page links to a discontinued service", () => {
+  const files = [
+    "src/app/(site)/services/[slug]/page.tsx",
+    "src/app/(site)/services/page.tsx",
+    "src/app/(site)/contact/page.tsx",
+    "src/components/home/Services.tsx",
+    "src/components/home/WhyUs.tsx",
+    "src/components/home/BlogPreview.tsx",
+    "src/components/layout/Header.tsx",
+    "src/components/layout/Footer.tsx",
+    "src/lib/nav-links.ts",
+    "src/data/services.json",
+  ];
+  for (const file of files) {
+    const source = readFileSync(path.join(ROOT, file), "utf8");
+    for (const finalPath of DISCONTINUED_FINAL_PATHS) {
+      assert.ok(!source.includes(finalPath), `${file} links to ${finalPath}`);
+    }
+  }
+});
+
+test("the services hub service count matches the published services", () => {
+  const hub = readFileSync(path.join(ROOT, "src/app/(site)/services/page.tsx"), "utf8");
+  assert.ok(hub.includes(`{ n: "${services.length}", l: "Services" }`), "service count is stale");
 });

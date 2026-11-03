@@ -14,7 +14,7 @@
  * it directly.
  */
 
-import { resolveLegacyPath, normalisePathname } from "./legacy-redirects.ts";
+import { isDiscontinuedServicePath, resolveLegacyPath, normalisePathname } from "./legacy-redirects.ts";
 
 /** The canonical public origin. Passed in so this module stays pure. */
 export type NormaliseOptions = {
@@ -60,7 +60,8 @@ const MALFORMED_EMAIL_PATH = "/info@buildingpractice.biz";
 
 /**
  * Rewrite a single href. Returns the original value when no proven
- * improvement exists, or `null` when the link must be removed as unsafe.
+ * improvement exists, or `null` when the link must be removed: either it is
+ * unsafe, or it points at a discontinued service that no longer has a page.
  */
 export function normaliseHref(href: string, options: NormaliseOptions): string | null {
   const raw = href.trim();
@@ -98,6 +99,9 @@ export function normaliseHref(href: string, options: NormaliseOptions): string |
   if (path.toLowerCase() === MALFORMED_EMAIL_PATH) {
     return "mailto:info@buildingpractice.biz";
   }
+
+  // A discontinued service has no page; keep the anchor text, drop the link.
+  if (isDiscontinuedServicePath(path)) return null;
 
   // A proven legacy mapping wins for every host we own.
   const mapped = resolveLegacyPath(path);
@@ -139,7 +143,7 @@ export function normaliseArticleLinks(html: string, options: NormaliseOptions): 
     const [full, prefix, quote, value] = match;
     const next = normaliseHref(decodeHtmlEntities(value), options);
 
-    // An unsafe link loses its href entirely; the text content survives.
+    // An unsafe or discontinued-service link loses its href; the text survives.
     if (next === null) return tag.replace(full, "");
 
     if (next === value) return tag;

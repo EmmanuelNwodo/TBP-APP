@@ -25,13 +25,6 @@ const CARDS = [
     href: "/services",
   },
   {
-    icon: "bx-cube-alt",
-    title: "3D Visualization",
-    desc: "Advanced rendering brings designs to life before construction begins.",
-    tags: [{ label: "Visualization", variant: "primary" as const }, { label: "Clarity" }],
-    href: "/services",
-  },
-  {
     icon: "bx-briefcase-alt-2",
     title: "Project Delivery Support",
     desc: "Structured support from briefing and design development through construction-stage coordination.",

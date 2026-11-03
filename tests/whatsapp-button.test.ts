@@ -197,8 +197,8 @@ test("the component does not alter sitemap membership", () => {
   const groups = buildSitemapGroups({ siteUrl: SITE, services, projects, team, articles });
   const urls = groups.flatMap((g) => g.urls.map((u) => u.loc));
 
-  assert.equal(urls.length, 426);
-  assert.equal(new Set(urls).size, 426);
+  assert.equal(urls.length, 419);
+  assert.equal(new Set(urls).size, 419);
   assert.ok(!urls.some((u) => u.includes("wa.me")), "no WhatsApp URL in any sitemap");
   assert.ok(!urls.some((u) => u.includes("whatsapp")));
 });

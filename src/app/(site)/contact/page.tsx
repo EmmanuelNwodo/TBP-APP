@@ -86,7 +86,6 @@ export default function ContactPage() {
           { href: "/services#interior", icon: "bx-palette", label: "Interior" },
           { href: "/services#construction", icon: "bx-hard-hat", label: "Construction" },
           { href: "/services#green", icon: "bx-leaf", label: "Green" },
-          { href: "/services#landscape", icon: "bx-tree", label: "Landscape" },
           { href: "/services#urban", icon: "bx-city", label: "Urban" },
           { href: "/about#expertise", icon: "bx-bulb", label: "Expertise" },
           { href: "/about#philosophy", icon: "bx-book-open", label: "Philosophy" },

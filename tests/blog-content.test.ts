@@ -125,3 +125,28 @@ test("rewriting never emits the dead domain", () => {
   const html = '<a href="https://buildingpractice.biz/our-services/">x</a>';
   assert.ok(!normaliseArticleLinks(html, opts).includes("thebuildingpractice.com"));
 });
+
+test("links to discontinued services are unlinked, keeping their text", () => {
+  for (const href of [
+    "https://buildingpractice.biz/our-services/facility-management-and-maintenance-company-in-nigeria/",
+    "https://buildingpractice.biz/our-services/3d-architectural-visualization-rendering-services/",
+    "https://buildingpractice.biz/services/facility-management-and-maintenance/",
+    "/services/leading-mep-coordination-firm-in-nigeria",
+  ]) {
+    assert.equal(normaliseHref(href, opts), null, href);
+  }
+
+  const html =
+    '<p>Partner with <a href="https://buildingpractice.biz/our-services/facility-management-and-maintenance-company-in-nigeria/">The Building Practice Ltd</a>.</p>';
+  assert.equal(
+    normaliseArticleLinks(html, opts),
+    "<p>Partner with <a>The Building Practice Ltd</a>.</p>",
+  );
+});
+
+test("links to construction cost estimation point straight at feasibility studies", () => {
+  assert.equal(
+    normaliseHref("https://buildingpractice.biz/services/construction-cost-estimation/", opts),
+    `${SITE}/services/leading-feasibility-studies-firm-in-nigeria`,
+  );
+});

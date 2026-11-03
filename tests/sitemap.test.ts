@@ -62,10 +62,10 @@ test("every expected child group is present and none is empty", () => {
   }
 });
 
-test("all 23 service-detail URLs are present exactly once", () => {
+test("all 16 service-detail URLs are present exactly once", () => {
   const locs = byId("service").urls.map((u) => u.loc);
-  assert.equal(locs.length, 23);
-  assert.equal(new Set(locs).size, 23);
+  assert.equal(locs.length, 16);
+  assert.equal(new Set(locs).size, 16);
   for (const service of services) {
     assert.ok(locs.includes(`${SITE}/services/${service.slug}`), `missing ${service.slug}`);
   }
@@ -108,11 +108,11 @@ test("every live article is present exactly once", () => {
   assert.equal(new Set(locs).size, articles.length);
 });
 
-test("the combined inventory matches the verified 426-URL baseline", () => {
+test("the combined inventory matches the verified 419-URL baseline", () => {
   const urls = allUrls(groups());
-  // 11 standalone pages + 23 services + 63 projects + 43 team + 286 articles.
+  // 11 standalone pages + 16 services + 63 projects + 43 team + 286 articles.
   assert.equal(urls.length, 11 + services.length + projects.length + team.length + articles.length);
-  assert.equal(urls.length, 426);
+  assert.equal(urls.length, 419);
 });
 
 test("no canonical URL is duplicated across child sitemaps", () => {
@@ -264,7 +264,7 @@ test("XML remains valid and complete without the stylesheet", () => {
   // Stripping the processing instruction must leave a well-formed document.
   const xml = renderUrlSet(byId("service")).replace(/<\?xml-stylesheet[^>]*\?>\n?/, "");
   assert.ok(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>'));
-  assert.equal(extractAll(xml, "loc").length, 23);
+  assert.equal(extractAll(xml, "loc").length, 16);
 });
 
 test("the image namespace is declared only where image data exists", () => {

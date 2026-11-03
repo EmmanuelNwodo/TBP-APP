@@ -30,7 +30,6 @@ export async function BlogPreview() {
             { href: "/services/leading-interior-design-firm-in-nigeria", icon: "bx-palette", label: "Interior Design" },
             { href: "/services/leading-building-construction-firm-in-nigeria", icon: "bx-hard-hat", label: "Construction" },
             { href: "/services/leading-real-estate-development-firm-in-nigeria", icon: "bx-line-chart", label: "Real Estate" },
-            { href: "/services/leading-3d-visualisation-firm-in-nigeria", icon: "bx-chip", label: "3D Visualisation" },
           ]}
         />
 

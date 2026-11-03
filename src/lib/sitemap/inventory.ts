@@ -84,7 +84,8 @@ export function emptyGroup(id: SitemapGroupId): SitemapGroup {
  * Blog pagination (`/blog/page/2` …) is reachable through crawlable links from
  * `/blog` and is indexable, but it is deliberately **not** listed in the XML
  * sitemap, because the audited production inventory does not contain it and
- * the verified baseline of 426 URLs must be preserved exactly.
+ * the verified baseline of 419 URLs (426 before seven discontinued services
+ * were removed on 3 November 2026) must be preserved exactly.
  *
  * Flipping this to `true` adds every pagination page to `page-sitemap.xml`;
  * it is the only switch needed and the tests assert the resulting count.

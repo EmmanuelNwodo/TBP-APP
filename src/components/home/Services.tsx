@@ -50,15 +50,6 @@ const SERVICES = [
     href: "/services",
   },
   {
-    image: "/images/services/3dVisualization.jpg",
-    icon: "bx-cube-alt",
-    title: "3D Visualization",
-    desc: "Photo-realistic renders and immersive walkthroughs help you visualize your space before construction begins.",
-    tags: ["Renders", "VR Tours", "Animation"],
-    alt: "3D architectural visualization",
-    href: "/services",
-  },
-  {
     image: "/images/services/greenBuildingAdvisory.jpg",
     icon: "bx-leaf",
     title: "Green Building",
@@ -92,15 +83,6 @@ const SERVICES = [
     desc: "From feasibility studies to market-ready schemes, we partner with developers to create profitable developments.",
     tags: ["Feasibility", "Investment", "ROI"],
     alt: "Real estate development planning",
-    href: "/services",
-  },
-  {
-    image: "/images/services/reconstructionRemodelling.jpg",
-    icon: "bx-revision",
-    title: "Renovation",
-    desc: "Structural assessments, adaptive reuse, and elegant remodelling that extends building life and meets modern standards.",
-    tags: ["Remodel", "Upgrade", "Restoration"],
-    alt: "Building renovation and remodeling work",
     href: "/services",
   },
   {

@@ -49,7 +49,7 @@ only inside genuine `<image:loc>` elements in the article sitemap.
 /                                   Home
 /about                              About
 /services                           Services hub
-/services/[slug]                    23 service pages (firm-focused)
+/services/[slug]                    16 service pages (firm-focused)
 /projects                           Projects hub
 /projects/[slug]                    63 project pages
 /team                               Team hub
@@ -87,7 +87,7 @@ only inside genuine `<image:loc>` elements in the article sitemap.
 
 ## 6. Services
 
-### Service pages (23)
+### Service pages (16)
 
 | Page type | Page name | Rendered H1 | Canonical URL | Data source | Indexability | Sitemap |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -100,13 +100,6 @@ only inside genuine `<image:loc>` elements in the article sitemap.
 | Service | Urban Development | Leading Urban Development Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-urban-development-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
 | Service | Green Building Advisory | Leading Green Building Advisory Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-green-building-advisory-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
 | Service | Real Estate Development | Leading Real Estate Development Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-real-estate-development-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
-| Service | 3D Visualisation | Leading 3D Visualisation Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-3d-visualisation-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
-| Service | Structural Engineering & Design | Leading Structural Engineering & Design Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-structural-engineering-and-design-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
-| Service | MEP Coordination | Leading MEP Coordination Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-mep-coordination-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
-| Service | Construction Cost Estimation | Leading Construction Cost Estimation Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-construction-cost-estimation-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
-| Service | Renovation & Remodelling | Leading Renovation & Remodelling Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-renovation-and-remodelling-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
-| Service | Facility Management | Leading Facility Management Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-facility-management-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
-| Service | Site Planning & Landscape Design | Leading Site Planning & Landscape Design Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-site-planning-and-landscape-design-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
 | Service | Building Permits & Regulatory Compliance | Leading Building Permits & Regulatory Compliance Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
 | Service | Construction Supervision | Leading Construction Supervision Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-construction-supervision-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
 | Service | Feasibility Studies | Leading Feasibility Studies Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-feasibility-studies-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
@@ -115,7 +108,7 @@ only inside genuine `<image:loc>` elements in the article sitemap.
 | Service | Building Certification | Leading Building Certification Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-building-certification-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
 | Service | Space Planning | Leading Space Planning Firm in Nigeria | `https://www.buildingpractice.biz/services/leading-space-planning-firm-in-nigeria` | `src/data/services.json` | indexable | service-sitemap.xml |
 
-### Service migration matrix (23)
+### Service migration matrix (16)
 
 | Old service name | Old URL | Final H1 | Final canonical URL | Status |
 | --- | --- | --- | --- | --- |
@@ -128,13 +121,6 @@ only inside genuine `<image:loc>` elements in the article sitemap.
 | Urban Development | `/services/urban-development` | Leading Urban Development Firm in Nigeria | `/services/leading-urban-development-firm-in-nigeria` | renamed |
 | Green Building Advisory | `/services/green-building-advisory` | Leading Green Building Advisory Firm in Nigeria | `/services/leading-green-building-advisory-firm-in-nigeria` | renamed |
 | Real Estate Development | `/services/real-estate-development` | Leading Real Estate Development Firm in Nigeria | `/services/leading-real-estate-development-firm-in-nigeria` | renamed |
-| 3D Visualisation | `/services/3d-visualization` | Leading 3D Visualisation Firm in Nigeria | `/services/leading-3d-visualisation-firm-in-nigeria` | renamed |
-| Structural Engineering & Design | `/services/structural-engineering` | Leading Structural Engineering & Design Firm in Nigeria | `/services/leading-structural-engineering-and-design-firm-in-nigeria` | renamed |
-| MEP Coordination | `/services/mep-coordination` | Leading MEP Coordination Firm in Nigeria | `/services/leading-mep-coordination-firm-in-nigeria` | renamed |
-| Construction Cost Estimation | `/services/construction-cost-estimation` | Leading Construction Cost Estimation Firm in Nigeria | `/services/leading-construction-cost-estimation-firm-in-nigeria` | renamed |
-| Renovation & Remodelling | `/services/renovation-remodeling` | Leading Renovation & Remodelling Firm in Nigeria | `/services/leading-renovation-and-remodelling-firm-in-nigeria` | renamed |
-| Facility Management | `/services/facility-management` | Leading Facility Management Firm in Nigeria | `/services/leading-facility-management-firm-in-nigeria` | renamed |
-| Site Planning & Landscape Design | `/services/site-planning-landscape` | Leading Site Planning & Landscape Design Firm in Nigeria | `/services/leading-site-planning-and-landscape-design-firm-in-nigeria` | renamed |
 | Building Permits & Regulatory Compliance | `/services/building-permits` | Leading Building Permits & Regulatory Compliance Firm in Nigeria | `/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria` | renamed |
 | Construction Supervision | `/services/construction-supervision` | Leading Construction Supervision Firm in Nigeria | `/services/leading-construction-supervision-firm-in-nigeria` | renamed |
 | Feasibility Studies | `/services/feasibility-studies` | Leading Feasibility Studies Firm in Nigeria | `/services/leading-feasibility-studies-firm-in-nigeria` | renamed |
@@ -143,7 +129,7 @@ only inside genuine `<image:loc>` elements in the article sitemap.
 | Building Certification | `/services/building-certification` | Leading Building Certification Firm in Nigeria | `/services/leading-building-certification-firm-in-nigeria` | renamed |
 | Space Planning | `/services/space-planning` | Leading Space Planning Firm in Nigeria | `/services/leading-space-planning-firm-in-nigeria` | renamed |
 
-### Redirect matrix (23)
+### Redirect matrix (16)
 
 | Retired URL | Final canonical URL | Redirect type | Reason |
 | --- | --- | --- | --- |
@@ -156,13 +142,6 @@ only inside genuine `<image:loc>` elements in the article sitemap.
 | `/services/urban-development` | `/services/leading-urban-development-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
 | `/services/green-building-advisory` | `/services/leading-green-building-advisory-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
 | `/services/real-estate-development` | `/services/leading-real-estate-development-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
-| `/services/3d-visualization` | `/services/leading-3d-visualisation-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
-| `/services/structural-engineering` | `/services/leading-structural-engineering-and-design-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
-| `/services/mep-coordination` | `/services/leading-mep-coordination-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
-| `/services/construction-cost-estimation` | `/services/leading-construction-cost-estimation-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
-| `/services/renovation-remodeling` | `/services/leading-renovation-and-remodelling-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
-| `/services/facility-management` | `/services/leading-facility-management-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
-| `/services/site-planning-landscape` | `/services/leading-site-planning-and-landscape-design-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
 | `/services/building-permits` | `/services/leading-building-permits-and-regulatory-compliance-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
 | `/services/construction-supervision` | `/services/leading-construction-supervision-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
 | `/services/feasibility-studies` | `/services/leading-feasibility-studies-firm-in-nigeria` | 308 permanent | Service-as-firm repositioning |
@@ -244,31 +223,31 @@ renamed or redesigned by this migration; only the service destinations changed.
 | Sitemap | URLs | Contents |
 | --- | ---: | --- |
 | `page-sitemap.xml` | 11 | Standalone pages and hubs |
-| `service-sitemap.xml` | 23 | Final firm-focused service URLs |
+| `service-sitemap.xml` | 16 | Final firm-focused service URLs |
 | `project-sitemap.xml` | 63 | Project detail pages |
 | `team-sitemap.xml` | 43 | Team profiles |
 | `article-sitemap.xml` | 286 | WordPress articles (plus 201 image entries) |
-| **Total** | **426** | Unique canonical URLs |
+| **Total** | **419** | Unique canonical URLs |
 
 `robots.txt` references only `https://www.buildingpractice.biz/sitemap.xml`.
 Every sitemap carries the `/sitemap.xsl` processing instruction.
 
 Blog pagination (`/blog/page/2` to `/blog/page/24`) is crawlable through links
 on `/blog` but is deliberately **not** listed in the sitemap, preserving the
-verified 426-URL inventory.
+verified 419-URL inventory.
 
 ## 13. Counts by content type
 
 | Content type | Count | Indexable | Sitemap |
 | --- | ---: | --- | --- |
 | Standalone pages and hubs | 11 | Yes | page-sitemap.xml |
-| Service pages | 23 | Yes | service-sitemap.xml |
+| Service pages | 16 | Yes | service-sitemap.xml |
 | Project pages | 63 | Yes | project-sitemap.xml |
 | Team profiles | 43 | Yes | team-sitemap.xml |
 | WordPress articles | 286 | Yes | article-sitemap.xml |
 | Location-detail pages | 0 | — | — |
 | Service-location pages | 0 | — | — |
-| **Total indexable URLs** | **426** | | |
+| **Total indexable URLs** | **419** | | |
 
 ## 14. Validation results
 
@@ -276,19 +255,19 @@ Verified against a local production build of this migration:
 
 | Check | Result |
 | --- | --- |
-| All 23 final service URLs | HTTP 200 |
+| All 16 final service URLs | HTTP 200 |
 | H1 per service page | Exactly 1, matching the service record |
 | Canonical | Self-referencing on every service page |
 | Open Graph URL | Equals the canonical on every service page |
-| Schema `Service.name` | Equals the rendered H1 on all 23 |
-| Schema and breadcrumb URLs | Equal the canonical on all 23 |
+| Schema `Service.name` | Equals the rendered H1 on all 16 |
+| Schema and breadcrumb URLs | Equal the canonical on all 16 |
 | Metadata `noindex` | None on any service page |
 | `X-Robots-Tag` | Absent on all service responses |
 | Initial HTML | Minimum 3,300 characters of server-rendered text |
-| All 23 retired URLs | Single 308 direct to the final URL |
+| All 16 retired URLs | Single 308 direct to the final URL |
 | Redirect chains and loops | None |
-| `service-sitemap.xml` | 23 URLs, all final, no duplicates |
-| Combined sitemap | 426 URLs, 426 unique |
+| `service-sitemap.xml` | 16 URLs, all final, no duplicates |
+| Combined sitemap | 419 URLs, 419 unique |
 | Retired URLs in any sitemap | 0 |
 | Off-canonical or CMS-host page `<loc>` | 0 |
 
@@ -299,7 +278,7 @@ Verified against a local production build of this migration:
 | `/admin`, `/admin/blog`, `/admin/login` | noindex | Administrative; `robots: index:false`, disallowed in robots.txt |
 | `/api/careers/apply`, `/api/health` | excluded | Route handlers; disallowed in robots.txt |
 | `/blog/page/[page]` | indexable, not in sitemap | Crawlable via links; kept out to preserve the verified inventory |
-| `/services/{retired-slug}` (23) | redirected | 308 permanent to the final firm URL |
+| `/services/{retired-slug}` (16) | redirected | 308 permanent to the final firm URL |
 | WordPress-era URLs (`/our-services/*`, `/portfolio/*`, `/team/{full-name}`) | redirected | `src/lib/legacy-redirects.ts` |
 | Unmapped WordPress-era URLs | excluded (404) | Listed in `docs/LEGACY-URL-REVIEW.md` |
 | 404 responses | noindex | Single unambiguous directive |
@@ -310,13 +289,35 @@ Nothing in this document has been deployed. Outstanding items live in
 `docs/SEO-POST-DEPLOYMENT-CHECKLIST.md` and
 `docs/HEADLESS-WORDPRESS-INDEXING-ACTIONS.md`. Specific to this migration:
 
-1. Deploy, then confirm all 23 final service URLs return 200 in production.
-2. Confirm each of the 23 retired service URLs returns a single 308 to its final
+1. Deploy, then confirm all 16 final service URLs return 200 in production.
+2. Confirm each of the 16 retired service URLs returns a single 308 to its final
    URL in production.
 3. In Search Console the sitemap address is unchanged, so resubmission is
    optional; use URL Inspection on several final service URLs instead.
-4. Expect a temporary ranking fluctuation while the 23 URL changes are
+4. Expect a temporary ranking fluctuation while the 16 URL changes are
    reprocessed. The permanent redirects preserve accumulated signals.
 5. WordPress article bodies still contain links to WordPress-era service URLs.
    These are rewritten at render time by `src/lib/blog-content.ts`; the CMS
    database is not modified.
+
+## 17. Discontinued services (removed 3 November 2026)
+
+Seven services are no longer offered and have been removed from the service
+source of truth, every listing, the XML sitemap and all internal links. Their
+URLs are declared once in `src/lib/legacy-redirects.ts`.
+
+| Service | Final URL | Former slug | Response |
+|---|---|---|---|
+| 3D Visualization | `/services/leading-3d-visualisation-firm-in-nigeria` | `/services/3d-visualization` | 404 (no matching active service) |
+| Structural Engineering & Design | `/services/leading-structural-engineering-and-design-firm-in-nigeria` | `/services/structural-engineering` | 404 (no matching active service) |
+| MEP Coordination | `/services/leading-mep-coordination-firm-in-nigeria` | `/services/mep-coordination` | 404 (no matching active service) |
+| Construction Cost Estimation | `/services/leading-construction-cost-estimation-firm-in-nigeria` | `/services/construction-cost-estimation` | 301 to `/services/leading-feasibility-studies-firm-in-nigeria` |
+| Renovation & Remodeling | `/services/leading-renovation-and-remodelling-firm-in-nigeria` | `/services/renovation-remodeling` | 404 (no matching active service) |
+| Facility Management | `/services/leading-facility-management-firm-in-nigeria` | `/services/facility-management` | 404 (no matching active service) |
+| Site Planning & Landscape Design | `/services/leading-site-planning-and-landscape-design-firm-in-nigeria` | `/services/site-planning-landscape` | 404 (no matching active service) |
+
+The WordPress-era URLs `/our-services/3d-architectural-visualization-rendering-services`,
+`/our-services/facility-management-and-maintenance` and
+`/our-services/facility-management-and-maintenance-company-in-nigeria` no
+longer redirect and return 404. Links to any of these URLs inside WordPress
+article bodies are unlinked at render time; the anchor text is kept.

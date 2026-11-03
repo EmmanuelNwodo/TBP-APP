@@ -46,7 +46,6 @@ const PAGE_REDIRECTS: LegacyRedirect[] = [
  * equivalent and belong to the upcoming service-as-firm restructuring.
  */
 const SERVICE_REDIRECTS: LegacyRedirect[] = [
-  { source: "/our-services/3d-architectural-visualization-rendering-services", destination: "/services/leading-3d-visualisation-firm-in-nigeria" },
   { source: "/our-services/architectural-planning-design-documentation-firm-in-nigeria", destination: "/services/leading-architectural-design-firm-in-nigeria" },
   { source: "/our-services/building-design-architect-nigeria", destination: "/services/leading-architectural-design-firm-in-nigeria" },
   { source: "/our-services/modern-design-architect-in-nigeria", destination: "/services/leading-architectural-design-firm-in-nigeria" },
@@ -55,8 +54,6 @@ const SERVICE_REDIRECTS: LegacyRedirect[] = [
   { source: "/our-services/top-building-construction-company-in-lagos-nigeria", destination: "/services/leading-building-construction-firm-in-nigeria" },
   { source: "/our-services/interior-design-company-in-nigeria", destination: "/services/leading-interior-design-firm-in-nigeria" },
   { source: "/our-services/interior-design-company-lagos-nigeria", destination: "/services/leading-interior-design-firm-in-nigeria" },
-  { source: "/our-services/facility-management-and-maintenance", destination: "/services/leading-facility-management-firm-in-nigeria" },
-  { source: "/our-services/facility-management-and-maintenance-company-in-nigeria", destination: "/services/leading-facility-management-firm-in-nigeria" },
   { source: "/our-services/green-building-and-sustainable-architecture-firm-in-lagos-nigeria", destination: "/services/leading-green-building-advisory-firm-in-nigeria" },
   { source: "/our-services/sustainable-architecture-firm-in-nigeria", destination: "/services/leading-green-building-advisory-firm-in-nigeria" },
   { source: "/our-services/sustainable-green-building-design-architect-in-nigeria", destination: "/services/leading-green-building-advisory-firm-in-nigeria" },
@@ -151,6 +148,58 @@ export const LEGACY_REDIRECTS: LegacyRedirect[] = [
   ...TEAM_REDIRECTS,
 ];
 
+/**
+ * Services The Building Practice no longer offers (removed 3 November 2026).
+ *
+ * Construction Cost Estimation has a genuine successor: the Feasibility
+ * Studies page covers construction cost and budget feasibility, so its URLs
+ * redirect there directly with a 301.
+ *
+ * The other six have no active page that matches the visitor's intent, so their
+ * URLs are deliberately left to return the branded 404 rather than being swept
+ * into an unrelated page (see docs/LEGACY-URL-REVIEW.md on soft 404s).
+ */
+export const DISCONTINUED_SERVICE_REDIRECTS: LegacyRedirect[] = [
+  { source: "/services/leading-construction-cost-estimation-firm-in-nigeria", destination: "/services/leading-feasibility-studies-firm-in-nigeria" },
+  { source: "/services/construction-cost-estimation", destination: "/services/leading-feasibility-studies-firm-in-nigeria" },
+];
+
+/**
+ * Every known URL of a discontinued service that has no replacement page:
+ * the final canonical URL, the pre-migration slug and any WordPress-era URL.
+ * These return 404, and links to them inside CMS article bodies are unlinked
+ * at render time so no article sends a reader to a dead page.
+ */
+export const DISCONTINUED_SERVICE_PATHS: ReadonlySet<string> = new Set([
+  // 3D Visualization
+  "/services/leading-3d-visualisation-firm-in-nigeria",
+  "/services/3d-visualization",
+  "/our-services/3d-architectural-visualization-rendering-services",
+  // Structural Engineering & Design
+  "/services/leading-structural-engineering-and-design-firm-in-nigeria",
+  "/services/structural-engineering",
+  // MEP Coordination
+  "/services/leading-mep-coordination-firm-in-nigeria",
+  "/services/mep-coordination",
+  // Renovation & Remodeling
+  "/services/leading-renovation-and-remodelling-firm-in-nigeria",
+  "/services/renovation-remodeling",
+  // Facility Management
+  "/services/leading-facility-management-firm-in-nigeria",
+  "/services/facility-management",
+  "/services/facility-management-and-maintenance",
+  "/our-services/facility-management-and-maintenance",
+  "/our-services/facility-management-and-maintenance-company-in-nigeria",
+  // Site Planning & Landscape Design
+  "/services/leading-site-planning-and-landscape-design-firm-in-nigeria",
+  "/services/site-planning-landscape",
+]);
+
+/** True when a pathname is a discontinued service URL with no replacement. */
+export function isDiscontinuedServicePath(pathname: string): boolean {
+  return DISCONTINUED_SERVICE_PATHS.has(normalisePathname(pathname).toLowerCase());
+}
+
 /** The minimum a service record must expose to generate its redirect. */
 export type ServiceSlugPair = { legacySlug: string; slug: string };
 
@@ -172,7 +221,7 @@ export function buildServiceMigrationRedirects(services: ServiceSlugPair[]): Leg
 
 /** Fast lookup used by the article link-normalisation pipeline. */
 const LEGACY_REDIRECT_MAP: ReadonlyMap<string, string> = new Map(
-  LEGACY_REDIRECTS.map((entry) => [entry.source, entry.destination]),
+  [...LEGACY_REDIRECTS, ...DISCONTINUED_SERVICE_REDIRECTS].map((entry) => [entry.source, entry.destination]),
 );
 
 /** Strip a single trailing slash so `/about-us/` and `/about-us` behave alike. */

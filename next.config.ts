@@ -3,7 +3,11 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 import servicesData from "./src/data/services.json";
-import { buildServiceMigrationRedirects, LEGACY_REDIRECTS } from "./src/lib/legacy-redirects";
+import {
+  buildServiceMigrationRedirects,
+  DISCONTINUED_SERVICE_REDIRECTS,
+  LEGACY_REDIRECTS,
+} from "./src/lib/legacy-redirects";
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
@@ -74,6 +78,13 @@ const nextConfig: NextConfig = {
         source: entry.source,
         destination: entry.destination,
         permanent: true,
+      })),
+      // Discontinued services with a genuine successor page: a direct 301.
+      // Discontinued services without one are not listed and return 404.
+      ...DISCONTINUED_SERVICE_REDIRECTS.map((entry) => ({
+        source: entry.source,
+        destination: entry.destination,
+        statusCode: 301 as const,
       })),
       ...LEGACY_REDIRECTS.map((entry) => ({
         source: entry.source,
