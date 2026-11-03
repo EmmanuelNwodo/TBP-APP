@@ -15,9 +15,9 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { BlogPreview } from "@/components/home/BlogPreview";
 import { HomeFaq } from "../../components/home/HomeFaq";
 
-const TITLE = "Leading Architectural Firm in Nigeria";
+const TITLE = "Leading Architecture Firm in Nigeria";
 const DESCRIPTION =
-  "Lagos-based architectural firm in Nigeria delivering residential, commercial, and civic architecture, interior architecture, and project delivery support.";
+  "Lagos-based architecture firm in Nigeria delivering residential, commercial, and civic architecture, interior architecture, and project delivery support.";
 
 const HOME_PAGE_JSON_LD = {
   "@context": "https://schema.org",
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   keywords: [
-    "architectural firms in Nigeria",
+    "architecture firms in Nigeria",
     "architecture firms in Nigeria",
     "architects in Nigeria",
     "architecture firms in Lagos",
