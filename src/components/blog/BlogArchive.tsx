@@ -16,10 +16,22 @@ export const POSTS_PER_PAGE = 12;
  * empty archive.
  */
 export async function BlogArchive({ page }: { page: number }) {
-  const [archive, categories] = await Promise.all([
-    getArchivePage(page, POSTS_PER_PAGE),
-    getAllCategories(),
-  ]);
+  const categoriesPromise = getAllCategories();
+  let archive;
+
+  try {
+    archive = await getArchivePage(page, POSTS_PER_PAGE);
+  } catch {
+    archive = {
+      posts: [],
+      page,
+      perPage: POSTS_PER_PAGE,
+      total: 0,
+      totalPages: 0,
+    };
+  }
+
+  const categories = await categoriesPromise;
 
   // A page number past the end of the archive is a genuine 404.
   if (page > 1 && archive.posts.length === 0) notFound();
